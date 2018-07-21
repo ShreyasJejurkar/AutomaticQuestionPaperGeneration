@@ -4,13 +4,7 @@ namespace AutomatedQuestionPaper.Areas.Staff
 {
     public class StaffAreaRegistration : AreaRegistration 
     {
-        public override string AreaName 
-        {
-            get 
-            {
-                return "Staff";
-            }
-        }
+        public override string AreaName => "Staff";
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
