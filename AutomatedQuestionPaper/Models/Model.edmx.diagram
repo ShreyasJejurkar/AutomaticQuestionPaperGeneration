@@ -4,21 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="f37057e2b72e4a13a5ca5f997ffb5c32" Name="Diagram1" ZoomLevel="81" >
-        <EntityTypeShape EntityType="Model.Admin" Width="1.5" PointX="1.25" PointY="0.875" />
-        <EntityTypeShape EntityType="Model.Semister" Width="1.5" PointX="3.125" PointY="0.875" />
-        <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="5.25" PointY="0.875" />
-        <EntityTypeShape EntityType="Model.Teacher" Width="1.5" PointX="1.25" PointY="3.75" />
-        <EntityTypeShape EntityType="Model.Course" Width="1.5" PointX="4.75" PointY="3.75" />
+      <Diagram DiagramId="f37057e2b72e4a13a5ca5f997ffb5c32" Name="Diagram1" ZoomLevel="75" >
+        <EntityTypeShape EntityType="Model.Admin" Width="1.5" PointX="6.875" PointY="1.75" />
+        <EntityTypeShape EntityType="Model.Semister" Width="1.5" PointX="8.625" PointY="1.75" />
+        <EntityTypeShape EntityType="Model.Department" Width="1.5" PointX="10.875" PointY="1.5" />
+        <EntityTypeShape EntityType="Model.Teacher" Width="1.5" PointX="7" PointY="3.625" />
+        <EntityTypeShape EntityType="Model.Course" Width="1.5" PointX="10.375" PointY="3.75" />
         <AssociationConnector Association="Model.DepartmentCourse" />
-        <EntityTypeShape EntityType="Model.QuestionType" Width="1.5" PointX="7.5" PointY="0.875" />
-        <EntityTypeShape EntityType="Model.Chapter" Width="1.5" PointX="7.625" PointY="3.75" />
+        <EntityTypeShape EntityType="Model.QuestionType" Width="1.5" PointX="13.25" PointY="1.875" />
+        <EntityTypeShape EntityType="Model.Chapter" Width="1.5" PointX="13" PointY="4.625" />
         <AssociationConnector Association="Model.CourseChapter" />
-        <EntityTypeShape EntityType="Model.TeacherCourse" Width="1.5" PointX="8.625" PointY="6.125" />
+        <EntityTypeShape EntityType="Model.TeacherCourse" Width="1.5" PointX="12.5" PointY="6.625" />
         <AssociationConnector Association="Model.SemisterTeacherCourse" />
         <AssociationConnector Association="Model.TeacherCourseTeacher" />
         <AssociationConnector Association="Model.TeacherCourseCourse" />
-        <EntityTypeShape EntityType="Model.Question" Width="1.5" PointX="3.375" PointY="7.625" />
+        <EntityTypeShape EntityType="Model.Question" Width="1.5" PointX="8.125" PointY="7.125" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
