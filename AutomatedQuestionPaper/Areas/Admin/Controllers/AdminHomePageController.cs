@@ -1,13 +1,28 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
+using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     public class AdminHomePageController : Controller
     {
-        // GET: Admin/AdminHomePage
+        private readonly ModelContainer _context = new ModelContainer();
+
+        [HttpGet]
         public ActionResult Index()
         {
-            return View("AdminHomePage");
+            if (Session["Username"] == null )
+            {
+                ViewBag.SessionErrorMessage = "Please log in to your account first.";
+                return View();
+            }
+            else
+            {
+                var adminName = Session["Username"];
+                var admin = _context.Admins.FirstOrDefault(u => u.username == (string) adminName);
+
+                return View(admin);
+            }
         }
     }
 }

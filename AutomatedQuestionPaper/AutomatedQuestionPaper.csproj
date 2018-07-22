@@ -260,8 +260,8 @@
     </Content>
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Staff\Views\web.config" />
-    <Content Include="Areas\Admin\Views\AdminHomePage\AdminHomePage.cshtml" />
-    <Content Include="Areas\Staff\Views\StaffHomePage\StaffHomePage.cshtml" />
+    <Content Include="Areas\Staff\Views\StaffHomePage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHomePage\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
