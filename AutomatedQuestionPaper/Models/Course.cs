@@ -21,9 +21,13 @@ namespace AutomatedQuestionPaper.Models
         }
     
         public int Id { get; set; }
+
         public int DepartmentId { get; set; }
+
         public string description { get; set; }
+
         public int TeacherCourseId { get; set; }
+
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

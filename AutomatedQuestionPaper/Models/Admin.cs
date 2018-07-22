@@ -7,15 +7,23 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 namespace AutomatedQuestionPaper.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
+
     public partial class Admin
     {
         public int Id { get; set; }
+
+        [Required]
+        [DisplayName("Username")]
         public string username { get; set; }
+
+        [Required]
+        [DisplayName("Password")]
         public string password { get; set; }
+
     }
 }
