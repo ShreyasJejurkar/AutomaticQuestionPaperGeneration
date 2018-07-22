@@ -7,7 +7,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         // GET: Staff/StaffHomePage
         public ActionResult Index()
         {
-            return View("StaffHomePage");
+            return View();
         }
     }
 }

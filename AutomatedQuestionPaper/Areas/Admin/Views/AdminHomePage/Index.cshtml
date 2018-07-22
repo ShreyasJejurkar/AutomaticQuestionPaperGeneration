@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model AutomatedQuestionPaper.Models.Admin
+
+<br />
+
+@if (ViewBag.SessionErrorMessage != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @ViewBag.SessionErrorMessage
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+else
+{
+    <h2>Hello @Model.username</h2>
+
+
+    <div>
+        <h3>Management Panel</h3>
+
+        <button class="btn btn-dark m-1">Staff Management</button>
+        <button class="btn btn-primary m-1 ">Course Teacher allocation </button>
+        <button class="btn btn-secondary m-1">Department management</button>
+        <button class="btn btn-info m-1">Course</button>
+
+
+    </div>
+    
+
+
+
+
+}
