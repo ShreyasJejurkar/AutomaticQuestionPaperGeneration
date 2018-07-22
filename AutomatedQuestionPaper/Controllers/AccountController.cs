@@ -22,11 +22,14 @@ namespace AutomatedQuestionPaper.Controllers
 
             if (dbuser == null)
             {
-
                 //Check for staff member
                 var staffUser = _context.Teachers.FirstOrDefault(T => T.name == user.username && T.password == user.password);
                 if (staffUser != null)
                 {
+
+                    //Saving data to session for login functionality
+                    Session["Username"] = staffUser.name;
+
                     return RedirectToAction("Index", "StaffHomePage", new
                     {
                         area = "Staff"
@@ -36,6 +39,10 @@ namespace AutomatedQuestionPaper.Controllers
 
             if (dbuser != null)
             {
+
+                //Saving data to session for login functionality
+                Session["Username"] = dbuser.username;
+
                 return RedirectToAction("Index", "AdminHomePage", new
                 {
                     area = "Admin"
