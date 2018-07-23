@@ -264,6 +264,7 @@
     <Content Include="Areas\Staff\Views\StaffHomePage\Index.cshtml" />
     <Content Include="Areas\Admin\Views\AdminHomePage\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Staff\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Staff\TeacherEdit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

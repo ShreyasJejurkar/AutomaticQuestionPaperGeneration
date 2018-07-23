@@ -12,7 +12,7 @@ namespace AutomatedQuestionPaper.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Teacher
+    public partial class Teacher : List<object>
     {
         public int Id { get; set; }
         public string name { get; set; }

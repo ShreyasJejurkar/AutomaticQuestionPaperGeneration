@@ -15,6 +15,7 @@ namespace AutomatedQuestionPaper.Models
 
     public partial class Admin
     {
+        [Key]
         public int Id { get; set; }
 
         [Required]

@@ -1,2 +1,34 @@
-﻿<h2>Staff Management</h2>
+﻿@model IEnumerable<AutomatedQuestionPaper.Models.Teacher>
 
+@{
+    ViewBag.Title = "Bind Gridview with Database";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    WebGrid grid = new WebGrid();
+    grid.Bind(Model);
+
+}
+
+<h3>Staff data</h3>
+
+
+<a href=@Url.Action("TeacherEdit", "Staff") class="btn btn-secondary">Edit data</a>
+
+<hr/>
+
+@grid.GetHtml(tableStyle: "table table-bordered table-striped ",
+    mode: WebGridPagerModes.All,
+    firstText: "<< First",
+    previousText: "< Prev",
+    nextText: "Next >",
+    lastText: "Last >>",
+    columns: grid.Columns(
+        grid.Column("Id", " Id"),
+        grid.Column("name", "Name"),
+        grid.Column("surname", "Surname"),
+        grid.Column("address", "Address"),
+        grid.Column("phone", "Phone Number"),
+        grid.Column("email", "Email"),
+        grid.Column("password", "Password"),
+        grid.Column("secret_question", "Secret question"),
+        grid.Column("answer", "Answer")
+        ))
