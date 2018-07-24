@@ -29,7 +29,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult GetStaffDetails(int id)
+        public ActionResult GetStaffDetails(int id = 0)
         {
             var dbTeacher = _context.Teachers.FirstOrDefault(u => u.Id == id);
 

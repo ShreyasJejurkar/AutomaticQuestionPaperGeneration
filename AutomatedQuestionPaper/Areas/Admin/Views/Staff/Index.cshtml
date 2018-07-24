@@ -1,19 +1,18 @@
 ﻿@model IEnumerable<AutomatedQuestionPaper.Models.Teacher>
 
 @{
-    ViewBag.Title = "Bind Gridview with Database";
+    ViewBag.Title = "Staff details";
     Layout = "~/Views/Shared/_Layout.cshtml";
     WebGrid grid = new WebGrid();
     grid.Bind(Model);
 
 }
 
-<h3>Staff data</h3>
-
-
-<a href=@Url.Action("TeacherEdit", "Staff") class="btn btn-secondary">Edit data</a>
-
-<hr/>
+<br/>
+<h4> Staff details </h4>
+<a href=@Url.Action("TeacherEdit", "Staff") class="btn btn-secondary float-right ">Edit data</a>
+<br/>
+<br/>
 
 @grid.GetHtml(tableStyle: "table table-bordered table-striped ",
     mode: WebGridPagerModes.All,
