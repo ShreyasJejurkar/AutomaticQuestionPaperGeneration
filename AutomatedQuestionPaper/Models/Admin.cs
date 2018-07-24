@@ -20,10 +20,12 @@ namespace AutomatedQuestionPaper.Models
 
         [Required]
         [DisplayName("Username")]
+        [DataType(DataType.Text)]
         public string username { get; set; }
 
         [Required]
         [DisplayName("Password")]
+        [DataType(DataType.Password)]
         public string password { get; set; }
 
     }

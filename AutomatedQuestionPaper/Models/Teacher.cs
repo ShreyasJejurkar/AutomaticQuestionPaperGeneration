@@ -7,6 +7,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 namespace AutomatedQuestionPaper.Models
 {
     using System;
@@ -14,15 +17,50 @@ namespace AutomatedQuestionPaper.Models
     
     public partial class Teacher : List<object>
     {
+        [Key]
         public int Id { get; set; }
+
+        [DisplayName("Name")]
+        [DataType(DataType.Text)]
+        [MaxLength(256)]
         public string name { get; set; }
+
+
+        [DisplayName("Surname")]
+        [DataType(DataType.Text)]
+        [MaxLength(256)]
         public string surname { get; set; }
+
+        [DisplayName("Address")]
+        [DataType(DataType.Text)]
+        [MaxLength(256)]
         public string address { get; set; }
+
+        [DisplayName("Phone Number")]
+        [DataType(DataType.PhoneNumber)]
+        [MaxLength(10)]
         public string phone { get; set; }
+
+        [DisplayName("Email")]
+        [DataType(DataType.EmailAddress)]
+        [MaxLength(256)]
         public string email { get; set; }
+
+        [DisplayName("Password")]
+        [DataType(DataType.Password)]
         public string password { get; set; }
+
+        [DisplayName("Secret question")]
+        [DataType(DataType.Text)]
+        [MaxLength(256)]
         public string secret_question { get; set; }
+
+        [DisplayName("Answer")]
+        [DataType(DataType.Text)]
+        [MaxLength(256)]
         public string answer { get; set; }
+
+
         public int TeacherCourseId { get; set; }
     
         public virtual TeacherCourse TeacherCourse { get; set; }
