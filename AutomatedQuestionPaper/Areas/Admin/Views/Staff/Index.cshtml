@@ -1,18 +1,47 @@
-﻿@model IEnumerable<AutomatedQuestionPaper.Models.Teacher>
+﻿@using AutomatedQuestionPaper.Models
+@model IEnumerable<AutomatedQuestionPaper.Models.Teacher>
 
 @{
     ViewBag.Title = "Staff details";
     Layout = "~/Views/Shared/_Layout.cshtml";
     WebGrid grid = new WebGrid();
-    grid.Bind(Model);
-
+    try
+    {
+        grid = new WebGrid();
+        grid.Bind(Model);
+    }
+    catch
+    {
+        if (Model == null)
+        {
+            grid = new WebGrid();
+            List<Teacher> teacher = new List<Teacher>();
+            ModelContainer _context = new ModelContainer();
+            var data = _context.Teachers;
+            var list = data.ToList();
+            grid.Bind(list);
+        }
+    }
 }
 
-<br/>
+<br />
+
+@if (TempData["StaffEditSucessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["StaffEditSucessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
 <h4> Staff details </h4>
 <a href=@Url.Action("TeacherEdit", "Staff") class="btn btn-secondary float-right ">Edit data</a>
-<br/>
-<br/>
+<br />
+<br />
+
+
 
 @grid.GetHtml(tableStyle: "table table-bordered table-striped ",
     mode: WebGridPagerModes.All,
@@ -27,7 +56,5 @@
         grid.Column("address", "Address"),
         grid.Column("phone", "Phone Number"),
         grid.Column("email", "Email"),
-        grid.Column("password", "Password"),
-        grid.Column("secret_question", "Secret question"),
-        grid.Column("answer", "Answer")
+        grid.Column("password", "Password")
         ))
