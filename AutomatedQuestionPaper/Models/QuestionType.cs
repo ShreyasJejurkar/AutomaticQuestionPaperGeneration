@@ -7,15 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 namespace AutomatedQuestionPaper.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
     public partial class QuestionType
     {
+        [Key]
         public int Id { get; set; }
+
+        [DisplayName("Name")]
+        [MaxLength(256)]
+        [Required]
+        [DataType(DataType.Text)]
         public string Name { get; set; }
+
         public string IsActive { get; set; }
     }
 }

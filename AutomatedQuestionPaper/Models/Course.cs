@@ -7,11 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 namespace AutomatedQuestionPaper.Models
 {
-    using System;
     using System.Collections.Generic;
-    
+
     public partial class Course
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -20,14 +22,20 @@ namespace AutomatedQuestionPaper.Models
             this.Chapters = new HashSet<Chapter>();
         }
     
+        [Key]
         public int Id { get; set; }
+
 
         public int DepartmentId { get; set; }
 
+        [DisplayName("Description")]
+        [MaxLength(500)]
+        [DataType(DataType.MultilineText)]
+        [Required]
         public string description { get; set; }
 
-        public int TeacherCourseId { get; set; }
 
+        public int TeacherCourseId { get; set; }
     
         public virtual Department Department { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

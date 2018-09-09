@@ -196,8 +196,8 @@
             <End Role="TeacherCourse" EntitySet="TeacherCourses" />
           </AssociationSet>
           <AssociationSet Name="TeacherCourseTeacher" Association="Model.TeacherCourseTeacher">
-            <End Role="TeacherCourse" EntitySet="TeacherCourses" />
-            <End Role="Teacher" EntitySet="Teachers" />
+            <End EntitySet="TeacherCourses" Role="TeacherCourse" />
+            <End EntitySet="Teachers" Role="Teacher" />
           </AssociationSet>
           <AssociationSet Name="TeacherCourseCourse" Association="Model.TeacherCourseCourse">
             <End Role="TeacherCourse" EntitySet="TeacherCourses" />
@@ -233,17 +233,17 @@
           <Key>
             <PropertyRef Name="Id" />
           </Key>
-          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" Nullable="false" />
-          <Property Name="surname" Type="String" Nullable="false" />
-          <Property Name="address" Type="String" Nullable="false" />
-          <Property Name="phone" Type="String" Nullable="false" />
-          <Property Name="email" Type="String" Nullable="false" />
-          <Property Name="password" Type="String" Nullable="false" />
-          <Property Name="secret_question" Type="String" Nullable="false" />
-          <Property Name="answer" Type="String" Nullable="false" />
+          <Property Name="Id" Nullable="false" annotation:StoreGeneratedPattern="Identity" Type="Int32" />
+          <Property Name="name" Nullable="false" Type="String" />
+          <Property Name="surname" Nullable="false" Type="String" />
+          <Property Name="address" Nullable="false" Type="String" />
+          <Property Name="phone" Nullable="false" Type="String" />
+          <Property Name="email" Nullable="false" Type="String" />
+          <Property Name="password" Nullable="false" Type="String" />
+          <Property Name="secret_question" Nullable="false" Type="String" />
+          <Property Name="answer" Nullable="false" Type="String" />
           <NavigationProperty Name="TeacherCourse" Relationship="Model.TeacherCourseTeacher" FromRole="Teacher" ToRole="TeacherCourse" />
-          <Property Name="TeacherCourseId" Type="Int32" Nullable="false" />
+          <Property Name="TeacherCourseId" Nullable="false" Type="Int32" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -320,8 +320,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="TeacherCourseTeacher">
-          <End Type="Model.TeacherCourse" Role="TeacherCourse" Multiplicity="1" />
-          <End Type="Model.Teacher" Role="Teacher" Multiplicity="*" />
+          <End Type="Model.TeacherCourse" Multiplicity="1" Role="TeacherCourse" />
+          <End Type="Model.Teacher" Multiplicity="*" Role="Teacher" />
           <ReferentialConstraint>
             <Principal Role="TeacherCourse">
               <PropertyRef Name="Id" />

@@ -7,11 +7,12 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace AutomatedQuestionPaper.Models
 {
-    using System;
     using System.Collections.Generic;
-    
+
     public partial class TeacherCourse
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -21,6 +22,7 @@ namespace AutomatedQuestionPaper.Models
             this.Courses = new HashSet<Course>();
         }
     
+        [Key]
         public int Id { get; set; }
         public int SemisterId { get; set; }
     

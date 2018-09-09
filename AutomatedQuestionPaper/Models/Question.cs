@@ -7,13 +7,14 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace AutomatedQuestionPaper.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
+
     public partial class Question
     {
+        [Key]
         public int Id { get; set; }
     }
 }

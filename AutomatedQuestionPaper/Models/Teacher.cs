@@ -12,52 +12,47 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AutomatedQuestionPaper.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
-    public partial class Teacher : List<object>
+    public partial class Teacher
     {
         [Key]
         public int Id { get; set; }
 
-        [DisplayName("Name")]
-        [DataType(DataType.Text)]
+        [DisplayName("First Name")]
         [MaxLength(256)]
+        [DataType(DataType.Text)]
+        [Required]
         public string name { get; set; }
 
-
         [DisplayName("Surname")]
-        [DataType(DataType.Text)]
         [MaxLength(256)]
+        [DataType(DataType.Text)]
+        [Required]
         public string surname { get; set; }
 
         [DisplayName("Address")]
-        [DataType(DataType.Text)]
         [MaxLength(256)]
+        [DataType(DataType.MultilineText)]
+        [Required]
         public string address { get; set; }
 
         [DisplayName("Phone Number")]
-        [DataType(DataType.PhoneNumber)]
         [MaxLength(10)]
+        [DataType(DataType.PhoneNumber)]
+        [Required]
         public string phone { get; set; }
 
         [DisplayName("Email")]
-        [DataType(DataType.EmailAddress)]
         [MaxLength(256)]
+        [DataType(DataType.EmailAddress)]
+        [Required]
         public string email { get; set; }
 
         [DisplayName("Password")]
+        [MaxLength(256)]
         [DataType(DataType.Password)]
+        [Required]
         public string password { get; set; }
-
-        [DisplayName("Secret question")]
-        [DataType(DataType.Text)]
-        [MaxLength(256)]
         public string secret_question { get; set; }
-
-        [DisplayName("Answer")]
-        [DataType(DataType.Text)]
-        [MaxLength(256)]
         public string answer { get; set; }
 
 

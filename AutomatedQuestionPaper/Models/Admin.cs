@@ -12,21 +12,21 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AutomatedQuestionPaper.Models
 {
-
     public partial class Admin
     {
         [Key]
         public int Id { get; set; }
 
-        [Required]
         [DisplayName("Username")]
+        [MaxLengthAttribute(256)]
         [DataType(DataType.Text)]
+        [Required]
         public string username { get; set; }
 
-        [Required]
         [DisplayName("Password")]
+        [MaxLengthAttribute(256)]
         [DataType(DataType.Password)]
+        [Required]
         public string password { get; set; }
-
     }
 }
