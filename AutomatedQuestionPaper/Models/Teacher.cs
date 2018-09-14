@@ -38,7 +38,8 @@ namespace AutomatedQuestionPaper.Models
         [DisplayName("Phone Number")]
         [MaxLength(10)]
         [DataType(DataType.PhoneNumber)]
-        [Required]
+        [Required(ErrorMessage = "You must provide a phone number")]
+        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         public string phone { get; set; }
 
         [DisplayName("Email")]
@@ -48,11 +49,14 @@ namespace AutomatedQuestionPaper.Models
         public string email { get; set; }
 
         [DisplayName("Password")]
-        [MaxLength(256)]
+        [MinLength(8)]
         [DataType(DataType.Password)]
         [Required]
         public string password { get; set; }
+
         public string secret_question { get; set; }
+
+        
         public string answer { get; set; }
 
 
