@@ -35,10 +35,11 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         public ActionResult GetStaffDetails(int id = 0)
         {
             _dbTeacher = _context.Teachers.FirstOrDefault(u => u.Id == id);
-            ViewBag.StaffID = _dbTeacher.Id;
+
 
             if (_dbTeacher == null)
             {
+                // ViewBag.StaffID = _dbTeacher.Id;
                 ViewBag.StaffNotFoundErrorMessage = "Staff details not found. Please ensure you entered correct ID";
                 return View("TeacherEdit", null);
             }
@@ -64,11 +65,62 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 oldStaffData.password = Request.Form.Get(keys[7]);
                 oldStaffData.phone = Request.Form.Get(keys[5]);
                 _context.SaveChanges();
-                TempData["StaffEditSucessMessage"] = "Staff details has been saved sucessfully";
+                TempData["StaffEditSucessMessage"] = "Staff details has been saved successfully";
                 return View("Index");
             }
 
             return null;
+        }
+
+        [HttpGet]
+        public ActionResult TeacherAdd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult TeacherAdd(Teacher data)
+        {
+            data.TeacherCourse = new TeacherCourse
+            {
+                SemisterId = 2
+            };
+
+            data.secret_question = "";
+            data.answer = "";
+
+            _context.Teachers.Add(data);
+            _context.SaveChanges();
+
+            TempData["StaffAddedMessage"] = "Staff added successfully";
+
+            return RedirectToAction("Index", "Staff");
+        }
+
+        [HttpGet]
+        public ActionResult DeleteTeacher()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Route("/Admin/Staff/DeleteTeacher")]
+        public ActionResult DeleteTeacher(int TeacherID = 0)
+        {
+            var teacherDb = _context.Teachers.SingleOrDefault(u => u.Id == TeacherID);
+
+            if (teacherDb != null)
+            {
+                _context.Teachers.Remove(teacherDb);
+                _context.SaveChanges();
+                TempData["TeacherDeletedSuccessMessage"] = "Teacher deleted successfully";
+                return RedirectToAction("Index", "Staff");
+            }
+
+            ViewBag.TeacherNotFoundErrorMessage = "Teacher does not exists. Please check ID";
+            return View();
         }
     }
 }
