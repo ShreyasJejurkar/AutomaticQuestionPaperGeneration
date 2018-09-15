@@ -66,7 +66,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 return View("Index", _data);
             }
 
-            return View("Index");
+            return View("Index", _data);
         }
 
         [HttpGet]
