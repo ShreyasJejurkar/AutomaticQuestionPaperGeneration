@@ -7,59 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-
 namespace AutomatedQuestionPaper.Models
 {
+    using System;
+    using System.Collections.Generic;
+    
     public partial class Teacher
     {
-        [Key]
         public int Id { get; set; }
-
-        [DisplayName("First Name")]
-        [MaxLength(256)]
-        [DataType(DataType.Text)]
-        [Required]
         public string name { get; set; }
-
-        [DisplayName("Surname")]
-        [MaxLength(256)]
-        [DataType(DataType.Text)]
-        [Required]
         public string surname { get; set; }
-
-        [DisplayName("Address")]
-        [MaxLength(256)]
-        [DataType(DataType.MultilineText)]
-        [Required]
         public string address { get; set; }
-
-        [DisplayName("Phone Number")]
-        [MaxLength(10)]
-        [DataType(DataType.PhoneNumber)]
-        [Required(ErrorMessage = "You must provide a phone number")]
-        [RegularExpression(@"^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$", ErrorMessage = "Not a valid phone number")]
         public string phone { get; set; }
-
-        [DisplayName("Email")]
-        [MaxLength(256)]
-        [DataType(DataType.EmailAddress)]
-        [Required]
         public string email { get; set; }
-
-        [DisplayName("Password")]
-        [MinLength(8)]
-        [DataType(DataType.Password)]
-        [Required]
         public string password { get; set; }
-
         public string secret_question { get; set; }
-
-        
         public string answer { get; set; }
-
-
         public int TeacherCourseId { get; set; }
     
         public virtual TeacherCourse TeacherCourse { get; set; }

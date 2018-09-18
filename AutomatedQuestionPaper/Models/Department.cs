@@ -7,9 +7,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel;
-using System.ComponentModel.DataAnnotations;
-
 namespace AutomatedQuestionPaper.Models
 {
     using System;
@@ -23,13 +20,7 @@ namespace AutomatedQuestionPaper.Models
             this.Courses = new HashSet<Course>();
         }
     
-        [Key]
         public int Id { get; set; }
-
-        [DisplayName("Department")]
-        [MaxLength(256)]
-        [DataType(DataType.Text)]
-        [Required]
         public string department { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
