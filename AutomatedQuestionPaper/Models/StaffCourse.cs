@@ -12,19 +12,11 @@ namespace AutomatedQuestionPaper.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Teacher
+    public partial class StaffCourse
     {
         public int Id { get; set; }
-        public string name { get; set; }
-        public string surname { get; set; }
-        public string address { get; set; }
-        public string phone { get; set; }
-        public string email { get; set; }
-        public string password { get; set; }
-        public string secret_question { get; set; }
-        public string answer { get; set; }
-        public int TeacherCourseId { get; set; }
-    
-        public virtual TeacherCourse TeacherCourse { get; set; }
+        public Nullable<int> SemesterId { get; set; }
+        public Nullable<int> PersonelId { get; set; }
+        public Nullable<int> CourseId { get; set; }
     }
 }

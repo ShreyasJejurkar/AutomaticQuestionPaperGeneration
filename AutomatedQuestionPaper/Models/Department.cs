@@ -14,16 +14,7 @@ namespace AutomatedQuestionPaper.Models
     
     public partial class Department
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Department()
-        {
-            this.Courses = new HashSet<Course>();
-        }
-    
-        public int Id { get; set; }
-        public string department { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Course> Courses { get; set; }
+        public int DepID { get; set; }
+        public string Department1 { get; set; }
     }
 }

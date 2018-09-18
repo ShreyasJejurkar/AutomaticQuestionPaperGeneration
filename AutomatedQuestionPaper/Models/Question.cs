@@ -14,6 +14,19 @@ namespace AutomatedQuestionPaper.Models
     
     public partial class Question
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Question()
+        {
+            this.Answers = new HashSet<Answer>();
+        }
+    
         public int Id { get; set; }
+        public Nullable<int> ChapterId { get; set; }
+        public Nullable<int> QuestionTypeId { get; set; }
+        public string Name { get; set; }
+        public Nullable<bool> IsActive { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Answer> Answers { get; set; }
     }
 }

@@ -15,8 +15,8 @@ namespace AutomatedQuestionPaper.Models
     public partial class Chapter
     {
         public int Id { get; set; }
-        public int CourseId { get; set; }
-    
-        public virtual Course Course { get; set; }
+        public Nullable<int> CourseId { get; set; }
+        public Nullable<int> ChapterNo { get; set; }
+        public string ChapterName { get; set; }
     }
 }

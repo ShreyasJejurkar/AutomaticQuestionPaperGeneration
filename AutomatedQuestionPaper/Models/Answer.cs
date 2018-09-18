@@ -12,18 +12,14 @@ namespace AutomatedQuestionPaper.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class Semister
+    public partial class Answer
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Semister()
-        {
-            this.TeacherCourses = new HashSet<TeacherCourse>();
-        }
-    
         public int Id { get; set; }
-        public string semister { get; set; }
+        public Nullable<int> QuestionId { get; set; }
+        public string Name { get; set; }
+        public Nullable<bool> IsCorrect { get; set; }
+        public int DisplayOrder { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<TeacherCourse> TeacherCourses { get; set; }
+        public virtual Question Question { get; set; }
     }
 }

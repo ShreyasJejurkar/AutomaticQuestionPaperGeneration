@@ -12,10 +12,11 @@ namespace AutomatedQuestionPaper.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class QuestionType
+    public partial class ExamPaper
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public Nullable<int> PersonelId { get; set; }
+        public string PaperName { get; set; }
+        public byte[] PaperValue { get; set; }
     }
 }

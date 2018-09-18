@@ -12,10 +12,9 @@ namespace AutomatedQuestionPaper.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class QuestionType
+    public partial class semster
     {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public Nullable<bool> IsActive { get; set; }
+        public int id { get; set; }
+        public string semester { get; set; }
     }
 }

@@ -13,10 +13,10 @@ namespace AutomatedQuestionPaper.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class ModelContainer : DbContext
+    public partial class SampleContext : DbContext
     {
-        public ModelContainer()
-            : base("name=ModelContainer")
+        public SampleContext()
+            : base("name=SampleContext")
         {
         }
     
@@ -26,13 +26,15 @@ namespace AutomatedQuestionPaper.Models
         }
     
         public virtual DbSet<Admin> Admins { get; set; }
-        public virtual DbSet<Semister> Semisters { get; set; }
-        public virtual DbSet<Department> Departments { get; set; }
-        public virtual DbSet<Teacher> Teachers { get; set; }
-        public virtual DbSet<Course> Courses { get; set; }
-        public virtual DbSet<QuestionType> QuestionTypes { get; set; }
+        public virtual DbSet<Answer> Answers { get; set; }
         public virtual DbSet<Chapter> Chapters { get; set; }
-        public virtual DbSet<TeacherCourse> TeacherCourses { get; set; }
+        public virtual DbSet<Cours> Courses { get; set; }
+        public virtual DbSet<Department> Departments { get; set; }
+        public virtual DbSet<ExamPaper> ExamPapers { get; set; }
         public virtual DbSet<Question> Questions { get; set; }
+        public virtual DbSet<QuestionType> QuestionTypes { get; set; }
+        public virtual DbSet<semster> semsters { get; set; }
+        public virtual DbSet<Staff> Staffs { get; set; }
+        public virtual DbSet<StaffCourse> StaffCourses { get; set; }
     }
 }
