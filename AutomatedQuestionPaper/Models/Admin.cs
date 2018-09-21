@@ -7,6 +7,8 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace AutomatedQuestionPaper.Models
 {
     using System;
@@ -14,8 +16,12 @@ namespace AutomatedQuestionPaper.Models
     
     public partial class Admin
     {
+        [Key]
         public int id { get; set; }
+
         public string username { get; set; }
+
+
         public string password { get; set; }
     }
 }

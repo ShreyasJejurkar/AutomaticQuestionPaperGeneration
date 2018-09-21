@@ -6,7 +6,7 @@ namespace AutomatedQuestionPaper.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly ModelContainer _context = new ModelContainer();
+        private readonly SampleContext _context = new SampleContext();
 
         [HttpGet]
         public ActionResult Index()
@@ -23,7 +23,7 @@ namespace AutomatedQuestionPaper.Controllers
             if (dbuser == null)
             {
                 //Check for staff member
-                var staffUser = _context.Teachers.FirstOrDefault(T => T.name == user.username && T.password == user.password);
+                var staffUser = _context.Staffs.FirstOrDefault(T => T.name == user.username && T.password == user.password);
                 if (staffUser != null)
                 {
 
@@ -39,7 +39,6 @@ namespace AutomatedQuestionPaper.Controllers
 
             if (dbuser != null)
             {
-
                 //Saving data to session for login functionality
                 Session["Username"] = dbuser.username;
 

@@ -7,14 +7,14 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     public class StaffController : Controller
     {
-        private readonly ModelContainer _context = new ModelContainer();
+        private readonly SampleContext _context = new SampleContext();
 
-        private Teacher _dbTeacher = new Teacher();
+        private Models.Staff _dbTeacher = new Models.Staff();
 
         [HttpGet]
         public ActionResult Index()
         {
-            var data = _context.Teachers;
+            var data = _context.Staffs;
 
             return View(data.ToList());
         }
@@ -26,7 +26,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult TeacherEdit(Teacher teacher)
+        public ActionResult TeacherEdit(Models.Staff teacher)
         {
             return View();
         }
@@ -34,7 +34,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult GetStaffDetails(int id = 0)
         {
-            _dbTeacher = _context.Teachers.FirstOrDefault(u => u.Id == id);
+            _dbTeacher = _context.Staffs.FirstOrDefault(u => u.id == id);
 
 
             if (_dbTeacher == null)
@@ -54,7 +54,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
             var id = Convert.ToInt32(Request.Form.Get(keys[1]));
 
-            var oldStaffData = _context.Teachers.FirstOrDefault(u => u.Id == id);
+            var oldStaffData = _context.Staffs.FirstOrDefault(u => u.id == id);
 
             if (oldStaffData != null)
             {
@@ -79,17 +79,12 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult TeacherAdd(Teacher data)
+        public ActionResult TeacherAdd(Models.Staff data)
         {
-            data.TeacherCourse = new TeacherCourse
-            {
-                SemisterId = 2
-            };
+           // data.secret_question = "";
+            //data.answer = "";
 
-            data.secret_question = "";
-            data.answer = "";
-
-            _context.Teachers.Add(data);
+            _context.Staffs.Add(data);
             _context.SaveChanges();
 
             TempData["StaffAddedMessage"] = "Staff added successfully";
@@ -109,11 +104,11 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [Route("/Admin/Staff/DeleteTeacher")]
         public ActionResult DeleteTeacher(int TeacherID = 0)
         {
-            var teacherDb = _context.Teachers.SingleOrDefault(u => u.Id == TeacherID);
+            var teacherDb = _context.Staffs.SingleOrDefault(u => u.id == TeacherID);
 
             if (teacherDb != null)
             {
-                _context.Teachers.Remove(teacherDb);
+                _context.Staffs.Remove(teacherDb);
                 _context.SaveChanges();
                 TempData["TeacherDeletedSuccessMessage"] = "Teacher deleted successfully";
                 return RedirectToAction("Index", "Staff");

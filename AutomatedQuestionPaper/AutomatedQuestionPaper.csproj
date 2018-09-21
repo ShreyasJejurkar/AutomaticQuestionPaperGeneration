@@ -154,6 +154,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AdminHomePageController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CourseController.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\SemesterController.cs" />
     <Compile Include="Areas\Admin\Controllers\StaffController.cs" />
@@ -261,20 +262,8 @@
     <Content Include="Scripts\esm\popper.js.map" />
     <Content Include="Scripts\esm\popper-utils.min.js.map" />
     <Content Include="Scripts\esm\popper-utils.js.map" />
-    <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Staff\Views\web.config" />
     <Content Include="Areas\Staff\Views\StaffHomePage\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\AdminHomePage\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Staff\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Staff\TeacherEdit.cshtml" />
-    <Content Include="Areas\Admin\Views\Staff\TeacherAdd.cshtml" />
-    <Content Include="Areas\Admin\Views\Staff\DeleteTeacher.cshtml" />
-    <Content Include="Areas\Admin\Views\Semester\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Semester\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Semester\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\Department\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Department\Create.cshtml" />
-    <Content Include="Areas\Admin\Views\Department\Edit.cshtml" />
     <EntityDeploy Include="Models\SampleModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>SampleModel.Designer.cs</LastGenOutput>
@@ -282,6 +271,20 @@
     <Content Include="Models\SampleModel.edmx.diagram">
       <DependentUpon>SampleModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\AdminHomePage\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Department\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Department\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Department\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Semester\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Semester\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Semester\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Staff\DeleteTeacher.cshtml" />
+    <Content Include="Areas\Admin\Views\Staff\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Staff\TeacherAdd.cshtml" />
+    <Content Include="Areas\Admin\Views\Staff\TeacherEdit.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\Course\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Course\Create.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />

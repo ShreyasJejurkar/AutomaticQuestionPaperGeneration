@@ -1,10 +1,8 @@
-﻿@using AutomatedQuestionPaper.Models
-@model IEnumerable<AutomatedQuestionPaper.Models.Course>
+﻿@model IEnumerable<AutomatedQuestionPaper.Models.Cours>
 
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    List<Department> departments = ViewBag.DepartmentList;
 }
 
 <h2>Index</h2>
@@ -15,13 +13,13 @@
 <table class="table">
     <tr>
         <th>
-            <select name="DepartmentList" class="form-control" id="DepartmentList" required>
-                <option>----</option>
-                @foreach (var department in departments)
-                {
-                    <option value="@department.department">@department.department</option>
-                }
-            </select>
+            @Html.DisplayNameFor(model => model.DepartmentId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.course)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.description)
         </th>
         <th></th>
     </tr>
@@ -29,14 +27,17 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.DepartmentId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.course)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.description)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Department.department)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            @Html.ActionLink("Edit", "Edit", new { id=item.courseid }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.courseid })
         </td>
     </tr>
 }

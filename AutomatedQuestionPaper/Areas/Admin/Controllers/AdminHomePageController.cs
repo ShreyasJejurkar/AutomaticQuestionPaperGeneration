@@ -6,7 +6,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     public class AdminHomePageController : Controller
     {
-        private readonly ModelContainer _context = new ModelContainer();
+        private readonly SampleContext _context = new SampleContext();
 
         [HttpGet]
         public ActionResult Index()

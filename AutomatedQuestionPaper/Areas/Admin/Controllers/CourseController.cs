@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using AutomatedQuestionPaper.Models;
 
@@ -10,8 +9,8 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     public class CourseController : Controller
     {
-        private readonly ModelContainer _context = new ModelContainer();
-        private readonly DbSet<Course> _data;
+        private readonly SampleContext _context = new SampleContext();
+        private readonly DbSet<Cours> _data;
 
         public CourseController() : this(1) { }
 
@@ -23,15 +22,27 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         public ActionResult Index()
         {
             ViewBag.DepartmentList = _context.Departments.ToList();
-
-
             return View(_data.ToList());
         }
 
+        [HttpGet]
         public ActionResult Create()
         {
-            throw new NotImplementedException();
+            ViewBag.DepartmentList = _context.Departments.ToList();
+
+            return View();
+        }   
+
+        [HttpPost]
+        public ActionResult Create(Cours c, string DepartmentList)
+        {
+
+
+            ViewBag.DepartmentList = _context.Departments.ToList();
+
+            return View();
         }
+
 
         public ActionResult Delete(int id)
         {

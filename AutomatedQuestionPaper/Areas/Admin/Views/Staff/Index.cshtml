@@ -1,5 +1,5 @@
 ﻿@using AutomatedQuestionPaper.Models
-@model IEnumerable<AutomatedQuestionPaper.Models.Teacher>
+@model IEnumerable<AutomatedQuestionPaper.Models.Staff>
 
 @{
     ViewBag.Title = "Staff details";
@@ -15,9 +15,9 @@
         if (Model == null)
         {
             grid = new WebGrid();
-            List<Teacher> teacher = new List<Teacher>();
-            ModelContainer _context = new ModelContainer();
-            var data = _context.Teachers;
+            List<Staff> teacher = new List<Staff>();
+            SampleContext _context = new SampleContext();
+            var data = _context.Staffs;
             var list = data.ToList();
             grid.Bind(list);
         }

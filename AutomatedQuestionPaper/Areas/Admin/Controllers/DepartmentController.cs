@@ -7,7 +7,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     public class DepartmentController : Controller
     {
-        private readonly ModelContainer _context = new ModelContainer();
+        private readonly SampleContext _context = new SampleContext();
         private readonly DbSet<Department> _data;
 
         public DepartmentController() : this(1) { }
@@ -15,8 +15,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         {
             _data = _context.Departments;
         }
-
-
+        
         public ActionResult Index()
         {
             return View(_data.ToList());
@@ -40,16 +39,16 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var department = _context.Departments.FirstOrDefault(u => u.Id == id);
+            var department = _context.Departments.FirstOrDefault(u => u.DepID == id);
             return View("Edit", department);
         }
 
         [HttpPost]
         public ActionResult Edit(Department dep)
         {
-            var semesterDb = _context.Departments.FirstOrDefault(u => u.Id == dep.Id);
+            var semesterDb = _context.Departments.FirstOrDefault(u => u.DepID == dep.DepID);
             if (semesterDb != null)
-                semesterDb.department = dep.department;
+                semesterDb.Department1 = dep.Department1;
 
             _context.SaveChanges();
             TempData["DepartmentDeleteSuccessMessage"] = "Department edited successfully";
@@ -65,7 +64,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         {
             if (id != 0)
             {
-                var semesterDb = _context.Departments.SingleOrDefault(u => u.Id == id);
+                var semesterDb = _context.Departments.SingleOrDefault(u => u.DepID == id);
 
                 if (semesterDb != null)
                 {

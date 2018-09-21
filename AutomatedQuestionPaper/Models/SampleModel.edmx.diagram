@@ -14,7 +14,7 @@
         <EntityTypeShape EntityType="SampleProject1Model.Question" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="SampleProject1Model.QuestionType" Width="1.5" PointX="8" PointY="4.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SampleProject1Model.semster" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SampleProject1Model.Staff" Width="1.5" PointX="9.375" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleProject1Model.Staff" Width="1.5" PointX="9.625" PointY="1.25" IsExpanded="true" />
         <EntityTypeShape EntityType="SampleProject1Model.StaffCourse" Width="1.5" PointX="11.875" PointY="4.375" IsExpanded="true" />
         <AssociationConnector Association="SampleProject1Model.FK__Answer__Question__239E4DCF" ManuallyRouted="false" />
       </Diagram>
