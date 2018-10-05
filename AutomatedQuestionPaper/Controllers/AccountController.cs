@@ -6,7 +6,7 @@ namespace AutomatedQuestionPaper.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly SampleContext _context = new SampleContext();
+        private readonly DatabaseContext _context = new DatabaseContext();
 
         [HttpGet]
         public ActionResult Index()
@@ -18,17 +18,17 @@ namespace AutomatedQuestionPaper.Controllers
         public ActionResult Index(Admin user)
         {
             //Check if user is admin or not!
-            var dbuser = _context.Admins.FirstOrDefault(u => u.username == user.username && u.password == user.password);
+            var dbuser = _context.Admins.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
 
             if (dbuser == null)
             {
                 //Check for staff member
-                var staffUser = _context.Staffs.FirstOrDefault(T => T.name == user.username && T.password == user.password);
+                var staffUser = _context.Staffs.FirstOrDefault(T => T.Name == user.Username && T.Password == user.Password);
                 if (staffUser != null)
                 {
 
                     //Saving data to session for login functionality
-                    Session["Username"] = staffUser.name;
+                    Session["Username"] = staffUser.Name;
 
                     return RedirectToAction("Index", "StaffHomePage", new
                     {
@@ -40,7 +40,7 @@ namespace AutomatedQuestionPaper.Controllers
             if (dbuser != null)
             {
                 //Saving data to session for login functionality
-                Session["Username"] = dbuser.username;
+                Session["Username"] = dbuser.Username;
 
                 return RedirectToAction("Index", "AdminHomePage", new
                 {
