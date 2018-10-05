@@ -4,14 +4,14 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SampleProject1Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="username" Type="nvarchar" MaxLength="50" />
-          <Property Name="password" Type="nvarchar" MaxLength="50" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Answer">
           <Key>
@@ -34,26 +34,26 @@
         </EntityType>
         <EntityType Name="Courses">
           <Key>
-            <PropertyRef Name="courseid" />
+            <PropertyRef Name="Courseid" />
           </Key>
-          <Property Name="courseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Courseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DepartmentId" Type="int" />
-          <Property Name="course" Type="varchar" MaxLength="50" />
-          <Property Name="description" Type="varchar" MaxLength="50" />
+          <Property Name="CourseName" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Departments">
           <Key>
-            <PropertyRef Name="DepID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="DepID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Department" Type="varchar" MaxLength="50" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ExamPapers">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PersonelId" Type="int" />
+          <Property Name="StaffId" Type="int" />
           <Property Name="PaperName" Type="nvarchar" MaxLength="50" />
           <Property Name="PaperValue" Type="varbinary(max)" />
         </EntityType>
@@ -75,26 +75,24 @@
           <Property Name="Name" Type="nvarchar" MaxLength="256" />
           <Property Name="IsActive" Type="bit" />
         </EntityType>
-        <EntityType Name="semster">
+        <EntityType Name="Semester">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="semester" Type="varchar" MaxLength="50" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SemesterName" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="nvarchar" MaxLength="50" />
-          <Property Name="surname" Type="nvarchar" MaxLength="50" />
-          <Property Name="address" Type="nvarchar" MaxLength="50" />
-          <Property Name="phone" Type="nvarchar" MaxLength="50" />
-          <Property Name="email" Type="nvarchar" MaxLength="50" />
-          <Property Name="password" Type="nvarchar" MaxLength="50" />
-          <Property Name="sq" Type="nvarchar" MaxLength="50" />
-          <Property Name="answer" Type="nvarchar" MaxLength="50" />
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="StaffCourse">
           <Key>
@@ -102,7 +100,7 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="SemesterId" Type="int" />
-          <Property Name="PersonelId" Type="int" />
+          <Property Name="StaffId" Type="int" />
           <Property Name="CourseId" Type="int" />
         </EntityType>
         <Association Name="FK__Answer__Question__239E4DCF">
@@ -117,7 +115,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SampleProject1ModelStoreContainer">
+        <EntityContainer Name="DatabaseModelStoreContainer">
           <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Chapters" EntityType="Self.Chapters" Schema="dbo" store:Type="Tables" />
@@ -126,7 +124,7 @@
           <EntitySet Name="ExamPapers" EntityType="Self.ExamPapers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="QuestionType" EntityType="Self.QuestionType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="semster" EntityType="Self.semster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semester" EntityType="Self.Semester" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StaffCourse" EntityType="Self.StaffCourse" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK__Answer__Question__239E4DCF" Association="Self.FK__Answer__Question__239E4DCF">
@@ -138,14 +136,14 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="SampleProject1Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityType Name="Admin">
           <Key>
             <PropertyRef Name="id" />
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Answer">
           <Key>
@@ -169,26 +167,26 @@
         </EntityType>
         <EntityType Name="Cours">
           <Key>
-            <PropertyRef Name="courseid" />
+            <PropertyRef Name="Courseid" />
           </Key>
-          <Property Name="courseid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Courseid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DepartmentId" Type="Int32" />
-          <Property Name="course" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
-            <PropertyRef Name="DepID" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="DepID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Department1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="ExamPaper">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PersonelId" Type="Int32" />
+          <Property Name="StaffId" Type="Int32" />
           <Property Name="PaperName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PaperValue" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
@@ -211,26 +209,24 @@
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
         </EntityType>
-        <EntityType Name="semster">
+        <EntityType Name="Semester">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="semester" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SemesterName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="Staff">
           <Key>
-            <PropertyRef Name="id" />
+            <PropertyRef Name="Id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="sq" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="answer" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="StaffCourse">
           <Key>
@@ -238,7 +234,7 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="SemesterId" Type="Int32" />
-          <Property Name="PersonelId" Type="Int32" />
+          <Property Name="StaffId" Type="Int32" />
           <Property Name="CourseId" Type="Int32" />
         </EntityType>
         <Association Name="FK__Answer__Question__239E4DCF">
@@ -253,7 +249,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="SampleContext" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="DatabaseContext" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="Answers" EntityType="Self.Answer" />
           <EntitySet Name="Chapters" EntityType="Self.Chapter" />
@@ -262,7 +258,7 @@
           <EntitySet Name="ExamPapers" EntityType="Self.ExamPaper" />
           <EntitySet Name="Questions" EntityType="Self.Question" />
           <EntitySet Name="QuestionTypes" EntityType="Self.QuestionType" />
-          <EntitySet Name="semsters" EntityType="Self.semster" />
+          <EntitySet Name="Semesters" EntityType="Self.Semester" />
           <EntitySet Name="Staffs" EntityType="Self.Staff" />
           <EntitySet Name="StaffCourses" EntityType="Self.StaffCourse" />
           <AssociationSet Name="FK__Answer__Question__239E4DCF" Association="Self.FK__Answer__Question__239E4DCF">
@@ -275,18 +271,18 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="SampleProject1ModelStoreContainer" CdmEntityContainer="SampleContext">
+        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseContext">
           <EntitySetMapping Name="Admins">
-            <EntityTypeMapping TypeName="SampleProject1Model.Admin">
+            <EntityTypeMapping TypeName="DatabaseModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
                 <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="username" ColumnName="username" />
-                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="Username" ColumnName="Username" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Answers">
-            <EntityTypeMapping TypeName="SampleProject1Model.Answer">
+            <EntityTypeMapping TypeName="DatabaseModel.Answer">
               <MappingFragment StoreEntitySet="Answer">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
@@ -297,7 +293,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Chapters">
-            <EntityTypeMapping TypeName="SampleProject1Model.Chapter">
+            <EntityTypeMapping TypeName="DatabaseModel.Chapter">
               <MappingFragment StoreEntitySet="Chapters">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="CourseId" ColumnName="CourseId" />
@@ -307,35 +303,35 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="SampleProject1Model.Cours">
+            <EntityTypeMapping TypeName="DatabaseModel.Cours">
               <MappingFragment StoreEntitySet="Courses">
-                <ScalarProperty Name="courseid" ColumnName="courseid" />
+                <ScalarProperty Name="Courseid" ColumnName="Courseid" />
                 <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="course" ColumnName="course" />
-                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="SampleProject1Model.Department">
+            <EntityTypeMapping TypeName="DatabaseModel.Department">
               <MappingFragment StoreEntitySet="Departments">
-                <ScalarProperty Name="DepID" ColumnName="DepID" />
-                <ScalarProperty Name="Department1" ColumnName="Department" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="ExamPapers">
-            <EntityTypeMapping TypeName="SampleProject1Model.ExamPaper">
+            <EntityTypeMapping TypeName="DatabaseModel.ExamPaper">
               <MappingFragment StoreEntitySet="ExamPapers">
                 <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
                 <ScalarProperty Name="PaperName" ColumnName="PaperName" />
                 <ScalarProperty Name="PaperValue" ColumnName="PaperValue" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="SampleProject1Model.Question">
+            <EntityTypeMapping TypeName="DatabaseModel.Question">
               <MappingFragment StoreEntitySet="Question">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
@@ -346,7 +342,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="QuestionTypes">
-            <EntityTypeMapping TypeName="SampleProject1Model.QuestionType">
+            <EntityTypeMapping TypeName="DatabaseModel.QuestionType">
               <MappingFragment StoreEntitySet="QuestionType">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -354,35 +350,33 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="semsters">
-            <EntityTypeMapping TypeName="SampleProject1Model.semster">
-              <MappingFragment StoreEntitySet="semster">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="semester" ColumnName="semester" />
+          <EntitySetMapping Name="Semesters">
+            <EntityTypeMapping TypeName="DatabaseModel.Semester">
+              <MappingFragment StoreEntitySet="Semester">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="SemesterName" ColumnName="SemesterName" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="Staffs">
-            <EntityTypeMapping TypeName="SampleProject1Model.Staff">
+            <EntityTypeMapping TypeName="DatabaseModel.Staff">
               <MappingFragment StoreEntitySet="Staff">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="surname" ColumnName="surname" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="phone" ColumnName="phone" />
-                <ScalarProperty Name="email" ColumnName="email" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="sq" ColumnName="sq" />
-                <ScalarProperty Name="answer" ColumnName="answer" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="StaffCourses">
-            <EntityTypeMapping TypeName="SampleProject1Model.StaffCourse">
+            <EntityTypeMapping TypeName="DatabaseModel.StaffCourse">
               <MappingFragment StoreEntitySet="StaffCourse">
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
-                <ScalarProperty Name="PersonelId" ColumnName="PersonelId" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
                 <ScalarProperty Name="CourseId" ColumnName="CourseId" />
               </MappingFragment>
             </EntityTypeMapping>

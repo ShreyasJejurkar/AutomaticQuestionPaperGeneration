@@ -14,9 +14,9 @@ namespace AutomatedQuestionPaper.Models
     
     public partial class Cours
     {
-        public int courseid { get; set; }
+        public int Courseid { get; set; }
         public Nullable<int> DepartmentId { get; set; }
-        public string course { get; set; }
-        public string description { get; set; }
+        public string CourseName { get; set; }
+        public string Description { get; set; }
     }
 }

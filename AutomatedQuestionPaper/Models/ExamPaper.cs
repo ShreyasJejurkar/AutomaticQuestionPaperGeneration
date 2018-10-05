@@ -15,7 +15,7 @@ namespace AutomatedQuestionPaper.Models
     public partial class ExamPaper
     {
         public int Id { get; set; }
-        public Nullable<int> PersonelId { get; set; }
+        public Nullable<int> StaffId { get; set; }
         public string PaperName { get; set; }
         public byte[] PaperValue { get; set; }
     }

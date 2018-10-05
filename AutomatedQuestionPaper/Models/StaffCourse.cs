@@ -16,7 +16,7 @@ namespace AutomatedQuestionPaper.Models
     {
         public int Id { get; set; }
         public Nullable<int> SemesterId { get; set; }
-        public Nullable<int> PersonelId { get; set; }
+        public Nullable<int> StaffId { get; set; }
         public Nullable<int> CourseId { get; set; }
     }
 }

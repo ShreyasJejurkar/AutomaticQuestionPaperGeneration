@@ -14,7 +14,7 @@ namespace AutomatedQuestionPaper.Models
     
     public partial class Department
     {
-        public int DepID { get; set; }
-        public string Department1 { get; set; }
+        public int Id { get; set; }
+        public string DepartmentName { get; set; }
     }
 }
