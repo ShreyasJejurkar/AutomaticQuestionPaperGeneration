@@ -7,14 +7,14 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     public class SemesterController : Controller
     {
-        private readonly SampleContext _context = new SampleContext();
-        private readonly DbSet<semster> _data;
+        private readonly DatabaseContext _context = new DatabaseContext();
+        private readonly DbSet<Semester> _data;
 
         public SemesterController() : this(1) { }
 
         public SemesterController(int sdata)
         {
-            _data = _context.semsters;
+            _data = _context.Semesters;
         }
 
         public ActionResult Index()
@@ -25,16 +25,16 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            var s = _context.semsters.FirstOrDefault(u => u.id == id);
+            var s = _context.Semesters.FirstOrDefault(u => u.Id == id);
             return View("Edit", s);
         }
 
         [HttpPost]
-        public ActionResult Edit(semster editSem)
+        public ActionResult Edit(Semester editSem)
         {
-            var semesterDb = _context.semsters.FirstOrDefault(u => u.id == editSem.id);
+            var semesterDb = _context.Semesters.FirstOrDefault(u => u.Id == editSem.Id);
             if (semesterDb != null)
-                semesterDb.semester = editSem.semester;
+                semesterDb.SemesterName = editSem.SemesterName;
 
             _context.SaveChanges();
             TempData["SemesterDeleteSuccessMessage"] = "Semester edited successfully";
@@ -52,11 +52,11 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         {
             if (id != 0)
             {
-                var semesterDb = _context.semsters.SingleOrDefault(u => u.id == id);
+                var semesterDb = _context.Semesters.SingleOrDefault(u => u.Id == id);
 
                 if (semesterDb != null)
                 {
-                    _context.semsters.Remove(semesterDb);
+                    _context.Semesters.Remove(semesterDb);
                     _context.SaveChanges();
                     ViewBag.SemesterDeleteSuccessMessage = "Semester deleted successfully";
                     return View("Index", _data);
@@ -76,9 +76,9 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult Create(semster newSem)
+        public ActionResult Create(Semester newSem)
         {
-            _context.semsters.Add(newSem);
+            _context.Semesters.Add(newSem);
             _context.SaveChanges();
             return RedirectToAction("Index", _data);
         }

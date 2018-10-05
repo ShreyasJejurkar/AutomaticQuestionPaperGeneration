@@ -7,7 +7,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     public class StaffController : Controller
     {
-        private readonly SampleContext _context = new SampleContext();
+        private readonly DatabaseContext _context = new DatabaseContext();
 
         private Models.Staff _dbTeacher = new Models.Staff();
 
@@ -34,8 +34,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult GetStaffDetails(int id = 0)
         {
-            _dbTeacher = _context.Staffs.FirstOrDefault(u => u.id == id);
-
+            _dbTeacher = _context.Staffs.FirstOrDefault(u => u.Id == id);
 
             if (_dbTeacher == null)
             {
@@ -54,16 +53,16 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
             var id = Convert.ToInt32(Request.Form.Get(keys[1]));
 
-            var oldStaffData = _context.Staffs.FirstOrDefault(u => u.id == id);
+            var oldStaffData = _context.Staffs.FirstOrDefault(u => u.Id == id);
 
             if (oldStaffData != null)
             {
-                oldStaffData.name = Request.Form.Get(keys[2]);
-                oldStaffData.surname = Request.Form.Get(keys[3]);
-                oldStaffData.address = Request.Form.Get(keys[4]);
-                oldStaffData.email = Request.Form.Get(keys[6]);
-                oldStaffData.password = Request.Form.Get(keys[7]);
-                oldStaffData.phone = Request.Form.Get(keys[5]);
+                oldStaffData.Name = Request.Form.Get(keys[2]);
+                oldStaffData.Surname = Request.Form.Get(keys[3]);
+                oldStaffData.Address = Request.Form.Get(keys[4]);
+                oldStaffData.Email = Request.Form.Get(keys[6]);
+                oldStaffData.Password = Request.Form.Get(keys[7]);
+                oldStaffData.Phone = Request.Form.Get(keys[5]);
                 _context.SaveChanges();
                 TempData["StaffEditSucessMessage"] = "Staff details has been saved successfully";
                 return View("Index");
@@ -81,9 +80,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult TeacherAdd(Models.Staff data)
         {
-           // data.secret_question = "";
-            //data.answer = "";
-
             _context.Staffs.Add(data);
             _context.SaveChanges();
 
@@ -97,14 +93,13 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         {
             return View();
         }
-
-
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("/Admin/Staff/DeleteTeacher")]
-        public ActionResult DeleteTeacher(int TeacherID = 0)
+        public ActionResult DeleteTeacher(int teacherId)
         {
-            var teacherDb = _context.Staffs.SingleOrDefault(u => u.id == TeacherID);
+            var teacherDb = _context.Staffs.SingleOrDefault(u => u.Id == teacherId);
 
             if (teacherDb != null)
             {

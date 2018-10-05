@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
@@ -9,7 +8,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     public class CourseController : Controller
     {
-        private readonly SampleContext _context = new SampleContext();
+        private readonly DatabaseContext _context = new DatabaseContext();
         private readonly DbSet<Cours> _data;
 
         public CourseController() : this(1) { }
@@ -36,8 +35,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Cours c, string DepartmentList)
         {
-
-
             ViewBag.DepartmentList = _context.Departments.ToList();
 
             return View();

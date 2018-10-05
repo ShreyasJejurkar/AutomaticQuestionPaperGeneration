@@ -6,7 +6,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     public class AdminHomePageController : Controller
     {
-        private readonly SampleContext _context = new SampleContext();
+        private readonly DatabaseContext _context = new DatabaseContext();
 
         [HttpGet]
         public ActionResult Index()
@@ -19,7 +19,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             else
             {
                 var adminName = Session["Username"];
-                var admin = _context.Admins.FirstOrDefault(u => u.username == (string) adminName);
+                var admin = _context.Admins.FirstOrDefault(u => u.Username == (string) adminName);
 
                 return View(admin);
             }
