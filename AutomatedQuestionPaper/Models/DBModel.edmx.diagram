@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="DatabaseModel.Chapter" Width="1.5" PointX="2.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.Cours" Width="1.5" PointX="4.75" PointY="4.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.Department" Width="1.5" PointX="5.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DatabaseModel.ExamPaper" Width="1.5" PointX="6.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DatabaseModel.ExamPaper" Width="1.5" PointX="8.5" PointY="2.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.Question" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.QuestionType" Width="1.5" PointX="6.75" PointY="6.75" IsExpanded="true" />
         <EntityTypeShape EntityType="DatabaseModel.Semester" Width="1.5" PointX="7.75" PointY="0.75" IsExpanded="true" />

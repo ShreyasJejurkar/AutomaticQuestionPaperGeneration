@@ -335,6 +335,7 @@
     <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Staff\Models\" />
     <Folder Include="Areas\Staff\Views\Shared\" />
+    <Folder Include="Models\ModelsMetaData\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
