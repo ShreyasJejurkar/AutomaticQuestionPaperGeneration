@@ -1,4 +1,4 @@
-﻿@model AutomatedQuestionPaper.Models.semster
+﻿@model AutomatedQuestionPaper.Models.Semester
 
 @{
     ViewBag.Title = "Edit";
@@ -12,26 +12,26 @@
 {
     @Html.AntiForgeryToken()
     
-    <div class="">
-        <h4>Semester</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.HiddenFor(model => model.id)
+<div class="">
+    <h4>Semester</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <!-- Html.HiddenFor(model => model.Id) -->
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.semester, htmlAttributes: new { @class = "col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.semester, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.semester, "", new { @class = "text-danger" })
-            </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-10">
-                <input type="submit" value="Save" class="btn btn-default" />
-            </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.SemesterName, htmlAttributes: new { @class = "col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.SemesterName, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.SemesterName, "", new { @class = "text-danger" })
         </div>
     </div>
+
+    <div class="form-group">
+        <div class="col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
 }
 
 <div>

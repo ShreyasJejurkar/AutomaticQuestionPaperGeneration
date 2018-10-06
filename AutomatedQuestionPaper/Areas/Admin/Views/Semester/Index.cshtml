@@ -1,4 +1,4 @@
-﻿@model IEnumerable<AutomatedQuestionPaper.Models.semster>
+﻿@model IEnumerable<AutomatedQuestionPaper.Models.Semester>
 
 @{
     ViewBag.Title = "Index";
@@ -44,7 +44,7 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.semester)
+            @Html.DisplayNameFor(model => model.SemesterName)
         </th>
         <th></th>
     </tr>
@@ -53,12 +53,12 @@
     {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.semester)
+                @Html.DisplayFor(modelItem => item.SemesterName)
             </td>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id}) |
                 <!--  Html.ActionLink("Details", "Details", new { id = item.Id }) | -->
-                @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
     }

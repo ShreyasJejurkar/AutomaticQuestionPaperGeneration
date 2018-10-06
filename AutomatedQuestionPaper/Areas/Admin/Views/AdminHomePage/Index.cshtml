@@ -12,14 +12,16 @@
 {
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         @ViewBag.SessionErrorMessage
+        @ViewBag.SessionErrorMessage = null;
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
+
 }
 else
 {
-    <h2>Hello @Model.username</h2>
+    <h2>Hello @Model.Username</h2>
 
 
     <div>

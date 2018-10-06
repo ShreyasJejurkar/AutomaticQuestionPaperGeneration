@@ -16,7 +16,7 @@
         {
             grid = new WebGrid();
             List<Staff> teacher = new List<Staff>();
-            SampleContext _context = new SampleContext();
+            DatabaseContext _context = new DatabaseContext();
             var data = _context.Staffs;
             var list = data.ToList();
             grid.Bind(list);

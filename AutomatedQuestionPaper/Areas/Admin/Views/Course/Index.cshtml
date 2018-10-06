@@ -16,30 +16,30 @@
             @Html.DisplayNameFor(model => model.DepartmentId)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.course)
+            @Html.DisplayNameFor(model => model.CourseName)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.description)
+            @Html.DisplayNameFor(model => model.Description)
         </th>
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartmentId)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.course)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.courseid }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.courseid })
-        </td>
-    </tr>
-}
-
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Courseid }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Courseid })
+            </td>
+        </tr>
+    }
 </table>
