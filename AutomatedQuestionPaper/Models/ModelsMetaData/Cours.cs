@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace AutomatedQuestionPaper.Models
+namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
     using System;
     using System.Collections.Generic;
