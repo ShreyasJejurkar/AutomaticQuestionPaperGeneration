@@ -7,16 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+
 namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class ExamPaper
     {
+        [Key]
         public int Id { get; set; }
+
+        [Required]
+        [DisplayName("Staff ID")]
         public Nullable<int> StaffId { get; set; }
+
+        [DataType(DataType.Text)]
+        [DisplayName("Paper name")]
+        [Required]
         public string PaperName { get; set; }
+
+        [DisplayName("Paper value")]
+        [Required]
         public byte[] PaperValue { get; set; }
     }
 }

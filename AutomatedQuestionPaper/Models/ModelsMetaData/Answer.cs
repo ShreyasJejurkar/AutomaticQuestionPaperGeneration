@@ -7,17 +7,27 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
+
 namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
     using System;
-    using System.Collections.Generic;
-    
+
     public partial class Answer
     {
+        [Key]
         public int Id { get; set; }
+
+        [Required]
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid Number")]
+
         public Nullable<int> QuestionId { get; set; }
+
+        
         public string Name { get; set; }
+
         public Nullable<bool> IsCorrect { get; set; }
+
         public int DisplayOrder { get; set; }
     
         public virtual Question Question { get; set; }
