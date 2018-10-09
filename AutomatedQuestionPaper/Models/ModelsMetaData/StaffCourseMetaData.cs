@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 using System;
 namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
-    public class StaffCourse
+    public class StaffCourseMetaData
     {
         [Key]
         public int Id { get; set; }

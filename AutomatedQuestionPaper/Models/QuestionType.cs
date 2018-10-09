@@ -11,7 +11,9 @@ namespace AutomatedQuestionPaper.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(ModelsMetaData.QuestionTypeMetaData))]
     public partial class QuestionType
     {
         public int Id { get; set; }

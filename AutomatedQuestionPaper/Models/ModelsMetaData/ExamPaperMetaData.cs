@@ -7,29 +7,29 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
     using System;
 
-    public partial class Answer
+    public partial class ExamPaperMetaData
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid Number")]
+        [DisplayName("Staff ID")]
+        public Nullable<int> StaffId { get; set; }
 
-        public Nullable<int> QuestionId { get; set; }
+        [DataType(DataType.Text)]
+        [DisplayName("Paper name")]
+        [Required]
+        public string PaperName { get; set; }
 
-        
-        public string Name { get; set; }
-
-        public Nullable<bool> IsCorrect { get; set; }
-
-        public int DisplayOrder { get; set; }
-    
-        public virtual Question Question { get; set; }
+        [DisplayName("Paper value")]
+        [Required]
+        public byte[] PaperValue { get; set; }
     }
 }

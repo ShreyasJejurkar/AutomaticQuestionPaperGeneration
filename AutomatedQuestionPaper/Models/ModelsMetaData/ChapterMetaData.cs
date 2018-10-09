@@ -5,7 +5,7 @@ namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
     using System;
 
-    public class Chapter
+    public class ChapterMetaData
     {
         [Key]
         public int Id { get; set; }

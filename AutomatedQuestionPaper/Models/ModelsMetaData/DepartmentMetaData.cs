@@ -3,18 +3,14 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
-    using System;
-
-    public class QuestionType
+    public class DepartmentMetaData
     {
         [Key]
         public int Id { get; set; }
 
         [DataType(DataType.Text)]
+        [DisplayName("Department name")]
         [Required]
-        [DisplayName("Name")]
-        public string Name { get; set; }
-
-        public Nullable<bool> IsActive { get; set; }
+        public string DepartmentName { get; set; }
     }
 }

@@ -10,8 +10,9 @@
 namespace AutomatedQuestionPaper.Models
 {
     using System;
-    using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(ModelsMetaData.AnswerMetaData))]
     public partial class Answer
     {
         public int Id { get; set; }

@@ -11,7 +11,9 @@ namespace AutomatedQuestionPaper.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(ModelsMetaData.SemesterMetaData))]
     public partial class Semester
     {
         public int Id { get; set; }

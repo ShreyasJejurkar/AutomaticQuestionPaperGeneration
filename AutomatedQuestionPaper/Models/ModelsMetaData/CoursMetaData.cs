@@ -5,7 +5,7 @@ namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
     using System;
 
-    public class Cours
+    public class CoursMetaData
     {
 
         [Key]

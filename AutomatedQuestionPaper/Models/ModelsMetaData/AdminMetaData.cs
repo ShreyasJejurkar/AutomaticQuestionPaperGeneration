@@ -7,7 +7,7 @@ namespace AutomatedQuestionPaper.Models.ModelsMetaData
     /// <summary>
     /// MetaData class for Admin class in Models
     /// </summary>
-    public class Admin
+    public class AdminMetaData
     {
         [Key]
         public int id { get; set; }

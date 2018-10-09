@@ -198,17 +198,17 @@
     <Compile Include="Models\ExamPaper.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\ModelsMetaData\Admin.cs" />
-    <Compile Include="Models\ModelsMetaData\Answer.cs" />
-    <Compile Include="Models\ModelsMetaData\Chapter.cs" />
-    <Compile Include="Models\ModelsMetaData\Cours.cs" />
-    <Compile Include="Models\ModelsMetaData\Department.cs" />
-    <Compile Include="Models\ModelsMetaData\ExamPaper.cs" />
-    <Compile Include="Models\ModelsMetaData\Question.cs" />
-    <Compile Include="Models\ModelsMetaData\QuestionType.cs" />
-    <Compile Include="Models\ModelsMetaData\Semester.cs" />
-    <Compile Include="Models\ModelsMetaData\Staff.cs" />
-    <Compile Include="Models\ModelsMetaData\StaffCourse.cs" />
+    <Compile Include="Models\ModelsMetaData\AdminMetaData.cs" />
+    <Compile Include="Models\ModelsMetaData\AnswerMetaData.cs" />
+    <Compile Include="Models\ModelsMetaData\ChapterMetaData.cs" />
+    <Compile Include="Models\ModelsMetaData\CoursMetaData.cs" />
+    <Compile Include="Models\ModelsMetaData\DepartmentMetaData.cs" />
+    <Compile Include="Models\ModelsMetaData\ExamPaperMetaData.cs" />
+    <Compile Include="Models\ModelsMetaData\QuestionMetaData.cs" />
+    <Compile Include="Models\ModelsMetaData\QuestionTypeMetaData.cs" />
+    <Compile Include="Models\ModelsMetaData\SemesterMetaData.cs" />
+    <Compile Include="Models\ModelsMetaData\StaffMetaData.cs" />
+    <Compile Include="Models\ModelsMetaData\StaffCourseMetaData.cs" />
     <Compile Include="Models\Question.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>

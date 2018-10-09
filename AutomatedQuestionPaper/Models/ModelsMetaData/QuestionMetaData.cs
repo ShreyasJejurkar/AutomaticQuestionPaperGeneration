@@ -6,12 +6,12 @@ namespace AutomatedQuestionPaper.Models.ModelsMetaData
     using System;
     using System.Collections.Generic;
 
-    public class Question
+    public class QuestionMetaData
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Question()
+        public QuestionMetaData()
         {
-            Answers = new HashSet<Answer>();
+            Answers = new HashSet<AnswerMetaData>();
         }
 
 
@@ -34,6 +34,6 @@ namespace AutomatedQuestionPaper.Models.ModelsMetaData
         public Nullable<bool> IsActive { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Answer> Answers { get; set; }
+        public virtual ICollection<AnswerMetaData> Answers { get; set; }
     }
 }

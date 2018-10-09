@@ -3,16 +3,18 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
-    public class Semester
+    using System;
+
+    public class QuestionTypeMetaData
     {
         [Key]
         public int Id { get; set; }
 
         [DataType(DataType.Text)]
-        [MaxLength(256)]
-        [MinLength(5)]
         [Required]
         [DisplayName("Name")]
-        public string SemesterName { get; set; }
+        public string Name { get; set; }
+
+        public Nullable<bool> IsActive { get; set; }
     }
 }

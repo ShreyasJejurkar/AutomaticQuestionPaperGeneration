@@ -9,9 +9,9 @@
 
 namespace AutomatedQuestionPaper.Models
 {
-    using System;
-    using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
+    [MetadataType(typeof(ModelsMetaData.AdminMetaData))]
     public partial class Admin
     {
         public int id { get; set; }

@@ -6,7 +6,7 @@ namespace AutomatedQuestionPaper.Models.ModelsMetaData
     /// <summary>
     /// Meta data type class for Staff
     /// </summary>
-    public class Staff
+    public class StaffMetaData
     {
         [Key]
         public int Id { get; set; }
