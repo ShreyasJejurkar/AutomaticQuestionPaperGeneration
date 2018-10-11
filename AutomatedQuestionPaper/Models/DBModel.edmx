@@ -4,136 +4,136 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityType Name="Admin">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Username" Type="nvarchar" MaxLength="50" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Answer">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="QuestionId" Type="int" />
-          <Property Name="Name" Type="nvarchar(max)" />
-          <Property Name="IsCorrect" Type="bit" />
-          <Property Name="DisplayOrder" Type="int" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Chapters">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CourseId" Type="int" />
-          <Property Name="ChapterNo" Type="int" />
-          <Property Name="ChapterName" Type="nvarchar" MaxLength="100" />
-        </EntityType>
-        <EntityType Name="Courses">
-          <Key>
-            <PropertyRef Name="Courseid" />
-          </Key>
-          <Property Name="Courseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DepartmentId" Type="int" />
-          <Property Name="CourseName" Type="varchar" MaxLength="50" />
-          <Property Name="Description" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Departments">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="DepartmentName" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="ExamPapers">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StaffId" Type="int" />
-          <Property Name="PaperName" Type="nvarchar" MaxLength="50" />
-          <Property Name="PaperValue" Type="varbinary(max)" />
-        </EntityType>
-        <EntityType Name="Question">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ChapterId" Type="int" />
-          <Property Name="QuestionTypeId" Type="int" />
-          <Property Name="Name" Type="nvarchar" MaxLength="256" />
-          <Property Name="IsActive" Type="bit" />
-        </EntityType>
-        <EntityType Name="QuestionType">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="256" />
-          <Property Name="IsActive" Type="bit" />
-        </EntityType>
-        <EntityType Name="Semester">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SemesterName" Type="varchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="Staff">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="50" />
-          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
-          <Property Name="Address" Type="nvarchar" MaxLength="50" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="50" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" />
-        </EntityType>
-        <EntityType Name="StaffCourse">
-          <Key>
-            <PropertyRef Name="Id" />
-          </Key>
-          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="SemesterId" Type="int" />
-          <Property Name="StaffId" Type="int" />
-          <Property Name="CourseId" Type="int" />
-        </EntityType>
-        <Association Name="FK__Answer__Question__239E4DCF">
-          <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
-          <End Role="Answer" Type="Self.Answer" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Question">
-              <PropertyRef Name="Id" />
-            </Principal>
-            <Dependent Role="Answer">
-              <PropertyRef Name="QuestionId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityContainer Name="DatabaseModelStoreContainer">
-          <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Answer" EntityType="Self.Answer" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Chapters" EntityType="Self.Chapters" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="ExamPapers" EntityType="Self.ExamPapers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Question" EntityType="Self.Question" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="QuestionType" EntityType="Self.QuestionType" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Semester" EntityType="Self.Semester" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="StaffCourse" EntityType="Self.StaffCourse" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Answer__Question__239E4DCF" Association="Self.FK__Answer__Question__239E4DCF">
-            <End Role="Question" EntitySet="Question" />
-            <End Role="Answer" EntitySet="Answer" />
-          </AssociationSet>
-        </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+    <Schema Namespace="DatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="DatabaseModelStoreContainer">
+    <EntitySet Name="Admins" EntityType="DatabaseModel.Store.Admins" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Answers" EntityType="DatabaseModel.Store.Answers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Chapters" EntityType="DatabaseModel.Store.Chapters" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Courses" EntityType="DatabaseModel.Store.Courses" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Departments" EntityType="DatabaseModel.Store.Departments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ExamPapers" EntityType="DatabaseModel.Store.ExamPapers" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Questions" EntityType="DatabaseModel.Store.Questions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="QuestionTypes" EntityType="DatabaseModel.Store.QuestionTypes" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Semesters" EntityType="DatabaseModel.Store.Semesters" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Staffs" EntityType="DatabaseModel.Store.Staffs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StaffCourses" EntityType="DatabaseModel.Store.StaffCourses" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK__Answer__Question__239E4DCF" Association="DatabaseModel.Store.FK__Answer__Question__239E4DCF">
+      <End Role="Question" EntitySet="Questions" />
+      <End Role="Answer" EntitySet="Answers" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Admins">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Answers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionId" Type="int" Nullable="true" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
+    <Property Name="IsCorrect" Type="bit" Nullable="true" />
+    <Property Name="DisplayOrder" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Chapters">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CourseId" Type="int" Nullable="true" />
+    <Property Name="ChapterNo" Type="int" Nullable="true" />
+    <Property Name="ChapterName" Type="nvarchar" Nullable="true" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="Courses">
+    <Key>
+      <PropertyRef Name="Courseid" />
+    </Key>
+    <Property Name="Courseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="true" />
+    <Property Name="CourseName" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Description" Type="varchar" Nullable="true" MaxLength="50" />
+    <Property Name="Year" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="ExamPapers">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StaffId" Type="int" Nullable="true" />
+    <Property Name="PaperName" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="PaperValue" Type="varbinary(max)" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Questions">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChapterId" Type="int" Nullable="true" />
+    <Property Name="QuestionTypeId" Type="int" Nullable="true" />
+    <Property Name="Name" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="IsActive" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="QuestionTypes">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="true" MaxLength="256" />
+    <Property Name="IsActive" Type="bit" Nullable="true" />
+  </EntityType>
+  <EntityType Name="Semesters">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SemesterName" Type="varchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Staffs">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Surname" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Phone" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="Password" Type="nvarchar" Nullable="true" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="StaffCourses">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SemesterId" Type="int" Nullable="true" />
+    <Property Name="StaffId" Type="int" Nullable="true" />
+    <Property Name="CourseId" Type="int" Nullable="true" />
+  </EntityType>
+  <Association Name="FK__Answer__Question__239E4DCF">
+    <End Role="Question" Type="DatabaseModel.Store.Questions" Multiplicity="0..1" />
+    <End Role="Answer" Type="DatabaseModel.Store.Answers" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Question">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Answer">
+        <PropertyRef Name="QuestionId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -173,6 +173,7 @@
           <Property Name="DepartmentId" Type="Int32" />
           <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Year" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -270,120 +271,120 @@
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
-      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseContext">
-          <EntitySetMapping Name="Admins">
-            <EntityTypeMapping TypeName="DatabaseModel.Admin">
-              <MappingFragment StoreEntitySet="Admin">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="Username" ColumnName="Username" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Answers">
-            <EntityTypeMapping TypeName="DatabaseModel.Answer">
-              <MappingFragment StoreEntitySet="Answer">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
-                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Chapters">
-            <EntityTypeMapping TypeName="DatabaseModel.Chapter">
-              <MappingFragment StoreEntitySet="Chapters">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
-                <ScalarProperty Name="ChapterNo" ColumnName="ChapterNo" />
-                <ScalarProperty Name="ChapterName" ColumnName="ChapterName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Courses">
-            <EntityTypeMapping TypeName="DatabaseModel.Cours">
-              <MappingFragment StoreEntitySet="Courses">
-                <ScalarProperty Name="Courseid" ColumnName="Courseid" />
-                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
-                <ScalarProperty Name="CourseName" ColumnName="CourseName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Departments">
-            <EntityTypeMapping TypeName="DatabaseModel.Department">
-              <MappingFragment StoreEntitySet="Departments">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="ExamPapers">
-            <EntityTypeMapping TypeName="DatabaseModel.ExamPaper">
-              <MappingFragment StoreEntitySet="ExamPapers">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
-                <ScalarProperty Name="PaperName" ColumnName="PaperName" />
-                <ScalarProperty Name="PaperValue" ColumnName="PaperValue" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Questions">
-            <EntityTypeMapping TypeName="DatabaseModel.Question">
-              <MappingFragment StoreEntitySet="Question">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
-                <ScalarProperty Name="QuestionTypeId" ColumnName="QuestionTypeId" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="QuestionTypes">
-            <EntityTypeMapping TypeName="DatabaseModel.QuestionType">
-              <MappingFragment StoreEntitySet="QuestionType">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Semesters">
-            <EntityTypeMapping TypeName="DatabaseModel.Semester">
-              <MappingFragment StoreEntitySet="Semester">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SemesterName" ColumnName="SemesterName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Staffs">
-            <EntityTypeMapping TypeName="DatabaseModel.Staff">
-              <MappingFragment StoreEntitySet="Staff">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Surname" ColumnName="Surname" />
-                <ScalarProperty Name="Address" ColumnName="Address" />
-                <ScalarProperty Name="Phone" ColumnName="Phone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="StaffCourses">
-            <EntityTypeMapping TypeName="DatabaseModel.StaffCourse">
-              <MappingFragment StoreEntitySet="StaffCourse">
-                <ScalarProperty Name="Id" ColumnName="Id" />
-                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
-                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
-                <ScalarProperty Name="CourseId" ColumnName="CourseId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
-      </Mapping>
-    </edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="DatabaseModelStoreContainer" CdmEntityContainer="DatabaseContext">
+    <EntitySetMapping Name="Admins">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Admin)">
+        <MappingFragment StoreEntitySet="Admins">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Answers">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Answer)">
+        <MappingFragment StoreEntitySet="Answers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsCorrect" ColumnName="IsCorrect" />
+          <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Chapters">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Chapter)">
+        <MappingFragment StoreEntitySet="Chapters">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="ChapterNo" ColumnName="ChapterNo" />
+          <ScalarProperty Name="ChapterName" ColumnName="ChapterName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Courses">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Cours)">
+        <MappingFragment StoreEntitySet="Courses">
+          <ScalarProperty Name="Courseid" ColumnName="Courseid" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="CourseName" ColumnName="CourseName" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Department)">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExamPapers">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.ExamPaper)">
+        <MappingFragment StoreEntitySet="ExamPapers">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+          <ScalarProperty Name="PaperName" ColumnName="PaperName" />
+          <ScalarProperty Name="PaperValue" ColumnName="PaperValue" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Question)">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
+          <ScalarProperty Name="QuestionTypeId" ColumnName="QuestionTypeId" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="QuestionTypes">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.QuestionType)">
+        <MappingFragment StoreEntitySet="QuestionTypes">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Semesters">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Semester)">
+        <MappingFragment StoreEntitySet="Semesters">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SemesterName" ColumnName="SemesterName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staffs">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Staff)">
+        <MappingFragment StoreEntitySet="Staffs">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Surname" ColumnName="Surname" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="StaffCourses">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.StaffCourse)">
+        <MappingFragment StoreEntitySet="StaffCourses">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+          <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
   </edmx:Runtime>
   <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
   <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
@@ -397,7 +398,7 @@
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
         <DesignerProperty Name="EnablePluralization" Value="true" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
-        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
       </DesignerInfoPropertySet>
     </Options>
