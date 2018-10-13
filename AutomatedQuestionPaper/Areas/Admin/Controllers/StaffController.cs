@@ -64,7 +64,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 oldStaffData.Password = Request.Form.Get(keys[7]);
                 oldStaffData.Phone = Request.Form.Get(keys[5]);
                 _context.SaveChanges();
-                TempData["StaffEditSucessMessage"] = "Staff details has been saved successfully";
+                TempData["StaffEditSuccessMessage"] = "Staff details has been saved successfully";
                 return View("Index");
             }
 
@@ -93,7 +93,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         [Route("/Admin/Staff/DeleteTeacher")]
