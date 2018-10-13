@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/09/2018 19:47:08
+-- Date Created: 10/13/2018 15:25:59
 -- Generated from EDMX file: C:\Users\Shreyas.SHREYAS\source\repos\AutomatedQuestionPaper\AutomatedQuestionPaper\Models\DBModel.edmx
 -- --------------------------------------------------
 
@@ -18,18 +18,18 @@ GO
 -- --------------------------------------------------
 
 IF OBJECT_ID(N'[dbo].[FK__Answer__Question__239E4DCF]', 'F') IS NOT NULL
-    ALTER TABLE [dbo].[Answer] DROP CONSTRAINT [FK__Answer__Question__239E4DCF];
+    ALTER TABLE [dbo].[Answers] DROP CONSTRAINT [FK__Answer__Question__239E4DCF];
 GO
 
 -- --------------------------------------------------
 -- Dropping existing tables
 -- --------------------------------------------------
 
-IF OBJECT_ID(N'[dbo].[Admin]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Admin];
+IF OBJECT_ID(N'[dbo].[Admins]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Admins];
 GO
-IF OBJECT_ID(N'[dbo].[Answer]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Answer];
+IF OBJECT_ID(N'[dbo].[Answers]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Answers];
 GO
 IF OBJECT_ID(N'[dbo].[Chapters]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Chapters];
@@ -43,20 +43,20 @@ GO
 IF OBJECT_ID(N'[dbo].[ExamPapers]', 'U') IS NOT NULL
     DROP TABLE [dbo].[ExamPapers];
 GO
-IF OBJECT_ID(N'[dbo].[Question]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Question];
+IF OBJECT_ID(N'[dbo].[Questions]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Questions];
 GO
-IF OBJECT_ID(N'[dbo].[QuestionType]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[QuestionType];
+IF OBJECT_ID(N'[dbo].[QuestionTypes]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[QuestionTypes];
 GO
-IF OBJECT_ID(N'[dbo].[Semester]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Semester];
+IF OBJECT_ID(N'[dbo].[Semesters]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Semesters];
 GO
-IF OBJECT_ID(N'[dbo].[Staff]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Staff];
+IF OBJECT_ID(N'[dbo].[Staffs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Staffs];
 GO
-IF OBJECT_ID(N'[dbo].[StaffCourse]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[StaffCourse];
+IF OBJECT_ID(N'[dbo].[StaffCourses]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[StaffCourses];
 GO
 
 -- --------------------------------------------------
@@ -96,7 +96,8 @@ CREATE TABLE [dbo].[Courses] (
     [DepartmentId] int  NULL,
     [CourseName] varchar(50)  NULL,
     [Description] varchar(50)  NULL,
-    [Year] nvarchar(max)  NOT NULL
+    [Year] nvarchar(max)  NOT NULL,
+    [CourseCode] nvarchar(max)  NOT NULL
 );
 GO
 

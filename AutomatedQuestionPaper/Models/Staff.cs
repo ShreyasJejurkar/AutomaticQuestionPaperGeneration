@@ -9,9 +9,9 @@
 
 namespace AutomatedQuestionPaper.Models
 {
-    using System.ComponentModel.DataAnnotations;
-
-    [MetadataType(typeof(ModelsMetaData.StaffMetaData))]
+    using System;
+    using System.Collections.Generic;
+    
     public partial class Staff
     {
         public int Id { get; set; }

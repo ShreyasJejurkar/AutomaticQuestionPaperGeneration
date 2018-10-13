@@ -58,6 +58,7 @@
     <Property Name="CourseName" Type="varchar" Nullable="true" MaxLength="50" />
     <Property Name="Description" Type="varchar" Nullable="true" MaxLength="50" />
     <Property Name="Year" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CourseCode" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Departments">
     <Key>
@@ -165,7 +166,7 @@
           <Property Name="ChapterNo" Type="Int32" />
           <Property Name="ChapterName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="Cours">
+        <EntityType Name="Course">
           <Key>
             <PropertyRef Name="Courseid" />
           </Key>
@@ -174,6 +175,7 @@
           <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Year" Type="String" Nullable="false" />
+          <Property Name="CourseCode" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -254,7 +256,7 @@
           <EntitySet Name="Admins" EntityType="Self.Admin" />
           <EntitySet Name="Answers" EntityType="Self.Answer" />
           <EntitySet Name="Chapters" EntityType="Self.Chapter" />
-          <EntitySet Name="Courses" EntityType="Self.Cours" />
+          <EntitySet Name="Courses" EntityType="DatabaseModel.Course" />
           <EntitySet Name="Departments" EntityType="Self.Department" />
           <EntitySet Name="ExamPapers" EntityType="Self.ExamPaper" />
           <EntitySet Name="Questions" EntityType="Self.Question" />
@@ -304,13 +306,14 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="Courses">
-      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Cours)">
+      <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Course)">
         <MappingFragment StoreEntitySet="Courses">
           <ScalarProperty Name="Courseid" ColumnName="Courseid" />
           <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
           <ScalarProperty Name="CourseName" ColumnName="CourseName" />
           <ScalarProperty Name="Description" ColumnName="Description" />
           <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="CourseCode" ColumnName="CourseCode" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

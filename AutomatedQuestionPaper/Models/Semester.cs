@@ -9,9 +9,9 @@
 
 namespace AutomatedQuestionPaper.Models
 {
-    using System.ComponentModel.DataAnnotations;
-
-    [MetadataType(typeof(ModelsMetaData.SemesterMetaData))]
+    using System;
+    using System.Collections.Generic;
+    
     public partial class Semester
     {
         public int Id { get; set; }

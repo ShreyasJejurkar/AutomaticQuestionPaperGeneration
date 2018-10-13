@@ -5,25 +5,32 @@ namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
     using System;
 
-    public class CoursMetaData
+    public class CourseMetaData
     {
-
         [Key]
-        [DisplayName("Course Id")]
+        [DisplayName("Subject Id")]
         [Required]
         public int Courseid { get; set; }
 
-
+        [DisplayName("Department name")]
         public Nullable<int> DepartmentId { get; set; }
 
         [DataType(DataType.Text)]
         [Required]
-        [DisplayName("Course name")]
+        [DisplayName("Subject name")]
         public string CourseName { get; set; }
 
         [DataType(DataType.MultilineText)]
         [Required]
         [DisplayName("Description")]
         public string Description { get; set; }
+        
+        [Required]
+        [DisplayName("Year")]
+        public string Year { get; set; }
+
+        [Required]
+        [DisplayName("Subject code")]
+        public string CourseCode { get; set; }
     }
 }
