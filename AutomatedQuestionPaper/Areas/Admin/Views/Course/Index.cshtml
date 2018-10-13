@@ -44,7 +44,7 @@
 
     if (TempData["CoursesList"] != null)
     {
-        WebGrid grid = new WebGrid();
+        var grid = new WebGrid();
         try
         {
             if (Model != null)
@@ -53,8 +53,7 @@
             }
             else
             {
-                List<Course> subjects = new List<Course>();
-                DatabaseContext db = new DatabaseContext();
+                var db = new DatabaseContext();
 
                 var data = (dynamic)TempData["CoursesList"];
 
@@ -78,8 +77,7 @@
         }
         catch (Exception e)
         {
-            Console.WriteLine(e);
-            throw;
+            Console.WriteLine(e.Message);
         }
     }
 }

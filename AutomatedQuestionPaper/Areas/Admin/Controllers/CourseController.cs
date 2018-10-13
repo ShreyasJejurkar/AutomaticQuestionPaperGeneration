@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using AutomatedQuestionPaper.Models;
+using Microsoft.SqlServer.Server;
 
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
@@ -54,7 +55,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             return RedirectToAction("Index", "Course");
         }
 
-
         public ActionResult Delete(int id)
         {
             throw new NotImplementedException();
@@ -65,7 +65,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         {
             return View();
         }
-        
+
         /// <summary>
         /// Will return the list of subjects
         /// </summary>
@@ -86,6 +86,25 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
             TempData["DepartmentNotSelectedErrorMessage"] = "Please select department first";
             return RedirectToAction("Index", "Course");
+        }
+
+        public ActionResult GetSubjectDetails(string SubjectCode)
+        {
+            ViewBag.DepartmentList = _context.Departments.ToList();
+            
+
+            var subject = _context.Courses.FirstOrDefault(u => u.CourseCode == SubjectCode);
+            if (subject != null)
+            {
+                return View("Edit", subject);
+            }
+            else
+            {
+                TempData["SubjectNotFoundErrorMessage"] = "Incorrect subject code.";
+                return View("Edit", null);
+            }
+
+
         }
     }
 }
