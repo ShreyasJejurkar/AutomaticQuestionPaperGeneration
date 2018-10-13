@@ -174,7 +174,7 @@
     <Compile Include="Models\Chapter.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Cours.cs">
+    <Compile Include="Models\Course.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\DBModel.Context.cs">
@@ -290,7 +290,6 @@
     <Content Include="Areas\Admin\Views\Staff\TeacherEdit.cshtml" />
     <Content Include="Areas\Admin\Views\web.config" />
     <Content Include="Areas\Admin\Views\Course\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Course\Create.cshtml" />
     <EntityDeploy Include="Models\DBModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DBModel.Designer.cs</LastGenOutput>
@@ -298,6 +297,8 @@
     <Content Include="Models\DBModel.edmx.diagram">
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Content>
+    <Content Include="Areas\Admin\Views\Course\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Course\Edit.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
