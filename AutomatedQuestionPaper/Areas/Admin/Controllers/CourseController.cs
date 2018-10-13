@@ -4,7 +4,6 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using AutomatedQuestionPaper.Models;
-using Microsoft.SqlServer.Server;
 
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
@@ -20,6 +19,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             _data = _context.Courses;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             ViewBag.DepartmentList = _context.Departments.ToList();
@@ -31,6 +31,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         {
             ViewBag.DepartmentList = _context.Departments.ToList();
 
+            // Engineering year list
             var yearsList = new List<string>
             {
                 "Second year",
@@ -43,18 +44,31 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Action for creating course
+        /// </summary>
+        /// <param name="c">Course details</param>
+        /// <param name="DepartmentList">Selected department</param>
+        /// <param name="YearList">Selected year</param>
+        /// <returns></returns>
         [HttpPost]
         public ActionResult Create(Course c, string DepartmentList, string YearList)
         {
+            // Get te ID of department which is selected by user
             var result = _context.Departments.FirstOrDefault(p => p.DepartmentName == DepartmentList);
-            c.DepartmentId = result.Id;
-            c.Year = YearList;
+
+            //Set the remaining field of course object
+            c.DepartmentId = result.Id;  //department ID
+            c.Year = YearList;           // year ID
+
+            //Save it do database
             _context.Courses.Add(c);
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Course");
         }
 
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             throw new NotImplementedException();
@@ -74,16 +88,21 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult GetSubjects(string DepartmentList)
         {
+            //Check for user has selected a department or not
             if (DepartmentList.Contains("department"))
             {
+                // Get the department information from database
                 var department = _context.Departments.FirstOrDefault(u => u.DepartmentName == DepartmentList);
                 var departmentId = department.Id;
 
+                // Get the list of subjects of selected department 
                 var listOfCourses = _context.Courses.Where(u => u.DepartmentId == departmentId).ToList();
                 TempData["CoursesList"] = listOfCourses;
+
                 return RedirectToAction("Index", "Course");
             }
 
+            //In case user didn't selected any department 
             TempData["DepartmentNotSelectedErrorMessage"] = "Please select department first";
             return RedirectToAction("Index", "Course");
         }
@@ -92,8 +111,10 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         {
             ViewBag.DepartmentList = _context.Departments.ToList();
             
-
+            //Get the subjects details as per subject code  
             var subject = _context.Courses.FirstOrDefault(u => u.CourseCode == SubjectCode);
+
+            //Pass it to view
             if (subject != null)
             {
                 return View("Edit", subject);
@@ -103,8 +124,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 TempData["SubjectNotFoundErrorMessage"] = "Incorrect subject code.";
                 return View("Edit", null);
             }
-
-
         }
     }
 }

@@ -19,6 +19,8 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             else
             {
                 var adminName = Session["Username"];
+
+                // Get the admin details from database 
                 var admin = _context.Admins.FirstOrDefault(u => u.Username == (string) adminName);
 
                 return View(admin);

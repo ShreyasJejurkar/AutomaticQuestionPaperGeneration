@@ -17,56 +17,10 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             _data = _context.Semesters;
         }
 
+        [HttpGet]
         public ActionResult Index()
         {
             return View(_data.ToList());
-        }
-
-        [HttpGet]
-        public ActionResult Edit(int id)
-        {
-            var s = _context.Semesters.FirstOrDefault(u => u.Id == id);
-            return View("Edit", s);
-        }
-
-        [HttpPost]
-        public ActionResult Edit(Semester editSem)
-        {
-            var semesterDb = _context.Semesters.FirstOrDefault(u => u.Id == editSem.Id);
-            if (semesterDb != null)
-                semesterDb.SemesterName = editSem.SemesterName;
-
-            _context.SaveChanges();
-            TempData["SemesterDeleteSuccessMessage"] = "Semester edited successfully";
-            return RedirectToActionPermanent("Index", _data);
-        }
-
-        /*
-        public ActionResult Details(int id)
-        {
-            throw new NotImplementedException();
-        }
-        */
-
-        public ActionResult Delete(int id)
-        {
-            if (id != 0)
-            {
-                var semesterDb = _context.Semesters.SingleOrDefault(u => u.Id == id);
-
-                if (semesterDb != null)
-                {
-                    _context.Semesters.Remove(semesterDb);
-                    _context.SaveChanges();
-                    ViewBag.SemesterDeleteSuccessMessage = "Semester deleted successfully";
-                    return View("Index", _data);
-                }
-
-                ViewBag.SemesterDeleteFailtureMessage = "Something went wrong. Semester cannot be deleted";
-                return View("Index", _data);
-            }
-
-            return View("Index", _data);
         }
 
         [HttpGet]
@@ -78,9 +32,65 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Semester newSem)
         {
+            //Add new semester to database and commit the operation.
             _context.Semesters.Add(newSem);
             _context.SaveChanges();
+
             return RedirectToAction("Index", _data);
+        }
+        
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            //Get the semester details from database
+            var s = _context.Semesters.FirstOrDefault(u => u.Id == id);
+
+            //pass it to view
+            return View("Edit", s);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Semester editSem)
+        {
+            //Get the details of old semester from database
+            var semesterDb = _context.Semesters.FirstOrDefault(u => u.Id == editSem.Id);
+
+            //Save the new changes
+            if (semesterDb != null)
+                semesterDb.SemesterName = editSem.SemesterName;
+
+            //Commit it to database
+            _context.SaveChanges();
+
+            //Set the success message
+            TempData["SemesterDeleteSuccessMessage"] = "Semester edited successfully";
+
+            return RedirectToActionPermanent("Index", _data);
+        }
+        
+        public ActionResult Delete(int id)
+        {
+            if (id != 0)
+            {
+                //Get the details of old semester
+                var semesterDb = _context.Semesters.SingleOrDefault(u => u.Id == id);
+
+                if (semesterDb != null)
+                {
+                    //Remove it from database and commit it
+                    _context.Semesters.Remove(semesterDb);
+                    _context.SaveChanges();
+
+                    //Set the success message
+                    ViewBag.SemesterDeleteSuccessMessage = "Semester deleted successfully";
+                    return View("Index", _data);
+                }
+
+                ViewBag.SemesterDeleteFailtureMessage = "Something went wrong. Semester cannot be deleted";
+                return View("Index", _data);
+            }
+
+            return View("Index", _data);
         }
     }
 }
