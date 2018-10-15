@@ -23,7 +23,6 @@
     </div>
 </form>
 
-
 @if (TempData["SubjectNotFoundErrorMessage"] != null)
 {
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -37,7 +36,7 @@ else
 {
     if (Model != null)
     {
-        using (Html.BeginForm())
+        using (Html.BeginForm("Edit", "Course", FormMethod.Post))
         {
             @Html.AntiForgeryToken()
 
@@ -55,29 +54,23 @@ else
                         @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
                     </div>
                 </div>
-                <div id="popoverExampleTwoHiddenContent" style="display: none">
-                    <div>
-                        <table border="1" style="width:100%">
-                            <thead>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Department name</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var department in ViewBag.DepartmentList)
-                                {
-                                    <tr>
-                                        <td>@department.Id</td>
-                                        <td>@department.DepartmentName</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-
-                <a tabindex="0" role="button" data-trigger="focus" class="btn-sm btn-info" data-placement="top" id="popoverExampleTwo"><i class="fa fa-comments"></i> View</a>
+                <table style="width:50%" class="table">
+                    <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Department name</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var department in ViewBag.DepartmentList)
+                        {
+                            <tr>
+                                <td>@department.Id</td>
+                                <td>@department.DepartmentName</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
 
                 <div class="form-group">
                     @Html.LabelFor(model => model.CourseName, htmlAttributes: new { @class = "col-md-2" })
@@ -96,54 +89,63 @@ else
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "control-label col-md-2" })
+                    @Html.LabelFor(model => model.Year, htmlAttributes: new { @class = "col-md-2" })
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Year, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Year, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                        @{
+                            var myList = new List<SelectListItem> {
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.CourseCode, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.CourseCode, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CourseCode, "", new { @class = "text-danger" })
-                    </div>
-                </div>
+                                new SelectListItem
+                                {
+                                    Text = "Second year", Value = "Second year"
+                                },
+                                new SelectListItem
+                                {
+                                    Text = "Third year", Value = "Third year"
+                                },
+                                new SelectListItem
+                                {
+                                    Text = "Fourth year", Value = "Fourth year"
+                                }};
 
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" value="Save" class="btn btn-default" />
+                            var u = ViewBag.subjectSelectedYear as string;
+
+                            if (string.Compare(u, myList[0].Text) == 1)
+                            {
+                                myList.RemoveAt(0);
+                            }
+
+                            if (string.Compare(u, myList[1].Text) == 1)
+                            {
+                                myList.RemoveAt(1);
+                            }
+
+                            if (string.Compare(u, myList[2].Text) == 1)
+                            {
+                                myList.RemoveAt(2);
+                            }
+                        }
+                        @Html.DropDownList("Year", myList, u, new { @id = "editedYear", @class = "form-control" })
                     </div>
                 </div>
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CourseCode, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CourseCode, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.CourseCode, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-10">
+                    <input type="submit" value="Save" class="btn btn-success" />
+                </div>
+            </div>
         }
+
+        @Html.ActionLink("Delete","Delete", new { controller = "Course", id = Model.Courseid } , new { onclick = "return confirm('Are you sure you wish to delete this subject?');" })
     }
 }
 
-@section scripts
-{
-    @Scripts.Render("~/Scripts/jquery-3.3.1.min.js")
-    @Scripts.Render("~/bundles/jqueryval")
-
-
-    <script type="text/javascript">
-        console.log("Hello World");
-
-        $(function () {
-
-            // Enabling Popover Example 2 - JS (hidden content and title capturing)
-            $("#popoverExampleTwo").popover({
-                html: true,
-                content: function () {
-                    return $('#popoverExampleTwoHiddenContent').html();
-                },
-                title: function () {
-                    return $('#popoverExampleTwoHiddenTitle').html();
-                }
-            });
-
-        });
-    </script>
-
-}
+@Scripts.Render("~/bundles/jqueryval")

@@ -52,6 +52,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         /// <param name="YearList">Selected year</param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Create(Course c, string DepartmentList, string YearList)
         {
             // Get te ID of department which is selected by user
@@ -68,16 +69,69 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             return RedirectToAction("Index", "Course");
         }
 
+        [HttpPost]
+        [Route("/Admin/Course/Delete/{id}")]
+        public ActionResult Delete1(int id)
+        {
+            return null;
+        }
+
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            throw new NotImplementedException();
+            //Get subject from database
+            var subject = _context.Courses.FirstOrDefault(u => u.Courseid == id);
+            if (subject != null)
+            {
+                _context.Courses.Remove(subject);
+                _context.SaveChanges();
+
+                //Set the success message 
+                TempData["SubjectedDeletedSuccessfully"] = "Subject deleted successfully";
+
+                return RedirectToAction("Index", "Course");
+            }
+
+            TempData["SubjectedFailedSuccessfully"] = "Subject deletion failed";
+
+            return RedirectToAction("Index", "Course");
         }
 
         [HttpGet]
         public ActionResult Edit()
         {
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Course editedCourse)
+        {
+            //Find the course from database first
+            var dbCourse = _context.Courses.FirstOrDefault(u => u.Courseid == editedCourse.Courseid);
+
+            //Setting up individual properties
+            if (dbCourse != null)
+            {
+                dbCourse.DepartmentId = editedCourse.DepartmentId;
+                dbCourse.CourseCode = editedCourse.CourseCode;
+                dbCourse.CourseName = editedCourse.CourseName;
+                dbCourse.Description = editedCourse.Description;
+                dbCourse.Year = editedCourse.Year;
+
+                //Commit it to database
+                _context.SaveChanges();
+
+                //Set success message
+                TempData["SubjectedEditedSuccessfully"] = "Subject detail edited successfully";
+
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                TempData["SubjectedEditedFailure"] = "Subjects details editing failed";
+                return RedirectToAction("Index");
+            }
+
         }
 
         /// <summary>
@@ -93,11 +147,16 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             {
                 // Get the department information from database
                 var department = _context.Departments.FirstOrDefault(u => u.DepartmentName == DepartmentList);
-                var departmentId = department.Id;
 
-                // Get the list of subjects of selected department 
-                var listOfCourses = _context.Courses.Where(u => u.DepartmentId == departmentId).ToList();
-                TempData["CoursesList"] = listOfCourses;
+                if (department != null)
+                {
+                    var departmentId = department.Id;
+
+                    // Get the list of subjects of selected department 
+                    var listOfCourses = _context.Courses.Where(u => u.DepartmentId == departmentId).ToList();
+
+                    TempData["CoursesList"] = listOfCourses;
+                }
 
                 return RedirectToAction("Index", "Course");
             }
@@ -111,12 +170,17 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         {
             ViewBag.DepartmentList = _context.Departments.ToList();
             
-            //Get the subjects details as per subject code  
-            var subject = _context.Courses.FirstOrDefault(u => u.CourseCode == SubjectCode);
+            //Convert subject code to int
+            var code = Convert.ToInt32(SubjectCode);
 
+            //Get the subjects details as per subject code  
+            var subject = _context.Courses.FirstOrDefault(u => u.Courseid == code);
+            
             //Pass it to view
             if (subject != null)
             {
+                ViewBag.subjectSelectedYear = subject.Year;
+
                 return View("Edit", subject);
             }
             else

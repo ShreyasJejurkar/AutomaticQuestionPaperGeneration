@@ -16,6 +16,49 @@
     </div>
 }
 
+@if (TempData["SubjectedEditedSuccessfully"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SubjectedEditedSuccessfully"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+@if (TempData["SubjectedEditedFailure"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["SubjectedEditedFailure"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+@if (TempData["SubjectedDeletedSuccessfully"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["SubjectedDeletedSuccessfully"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+@if (TempData["SubjectedFailedSuccessfully"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["SubjectedFailedSuccessfully"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+
+
+
 @using (Html.BeginForm("GetSubjects", "Course", FormMethod.Post))
 {
     <div class="col-md-10">
@@ -35,11 +78,11 @@
     </div>
     <div class="form-group col-md-4">
         <input type="submit" class="btn btn-primary" value="Get subjects" />
-        
+
     </div>
 }
 
-@Html.ActionLink("Edit subject details", "Edit", "", new{@class="btn btn-info", @id="addressSearch"})
+@Html.ActionLink("Edit/Delete subject", "Edit", "", new { @class = "btn btn-danger", @id = "addressSearch" })
 @{
 
     if (TempData["CoursesList"] != null)
