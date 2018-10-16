@@ -47,28 +47,33 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        public ActionResult StaffEditSaveChanges()
+        public ActionResult StaffEditSaveChanges(Models.Staff editedStaffDetails)
         {
-            var keys = Request.Form.AllKeys;
+            //Fetch the old data of staff from database
+            var oldData = _context.Staffs.FirstOrDefault(u=> u.Id == editedStaffDetails.Id);
 
-            var id = Convert.ToInt32(Request.Form.Get(keys[1]));
-
-            var oldStaffData = _context.Staffs.FirstOrDefault(u => u.Id == id);
-
-            if (oldStaffData != null)
+            //Setting up new data
+            if (oldData != null)
             {
-                oldStaffData.Name = Request.Form.Get(keys[2]);
-                oldStaffData.Surname = Request.Form.Get(keys[3]);
-                oldStaffData.Address = Request.Form.Get(keys[4]);
-                oldStaffData.Email = Request.Form.Get(keys[6]);
-                oldStaffData.Password = Request.Form.Get(keys[7]);
-                oldStaffData.Phone = Request.Form.Get(keys[5]);
-                _context.SaveChanges();
-                TempData["StaffEditSuccessMessage"] = "Staff details has been saved successfully";
-                return View("Index");
-            }
+                oldData.Address = editedStaffDetails.Address;
+                oldData.Email = editedStaffDetails.Email;
+                oldData.Name = editedStaffDetails.Name;
+                oldData.Phone = editedStaffDetails.Phone;
+                oldData.Surname = editedStaffDetails.Surname;
 
-            return null;
+                //Commit new changes to database
+                _context.SaveChanges();
+
+                //Set the success message
+                TempData["StaffDetailsEditedSuccessfully"] = "Staff details edited successfully";
+                return RedirectToAction("Index", "Staff");
+
+            }
+            else
+            {
+                TempData["StaffDetailsEditFailed"] = "Cannot edit staff details.";
+                return RedirectToAction("Index", "Staff");
+            }
         }
 
         [HttpGet]
