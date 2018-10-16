@@ -85,6 +85,9 @@
     <Reference Include="Microsoft.ApplicationInsights, Version=2.8.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.2.8.0\lib\net45\Microsoft.ApplicationInsights.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ApplicationInsights.TraceListener, Version=2.7.2.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.ApplicationInsights.TraceListener.2.7.2\lib\net45\Microsoft.ApplicationInsights.TraceListener.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AspNet.TelemetryCorrelation, Version=1.0.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.4\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
     </Reference>
@@ -313,7 +316,8 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="Areas\Admin\Views\Course\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_adminLoginLayoutPage.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_adminLoginNavigation.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -360,7 +364,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Areas\Admin\Views\Shared\" />
     <Folder Include="Areas\Staff\Models\" />
     <Folder Include="Areas\Staff\Views\Shared\" />
   </ItemGroup>
