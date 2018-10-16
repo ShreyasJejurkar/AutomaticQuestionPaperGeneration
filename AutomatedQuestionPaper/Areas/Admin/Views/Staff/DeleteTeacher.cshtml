@@ -1,15 +1,11 @@
 ﻿@model AutomatedQuestionPaper.Models.Staff
 
 @{
-                /**/
-
-                /**/
-
-                ViewBag.Title = "DeleteTeacher";
-                Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "DeleteTeacher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>DeleteTeacher</h2>
+<h3>DeleteTeacher</h3>
 
 @if (ViewBag.TeacherNotFoundErrorMessage != null)
 {
@@ -20,7 +16,6 @@
         </button>
     </div>
 }
-
 
 @using (Html.BeginForm("DeleteTeacher", "Staff", FormMethod.Post))
 {

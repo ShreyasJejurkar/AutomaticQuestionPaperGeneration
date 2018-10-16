@@ -15,9 +15,8 @@
         if (Model == null)
         {
             grid = new WebGrid();
-            List<Staff> teacher = new List<Staff>();
-            DatabaseContext _context = new DatabaseContext();
-            var data = _context.Staffs;
+            var context = new DatabaseContext();
+            var data = context.Staffs;
             var list = data.ToList();
             grid.Bind(list);
         }
@@ -26,10 +25,20 @@
 
 <br />
 
-@if (TempData["StaffEditSucessMessage"] != null)
+@if (TempData["StaffDetailsEditedSuccessfully"] != null)
 {
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["StaffEditSucessMessage"]
+        @TempData["StaffDetailsEditedSuccessfully"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+@if (TempData["StaffDetailsEditFailed"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["StaffDetailsEditFailed"]
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -45,8 +54,6 @@
         </button>
     </div>
 }
-
-
 
 @if (TempData["StaffAddedMessage"] != null)
 {
