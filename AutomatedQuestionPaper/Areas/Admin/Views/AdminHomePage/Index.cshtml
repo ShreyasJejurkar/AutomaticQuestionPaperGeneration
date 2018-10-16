@@ -1,17 +1,16 @@
-﻿@{
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-}
+﻿
 
 @model AutomatedQuestionPaper.Models.Admin
 
 <br />
 
-@if (ViewBag.SessionErrorMessage != null)
+@if (TempData["SessionErrorMessage"] != null)
 {
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @ViewBag.SessionErrorMessage
-        @ViewBag.SessionErrorMessage = null;
+        @TempData["SessionErrorMessage"]
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
         </button>
@@ -20,8 +19,12 @@
 }
 else
 {
-    <h2>Hello @Model.Username</h2>
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_adminLoginLayoutPage.cshtml";
 
+
+
+    <h2>Hello @Model.Username</h2>
 
     <div>
         <h3>Management Panel</h3>
