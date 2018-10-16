@@ -19,12 +19,24 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            if (Session["Username"] == null)
+            {
+                TempData["SessionErrorMessage"] = "Please log in to your account first.";
+                return RedirectToAction("Index", "AdminHomePage");
+            }
+
             return View(_data.ToList());
         }
 
         [HttpGet]
         public ActionResult Create()
         {
+            if (Session["Username"] == null)
+            {
+                TempData["SessionErrorMessage"] = "Please log in to your account first.";
+                return RedirectToAction("Index", "AdminHomePage");
+            }
+
             return View();
         }
 
@@ -48,6 +60,12 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
+            if (Session["Username"] == null)
+            {
+                TempData["SessionErrorMessage"] = "Please log in to your account first.";
+                return RedirectToAction("Index", "AdminHomePage");
+            }
+
             //Get the requested department from table as per id
             var department = _context.Departments.FirstOrDefault(u => u.Id == id);
             return View("Edit", department);
@@ -77,6 +95,13 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         
         public ActionResult Delete(int id)
         {
+            if (Session["Username"] == null)
+            {
+                TempData["SessionErrorMessage"] = "Please log in to your account first.";
+                return RedirectToAction("Index", "AdminHomePage");
+            }
+
+
             if (id != 0)
             {
                 //Get the details of department first from database

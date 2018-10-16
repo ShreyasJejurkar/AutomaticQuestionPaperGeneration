@@ -13,7 +13,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         {
             if (Session["Username"] == null )
             {
-                ViewBag.SessionErrorMessage = "Please log in to your account first.";
+                TempData["SessionErrorMessage"] = "Please log in to your account first.";
                 return View();
             }
             else

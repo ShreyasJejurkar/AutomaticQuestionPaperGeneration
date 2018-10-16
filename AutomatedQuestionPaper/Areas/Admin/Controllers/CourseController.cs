@@ -22,6 +22,11 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            if (Session["Username"] == null)
+            {
+                TempData["SessionErrorMessage"] = "Please log in to your account first.";
+                return RedirectToAction("Index", "AdminHomePage");
+            }
             ViewBag.DepartmentList = _context.Departments.ToList();
             return View();
         }
@@ -29,6 +34,13 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
+            if (Session["Username"] == null)
+            {
+                TempData["SessionErrorMessage"] = "Please log in to your account first.";
+                return RedirectToAction("Index", "AdminHomePage");
+            }
+
+
             ViewBag.DepartmentList = _context.Departments.ToList();
             
             // Engineering year list
@@ -72,6 +84,13 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
+            if (Session["Username"] == null)
+            {
+                TempData["SessionErrorMessage"] = "Please log in to your account first.";
+                return RedirectToAction("Index", "AdminHomePage");
+            }
+
+
             //Get subject from database
             var subject = _context.Courses.FirstOrDefault(u => u.Courseid == id);
             if (subject != null)
@@ -93,6 +112,12 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit()
         {
+            if (Session["Username"] == null)
+            {
+                TempData["SessionErrorMessage"] = "Please log in to your account first.";
+                return RedirectToAction("Index", "AdminHomePage");
+            }
+
             return View();
         }
 
@@ -159,8 +184,16 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             return RedirectToAction("Index", "Course");
         }
 
+
         public ActionResult GetSubjectDetails(string SubjectCode)
         {
+            if (Session["Username"] == null)
+            {
+                TempData["SessionErrorMessage"] = "Please log in to your account first.";
+                return RedirectToAction("Index", "AdminHomePage");
+            }
+
+
             ViewBag.DepartmentList = _context.Departments.ToList();
             
             //Convert subject code to int
