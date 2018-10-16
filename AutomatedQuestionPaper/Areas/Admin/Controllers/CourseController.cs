@@ -30,7 +30,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         public ActionResult Create()
         {
             ViewBag.DepartmentList = _context.Departments.ToList();
-
+            
             // Engineering year list
             var yearsList = new List<string>
             {
@@ -67,13 +67,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             _context.SaveChanges();
 
             return RedirectToAction("Index", "Course");
-        }
-
-        [HttpPost]
-        [Route("/Admin/Course/Delete/{id}")]
-        public ActionResult Delete1(int id)
-        {
-            return null;
         }
 
         [HttpGet]
