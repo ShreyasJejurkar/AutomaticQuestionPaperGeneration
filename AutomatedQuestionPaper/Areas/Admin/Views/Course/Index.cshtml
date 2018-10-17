@@ -77,12 +77,16 @@
         </div>
     </div>
     <div class="form-group col-md-4">
-        <input type="submit" class="btn btn-primary" value="Get subjects" />
+        
+        
+        <input type="submit" class="btn btn-primary" value="Get subjects"/>
 
     </div>
 }
 
+@Html.ActionLink("Add subject", "Create", "", new { @class = "btn btn-success" })
 @Html.ActionLink("Edit/Delete subject", "Edit", "", new { @class = "btn btn-danger", @id = "addressSearch" })
+
 @{
 
     if (TempData["CoursesList"] != null)
