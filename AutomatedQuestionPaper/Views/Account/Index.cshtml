@@ -5,6 +5,16 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+<br/>
+@if (TempData["SessionErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["SessionErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
 
 @if (ViewBag.LoginErrorMessage != null)
 {
@@ -15,8 +25,6 @@
         </button>
     </div>
 }
-
-<br/>
 
 @using (Html.BeginForm())
 {
