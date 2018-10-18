@@ -4,6 +4,7 @@ using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
+    [SessionCheck]
     public class StaffController : Controller
     {
         private readonly DatabaseContext _context = new DatabaseContext();
@@ -13,12 +14,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (Session["Username"] == null)
-            {
-                TempData["SessionErrorMessage"] = "Please log in to your account first.";
-                return RedirectToAction("Index", "AdminHomePage");
-            }
-
             var data = _context.Staffs;
 
             return View(data.ToList());
@@ -28,12 +23,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult TeacherEdit()
         {
-            if (Session["Username"] == null)
-            {
-                TempData["SessionErrorMessage"] = "Please log in to your account first.";
-                return RedirectToAction("Index", "AdminHomePage");
-            }
-
             return View();
         }
 
@@ -91,12 +80,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult TeacherAdd()
         {
-            if (Session["Username"] == null)
-            {
-                TempData["SessionErrorMessage"] = "Please log in to your account first.";
-                return RedirectToAction("Index", "AdminHomePage");
-            }
-
             return View();
         }
 
@@ -114,12 +97,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult DeleteTeacher()
         {
-            if (Session["Username"] == null)
-            {
-                TempData["SessionErrorMessage"] = "Please log in to your account first.";
-                return RedirectToAction("Index", "AdminHomePage");
-            }
-
             return View();
         }
 

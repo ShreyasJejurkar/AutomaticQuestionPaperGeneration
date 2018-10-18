@@ -5,6 +5,7 @@ using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
+    [SessionCheck]
     public class SemesterController : Controller
     {
         private readonly DatabaseContext _context = new DatabaseContext();
@@ -20,24 +21,12 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (Session["Username"] == null)
-            {
-                TempData["SessionErrorMessage"] = "Please log in to your account first.";
-                return RedirectToAction("Index", "AdminHomePage");
-            }
-
             return View(_data.ToList());
         }
 
         [HttpGet]
         public ActionResult Create()
         {
-            if (Session["Username"] == null)
-            {
-                TempData["SessionErrorMessage"] = "Please log in to your account first.";
-                return RedirectToAction("Index", "AdminHomePage");
-            }
-
             return View();
         }
 
@@ -54,13 +43,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-
-            if (Session["Username"] == null)
-            {
-                TempData["SessionErrorMessage"] = "Please log in to your account first.";
-                return RedirectToAction("Index", "AdminHomePage");
-            }
-
             //Get the semester details from database
             var s = _context.Semesters.FirstOrDefault(u => u.Id == id);
 
@@ -89,12 +71,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         
         public ActionResult Delete(int id)
         {
-            if (Session["Username"] == null)
-            {
-                TempData["SessionErrorMessage"] = "Please log in to your account first.";
-                return RedirectToAction("Index", "AdminHomePage");
-            }
-
             if (id != 0)
             {
                 //Get the details of old semester

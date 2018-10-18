@@ -4,6 +4,7 @@ using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
+    [SessionCheck]
     public class AdminHomePageController : Controller
     {
         private readonly DatabaseContext _context = new DatabaseContext();
@@ -11,20 +12,13 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (Session["Username"] == null )
-            {
-                TempData["SessionErrorMessage"] = "Please log in to your account first.";
-                return View();
-            }
-            else
-            {
-                var adminName = Session["Username"];
+            var adminName = Session["Username"];
 
-                // Get the admin details from database 
-                var admin = _context.Admins.FirstOrDefault(u => u.Username == (string) adminName);
+            // Get the admin details from database 
+            var admin = _context.Admins.FirstOrDefault(u => u.Username == (string)adminName);
 
-                return View(admin);
-            }
+            return View(admin);
+
         }
     }
 }

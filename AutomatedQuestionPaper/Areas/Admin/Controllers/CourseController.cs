@@ -7,6 +7,7 @@ using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
+    [SessionCheck]
     public class CourseController : Controller
     {
         private readonly DatabaseContext _context = new DatabaseContext();
@@ -22,11 +23,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            if (Session["Username"] == null)
-            {
-                TempData["SessionErrorMessage"] = "Please log in to your account first.";
-                return RedirectToAction("Index", "AdminHomePage");
-            }
             ViewBag.DepartmentList = _context.Departments.ToList();
             return View();
         }
@@ -34,15 +30,8 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Create()
         {
-            if (Session["Username"] == null)
-            {
-                TempData["SessionErrorMessage"] = "Please log in to your account first.";
-                return RedirectToAction("Index", "AdminHomePage");
-            }
-
-
             ViewBag.DepartmentList = _context.Departments.ToList();
-            
+
             // Engineering year list
             var yearsList = new List<string>
             {
@@ -84,13 +73,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            if (Session["Username"] == null)
-            {
-                TempData["SessionErrorMessage"] = "Please log in to your account first.";
-                return RedirectToAction("Index", "AdminHomePage");
-            }
-
-
             //Get subject from database
             var subject = _context.Courses.FirstOrDefault(u => u.Courseid == id);
             if (subject != null)
@@ -110,16 +92,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit()
-        {
-            if (Session["Username"] == null)
-            {
-                TempData["SessionErrorMessage"] = "Please log in to your account first.";
-                return RedirectToAction("Index", "AdminHomePage");
-            }
-
-            return View();
-        }
+        public ActionResult Edit() => View();
 
         [HttpPost]
         public ActionResult Edit(Course editedCourse)
@@ -187,21 +160,14 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
         public ActionResult GetSubjectDetails(string SubjectCode)
         {
-            if (Session["Username"] == null)
-            {
-                TempData["SessionErrorMessage"] = "Please log in to your account first.";
-                return RedirectToAction("Index", "AdminHomePage");
-            }
-
-
             ViewBag.DepartmentList = _context.Departments.ToList();
-            
+
             //Convert subject code to int
             var code = Convert.ToInt32(SubjectCode);
 
             //Get the subjects details as per subject code  
             var subject = _context.Courses.FirstOrDefault(u => u.Courseid == code);
-            
+
             //Pass it to view
             if (subject != null)
             {
