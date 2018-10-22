@@ -60,19 +60,3 @@ else
         </div>
     </div>
 }
-
-@section scripts
-{
-    @Scripts.Render("~/bundles/jquery")
-
-    <script>
-        $(document).ready(function () {
-            $('.card').hover(
-                function () {
-                    $(this).toggleClass('shadow p-3');
-                }
-            );
-        });
-    </script>
-
-}
