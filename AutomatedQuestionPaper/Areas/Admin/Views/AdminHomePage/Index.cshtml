@@ -1,6 +1,4 @@
-﻿
-
-@model AutomatedQuestionPaper.Models.Admin
+﻿@model AutomatedQuestionPaper.Models.Admin
 
 <br />
 
@@ -8,7 +6,7 @@
 {
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
-    
+
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
         @TempData["SessionErrorMessage"]
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -22,16 +20,59 @@ else
     ViewBag.Title = "Index";
     Layout = "~/Areas/Admin/Views/Shared/_adminLoginLayoutPage.cshtml";
 
-
-
-    <h2>Hello @Model.Username</h2>
+    <h2>@Model.Username Management Panel</h2>
 
     <div>
-        <h3>Management Panel</h3>
-        <a class="btn btn-dark m-1" href="@Url.Action("Index","Staff")">Staff Management</a>
-        <a class="btn btn-primary m-1 " href="#">Course Teacher allocation </a>
-        <a class="btn btn-secondary m-1" href="@Url.Action("Index","Department")">Department management</a>
-        <a class="btn btn-info m-1" href="@Url.Action("Index","Course")">Course Management</a>
-        <a class="btn btn-info m-1" href="@Url.Action("Index","Semester")">Semester Management</a>
+        <div class="card" style="width: 12rem; float: left; margin: 10px; height:285px ">
+            <img class="card-img-top" src="~/Images/staff management.png" alt="Card image cap">
+            <div class="card-body">
+                <a class="card-title" href="@Url.Action("Index", "Staff")">Staff Management</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 12rem; float: left;  margin: 10px; height:285px ">
+            <img class="card-img-top" src="~/Images/course teacher.svg" alt="Card image cap">
+            <div class="card-body">
+                <br />
+                <a class="card-title" href="#">Course Teacher allocation </a>
+            </div>
+        </div>
+
+        <div class="card " style="width: 12rem; float: left;  margin: 10px; height:285px ">
+            <img class="card-img-top" src="~/Images/department.png" alt="Card image cap">
+            <div class="card-body">
+                <a class="card-title" href="@Url.Action("Index", "Department")">Department management</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 12rem; float: left; margin: 10px; height:285px ">
+            <img class="card-img-top" src="~/Images/course.png" alt="Card image cap">
+            <div class="card-body">
+                <a class="card-title" href="@Url.Action("Index", "Course")">Course Management</a>
+            </div>
+        </div>
+
+        <div class="card" style="width: 12rem; float: left; margin: 10px; height:285px ">
+            <img class="card-img-top" src="~/Images/semester.png" alt="Card image cap">
+            <div class="card-body">
+                <a class="card-title" href="@Url.Action("Index", "Semester")">Semester Management</a>
+            </div>
+        </div>
     </div>
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jquery")
+
+    <script>
+        $(document).ready(function () {
+            $('.card').hover(
+                function () {
+                    $(this).toggleClass('shadow p-3');
+                }
+            );
+        });
+    </script>
+
 }
