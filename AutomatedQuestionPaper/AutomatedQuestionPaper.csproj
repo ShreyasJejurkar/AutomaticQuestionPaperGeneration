@@ -257,6 +257,11 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\course teacher.svg" />
+    <Content Include="Images\course.png" />
+    <Content Include="Images\department.png" />
+    <Content Include="Images\semester.png" />
+    <Content Include="Images\staff management.png" />
     <Content Include="Models\DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBModel.edmx</DependentUpon>
