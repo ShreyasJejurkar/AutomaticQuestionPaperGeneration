@@ -32,28 +32,36 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Will do a POST request to DB for staff information
+        /// </summary>
+        /// <param name="id">ID of staff</param>
+        /// <returns>Returns Corresponding view</returns>
         [HttpPost]
-        public ActionResult GetStaffDetails(int id = 0)
+        public ActionResult GetStaffDetails(int id)
         {
+            // Get the details of specified ID
             _dbTeacher = _context.Staffs.FirstOrDefault(u => u.Id == id);
 
             if (_dbTeacher == null)
             {
-                // ViewBag.StaffID = _dbTeacher.Id;
+                // Set the message for View
                 ViewBag.StaffNotFoundErrorMessage = "Staff details not found. Please ensure you entered correct ID";
+
                 return View("TeacherEdit", null);
             }
 
+            // Else pass the staff information to View
             return View("TeacherEdit", _dbTeacher);
         }
 
         [HttpPost]
         public ActionResult StaffEditSaveChanges(Models.Staff editedStaffDetails)
         {
-            //Fetch the old data of staff from database
+            // Fetch the old data of staff from database
             var oldData = _context.Staffs.FirstOrDefault(u=> u.Id == editedStaffDetails.Id);
 
-            //Setting up new data
+            // Setting up new data
             if (oldData != null)
             {
                 oldData.Address = editedStaffDetails.Address;
@@ -62,10 +70,10 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 oldData.Phone = editedStaffDetails.Phone;
                 oldData.Surname = editedStaffDetails.Surname;
 
-                //Commit new changes to database
+                // Commit new changes to database
                 _context.SaveChanges();
 
-                //Set the success message
+                // Set the success message
                 TempData["StaffDetailsEditedSuccessfully"] = "Staff details edited successfully";
                 return RedirectToAction("Index", "Staff");
 
@@ -86,9 +94,11 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult TeacherAdd(Models.Staff data)
         {
+            // Add it to context and commit it to DB
             _context.Staffs.Add(data);
             _context.SaveChanges();
 
+            // Set the success message  
             TempData["StaffAddedMessage"] = "Staff added successfully";
 
             return RedirectToAction("Index", "Staff");
@@ -105,16 +115,23 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [Route("/Admin/Staff/DeleteTeacher")]
         public ActionResult DeleteTeacher(int teacherId)
         {
+            // Find the corresponding staff details as per ID
             var teacherDb = _context.Staffs.SingleOrDefault(u => u.Id == teacherId);
 
+            // Make sure its not null
             if (teacherDb != null)
             {
+                // Remove it from context and commit operation to database
                 _context.Staffs.Remove(teacherDb);
                 _context.SaveChanges();
+
+                // Set the success message
                 TempData["TeacherDeletedSuccessMessage"] = "Teacher deleted successfully";
+
                 return RedirectToAction("Index", "Staff");
             }
 
+           // Set the fail message if teacher ID not found. 
             ViewBag.TeacherNotFoundErrorMessage = "Teacher does not exists. Please check ID";
             return View();
         }

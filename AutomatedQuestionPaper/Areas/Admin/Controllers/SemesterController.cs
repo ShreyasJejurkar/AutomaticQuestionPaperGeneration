@@ -13,7 +13,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
         public SemesterController() : this(1) { }
 
-        public SemesterController(int sdata)
+        public SemesterController(int data)
         {
             _data = _context.Semesters;
         }
@@ -33,7 +33,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Semester newSem)
         {
-            //Add new semester to database and commit the operation.
+            // Add new semester to database and commit the operation.
             _context.Semesters.Add(newSem);
             _context.SaveChanges();
 
@@ -43,24 +43,29 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            //Get the semester details from database
-            var s = _context.Semesters.FirstOrDefault(u => u.Id == id);
+            // Get the semester details from database
+            var semester = _context.Semesters.FirstOrDefault(u => u.Id == id);
 
-            //pass it to view
-            return View("Edit", s);
+            // pass it to view
+            return View("Edit", semester);
         }
 
+        /// <summary>
+        /// Does a post request to DB making changes to Semester information
+        /// </summary>
+        /// <param name="editSemester">Object containing information about Semester</param>
+        /// <returns>Returns a corresponding view</returns>
         [HttpPost]
-        public ActionResult Edit(Semester editSem)
+        public ActionResult Edit(Semester editSemester)
         {
-            //Get the details of old semester from database
-            var semesterDb = _context.Semesters.FirstOrDefault(u => u.Id == editSem.Id);
+            // Get the details of old semester from database
+            var semesterDb = _context.Semesters.FirstOrDefault(u => u.Id == editSemester.Id);
 
-            //Save the new changes
+            // Save the new changes
             if (semesterDb != null)
-                semesterDb.SemesterName = editSem.SemesterName;
+                semesterDb.SemesterName = editSemester.SemesterName;
 
-            //Commit it to database
+            // Commit it to database
             _context.SaveChanges();
 
             //Set the success message
@@ -69,20 +74,26 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             return RedirectToActionPermanent("Index", _data);
         }
         
+        /// <summary>
+        /// Performs delete operation on Semester
+        /// </summary>
+        /// <param name="id">Takes Semester ID</param>
+        /// <returns>Return corresponding view</returns>
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             if (id != 0)
             {
-                //Get the details of old semester
+                // Get the details of old semester
                 var semesterDb = _context.Semesters.SingleOrDefault(u => u.Id == id);
 
                 if (semesterDb != null)
                 {
-                    //Remove it from database and commit it
+                    // Remove it from database and commit it
                     _context.Semesters.Remove(semesterDb);
                     _context.SaveChanges();
 
-                    //Set the success message
+                    // Set the success message
                     ViewBag.SemesterDeleteSuccessMessage = "Semester deleted successfully";
                     return View("Index", _data);
                 }

@@ -15,7 +15,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
         public CourseController() : this(1) { }
 
-        public CourseController(int sdata)
+        public CourseController(int data)
         {
             _data = _context.Courses;
         }
@@ -56,14 +56,17 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Course c, string DepartmentList, string YearList)
         {
-            // Get te ID of department which is selected by user
+            // Get the ID of department which is selected by user
             var result = _context.Departments.FirstOrDefault(p => p.DepartmentName == DepartmentList);
 
-            //Set the remaining field of course object
-            c.DepartmentId = result.Id;  //department ID
-            c.Year = YearList;           // year ID
-
-            //Save it do database
+            if (result != null)
+            {
+                // Set the remaining field of course object
+                c.DepartmentId = result.Id;  // department ID 
+                c.Year = YearList;           // year ID
+            }
+            
+            // Save it do database
             _context.Courses.Add(c);
             _context.SaveChanges();
 
@@ -73,14 +76,14 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Delete(int id)
         {
-            //Get subject from database
+            // Get subject from database
             var subject = _context.Courses.FirstOrDefault(u => u.Courseid == id);
             if (subject != null)
             {
                 _context.Courses.Remove(subject);
                 _context.SaveChanges();
 
-                //Set the success message 
+                // Set the success message 
                 TempData["SubjectedDeletedSuccessfully"] = "Subject deleted successfully";
 
                 return RedirectToAction("Index", "Course");
@@ -133,7 +136,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult GetSubjects(string DepartmentList)
         {
-            //Check for user has selected a department or not
+            // Check for user has selected a department or not
             if (DepartmentList.Contains("department"))
             {
                 // Get the department information from database
@@ -152,23 +155,23 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Course");
             }
 
-            //In case user didn't selected any department 
+            // In case user didn't selected any department 
             TempData["DepartmentNotSelectedErrorMessage"] = "Please select department first";
             return RedirectToAction("Index", "Course");
         }
 
 
-        public ActionResult GetSubjectDetails(string SubjectCode)
+        public ActionResult GetSubjectDetails(string SubjectCode) 
         {
             ViewBag.DepartmentList = _context.Departments.ToList();
 
-            //Convert subject code to int
+            // Convert subject code to int
             var code = Convert.ToInt32(SubjectCode);
 
-            //Get the subjects details as per subject code  
+            // Get the subjects details as per subject code  
             var subject = _context.Courses.FirstOrDefault(u => u.Courseid == code);
 
-            //Pass it to view
+            // Pass it to view
             if (subject != null)
             {
                 ViewBag.subjectSelectedYear = subject.Year;

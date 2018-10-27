@@ -12,7 +12,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         private readonly DbSet<Department> _data;
 
         public DepartmentController() : this(1) { }
-        public DepartmentController(int sdata)
+        public DepartmentController(int data)
         {
             _data = _context.Departments;
         }
@@ -37,11 +37,11 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Create(Department dept)
         {
-            //Add to the context and save it to database
+            // Add to the context and save it to database
             _context.Departments.Add(dept);
             _context.SaveChanges();
 
-            //Create success message and pass it to view
+            // Create success message and pass it to view
             TempData["DepartmentAddedSuccessMessage"] = "Department added successfully";
             return RedirectToAction("Index", _data);
         }
@@ -49,7 +49,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpGet]
         public ActionResult Edit(int id)
         {
-            //Get the requested department from table as per id
+            // Get the requested department from table as per id
             var department = _context.Departments.FirstOrDefault(u => u.Id == id);
             return View("Edit", department);
         }
@@ -62,14 +62,14 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(Department dep)
         {
-            //Get the old details of department from table
+            // Get the old details of department from table
             var semesterDb = _context.Departments.FirstOrDefault(u => u.Id == dep.Id);
 
-            //Set the new details of department
+            // Set the new details of department
             if (semesterDb != null)
                 semesterDb.DepartmentName = dep.DepartmentName;
 
-            //Save the changes and commit it to database
+            // Save the changes and commit it to database
             _context.SaveChanges();
             TempData["DepartmentDeleteSuccessMessage"] = "Department edited successfully";
             return RedirectToActionPermanent("Index", _data);

@@ -18,15 +18,15 @@ namespace AutomatedQuestionPaper.Controllers
         public ActionResult Index(Admin user)
         {
             //Check if user is admin or not!
-            var dbuser = _context.Admins.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
+            var dbUser = _context.Admins.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
 
-            if (dbuser == null)
+            if (dbUser == null)
             {
                 //Check for staff member
                 var staffUser = _context.Staffs.FirstOrDefault(T => T.Name == user.Username && T.Password == user.Password);
+
                 if (staffUser != null)
                 {
-
                     //Saving data to session for login functionality
                     Session["Username"] = staffUser.Name;
 
@@ -37,10 +37,10 @@ namespace AutomatedQuestionPaper.Controllers
                 }
             }
 
-            if (dbuser != null)
+            if (dbUser != null)
             {
                 //Saving data to session for login functionality
-                Session["Username"] = dbuser.Username;
+                Session["Username"] = dbUser.Username;
 
                 return RedirectToAction("Index", "AdminHomePage", new
                 {

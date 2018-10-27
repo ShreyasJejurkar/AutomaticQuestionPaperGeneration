@@ -3,7 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
-
     /// <summary>
     /// MetaData class for Admin class in Models
     /// </summary>
@@ -13,7 +12,7 @@ namespace AutomatedQuestionPaper.Models.ModelsMetaData
         public int id { get; set; }
 
         
-        [DisplayName("Username")]
+        [DisplayName("Username/Email")]
         [MaxLength(256)]
         [Required]
         [DataType(DataType.Text)]
