@@ -62,8 +62,8 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             if (result != null)
             {
                 // Set the remaining field of course object
-                c.DepartmentId = result.Id;  // department ID 
-                c.Year = YearList;           // year ID
+                c.DepartmentId = result.Id;  
+                c.Year = YearList;           
             }
             
             // Save it do database
