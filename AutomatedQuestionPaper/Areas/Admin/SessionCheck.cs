@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
 
-namespace AutomatedQuestionPaper.Areas.Admin.Controllers
+namespace AutomatedQuestionPaper.Areas.Admin
 {
     /// <summary>
     /// Will check for session of login functionality. Should be apply on controller

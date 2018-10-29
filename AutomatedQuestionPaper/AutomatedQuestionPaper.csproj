@@ -130,7 +130,7 @@
     <Compile Include="Areas\Admin\Controllers\CourseController.cs" />
     <Compile Include="Areas\Admin\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\SemesterController.cs" />
-    <Compile Include="Areas\Admin\Controllers\SessionCheck.cs" />
+    <Compile Include="Areas\Admin\SessionCheck.cs" />
     <Compile Include="Areas\Admin\Controllers\StaffController.cs" />
     <Compile Include="Areas\Staff\Controllers\StaffHomePageController.cs" />
     <Compile Include="Areas\Staff\StaffAreaRegistration.cs" />
