@@ -8,7 +8,7 @@ namespace AutomatedQuestionPaper.Controllers
         [Route("/home")]
         public ActionResult Index()
         {
-            Session["Username"] = null;
+            Session["Username"] = Session["Staff_Name"] = null;
             return View();
         }
     }
