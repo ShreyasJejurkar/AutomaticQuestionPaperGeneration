@@ -23,7 +23,7 @@ namespace AutomatedQuestionPaper.Controllers
             if (dbUser == null)
             {
                 //Check for staff member
-                var staffUser = _context.Staffs.FirstOrDefault(T => T.Name == user.Username && T.Password == user.Password);
+                var staffUser = _context.Staffs.FirstOrDefault(T => T.Email == user.Username && T.Password == user.Password);
 
                 if (staffUser != null)
                 {
