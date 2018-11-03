@@ -1,4 +1,5 @@
-﻿@using AutomatedQuestionPaper.Models
+﻿@using System.Diagnostics
+@using AutomatedQuestionPaper.Models
 @model IEnumerable<AutomatedQuestionPaper.Models.Course>
 
 @{
@@ -56,9 +57,6 @@
     </div>
 }
 
-
-
-
 @using (Html.BeginForm("GetSubjects", "Course", FormMethod.Post))
 {
     <div class="col-md-10">
@@ -67,7 +65,7 @@
         </div>
 
         <div class="form-group col-md-12">
-            <select name="DepartmentList" class="form-control" id="DepartmentList" required>
+            <select name="departmentList" class="form-control" id="departmentList" required>
                 <option>--------------------</option>
                 @foreach (var department in ViewBag.DepartmentList)
                 {
@@ -81,11 +79,8 @@
     </div>
 
     @Html.ActionLink("Add subject", "Create", "", new { @class = "btn btn-success" })
-    @Html.ActionLink("Edit/Delete subject", "Edit", "", new { @class = "btn btn-danger", @id = "addressSearch" })
-
+    @Html.ActionLink("Edit/Delete subject", "Edit", "", new { @class = "btn btn-danger"})
 }
-
-
 
 @{
 
@@ -107,7 +102,7 @@
                 grid.Bind(data);
             }
 
-            @grid.GetHtml(tableStyle: "table table-bordered table-striped ",
+            @grid.GetHtml("table table-bordered table-striped ",
                 mode: WebGridPagerModes.All,
                 firstText: "<< First",
                 previousText: "< Prev",
@@ -124,7 +119,7 @@
         }
         catch (Exception e)
         {
-            Console.WriteLine(e.Message);
+            Debug.Write(e.Message);
         }
     }
 }

@@ -19,7 +19,7 @@
         <div class="form-group">
             <label class="col-form-label">Department</label>
             <div class="col-md-10">
-                <select name="DepartmentList" class="form-control" id="DepartmentList" required>
+                <select name="departmentList" class="form-control" id="departmentList" required>
                     <option>--------------------</option>
                     @foreach (var department in ViewBag.DepartmentList)
                     {
@@ -32,7 +32,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Year, new { @class = "col-md-2" })
             <div class="col-md-10">
-                <select name="YearList" class="form-control" id="YearList" required>
+                <select name="yearList" class="form-control" id="yearList" required>
                     <option>--------------------</option>
                     @foreach (var year in ViewBag.YearsList)
                     {

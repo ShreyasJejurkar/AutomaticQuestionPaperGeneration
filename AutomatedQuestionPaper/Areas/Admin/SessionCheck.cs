@@ -2,6 +2,7 @@
 
 namespace AutomatedQuestionPaper.Areas.Admin
 {
+    /// <inheritdoc />
     /// <summary>
     /// Will check for session of login functionality. Should be apply on controller
     /// </summary>

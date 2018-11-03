@@ -49,21 +49,21 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         /// Action for creating course
         /// </summary>
         /// <param name="c">Course details</param>
-        /// <param name="DepartmentList">Selected department</param>
-        /// <param name="YearList">Selected year</param>
+        /// <param name="departmentList">Selected department</param>
+        /// <param name="yearList">Selected year</param>
         /// <returns></returns>
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Course c, string DepartmentList, string YearList)
+        public ActionResult Create(Course c, string departmentList, string yearList)
         {
             // Get the ID of department which is selected by user
-            var result = _context.Departments.FirstOrDefault(p => p.DepartmentName == DepartmentList);
+            var result = _context.Departments.FirstOrDefault(p => p.DepartmentName == departmentList);
 
             if (result != null)
             {
                 // Set the remaining field of course object
                 c.DepartmentId = result.Id;
-                c.Year = YearList;
+                c.Year = yearList;
             }
 
             // Save it do database
@@ -120,27 +120,25 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
                 return RedirectToAction("Index");
             }
-            else
-            {
-                TempData["SubjectedEditedFailure"] = "Subjects details editing failed";
-                return RedirectToAction("Index");
-            }
+
+            TempData["SubjectedEditedFailure"] = "Subjects details editing failed";
+            return RedirectToAction("Index");
 
         }
 
         /// <summary>
         /// Will return the list of subjects
         /// </summary>
-        /// <param name="DepartmentList">Contains the selection of the department</param>
+        /// <param name="departmentList">Contains the selection of the department</param>
         /// <returns></returns>
         [HttpPost]
-        public ActionResult GetSubjects(string DepartmentList)
+        public ActionResult GetSubjects(string departmentList)
         {
             // Check for user has selected a department or not
-            if (DepartmentList.Contains("department"))
+            if (departmentList.Contains("department"))
             {
                 // Get the department information from database
-                var department = _context.Departments.FirstOrDefault(u => u.DepartmentName == DepartmentList);
+                var department = _context.Departments.FirstOrDefault(u => u.DepartmentName == departmentList);
 
                 if (department != null)
                 {
@@ -159,18 +157,17 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             TempData["DepartmentNotSelectedErrorMessage"] = "Please select department first";
             return RedirectToAction("Index", "Course");
         }
-
-
-        public ActionResult GetSubjectDetails(string SubjectCode)
+        
+        public ActionResult GetSubjectDetails(string subjectCode)
         {
             ViewBag.DepartmentList = _context.Departments.ToList();
 
             // Convert subject code to int
-            var code = Convert.ToInt32(SubjectCode);
+            var code = Convert.ToInt32(subjectCode);
 
             // Get the subjects details as per subject code  
             var subject = _context.Courses.FirstOrDefault(u => u.Courseid == code);
-            
+
             // Pass it to view
             if (subject != null)
             {
@@ -181,14 +178,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
             TempData["SubjectNotFoundErrorMessage"] = "Incorrect subject code.";
             return View("Edit", null);
-
-
-
-
-
-
-
-
         }
     }
 }

@@ -43,6 +43,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
             // Create success message and pass it to view
             TempData["DepartmentAddedSuccessMessage"] = "Department added successfully";
+
             return RedirectToAction("Index", _data);
         }
 
@@ -51,6 +52,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         {
             // Get the requested department from table as per id
             var department = _context.Departments.FirstOrDefault(u => u.Id == id);
+
             return View("Edit", department);
         }
 
@@ -72,6 +74,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             // Save the changes and commit it to database
             _context.SaveChanges();
             TempData["DepartmentDeleteSuccessMessage"] = "Department edited successfully";
+
             return RedirectToActionPermanent("Index", _data);
         }
 

@@ -328,7 +328,6 @@
     <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Staff\Models\" />
     <Folder Include="Areas\Staff\Views\Shared\" />
   </ItemGroup>

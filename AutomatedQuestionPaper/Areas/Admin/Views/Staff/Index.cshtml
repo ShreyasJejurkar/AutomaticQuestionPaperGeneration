@@ -4,7 +4,7 @@
 @{
     ViewBag.Title = "Staff details";
     Layout = "~/Areas/Admin/Views/Shared/_adminLoginNavigation.cshtml";
-    WebGrid grid = new WebGrid();
+    var grid = new WebGrid();
     try
     {
         grid = new WebGrid();
@@ -76,7 +76,7 @@
 <br />
 <br />
 
-@grid.GetHtml(tableStyle: "table table-bordered table-striped table-responsive-lg ",
+@grid.GetHtml("table table-bordered table-striped table-responsive-lg ",
     mode: WebGridPagerModes.All,
     firstText: "<< First",
     previousText: "< Prev",
