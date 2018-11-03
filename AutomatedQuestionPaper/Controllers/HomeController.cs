@@ -10,6 +10,6 @@ namespace AutomatedQuestionPaper.Controllers
         {
             Session["Username"] = null;
             return View();
-        }   
+        }
     }
 }

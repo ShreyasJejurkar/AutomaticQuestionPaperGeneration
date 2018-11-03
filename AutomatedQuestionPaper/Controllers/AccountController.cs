@@ -18,12 +18,14 @@ namespace AutomatedQuestionPaper.Controllers
         public ActionResult Index(Admin user)
         {
             //Check if user is admin or not!
-            var dbUser = _context.Admins.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
+            var dbUser =
+                _context.Admins.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
 
             if (dbUser == null)
             {
                 //Check for staff member
-                var staffUser = _context.Staffs.FirstOrDefault(T => T.Email == user.Username && T.Password == user.Password);
+                var staffUser =
+                    _context.Staffs.FirstOrDefault(T => T.Email == user.Username && T.Password == user.Password);
 
                 if (staffUser != null)
                 {
