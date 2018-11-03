@@ -4,7 +4,7 @@ namespace AutomatedQuestionPaper.Areas.Admin
 {
     /// <inheritdoc />
     /// <summary>
-    /// Will check for session of login functionality. Should be apply on controller
+    ///     Will check for session of login functionality. Should be apply on controller
     /// </summary>
     public class SessionCheck : ActionFilterAttribute
     {
@@ -19,10 +19,11 @@ namespace AutomatedQuestionPaper.Areas.Admin
             if (session["Username"] == null)
             {
                 var uriHelper = new UrlHelper(filterContext.RequestContext);
-                var redirectUrl = uriHelper.Action("Index", "Account", new { area = "" });
+                var redirectUrl = uriHelper.Action("Index", "Account", new {area = ""});
                 filterContext.Controller.TempData["SessionErrorMessage"] = "Please log in to your account first";
                 filterContext.Result = new RedirectResult(redirectUrl);
             }
+
             base.OnActionExecuting(filterContext);
         }
     }
