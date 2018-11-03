@@ -1,0 +1,97 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_adminLoginNavigation.cshtml";
+}
+
+<h2>Index</h2>
+
+@if (TempData["AllocatedSuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["AllocatedSuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+@if (TempData["AllocatedErrorMessage"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["AllocatedErrorMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+@using (Html.BeginForm("GetDetails", "StaffCourseManagement", FormMethod.Post))
+{
+    <div>
+        <label class="col-form-label">Semester</label>
+        @Html.DropDownList("selectedSemester", (IEnumerable<SelectListItem>)ViewBag.SemesterList, "---Select---", new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label class="col-form-label">Staff</label>
+        @Html.DropDownList("selectedStaff", (IEnumerable<SelectListItem>)ViewBag.StaffMembersList, "---Select---", new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label class="col-form-label">Department</label>
+        @Html.DropDownList("selectedDepartment", (IEnumerable<SelectListItem>)ViewBag.DepartmentList, "---Select---", new { @class = "form-control" })
+    </div>
+
+    <div>
+        <label class="col-form-label">Subject</label>
+        <select id="selectedSubject" name="selectedSubject" class="form-control">
+            <option>---Select---</option>
+        </select>
+    </div>
+
+    <br />
+    <div class="form-group">
+        <div class=" col-md-10">
+            <input type="submit" value="Allocate" class="btn btn-primary" />
+        </div>
+    </div>
+}
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script>
+        $(function() {
+            $("#selectedDepartment").change(function() {
+                var data = $("#selectedDepartment option:selected").val();
+                console.log(data);
+                $.ajax({
+                    url: '@Url.Action("GetSubjectsOfDepartment")',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        departmentName: data
+                    },
+
+                    success: function(data) {
+                        $("#selectedSubject").empty();
+                        $("#selectedSubject").append("<option>---Select---</option>");
+                        for (var i = 0; i < data.length; i++) {
+                            $("#selectedSubject").append("<option>" + data[i] + "</option>");
+                        }
+
+                        $("#selectedSubject").prop("disabled", false);
+
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        alert(xhr.status);
+                        alert(thrownError);
+                    }
+                });
+            });
+        });
+    </script>
+}
