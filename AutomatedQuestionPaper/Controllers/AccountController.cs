@@ -30,7 +30,7 @@ namespace AutomatedQuestionPaper.Controllers
                 if (staffUser != null)
                 {
                     //Saving data to session for login functionality
-                    Session["Username"] = staffUser.Name;
+                    Session["Staff_Name"] = staffUser.Name;
 
                     return RedirectToAction("Index", "StaffHomePage", new
                     {
