@@ -21,7 +21,8 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             return View();
         }
 
-        public ActionResult GetDetails(string selectedSemester, string selectedStaff, string selectedDepartment, string selectedSubject)
+        public ActionResult GetDetails(string selectedSemester, string selectedStaff, string selectedDepartment,
+            string selectedSubject)
         {
             if (string.IsNullOrEmpty(selectedSemester) || string.IsNullOrEmpty(selectedStaff) ||
                 string.IsNullOrEmpty(selectedDepartment) || selectedSubject.Contains("---Select---"))
@@ -35,24 +36,15 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
             // Get a selected Semester Id
             var semester = _context.Semesters.FirstOrDefault(u => u.SemesterName == selectedSemester);
-            if (semester != null)
-            {
-                semesterId = semester.Id;
-            }
+            if (semester != null) semesterId = semester.Id;
 
             // Get a selected staff Id
             var staff = _context.Staffs.FirstOrDefault(u => u.Name == selectedStaff);
-            if (staff != null)
-            {
-                staffId = staff.Id;
-            }
+            if (staff != null) staffId = staff.Id;
 
             // Get a selected subject id
             var subject = _context.Courses.FirstOrDefault(u => u.CourseName == selectedSubject);
-            if (subject != null)
-            {
-                subjectId = subject.Courseid;
-            }
+            if (subject != null) subjectId = subject.Courseid;
 
             var newAllocatedCourse = new StaffCourse
             {
@@ -77,12 +69,9 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 (from c in _context.Courses where c.DepartmentId == department.Id select c).ToList();
 
 
-            List<string> deptListItems = new List<string>();
+            var deptListItems = new List<string>();
 
-            foreach (var dept in departmentCourses)
-            {
-                deptListItems.Add(dept.CourseName);
-            }
+            foreach (var dept in departmentCourses) deptListItems.Add(dept.CourseName);
 
             return Json(deptListItems, JsonRequestBehavior.AllowGet);
         }

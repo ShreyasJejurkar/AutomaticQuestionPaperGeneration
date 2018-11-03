@@ -11,7 +11,9 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         private readonly DatabaseContext _context = new DatabaseContext();
         private readonly DbSet<Semester> _data;
 
-        public SemesterController() : this(1) { }
+        public SemesterController() : this(1)
+        {
+        }
 
         public SemesterController(int data)
         {
@@ -39,7 +41,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
             return RedirectToAction("Index", _data);
         }
-        
+
         [HttpGet]
         public ActionResult Edit(int id)
         {
@@ -51,7 +53,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// Does a post request to DB making changes to Semester information
+        ///     Does a post request to DB making changes to Semester information
         /// </summary>
         /// <param name="editSemester">Object containing information about Semester</param>
         /// <returns>Returns a corresponding view</returns>
@@ -73,9 +75,9 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
             return RedirectToActionPermanent("Index", _data);
         }
-        
+
         /// <summary>
-        /// Performs delete operation on Semester
+        ///     Performs delete operation on Semester
         /// </summary>
         /// <param name="id">Takes Semester ID</param>
         /// <returns>Return corresponding view</returns>

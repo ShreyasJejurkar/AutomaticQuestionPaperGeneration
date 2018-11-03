@@ -11,7 +11,10 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         private readonly DatabaseContext _context = new DatabaseContext();
         private readonly DbSet<Department> _data;
 
-        public DepartmentController() : this(1) { }
+        public DepartmentController() : this(1)
+        {
+        }
+
         public DepartmentController(int data)
         {
             _data = _context.Departments;
@@ -30,7 +33,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// Action will create the department entry in Department table
+        ///     Action will create the department entry in Department table
         /// </summary>
         /// <param name="dept">Department object</param>
         /// <returns></returns>
@@ -57,7 +60,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// Action will response for POST method and will perform department edit operation
+        ///     Action will response for POST method and will perform department edit operation
         /// </summary>
         /// <param name="dep">Edited department object</param>
         /// <returns></returns>
@@ -78,7 +81,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             return RedirectToActionPermanent("Index", _data);
         }
 
-        
+
         public ActionResult Delete(int id)
         {
             if (id != 0)

@@ -13,7 +13,9 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         private readonly DatabaseContext _context = new DatabaseContext();
         private readonly DbSet<Course> _data;
 
-        public CourseController() : this(1) { }
+        public CourseController() : this(1)
+        {
+        }
 
         public CourseController(int data)
         {
@@ -46,7 +48,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// Action for creating course
+        ///     Action for creating course
         /// </summary>
         /// <param name="c">Course details</param>
         /// <param name="departmentList">Selected department</param>
@@ -95,7 +97,10 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit() => View();
+        public ActionResult Edit()
+        {
+            return View();
+        }
 
         [HttpPost]
         public ActionResult Edit(Course editedCourse)
@@ -123,11 +128,10 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
             TempData["SubjectedEditedFailure"] = "Subjects details editing failed";
             return RedirectToAction("Index");
-
         }
 
         /// <summary>
-        /// Will return the list of subjects
+        ///     Will return the list of subjects
         /// </summary>
         /// <param name="departmentList">Contains the selection of the department</param>
         /// <returns></returns>
@@ -157,7 +161,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             TempData["DepartmentNotSelectedErrorMessage"] = "Please select department first";
             return RedirectToAction("Index", "Course");
         }
-        
+
         public ActionResult GetSubjectDetails(string subjectCode)
         {
             ViewBag.DepartmentList = _context.Departments.ToList();

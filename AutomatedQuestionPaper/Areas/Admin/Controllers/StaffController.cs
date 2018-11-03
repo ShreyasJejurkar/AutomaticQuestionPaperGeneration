@@ -17,7 +17,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             var data = _context.Staffs;
 
             return View(data.ToList());
-
         }
 
         [HttpGet]
@@ -33,7 +32,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
         /// <summary>
-        /// Will do a POST request to DB for staff information
+        ///     Will do a POST request to DB for staff information
         /// </summary>
         /// <param name="id">ID of staff</param>
         /// <returns>Returns Corresponding view</returns>
@@ -59,7 +58,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         public ActionResult StaffEditSaveChanges(Models.Staff editedStaffDetails)
         {
             // Fetch the old data of staff from database
-            var oldData = _context.Staffs.FirstOrDefault(u=> u.Id == editedStaffDetails.Id);
+            var oldData = _context.Staffs.FirstOrDefault(u => u.Id == editedStaffDetails.Id);
 
             // Setting up new data
             if (oldData != null)
@@ -76,13 +75,10 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 // Set the success message
                 TempData["StaffDetailsEditedSuccessfully"] = "Staff details edited successfully";
                 return RedirectToAction("Index", "Staff");
+            }
 
-            }
-            else
-            {
-                TempData["StaffDetailsEditFailed"] = "Cannot edit staff details.";
-                return RedirectToAction("Index", "Staff");
-            }
+            TempData["StaffDetailsEditFailed"] = "Cannot edit staff details.";
+            return RedirectToAction("Index", "Staff");
         }
 
         [HttpGet]
@@ -131,7 +127,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Staff");
             }
 
-           // Set the fail message if teacher ID not found. 
+            // Set the fail message if teacher ID not found. 
             ViewBag.TeacherNotFoundErrorMessage = "Teacher does not exists. Please check ID";
             return View();
         }
