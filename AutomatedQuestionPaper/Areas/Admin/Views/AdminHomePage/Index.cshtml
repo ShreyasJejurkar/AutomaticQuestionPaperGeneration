@@ -1,6 +1,6 @@
 ﻿@model AutomatedQuestionPaper.Models.Admin
 
-<br />
+<br/>
 
 @if (TempData["SessionErrorMessage"] != null)
 {
@@ -13,7 +13,6 @@
             <span aria-hidden="true">&times;</span>
         </button>
     </div>
-
 }
 else
 {
@@ -23,43 +22,43 @@ else
     <h2>@Model.Username Management Panel</h2>
 
     <div>
-        <div class="card" style="width: 12rem; float: left; margin: 10px; height:285px ">
+        <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" src="~/Images/staff management.png" alt="Card image cap">
             <div class="card-body">
                 <a class="card-title" href="@Url.Action("Index", "Staff")">Staff Management</a>
             </div>
         </div>
 
-        <div class="card" style="width: 12rem; float: left;  margin: 10px; height:285px ">
+        <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" src="~/Images/course teacher.svg" alt="Card image cap">
             <div class="card-body">
-                <br />
+                <br/>
                 <a class="card-title" href="#">Course Teacher allocation </a>
             </div>
         </div>
 
-        <div class="card " style="width: 12rem; float: left;  margin: 10px; height:285px ">
+        <div class="card " style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" src="~/Images/department.png" alt="Card image cap">
             <div class="card-body">
                 <a class="card-title" href="@Url.Action("Index", "Department")">Department management</a>
             </div>
         </div>
 
-        <div class="card" style="width: 12rem; float: left; margin: 10px; height:285px ">
+        <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" src="~/Images/course.png" alt="Card image cap">
             <div class="card-body">
                 <a class="card-title" href="@Url.Action("Index", "Course")">Course Management</a>
             </div>
         </div>
 
-        <div class="card" style="width: 12rem; float: left; margin: 10px; height:285px ">
+        <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" src="~/Images/semester.png" alt="Card image cap">
             <div class="card-body">
                 <a class="card-title" href="@Url.Action("Index", "Semester")">Semester Management</a>
             </div>
         </div>
-        
-        <div class="card" style="width: 12rem; float: left; margin: 10px; height:285px ">
+
+        <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" src="~/Images/semester.png" alt="Card image cap">
             <div class="card-body">
                 <a class="card-title" href="@Url.Action("Index", "StaffCourseManagement")">Staff course Management</a>

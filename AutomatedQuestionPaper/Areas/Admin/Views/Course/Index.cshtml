@@ -78,8 +78,8 @@
         <input type="submit" class="btn btn-primary" value="Get subjects"/>
     </div>
 
-    @Html.ActionLink("Add subject", "Create", "", new { @class = "btn btn-success" })
-    @Html.ActionLink("Edit/Delete subject", "Edit", "", new { @class = "btn btn-danger"})
+    @Html.ActionLink("Add subject", "Create", "", new {@class = "btn btn-success"})
+    @Html.ActionLink("Edit/Delete subject", "Edit", "", new {@class = "btn btn-danger"})
 }
 
 @{
@@ -97,7 +97,7 @@
             {
                 var db = new DatabaseContext();
 
-                var data = (dynamic)TempData["CoursesList"];
+                var data = (dynamic) TempData["CoursesList"];
 
                 grid.Bind(data);
             }
@@ -115,7 +115,6 @@
                     grid.Column("Description", "Description"),
                     grid.Column("Year", "Year")
                     ))
-
         }
         catch (Exception e)
         {

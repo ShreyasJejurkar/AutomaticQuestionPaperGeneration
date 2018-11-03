@@ -29,17 +29,17 @@
 {
     <div>
         <label class="col-form-label">Semester</label>
-        @Html.DropDownList("selectedSemester", (IEnumerable<SelectListItem>)ViewBag.SemesterList, "---Select---", new { @class = "form-control" })
+        @Html.DropDownList("selectedSemester", (IEnumerable<SelectListItem>) ViewBag.SemesterList, "---Select---", new {@class = "form-control"})
     </div>
 
     <div>
         <label class="col-form-label">Staff</label>
-        @Html.DropDownList("selectedStaff", (IEnumerable<SelectListItem>)ViewBag.StaffMembersList, "---Select---", new { @class = "form-control" })
+        @Html.DropDownList("selectedStaff", (IEnumerable<SelectListItem>) ViewBag.StaffMembersList, "---Select---", new {@class = "form-control"})
     </div>
 
     <div>
         <label class="col-form-label">Department</label>
-        @Html.DropDownList("selectedDepartment", (IEnumerable<SelectListItem>)ViewBag.DepartmentList, "---Select---", new { @class = "form-control" })
+        @Html.DropDownList("selectedDepartment", (IEnumerable<SelectListItem>) ViewBag.DepartmentList, "---Select---", new {@class = "form-control"})
     </div>
 
     <div>
@@ -49,10 +49,10 @@
         </select>
     </div>
 
-    <br />
+    <br/>
     <div class="form-group">
         <div class=" col-md-10">
-            <input type="submit" value="Allocate" class="btn btn-primary" />
+            <input type="submit" value="Allocate" class="btn btn-primary"/>
         </div>
     </div>
 }
@@ -86,7 +86,7 @@
                         $("#selectedSubject").prop("disabled", false);
 
                     },
-                    error: function (xhr, ajaxOptions, thrownError) {
+                    error: function(xhr, ajaxOptions, thrownError) {
                         alert(xhr.status);
                         alert(thrownError);
                     }

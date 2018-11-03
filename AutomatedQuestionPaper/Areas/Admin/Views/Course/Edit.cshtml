@@ -12,7 +12,7 @@
     <div class="row">
         <div class="col-md-8">
             <div class="form-group">
-                <input type="number" class="form-control" id="subjectCode" name="subjectCode" />
+                <input type="number" class="form-control" id="subjectCode" name="subjectCode"/>
             </div>
         </div>
         <div class="col-md-4">
@@ -42,99 +42,100 @@ else
 
             <div>
                 <h4>Course</h4>
-                <hr />
-                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <hr/>
+                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
                 @Html.HiddenFor(model => model.Courseid)
 
 
                 <div class="form-group">
                     <label class="col-md-2">Department Id</label>
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.DepartmentId, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DepartmentId, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.DepartmentId, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.DepartmentId, "", new {@class = "text-danger"})
                     </div>
                 </div>
-                <table style="width:50%" class="table">
+                <table style="width: 50%" class="table">
                     <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>Department name</th>
-                        </tr>
+                    <tr>
+                        <th>Id</th>
+                        <th>Department name</th>
+                    </tr>
                     </thead>
                     <tbody>
-                        @foreach (var department in ViewBag.DepartmentList)
-                        {
-                            <tr>
-                                <td>@department.Id</td>
-                                <td>@department.DepartmentName</td>
-                            </tr>
-                        }
+                    @foreach (var department in ViewBag.DepartmentList)
+                    {
+                        <tr>
+                            <td>@department.Id</td>
+                            <td>@department.DepartmentName</td>
+                        </tr>
+                    }
                     </tbody>
                 </table>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.CourseName, new { @class = "col-md-2" })
+                    @Html.LabelFor(model => model.CourseName, new {@class = "col-md-2"})
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.CourseName, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.CourseName, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.CourseName, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.CourseName, "", new {@class = "text-danger"})
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Description, new { @class = "col-md-2" })
+                    @Html.LabelFor(model => model.Description, new {@class = "col-md-2"})
                     <div class="col-md-10">
-                        @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                        @Html.EditorFor(model => model.Description, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
                     </div>
                 </div>
 
                 <div class="form-group">
-                    @Html.LabelFor(model => model.Year, new { @class = "col-md-2" })
+                    @Html.LabelFor(model => model.Year, new {@class = "col-md-2"})
                     <div class="col-md-10">
                         @{
-                            var myList = new List<SelectListItem> {
-
-                                    new SelectListItem
-                                    {
-                                        Text = "Second year",
-                                        Value = "Second year",
-                                        Selected = (string)TempData["subjectSelectedYear"] == "Second year"
-                                    },
-                                    new SelectListItem
-                                    {
-                                        Text = "Third year",
-                                        Value = "Third year",
-                                        Selected = (string)TempData["subjectSelectedYear"] == "Third year"
-                                    },
-                                    new SelectListItem
-                                    {
-                                        Text = "Fourth year",
-                                        Value = "Fourth year" ,
-                                        Selected = (string)TempData["subjectSelectedYear"] == "Fourth year"
-                                    }};
+                            var myList = new List<SelectListItem>
+                            {
+                                new SelectListItem
+                                {
+                                    Text = "Second year",
+                                    Value = "Second year",
+                                    Selected = (string) TempData["subjectSelectedYear"] == "Second year"
+                                },
+                                new SelectListItem
+                                {
+                                    Text = "Third year",
+                                    Value = "Third year",
+                                    Selected = (string) TempData["subjectSelectedYear"] == "Third year"
+                                },
+                                new SelectListItem
+                                {
+                                    Text = "Fourth year",
+                                    Value = "Fourth year",
+                                    Selected = (string) TempData["subjectSelectedYear"] == "Fourth year"
+                                }
+                            };
                         }
 
-                        @Html.DropDownList("Year", myList, new { @class = "form-control" })
+                        @Html.DropDownList("Year", myList, new {@class = "form-control"})
                     </div>
                 </div>
             </div>
 
             <div class="form-group">
-                @Html.LabelFor(model => model.CourseCode, new { @class = "col-md-2" })
+                @Html.LabelFor(model => model.CourseCode, new {@class = "col-md-2"})
                 <div class="col-md-10">
-                    @Html.EditorFor(model => model.CourseCode, new { htmlAttributes = new { @class = "form-control" } })
-                    @Html.ValidationMessageFor(model => model.CourseCode, "", new { @class = "text-danger" })
+                    @Html.EditorFor(model => model.CourseCode, new {htmlAttributes = new {@class = "form-control"}})
+                    @Html.ValidationMessageFor(model => model.CourseCode, "", new {@class = "text-danger"})
                 </div>
             </div>
 
             <div class="form-group">
                 <div class="col-md-10">
-                    <input type="submit" value="Save" class="btn btn-success" />
+                    <input type="submit" value="Save" class="btn btn-success"/>
                 </div>
             </div>
         }
 
-        @Html.ActionLink("Delete", "Delete", new { controller = "Course", id = Model.Courseid }, new { onclick = "return confirm('Are you sure you wish to delete this subject?');" })
+        @Html.ActionLink("Delete", "Delete", new {controller = "Course", id = Model.Courseid}, new {onclick = "return confirm('Are you sure you wish to delete this subject?');"})
     }
 }
 
