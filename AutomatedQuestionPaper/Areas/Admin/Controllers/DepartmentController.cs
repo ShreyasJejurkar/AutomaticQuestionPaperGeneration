@@ -5,7 +5,7 @@ using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
-    [SessionCheck]
+    [SessionCheckAdmin]
     public class DepartmentController : Controller
     {
         private readonly DatabaseContext _context = new DatabaseContext();
