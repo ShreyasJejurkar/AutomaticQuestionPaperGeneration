@@ -131,9 +131,10 @@
     <Compile Include="Areas\Admin\Controllers\DepartmentController.cs" />
     <Compile Include="Areas\Admin\Controllers\SemesterController.cs" />
     <Compile Include="Areas\Admin\Controllers\StaffCourseManagementController.cs" />
-    <Compile Include="Areas\Admin\SessionCheck.cs" />
+    <Compile Include="Areas\Admin\SessionCheckAdmin.cs" />
     <Compile Include="Areas\Admin\Controllers\StaffController.cs" />
     <Compile Include="Areas\Staff\Controllers\StaffHomePageController.cs" />
+    <Compile Include="Areas\Staff\SessionCheckStaff.cs" />
     <Compile Include="Areas\Staff\StaffAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -283,6 +284,8 @@
     <Content Include="Areas\Admin\Views\Shared\_adminLoginLayoutPage.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_adminLoginNavigation.cshtml" />
     <Content Include="Areas\Admin\Views\StaffCourseManagement\Index.cshtml" />
+    <Content Include="Areas\Staff\Views\Shared\_staffLoginLayoutPage.cshtml" />
+    <Content Include="Areas\Staff\Views\Shared\_staffLoginNavigation.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -329,7 +332,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Staff\Models\" />
-    <Folder Include="Areas\Staff\Views\Shared\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
