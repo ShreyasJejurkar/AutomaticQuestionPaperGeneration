@@ -1,4 +1,5 @@
-﻿@model AutomatedQuestionPaper.Models.Course
+﻿@using System.Diagnostics
+@model AutomatedQuestionPaper.Models.Course
 
 @{
     ViewBag.Title = "Edit";
@@ -94,37 +95,27 @@ else
                         @{
                             var myList = new List<SelectListItem> {
 
-                                new SelectListItem
-                                {
-                                    Text = "Second year", Value = "Second year"
-                                },
-                                new SelectListItem
-                                {
-                                    Text = "Third year", Value = "Third year"
-                                },
-                                new SelectListItem
-                                {
-                                    Text = "Fourth year", Value = "Fourth year"
-                                }};
-
-                            var u = ViewBag.subjectSelectedYear as string;
-
-                            if (string.Compare(u, myList[0].Text) == 1)
-                            {
-                                myList.RemoveAt(0);
-                            }
-
-                            if (string.Compare(u, myList[1].Text) == 1)
-                            {
-                                myList.RemoveAt(1);
-                            }
-
-                            if (string.Compare(u, myList[2].Text) == 1)
-                            {
-                                myList.RemoveAt(2);
-                            }
+                                    new SelectListItem
+                                    {
+                                        Text = "Second year",
+                                        Value = "Second year",
+                                        Selected = (string)TempData["subjectSelectedYear"] == "Second year" ? true : false
+                                    },
+                                    new SelectListItem
+                                    {
+                                        Text = "Third year",
+                                        Value = "Third year",
+                                        Selected = (string)TempData["subjectSelectedYear"] == "Third year" ? true : false
+                                    },
+                                    new SelectListItem
+                                    {
+                                        Text = "Fourth year",
+                                        Value = "Fourth year" ,
+                                        Selected = (string)TempData["subjectSelectedYear"] == "Fourth year" ? true : false
+                                    }};
                         }
-                        @Html.DropDownList("Year", myList, u, new { @id = "editedYear", @class = "form-control" })
+
+                        @Html.DropDownList("Year", myList, new { @id = "editedYear", @class = "form-control" })
                     </div>
                 </div>
             </div>
@@ -144,7 +135,7 @@ else
             </div>
         }
 
-        @Html.ActionLink("Delete","Delete", new { controller = "Course", id = Model.Courseid } , new { onclick = "return confirm('Are you sure you wish to delete this subject?');" })
+        @Html.ActionLink("Delete", "Delete", new { controller = "Course", id = Model.Courseid }, new { onclick = "return confirm('Are you sure you wish to delete this subject?');" })
     }
 }
 

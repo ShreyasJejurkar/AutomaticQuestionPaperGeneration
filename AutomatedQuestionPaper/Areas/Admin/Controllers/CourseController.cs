@@ -62,10 +62,10 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             if (result != null)
             {
                 // Set the remaining field of course object
-                c.DepartmentId = result.Id;  
-                c.Year = YearList;           
+                c.DepartmentId = result.Id;
+                c.Year = YearList;
             }
-            
+
             // Save it do database
             _context.Courses.Add(c);
             _context.SaveChanges();
@@ -161,7 +161,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
 
-        public ActionResult GetSubjectDetails(string SubjectCode) 
+        public ActionResult GetSubjectDetails(string SubjectCode)
         {
             ViewBag.DepartmentList = _context.Departments.ToList();
 
@@ -170,19 +170,25 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
             // Get the subjects details as per subject code  
             var subject = _context.Courses.FirstOrDefault(u => u.Courseid == code);
-
+            
             // Pass it to view
             if (subject != null)
             {
-                ViewBag.subjectSelectedYear = subject.Year;
+                TempData["subjectSelectedYear"] = subject.Year;
 
                 return View("Edit", subject);
             }
-            else
-            {
-                TempData["SubjectNotFoundErrorMessage"] = "Incorrect subject code.";
-                return View("Edit", null);
-            }
+
+            TempData["SubjectNotFoundErrorMessage"] = "Incorrect subject code.";
+            return View("Edit", null);
+
+
+
+
+
+
+
+
         }
     }
 }
