@@ -22,5 +22,6 @@ namespace AutomatedQuestionPaper.Models
         public Nullable<int> CourseId { get; set; }
         public Nullable<int> ChapterNo { get; set; }
         public string ChapterName { get; set; }
+        public string UnitNo { get; set; }
     }
 }

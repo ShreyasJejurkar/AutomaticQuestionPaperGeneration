@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 10/13/2018 15:25:59
+-- Date Created: 11/04/2018 11:52:59
 -- Generated from EDMX file: C:\Users\Shreyas.SHREYAS\source\repos\AutomatedQuestionPaper\AutomatedQuestionPaper\Models\DBModel.edmx
 -- --------------------------------------------------
 
@@ -52,11 +52,11 @@ GO
 IF OBJECT_ID(N'[dbo].[Semesters]', 'U') IS NOT NULL
     DROP TABLE [dbo].[Semesters];
 GO
-IF OBJECT_ID(N'[dbo].[Staffs]', 'U') IS NOT NULL
-    DROP TABLE [dbo].[Staffs];
-GO
 IF OBJECT_ID(N'[dbo].[StaffCourses]', 'U') IS NOT NULL
     DROP TABLE [dbo].[StaffCourses];
+GO
+IF OBJECT_ID(N'[dbo].[Staffs]', 'U') IS NOT NULL
+    DROP TABLE [dbo].[Staffs];
 GO
 
 -- --------------------------------------------------
@@ -86,7 +86,8 @@ CREATE TABLE [dbo].[Chapters] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [CourseId] int  NULL,
     [ChapterNo] int  NULL,
-    [ChapterName] nvarchar(100)  NULL
+    [ChapterName] nvarchar(100)  NULL,
+    [UnitNo] nvarchar(max)  NOT NULL
 );
 GO
 

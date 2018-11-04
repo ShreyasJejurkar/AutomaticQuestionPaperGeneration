@@ -48,6 +48,7 @@
     <Property Name="CourseId" Type="int" Nullable="true" />
     <Property Name="ChapterNo" Type="int" Nullable="true" />
     <Property Name="ChapterName" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="UnitNo" Type="nvarchar(max)" Nullable="false" />
   </EntityType>
   <EntityType Name="Courses">
     <Key>
@@ -165,6 +166,7 @@
           <Property Name="CourseId" Type="Int32" />
           <Property Name="ChapterNo" Type="Int32" />
           <Property Name="ChapterName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="UnitNo" Type="String" Nullable="false" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -174,8 +176,8 @@
           <Property Name="DepartmentId" Type="Int32" />
           <Property Name="CourseName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Year" Type="String" Nullable="false" />
-          <Property Name="CourseCode" Type="String" Nullable="false" />
+          <Property Name="Year" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="CourseCode" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
         <EntityType Name="Department">
           <Key>
@@ -302,6 +304,7 @@
           <ScalarProperty Name="CourseId" ColumnName="CourseId" />
           <ScalarProperty Name="ChapterNo" ColumnName="ChapterNo" />
           <ScalarProperty Name="ChapterName" ColumnName="ChapterName" />
+          <ScalarProperty Name="UnitNo" ColumnName="UnitNo" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
