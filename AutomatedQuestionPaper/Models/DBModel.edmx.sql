@@ -2,7 +2,7 @@
 -- --------------------------------------------------
 -- Entity Designer DDL Script for SQL Server 2005, 2008, 2012 and Azure
 -- --------------------------------------------------
--- Date Created: 11/04/2018 11:52:59
+-- Date Created: 11/04/2018 12:25:41
 -- Generated from EDMX file: C:\Users\Shreyas.SHREYAS\source\repos\AutomatedQuestionPaper\AutomatedQuestionPaper\Models\DBModel.edmx
 -- --------------------------------------------------
 
@@ -87,7 +87,7 @@ CREATE TABLE [dbo].[Chapters] (
     [CourseId] int  NULL,
     [ChapterNo] int  NULL,
     [ChapterName] nvarchar(100)  NULL,
-    [UnitNo] nvarchar(max)  NOT NULL
+    [UnitNo] int  NULL
 );
 GO
 
@@ -160,7 +160,8 @@ CREATE TABLE [dbo].[StaffCourses] (
     [Id] int IDENTITY(1,1) NOT NULL,
     [SemesterId] int  NULL,
     [StaffId] int  NULL,
-    [CourseId] int  NULL
+    [CourseId] int  NULL,
+    [DepartmentId] int  NULL
 );
 GO
 

@@ -8,6 +8,7 @@ namespace AutomatedQuestionPaper.Models.ModelsMetaData
         public int Id { get; set; }
 
         [Required]
+        
         public Nullable<int> SemesterId { get; set; }
 
         [Required]

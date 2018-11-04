@@ -48,7 +48,7 @@
     <Property Name="CourseId" Type="int" Nullable="true" />
     <Property Name="ChapterNo" Type="int" Nullable="true" />
     <Property Name="ChapterName" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="UnitNo" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="UnitNo" Type="int" Nullable="true" />
   </EntityType>
   <EntityType Name="Courses">
     <Key>
@@ -122,6 +122,7 @@
     <Property Name="SemesterId" Type="int" Nullable="true" />
     <Property Name="StaffId" Type="int" Nullable="true" />
     <Property Name="CourseId" Type="int" Nullable="true" />
+    <Property Name="DepartmentId" Type="int" Nullable="true" />
   </EntityType>
   <Association Name="FK__Answer__Question__239E4DCF">
     <End Role="Question" Type="DatabaseModel.Store.Questions" Multiplicity="0..1" />
@@ -166,7 +167,7 @@
           <Property Name="CourseId" Type="Int32" />
           <Property Name="ChapterNo" Type="Int32" />
           <Property Name="ChapterName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="UnitNo" Type="String" Nullable="false" />
+          <Property Name="UnitNo" Type="Int32" Nullable="true" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -241,6 +242,7 @@
           <Property Name="SemesterId" Type="Int32" />
           <Property Name="StaffId" Type="Int32" />
           <Property Name="CourseId" Type="Int32" />
+          <Property Name="DepartmentId" Type="Int32" />
         </EntityType>
         <Association Name="FK__Answer__Question__239E4DCF">
           <End Role="Question" Type="Self.Question" Multiplicity="0..1" />
@@ -386,6 +388,7 @@
           <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
           <ScalarProperty Name="StaffId" ColumnName="StaffId" />
           <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

@@ -31,6 +31,7 @@ namespace AutomatedQuestionPaper.Models.ModelsMetaData
 
         [Required]
         [DisplayName("Subject code")]
+        [Range(0, int.MaxValue, ErrorMessage = "Please enter valid subject code")]
         public string CourseCode { get; set; }
     }
 }

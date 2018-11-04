@@ -7,20 +7,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
 using AutomatedQuestionPaper.Models.ModelsMetaData;
 
 namespace AutomatedQuestionPaper.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     [MetadataType(typeof(StaffCourseMetaData))]
     public partial class StaffCourse
     {
+        
         public int Id { get; set; }
         public Nullable<int> SemesterId { get; set; }
         public Nullable<int> StaffId { get; set; }
         public Nullable<int> CourseId { get; set; }
+        public Nullable<int> DepartmentId { get; set; }
     }
 }
