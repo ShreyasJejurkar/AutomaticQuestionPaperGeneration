@@ -133,6 +133,7 @@
     <Compile Include="Areas\Admin\Controllers\StaffCourseManagementController.cs" />
     <Compile Include="Areas\Admin\SessionCheckAdmin.cs" />
     <Compile Include="Areas\Admin\Controllers\StaffController.cs" />
+    <Compile Include="Areas\Staff\Controllers\ChapterController.cs" />
     <Compile Include="Areas\Staff\Controllers\StaffHomePageController.cs" />
     <Compile Include="Areas\Staff\SessionCheckStaff.cs" />
     <Compile Include="Areas\Staff\StaffAreaRegistration.cs" />
@@ -332,6 +333,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Staff\Models\" />
+    <Folder Include="Areas\Staff\Views\Chapter\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
