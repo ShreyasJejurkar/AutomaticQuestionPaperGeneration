@@ -7,13 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
 using AutomatedQuestionPaper.Models.ModelsMetaData;
 
 namespace AutomatedQuestionPaper.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
 
     [MetadataType(typeof(DepartmentMetaData))]
     public partial class Department

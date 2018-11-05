@@ -23,5 +23,7 @@ namespace AutomatedQuestionPaper.Models
         public Nullable<int> ChapterNo { get; set; }
         public string ChapterName { get; set; }
         public Nullable<int> UnitNo { get; set; }
+        public Nullable<int> SemesterId { get; set; }
+        public Nullable<int> DepartmentId { get; set; }
     }
 }

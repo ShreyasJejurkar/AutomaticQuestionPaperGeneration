@@ -4,139 +4,141 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="DatabaseModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-  <EntityContainer Name="DatabaseModelStoreContainer">
-    <EntitySet Name="Admins" EntityType="DatabaseModel.Store.Admins" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Answers" EntityType="DatabaseModel.Store.Answers" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Chapters" EntityType="DatabaseModel.Store.Chapters" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Courses" EntityType="DatabaseModel.Store.Courses" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Departments" EntityType="DatabaseModel.Store.Departments" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="ExamPapers" EntityType="DatabaseModel.Store.ExamPapers" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Questions" EntityType="DatabaseModel.Store.Questions" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="QuestionTypes" EntityType="DatabaseModel.Store.QuestionTypes" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Semesters" EntityType="DatabaseModel.Store.Semesters" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="Staffs" EntityType="DatabaseModel.Store.Staffs" store:Type="Tables" Schema="dbo" />
-    <EntitySet Name="StaffCourses" EntityType="DatabaseModel.Store.StaffCourses" store:Type="Tables" Schema="dbo" />
-    <AssociationSet Name="FK__Answer__Question__239E4DCF" Association="DatabaseModel.Store.FK__Answer__Question__239E4DCF">
-      <End Role="Question" EntitySet="Questions" />
-      <End Role="Answer" EntitySet="Answers" />
-    </AssociationSet>
-  </EntityContainer>
-  <EntityType Name="Admins">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Username" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="Password" Type="nvarchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Answers">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="QuestionId" Type="int" Nullable="true" />
-    <Property Name="Name" Type="nvarchar(max)" Nullable="true" />
-    <Property Name="IsCorrect" Type="bit" Nullable="true" />
-    <Property Name="DisplayOrder" Type="int" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Chapters">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CourseId" Type="int" Nullable="true" />
-    <Property Name="ChapterNo" Type="int" Nullable="true" />
-    <Property Name="ChapterName" Type="nvarchar" Nullable="true" MaxLength="100" />
-    <Property Name="UnitNo" Type="int" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Courses">
-    <Key>
-      <PropertyRef Name="Courseid" />
-    </Key>
-    <Property Name="Courseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DepartmentId" Type="int" Nullable="true" />
-    <Property Name="CourseName" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="Description" Type="varchar" Nullable="true" MaxLength="50" />
-    <Property Name="Year" Type="nvarchar(max)" Nullable="false" />
-    <Property Name="CourseCode" Type="nvarchar(max)" Nullable="false" />
-  </EntityType>
-  <EntityType Name="Departments">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="DepartmentName" Type="varchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="ExamPapers">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="StaffId" Type="int" Nullable="true" />
-    <Property Name="PaperName" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="PaperValue" Type="varbinary(max)" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Questions">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ChapterId" Type="int" Nullable="true" />
-    <Property Name="QuestionTypeId" Type="int" Nullable="true" />
-    <Property Name="Name" Type="nvarchar" Nullable="true" MaxLength="256" />
-    <Property Name="IsActive" Type="bit" Nullable="true" />
-  </EntityType>
-  <EntityType Name="QuestionTypes">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" Nullable="true" MaxLength="256" />
-    <Property Name="IsActive" Type="bit" Nullable="true" />
-  </EntityType>
-  <EntityType Name="Semesters">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SemesterName" Type="varchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="Staffs">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Name" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="Surname" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="Address" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="Phone" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="Email" Type="nvarchar" Nullable="true" MaxLength="50" />
-    <Property Name="Password" Type="nvarchar" Nullable="true" MaxLength="50" />
-  </EntityType>
-  <EntityType Name="StaffCourses">
-    <Key>
-      <PropertyRef Name="Id" />
-    </Key>
-    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="SemesterId" Type="int" Nullable="true" />
-    <Property Name="StaffId" Type="int" Nullable="true" />
-    <Property Name="CourseId" Type="int" Nullable="true" />
-    <Property Name="DepartmentId" Type="int" Nullable="true" />
-  </EntityType>
-  <Association Name="FK__Answer__Question__239E4DCF">
-    <End Role="Question" Type="DatabaseModel.Store.Questions" Multiplicity="0..1" />
-    <End Role="Answer" Type="DatabaseModel.Store.Answers" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="Question">
-        <PropertyRef Name="Id" />
-      </Principal>
-      <Dependent Role="Answer">
-        <PropertyRef Name="QuestionId" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-</Schema></edmx:StorageModels>
+    <Schema Namespace="DatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Admins">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Username" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Answers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionId" Type="int" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="IsCorrect" Type="bit" />
+          <Property Name="DisplayOrder" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Chapters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CourseId" Type="int" />
+          <Property Name="ChapterNo" Type="int" />
+          <Property Name="ChapterName" Type="nvarchar" MaxLength="100" />
+          <Property Name="UnitNo" Type="int" />
+          <Property Name="SemesterId" Type="int" />
+          <Property Name="DepartmentId" Type="int" />
+        </EntityType>
+        <EntityType Name="Courses">
+          <Key>
+            <PropertyRef Name="Courseid" />
+          </Key>
+          <Property Name="Courseid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentId" Type="int" />
+          <Property Name="CourseName" Type="varchar" MaxLength="50" />
+          <Property Name="Description" Type="varchar" MaxLength="50" />
+          <Property Name="Year" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CourseCode" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Departments">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DepartmentName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ExamPapers">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StaffId" Type="int" />
+          <Property Name="PaperName" Type="nvarchar" MaxLength="50" />
+          <Property Name="PaperValue" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Questions">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ChapterId" Type="int" />
+          <Property Name="QuestionTypeId" Type="int" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="QuestionTypes">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" />
+          <Property Name="IsActive" Type="bit" />
+        </EntityType>
+        <EntityType Name="Semesters">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SemesterName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="StaffCourses">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SemesterId" Type="int" />
+          <Property Name="StaffId" Type="int" />
+          <Property Name="CourseId" Type="int" />
+          <Property Name="DepartmentId" Type="int" />
+        </EntityType>
+        <EntityType Name="Staffs">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Surname" Type="nvarchar" MaxLength="50" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK__Answer__Question__239E4DCF">
+          <End Role="Questions" Type="Self.Questions" Multiplicity="0..1" />
+          <End Role="Answers" Type="Self.Answers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Questions">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Answers">
+              <PropertyRef Name="QuestionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="DatabaseModelStoreContainer">
+          <EntitySet Name="Admins" EntityType="Self.Admins" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Answers" EntityType="Self.Answers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chapters" EntityType="Self.Chapters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Courses" EntityType="Self.Courses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Departments" EntityType="Self.Departments" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ExamPapers" EntityType="Self.ExamPapers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Questions" EntityType="Self.Questions" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionTypes" EntityType="Self.QuestionTypes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Semesters" EntityType="Self.Semesters" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StaffCourses" EntityType="Self.StaffCourses" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staffs" EntityType="Self.Staffs" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Answer__Question__239E4DCF" Association="Self.FK__Answer__Question__239E4DCF">
+            <End Role="Questions" EntitySet="Questions" />
+            <End Role="Answers" EntitySet="Answers" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -168,6 +170,8 @@
           <Property Name="ChapterNo" Type="Int32" />
           <Property Name="ChapterName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="UnitNo" Type="Int32" Nullable="true" />
+          <Property Name="SemesterId" Type="Int32" />
+          <Property Name="DepartmentId" Type="Int32" />
         </EntityType>
         <EntityType Name="Course">
           <Key>
@@ -302,7 +306,9 @@
     <EntitySetMapping Name="Chapters">
       <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Chapter)">
         <MappingFragment StoreEntitySet="Chapters">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="CourseId" ColumnName="CourseId" />
           <ScalarProperty Name="ChapterNo" ColumnName="ChapterNo" />
           <ScalarProperty Name="ChapterName" ColumnName="ChapterName" />

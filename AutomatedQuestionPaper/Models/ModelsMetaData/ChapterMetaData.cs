@@ -19,5 +19,11 @@ namespace AutomatedQuestionPaper.Models.ModelsMetaData
         [DisplayName("Chapter name")]
         [Required]
         public string ChapterName { get; set; }
+
+        public Nullable<int> UnitNo { get; set; }
+        public Nullable<int> SemesterId { get; set; }
+        public Nullable<int> DepartmentId { get; set; }
+
+
     }
 }
