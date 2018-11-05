@@ -334,7 +334,6 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Account\Index.cshtml" />
-    <Content Include="Views\View.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
