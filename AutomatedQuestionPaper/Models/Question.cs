@@ -7,14 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using System.ComponentModel.DataAnnotations;
-using AutomatedQuestionPaper.Models.ModelsMetaData;
-
 namespace AutomatedQuestionPaper.Models
 {
     using System;
     using System.Collections.Generic;
-    [MetadataType(typeof(QuestionMetaData))]
+    
     public partial class Question
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
@@ -25,9 +22,6 @@ namespace AutomatedQuestionPaper.Models
     
         public int Id { get; set; }
         public Nullable<int> ChapterId { get; set; }
-        public Nullable<int> QuestionTypeId { get; set; }
-        public string Name { get; set; }
-        public Nullable<bool> IsActive { get; set; }
         public Nullable<int> QuestionType { get; set; }
         public string QuestionText { get; set; }
         public Nullable<int> DifficultyLevel { get; set; }

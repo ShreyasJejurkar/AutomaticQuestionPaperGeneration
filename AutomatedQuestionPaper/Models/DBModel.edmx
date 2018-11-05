@@ -210,9 +210,6 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ChapterId" Type="Int32" />
-          <Property Name="QuestionTypeId" Type="Int32" />
-          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="Answers" Relationship="Self.FK__Answer__Question__239E4DCF" FromRole="Question" ToRole="Answer" />
           <Property Name="QuestionType" Type="Int32" />
           <Property Name="QuestionText" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
