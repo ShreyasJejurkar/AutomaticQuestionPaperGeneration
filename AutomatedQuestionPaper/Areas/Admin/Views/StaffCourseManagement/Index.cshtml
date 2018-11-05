@@ -64,7 +64,10 @@
 
 
     <script>
-        $(function() {
+        $(function () {
+
+            $("#selectedSubject").prop("disabled", true);
+
             $("#selectedDepartment").change(function() {
                 var data = $("#selectedDepartment option:selected").val();
                 console.log(data);
@@ -86,10 +89,9 @@
                         $("#selectedSubject").prop("disabled", false);
 
                     },
-                    error: function(xhr, ajaxOptions, thrownError) {
-                        alert(xhr.status);
-                        alert(thrownError);
-                    }
+                    error: function(xhr, thrownError) {
+                    alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                }
                 });
             });
         });
