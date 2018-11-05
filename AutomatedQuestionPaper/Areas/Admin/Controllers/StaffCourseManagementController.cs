@@ -32,7 +32,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            int semesterId = 0, staffId = 0, subjectId = 0;
+            int semesterId = 0, staffId = 0, subjectId = 0, departmentID = 0;
 
             // Get a selected Semester Id
             var semester = _context.Semesters.FirstOrDefault(u => u.SemesterName == selectedSemester);
@@ -42,6 +42,10 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             var staff = _context.Staffs.FirstOrDefault(u => u.Name == selectedStaff);
             if (staff != null) staffId = staff.Id;
 
+            // Get a selected department Id
+            var department = _context.Departments.FirstOrDefault(u => u.DepartmentName == selectedDepartment);
+            if (department != null) departmentID = department.Id;
+
             // Get a selected subject id
             var subject = _context.Courses.FirstOrDefault(u => u.CourseName == selectedSubject);
             if (subject != null) subjectId = subject.Courseid;
@@ -50,7 +54,8 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             {
                 CourseId = subjectId,
                 SemesterId = semesterId,
-                StaffId = staffId
+                StaffId = staffId,
+                DepartmentId = departmentID
             };
 
             _context.StaffCourses.Add(newAllocatedCourse);
@@ -65,15 +70,20 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         public ActionResult GetSubjectsOfDepartment(string departmentName)
         {
             var department = _context.Departments.FirstOrDefault(u => u.DepartmentName == departmentName);
-            var departmentCourses =
-                (from c in _context.Courses where c.DepartmentId == department.Id select c).ToList();
+            if (department != null)
+            {
+                var departmentCourses =
+                    (from c in _context.Courses where c.DepartmentId == department.Id select c).ToList();
 
 
-            var deptListItems = new List<string>();
+                var deptListItems = new List<string>();
 
-            foreach (var dept in departmentCourses) deptListItems.Add(dept.CourseName);
+                foreach (var dept in departmentCourses) deptListItems.Add(dept.CourseName);
 
-            return Json(deptListItems, JsonRequestBehavior.AllowGet);
+                return Json(deptListItems, JsonRequestBehavior.AllowGet);
+            }
+
+            return null;
         }
     }
 }
