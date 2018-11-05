@@ -68,9 +68,13 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ChapterId" Type="int" />
-          <Property Name="QuestionTypeId" Type="int" />
-          <Property Name="Name" Type="nvarchar" MaxLength="256" />
-          <Property Name="IsActive" Type="bit" />
+          <Property Name="QuestionType" Type="int" />
+          <Property Name="QuestionText" Type="nvarchar" MaxLength="256" />
+          <Property Name="DifficultyLevel" Type="int" />
+          <Property Name="UnitId" Type="int" />
+          <Property Name="SemesterId" Type="nchar" MaxLength="10" />
+          <Property Name="DepartmentId" Type="nchar" MaxLength="10" />
+          <Property Name="CourseId" Type="int" />
         </EntityType>
         <EntityType Name="QuestionTypes">
           <Key>
@@ -210,6 +214,13 @@
           <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
           <NavigationProperty Name="Answers" Relationship="Self.FK__Answer__Question__239E4DCF" FromRole="Question" ToRole="Answer" />
+          <Property Name="QuestionType" Type="Int32" />
+          <Property Name="QuestionText" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="DifficultyLevel" Type="Int32" />
+          <Property Name="UnitId" Type="Int32" />
+          <Property Name="SemesterId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="DepartmentId" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="CourseId" Type="Int32" />
         </EntityType>
         <EntityType Name="QuestionType">
           <Key>
@@ -349,12 +360,16 @@
     <EntitySetMapping Name="Questions">
       <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.Question)">
         <MappingFragment StoreEntitySet="Questions">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="CourseId" ColumnName="CourseId" />
+                <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+                <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+                <ScalarProperty Name="UnitId" ColumnName="UnitId" />
+                <ScalarProperty Name="DifficultyLevel" ColumnName="DifficultyLevel" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="QuestionType" ColumnName="QuestionType" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
-          <ScalarProperty Name="QuestionTypeId" ColumnName="QuestionTypeId" />
-          <ScalarProperty Name="Name" ColumnName="Name" />
-          <ScalarProperty Name="IsActive" ColumnName="IsActive" />
-        </MappingFragment>
+          </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="QuestionTypes">

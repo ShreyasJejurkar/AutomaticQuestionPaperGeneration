@@ -7,14 +7,13 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
+using System.ComponentModel.DataAnnotations;
 using AutomatedQuestionPaper.Models.ModelsMetaData;
 
 namespace AutomatedQuestionPaper.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
     [MetadataType(typeof(QuestionMetaData))]
     public partial class Question
     {
@@ -29,6 +28,13 @@ namespace AutomatedQuestionPaper.Models
         public Nullable<int> QuestionTypeId { get; set; }
         public string Name { get; set; }
         public Nullable<bool> IsActive { get; set; }
+        public Nullable<int> QuestionType { get; set; }
+        public string QuestionText { get; set; }
+        public Nullable<int> DifficultyLevel { get; set; }
+        public Nullable<int> UnitId { get; set; }
+        public string SemesterId { get; set; }
+        public string DepartmentId { get; set; }
+        public Nullable<int> CourseId { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Answer> Answers { get; set; }
