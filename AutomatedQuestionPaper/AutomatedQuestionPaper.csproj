@@ -135,6 +135,7 @@
     <Compile Include="Areas\Admin\SessionCheckAdmin.cs" />
     <Compile Include="Areas\Admin\Controllers\StaffController.cs" />
     <Compile Include="Areas\Staff\Controllers\ChapterController.cs" />
+    <Compile Include="Areas\Staff\Controllers\QuestionController.cs" />
     <Compile Include="Areas\Staff\Controllers\StaffHomePageController.cs" />
     <Compile Include="Areas\Staff\Models\ChapterDetails.cs" />
     <Compile Include="Areas\Staff\SessionCheckStaff.cs" />
@@ -291,6 +292,7 @@
     <Content Include="Areas\Staff\Views\Shared\_staffLoginNavigation.cshtml" />
     <Content Include="Areas\Staff\Views\Chapter\Index.cshtml" />
     <Content Include="Areas\Staff\Views\Chapter\ViewChapters.cshtml" />
+    <Content Include="Areas\Staff\Views\Question\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
