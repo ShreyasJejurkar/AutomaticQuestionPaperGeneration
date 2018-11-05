@@ -78,6 +78,7 @@
       <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
     <Reference Include="System.Diagnostics.DiagnosticSource, Version=4.0.3.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.5.1\lib\net45\System.Diagnostics.DiagnosticSource.dll</HintPath>
     </Reference>
@@ -135,6 +136,7 @@
     <Compile Include="Areas\Admin\Controllers\StaffController.cs" />
     <Compile Include="Areas\Staff\Controllers\ChapterController.cs" />
     <Compile Include="Areas\Staff\Controllers\StaffHomePageController.cs" />
+    <Compile Include="Areas\Staff\Models\ChapterDetails.cs" />
     <Compile Include="Areas\Staff\SessionCheckStaff.cs" />
     <Compile Include="Areas\Staff\StaffAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -287,6 +289,8 @@
     <Content Include="Areas\Admin\Views\StaffCourseManagement\Index.cshtml" />
     <Content Include="Areas\Staff\Views\Shared\_staffLoginLayoutPage.cshtml" />
     <Content Include="Areas\Staff\Views\Shared\_staffLoginNavigation.cshtml" />
+    <Content Include="Areas\Staff\Views\Chapter\Index.cshtml" />
+    <Content Include="Areas\Staff\Views\Chapter\ViewChapters.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -330,11 +334,9 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Account\Index.cshtml" />
+    <Content Include="Views\View.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Areas\Staff\Models\" />
-    <Folder Include="Areas\Staff\Views\Chapter\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
     <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
