@@ -1,0 +1,139 @@
+﻿@model AutomatedQuestionPaper.Models.Chapter
+
+@{
+    ViewBag.Title = "DeleteTeacher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("EditChapterDetails", "Chapter", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="">
+        <h4>Chapter</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.CourseId)
+
+        <div class="form-group">
+            <label class="col-form-label">Semester</label>
+            <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="form-group">
+            <label class="col-form-label">Department</label>
+            <select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChapterNo, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ChapterNo, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ChapterNo, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ChapterName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ChapterName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ChapterName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="col-form-label">Unit no</label>
+            <select id="selectedUnit" name="selectedUnit" class="form-control" data-val="true" data-val-required="The unit field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedUnit" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary btn-block" />
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function () {
+
+            var unitNo = '@TempData["UnitNo"]';
+            for (var i = 1; i <= 6; i++) {
+
+                if (unitNo == i) {
+                    $("#selectedUnit").append("<option selected>" + i + "</option>");
+                } else {
+                    $("#selectedUnit").append("<option>" + i + "</option>");
+                }
+            }
+
+
+            $.ajax({
+                url: '@Url.Action("GetAllocatedSemesters")',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $("#selectedSemester").empty();
+                    var semName = '@TempData["SemName"]';
+
+                    for (var i = 0; i < data.length; i++) {
+                        if (semName === data[i]) {
+                            $("#selectedSemester").append("<option selected>" + data[i] + "</option>");
+                        } else {
+                            $("#selectedSemester").append("<option>" + data[i] + "</option>");
+                        }
+                    }
+
+                    $.ajax({
+                        url: '@Url.Action("GetAllocatedDepartments")',
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            semesterName: semName
+                        },
+
+                        success: function(data) {
+                            $("#selectedDepartment").empty();
+
+                            var deptName = '@TempData["depName"]';
+
+                            for (var i = 0; i < data.length; i++) {
+                                if (deptName === data[i]) {
+                                    $("#selectedDepartment").append("<option selected>" + data[i] + "</option>");
+                                } else {
+                                    $("#selectedDepartment").append("<option>" + data[i] + "</option>");
+                                }
+                            }
+
+                            $("#selectedDepartment").prop("disabled", false);
+                            $("#selectedSubject").prop("disabled", false);
+                        },
+                        error: function(xhr, thrownError) {
+                            alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                        }
+
+                    });
+
+
+                    $("#selectedSemester").prop("disabled", false);
+                    $("#selectedDepartment").prop("disabled", false);
+
+                },
+                error: function(xhr, thrownError) {
+                    alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                }
+            });
+            });
+    </script>
+
+
+}
