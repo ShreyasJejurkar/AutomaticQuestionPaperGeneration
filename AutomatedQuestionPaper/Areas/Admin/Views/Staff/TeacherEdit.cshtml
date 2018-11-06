@@ -5,16 +5,20 @@
     Layout = "~/Areas/Admin/Views/Shared/_adminLoginNavigation.cshtml";
 }
 
-<h3 class="m-3">Staff details edit</h3>
+<br/>
+<h3>Staff details edit</h3>
 
 <form method="post" action="@Url.Action("GetStaffDetails", "Staff")">
     <div class="row">
-        <div class="col-md-8">
+        <div class="col-sm-4 col-md-4 col-xl-4">
+            <label class="col-form-label">Enter Teacher ID</label>
+        </div>
+        <div class="col-sm-4 col-md-4 col-xl-4">
             <div class="form-group">
-                <input type="number" class="form-control" name="id"/>
+                <input type="number" class="form-control" name="id" required/>
             </div>
         </div>
-        <div class="col-md-4">
+        <div class="col-sm-4 col-md-4 col-xl-4">
             <div class="form-group">
                 <button type="submit" class="btn btn-primary form-control">Get details</button>
             </div>
@@ -34,6 +38,8 @@
 }
 else
 {
+
+
     if (Model != null)
     {
         using (Html.BeginForm("StaffEditSaveChanges", "Staff", FormMethod.Post))
