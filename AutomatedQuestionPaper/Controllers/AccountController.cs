@@ -17,32 +17,29 @@ namespace AutomatedQuestionPaper.Controllers
         [HttpPost]
         public ActionResult Index(Admin user)
         {
-            //Check if user is admin or not!
-            var dbUser =
-                _context.Admins.FirstOrDefault(u => u.Username == user.Username && u.Password == user.Password);
+            var auth = Authentication.Authenticate(user);
 
-            if (dbUser == null)
+            if (auth.status == 0)
             {
-                //Check for staff member
-                var staffUser =
-                    _context.Staffs.FirstOrDefault(T => T.Email == user.Username && T.Password == user.Password);
-
-                if (staffUser != null)
-                {
-                    //Saving data to session for login functionality
-                    Session["Staff_Name"] = staffUser.Name;
-
-                    return RedirectToAction("Index", "StaffHomePage", new
-                    {
-                        area = "Staff"
-                    });
-                }
+                ViewBag.LoginErrorMessage = "Incorrect Credentials";
+                return View();
             }
 
-            if (dbUser != null)
+            if (auth.status == 1 && auth.authenticatedUserName != null)
             {
                 //Saving data to session for login functionality
-                Session["Username"] = dbUser.Username;
+                Session["Staff_Name"] = auth.authenticatedUserName;
+
+                return RedirectToAction("Index", "StaffHomePage", new
+                {
+                    area = "Staff"
+                });
+            }
+
+            if (auth.status == 2 && auth.authenticatedUserName != null)
+            {
+                //Saving data to session for login functionality
+                Session["Username"] = auth.authenticatedUserName;
 
                 return RedirectToAction("Index", "AdminHomePage", new
                 {
@@ -50,7 +47,6 @@ namespace AutomatedQuestionPaper.Controllers
                 });
             }
 
-            ViewBag.LoginErrorMessage = "Incorrect Credentials";
             return View();
         }
     }
