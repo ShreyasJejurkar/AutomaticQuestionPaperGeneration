@@ -1,0 +1,26 @@
+﻿@model List<string>
+
+@if (Model != null)
+{
+    <table class="table table-bordered table-responsive table-hover table-responsive-lg table-striped">
+        <tr>
+            <th>
+                Questions
+            </th>
+
+        </tr>
+        <tbody>
+            @foreach (var data in Model)
+            {
+                <tr>
+                    <td style="border:1px solid black">
+                        @data
+                    </td>
+                    <td style="border:1px solid black">
+                        @Html.ActionLink("Edit", "EditQuestionDetails", new { question = data }, htmlAttributes: new { @class = "btn btn-outline-secondary", @id ="QuestionEditButton" , @name = "QuestionEditButton", @data_question = @data })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
