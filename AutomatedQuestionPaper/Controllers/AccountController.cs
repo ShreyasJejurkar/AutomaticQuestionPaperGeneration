@@ -6,8 +6,6 @@ namespace AutomatedQuestionPaper.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly DatabaseContext _context = new DatabaseContext();
-
         [HttpGet]
         public ActionResult Index()
         {
@@ -15,6 +13,7 @@ namespace AutomatedQuestionPaper.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(Admin user)
         {
             var auth = Authentication.Authenticate(user);

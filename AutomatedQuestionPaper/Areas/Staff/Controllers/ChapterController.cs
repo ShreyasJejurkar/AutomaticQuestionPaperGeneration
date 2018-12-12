@@ -98,10 +98,10 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             var dbChapter = _context.Chapters.FirstOrDefault(u => u.Id == chap.Id);
 
             // Get the semester Id
-            var semesterId = _context.Semesters.FirstOrDefault(u => u.SemesterName == selectedSemester)?.Id;
+            var semesterId = DatabaseData.GetSemesterInfo(selectedSemester).Id;
 
             // Get the department Id
-            var departmentId = _context.Departments.FirstOrDefault(u => u.DepartmentName == selectedDepartment)?.Id;
+            var departmentId = DatabaseData.GetDepartmentInfo(selectedDepartment).Id;
 
             chap.DepartmentId = departmentId;
             chap.SemesterId = semesterId;

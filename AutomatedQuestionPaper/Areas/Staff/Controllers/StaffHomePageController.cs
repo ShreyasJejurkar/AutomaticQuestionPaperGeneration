@@ -7,6 +7,9 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
     [SessionCheckStaff]
     public class StaffHomePageController : Controller
     {
+        /// <summary>
+        /// EF context for database access
+        /// </summary>
         private readonly DatabaseContext _context = new DatabaseContext();
         
         [HttpGet]
@@ -14,7 +17,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         {
             var staffName = Session["Staff_Name"];
 
-            // Get the admin details from database
+            // Get the staff details from database
             var staff = _context.Staffs.FirstOrDefault(u => u.Name == (string)staffName);
 
             return View(staff);

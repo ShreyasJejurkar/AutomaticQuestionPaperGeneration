@@ -5,7 +5,7 @@ namespace AutomatedQuestionPaper.Controllers
     public class HomeController : Controller
     {
         [HttpGet]
-        [Route("/home")]
+        [Route("/")]
         public ActionResult Index()
         {
             Session["Username"] = Session["Staff_Name"] = null;
