@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<br/>
+<br />
 @if (TempData["SessionErrorMessage"] != null)
 {
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -29,8 +29,6 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-        
 
     <div style="width: 50%; margin: 0 auto;">
         <h3 class="display-4" style="text-align: center">Log in</h3>
