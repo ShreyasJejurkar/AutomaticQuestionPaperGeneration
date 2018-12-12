@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Staff.Models
@@ -9,7 +8,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
     /// </summary>
     public class DatabaseData
     {
-        // EF Context for database
+        /// EF Context for database
         private static readonly DatabaseContext Context = new DatabaseContext();
 
         /// <summary>
@@ -37,8 +36,8 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
         /// <summary>
         /// Provides subject information based on subject name
         /// </summary>
-        /// <param name="subjectName"></param>
-        /// <returns></returns>
+        /// <param name="subjectName">Name of subject</param>
+        /// <returns>Subject</returns>
         public static Course GetCourseInfo(string subjectName)
         {
             var subject = Context.Courses.FirstOrDefault(u => u.CourseName == subjectName);

@@ -5,7 +5,7 @@ using AutomatedQuestionPaper.Models;
 namespace AutomatedQuestionPaper.Areas.Staff.Models
 {
     /// <summary>
-    ///     Provides most frequently information about database objects
+    ///  Provides most frequently information about database objects
     /// </summary>
     public class DatabaseStaffOperations
     {
