@@ -53,7 +53,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                 TempData["Type-Name"] = examType;
             }).Start();
 
-            
+
             var questions = _context.Questions.Where(x => x.SemesterId == semesterId.ToString() && x.DepartmentId == departmentId.ToString() && x.CourseId == subjectId && x.UnitId == unitInt && x.ChapterId == chapterId && x.QuestionType == type).Select(x => x.QuestionText).ToList();
 
             return PartialView("QuestionList", questions);
@@ -73,7 +73,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
             var chapterId = _context.Chapters.FirstOrDefault(x => x.SemesterId == semesterId && x.DepartmentId == departmentId && x.CourseId == subjectId && x.UnitNo == unitInt && x.ChapterName == chapterName)?.Id;
 
-            var type = (int) Enum.Parse(typeof(ExamType), examType); 
+            var type = (int)Enum.Parse(typeof(ExamType), examType);
 
             _context.Questions.Add(new Question
             {
@@ -98,7 +98,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         public ActionResult GetChapterList(string semester, string department, string subject, string unit)
         {
             var semesterId = DatabaseData.GetSemesterInfo(semester)?.Id;
-            
+
             var departmentId = DatabaseData.GetDepartmentInfo(department)?.Id;
 
             var subjectId = DatabaseData.GetCourseInfo(subject)?.Courseid;
@@ -116,10 +116,10 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             var semesterId = Convert.ToString(TempData["Semester-id"]);
             var departmentId = Convert.ToString(TempData["Department-id"]);
 
-            var subjectId = (int?) TempData["Subject-id"];
+            var subjectId = (int?)TempData["Subject-id"];
             var chapterId = (int?)TempData["Chapter-id"];
-            var unitInt = (int?) TempData["Unit-id"];
-            
+            var unitInt = (int?)TempData["Unit-id"];
+
             var dbQuestion = _context.Questions.FirstOrDefault(x =>
                 x.SemesterId == semesterId && x.DepartmentId == departmentId && x.CourseId == subjectId &&
                 x.ChapterId == chapterId && x.QuestionText == question && x.UnitId == unitInt);
@@ -133,9 +133,9 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         [HttpPost]
         public ActionResult EditQuestionDetails(string selectedSemester, string selectedDepartment, string selectedSubject, string selectedUnit, string chapterName, string question, int? QuestionHiddenId)
         {
-            var num = Convert.ToInt32( Request.Form["Id"]);
+            var num = Convert.ToInt32(Request.Form["Id"]);
 
-            var dbQuestion = _context.Questions.FirstOrDefault(x=>x.Id == num);
+            var dbQuestion = _context.Questions.FirstOrDefault(x => x.Id == num);
 
             // Get the semester Id
             var semesterId = _context.Semesters.FirstOrDefault(x => x.SemesterName == selectedSemester)?.Id;
@@ -164,12 +164,12 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
             return RedirectToAction("Index");
         }
-        
+
         [HttpGet]
         public ActionResult DeleteQuestion(string Id)
         {
             var questionId = Convert.ToInt32(Id);
-            var question = _context.Questions.FirstOrDefault(x=>x.Id == questionId);
+            var question = _context.Questions.FirstOrDefault(x => x.Id == questionId);
 
             if (question != null)
             {
@@ -180,6 +180,11 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             TempData["QuestionDeletedSuccessMessage"] = "Question deleted successfully";
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult QuestionRepository()
+        {
+            return View();
         }
     }
 }

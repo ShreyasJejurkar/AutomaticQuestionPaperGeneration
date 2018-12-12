@@ -1,0 +1,47 @@
+﻿@model IEnumerable<AutomatedQuestionPaper.Models.Question>
+
+<table class="table table-bordered table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionType)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.QuestionText)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DifficultyLevel)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ChapterId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.QuestionText)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DifficultyLevel)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.UnitId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SemesterId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DepartmentId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseId)
+            </td>
+            <td></td>
+        </tr>
+    }
+</table>
