@@ -19,6 +19,8 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             return View();
         }
 
+        /*
+
         public ActionResult LoadQuestion(string selectedSemester, string selectedDepartment, string selectedSubject, string unitNo, string chapterName, string examType)
         {
             var semesterId = _context.Semesters.FirstOrDefault(x => x.SemesterName == selectedSemester)?.Id;
@@ -59,6 +61,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
             return PartialView("QuestionList", questions);
         }
+        */
 
         public ActionResult AddQuestion(string selectedSemester, string selectedDepartment, string selectedSubject, string unitNo, string chapterName, string question, string examType, string level)
         {
