@@ -129,6 +129,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             var subject = _context.Chapters.FirstOrDefault(x =>
                 x.ChapterName == name && x.SemesterId == semesterId && x.DepartmentId == departmentId &&
                 x.CourseId == subjectId);
+
             if (subject != null)
             {
                 _context.Chapters.Remove(subject);
