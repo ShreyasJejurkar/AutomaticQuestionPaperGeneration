@@ -1,18 +1,16 @@
-﻿
-
-@{
+﻿@{
     ViewBag.Title = "Add Questions";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
 }
 
 @if (TempData["QuestionAddedSuccessfully"] != null)
 {
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["QuestionAddedSuccessfully"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+    @TempData["QuestionAddedSuccessfully"]
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true">&times;</span>
+    </button>
+</div>
 }
 
 <h3>Ways to add questions</h3>
