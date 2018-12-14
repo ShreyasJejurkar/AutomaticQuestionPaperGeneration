@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Web.Mvc;
@@ -59,7 +60,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             return PartialView("QuestionList", questions);
         }
 
-        public ActionResult AddQuestion(string selectedSemester, string selectedDepartment, string selectedSubject, string unitNo, string chapterName, string question, string examType)
+        public ActionResult AddQuestion(string selectedSemester, string selectedDepartment, string selectedSubject, string unitNo, string chapterName, string question, string examType, string level)
         {
             // Get the semester Id
             var semesterId = _context.Semesters.FirstOrDefault(x => x.SemesterName == selectedSemester)?.Id;
@@ -80,7 +81,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                 ChapterId = chapterId,
                 CourseId = subjectId,
                 DepartmentId = departmentId.ToString(),
-                DifficultyLevel = 1,
+                DifficultyLevel = Convert.ToInt32(level),
                 QuestionText = question,
                 QuestionType = type,
                 SemesterId = semesterId.ToString(),
@@ -90,7 +91,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             _context.SaveChangesAsync();
 
             TempData["QuestionAdded"] = "Question added successfully";
-
+            
             return Json("Question added successfully", JsonRequestBehavior.AllowGet);
 
         }
@@ -182,9 +183,45 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
         public ActionResult QuestionRepository()
         {
             return View();
+        }
+        
+        [HttpPost]
+        public ActionResult QuestionRepository(string selectedSemester, string selectedDepartment, string selectedSubject, string unitNo, string chapterName, string examType)
+        {
+            var semesterId = _context.Semesters.FirstOrDefault(x => x.SemesterName == selectedSemester)?.Id;
+
+            // Get the department Id
+            var departmentId = _context.Departments.FirstOrDefault(x => x.DepartmentName == selectedDepartment)?.Id;
+
+            var subjectId = _context.Courses.FirstOrDefault(x => x.CourseName == selectedSubject)?.Courseid;
+
+            var unitInt = Convert.ToInt32(unitNo);
+
+            var type = (int)Enum.Parse(typeof(ExamType), examType);
+
+            var chapterId = _context.Chapters.FirstOrDefault(x => x.SemesterId == semesterId && x.DepartmentId == departmentId && x.CourseId == subjectId && x.UnitNo == unitInt && x.ChapterName == chapterName)?.Id;
+            
+            var questions = _context.Questions.Where(x => x.SemesterId == semesterId.ToString() && x.DepartmentId == departmentId.ToString() && x.CourseId == subjectId && x.UnitId == unitInt && x.ChapterId == chapterId && x.QuestionType == type).Select(x => new { x.QuestionText , x.DifficultyLevel }).ToList();
+
+            // TODO Create a strongly type class and pass it to view
+
+            List<QuestionFormat> ques = new List<QuestionFormat>();
+
+            foreach (var item in questions)
+            {
+                ques.Add(new QuestionFormat
+                {
+                    Question = item.QuestionText,
+                    Level = item.DifficultyLevel
+                });
+            }
+
+
+            return PartialView("QuestionList", ques);
         }
     }
 }
