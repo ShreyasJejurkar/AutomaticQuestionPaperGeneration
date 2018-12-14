@@ -9,6 +9,6 @@
         public string Question { get; set; }
 
         // The question difficulty level
-        public int Level { get; set; }
+        public int? Level { get; set; }
     }
 }
