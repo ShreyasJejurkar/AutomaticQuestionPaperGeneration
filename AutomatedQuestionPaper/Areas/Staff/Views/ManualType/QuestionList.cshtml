@@ -1,4 +1,4 @@
-﻿@model List<string>
+﻿@model List<AutomatedQuestionPaper.Areas.Staff.Models.QuestionFormat>
 
 @if (Model != null)
 {
@@ -14,10 +14,13 @@
             {
                 <tr>
                     <td style="border:1px solid black">
-                        @data
+                        @data.Question
                     </td>
                     <td style="border:1px solid black">
-                        @Html.ActionLink("Edit", "EditQuestionDetails", new { question = data }, htmlAttributes: new { @class = "btn btn-outline-secondary", @id ="QuestionEditButton" , @name = "QuestionEditButton", @data_question = @data })
+                        @data.Level
+                    </td>
+                    <td style="border:1px solid black">
+                        @Html.ActionLink("Edit", "EditQuestionDetails", new { question = data }, htmlAttributes: new { @class = "btn btn-outline-secondary", @id = "QuestionEditButton", @name = "QuestionEditButton", @data_question = @data })
                     </td>
                 </tr>
             }

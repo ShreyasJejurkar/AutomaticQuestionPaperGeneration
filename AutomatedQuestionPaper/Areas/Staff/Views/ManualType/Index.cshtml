@@ -3,6 +3,7 @@
     ViewBag.Title = "Add question manually";
     Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
 }
+<br />
 
 @if (TempData["QuestionAdded"] != null)
 {
@@ -35,8 +36,7 @@
     </div>
 }
 
-
-<form onsubmit="return false">
+<form onsubmit="return true">
     <div>
         <label class="col-form-label">Semester</label>
         <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
@@ -91,18 +91,29 @@
         <input type="text" name="question" id="question" class="form-control" data-val="true" data-val-required="The chapter name field is required" required />
         <span class="field-validation-valid text-danger" data-valmsg-for="question" data-valmsg-replace="true"></span>
     </div>
+    
+    <div>
+        <label class="col-form-label">Difficulty level</label>
+        <select id="difficultyLevel" name="difficultyLevel" class="form-control" data-val="true" data-val-required="The difficulty level field is required">
+            <option selected disabled>---Select---</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+            <option>7</option>
+            <option>8</option>
+            <option>9</option>
+            <option>10</option>
+        </select>
+        <span class="field-validation-valid text-danger" data-valmsg-for="difficultyLevel" data-valmsg-replace="true"></span>
+    </div>
 
     <div class="form-group">
         <input type="submit" value="Submit" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit" />
     </div>
-
-
 </form>
-
-<div class="form-group">
-    <input type="submit" value="See questions" class="btn btn-outline-primary" id="LoadQuestionButton" name="LoadQuestionButton" />
-</div>
-
 
 <div id="questionList">
 
@@ -236,16 +247,16 @@
             });
 
 
-            $("#ChapterFormSubmit").click(function () {
-
+            $("#ChapterFormSubmit").click(function (e) {
                 var semester = $("#selectedSemester option:selected").text();
                 var department = $("#selectedDepartment option:selected").text();
                 var subject = $("#selectedSubject option:selected").text();
                 var unit = $("#selectedUnit  option:selected").text();
                 var chapterName = $("#chapterName option:selected").text();
                 var question = $("#question").val();
+                var level = $("#difficultyLevel  option:selected").text();
 
-                if (unit !== "---Select---" && question !== "") {
+                if (unit !== "---Select---" && question !== "" && level !== "---Select---") {
                     $.ajax({
                         type: 'Get',
                         url: '@Url.Action("AddQuestion","ManualType")',
@@ -257,54 +268,17 @@
                             unitNo: unit,
                             chapterName: chapterName,
                             question: question,
-                            examType: $("#ExamType option:selected").text()
-                        },
-                        success: function (data) {
-                            alert(data);
-                        },
-                        
+                            examType: $("#ExamType option:selected").text(),
+                            level: level
+                        }, 
+                        success: function(mess) {
+                            console.log(mess);
+                        }
                     });
                 } else {
                     alert("Please select all the fields");
                 }
             });
-
-
-            $("#LoadQuestionButton").click(function(e) {
-
-                var semester = $("#selectedSemester option:selected").text();
-                var department = $("#selectedDepartment option:selected").text();
-                var subject = $("#selectedSubject option:selected").text();
-                var unit = $("#selectedUnit  option:selected").text();
-                var chapterName = $("#chapterName option:selected").text();
-                var type = $("#ExamType option:selected").text();
-                if (unit !== "---Select---" && question !== "") {
-                $.ajax({
-                    type: 'Post',
-                    url: '@Url.Action("LoadQuestion","ManualType")',
-                    dataType: 'html',
-                    data: {
-                        selectedSemester: semester,
-                        selectedDepartment: department,
-                        selectedSubject: subject,
-                        unitNo: unit,
-                        chapterName: chapterName,
-                        examType: type
-                    },
-                    success: function (data) {
-                        $("#questionList").html(data);
-                    },
-                    error: function() {
-                        alert("Error");
-                    }
-                });
-                } else {
-                    alert("Please select all the fields");
-                }
-
-
-            });
-
 
         });
     </script>
