@@ -19,5 +19,9 @@
         /// Chapter name
         /// </summary>
         public string ChapterName { get; set; }
+
+        public string SemesterId { get; set; }
+
+        public string DepartmentId { get; set; }
     }
 }
