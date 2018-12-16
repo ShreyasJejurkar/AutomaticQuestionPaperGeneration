@@ -120,15 +120,15 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             return RedirectToAction("ViewChapters");
         }
 
-        public ActionResult DeleteChapter(string name)
+        public ActionResult DeleteChapter(string name, string semester, string department, string subjectId)
         {
-            var subjectId = (int?)TempData["Data_SubjectId"];
-            var departmentId = (int?)TempData["Data_DepartmentId"];
-            var semesterId = (int?)TempData["Data_SemesterId"];
+            var semId = Convert.ToInt32(semester);
+            var depId = Convert.ToInt32(department);
+            var subId = Convert.ToInt32(subjectId);
 
             var subject = _context.Chapters.FirstOrDefault(x =>
-                x.ChapterName == name && x.SemesterId == semesterId && x.DepartmentId == departmentId &&
-                x.CourseId == subjectId);
+                x.ChapterName == name && x.SemesterId == semId && x.DepartmentId == depId &&
+                x.CourseId == subId);
 
             if (subject != null)
             {

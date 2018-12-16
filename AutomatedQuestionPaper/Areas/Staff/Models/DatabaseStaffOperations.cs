@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AutomatedQuestionPaper.Models;
 
@@ -97,13 +98,16 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
 
             var data = Context.Chapters.Where(u =>
                     u.SemesterId == semesterId && u.DepartmentId == departmentId && u.CourseId == subjectId)
-                .Select(x => new { x.UnitNo, x.ChapterNo, x.ChapterName }).ToList();
+                .Select(x => new { x.UnitNo, x.ChapterNo, x.ChapterName, x.SemesterId, x.CourseId ,x.DepartmentId }).ToList();
 
             var list = data.Select(x => new ChapterDetails
             {
                 UnitNo = x.UnitNo,
                 ChapterName = x.ChapterName,
-                ChapterNo = x.ChapterNo
+                ChapterNo = x.ChapterNo,
+                SemesterId = x.SemesterId.ToString(),
+                DepartmentId = x.DepartmentId.ToString(),
+                SubjectId = x.CourseId.ToString()
             }).OrderBy(x => x.UnitNo).ToList();
 
             return list;
