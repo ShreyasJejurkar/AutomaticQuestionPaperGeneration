@@ -23,5 +23,8 @@
         public string SemesterId { get; set; }
 
         public string DepartmentId { get; set; }
+
+
+        public string SubjectId { get; set; }
     }
 }
