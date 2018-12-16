@@ -71,14 +71,14 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
             return null;
         }
 
-        public static (List<QuestionFormat> questions, string error) CsvFile(HttpPostedFileBase file)
+        public static (List<QuestionFormatCsv> questions, string error) CsvFile(HttpPostedFileBase file)
         {
             if (SaveFile(file, 1))
             {
                 if (ValidateCsvFile(file))
                 {
                     var csv = new CsvReader(File.OpenText(HttpContext.Current.Server.MapPath($"~/Areas/Staff/Uploads/CSV/{file.FileName}")));
-                    var records = csv.GetRecords<QuestionFormat>().ToList();
+                    var records = csv.GetRecords<QuestionFormatCsv>().ToList();
                     csv.Dispose();
                     DeleteFile(file, 1);
                     return (records, "Success");

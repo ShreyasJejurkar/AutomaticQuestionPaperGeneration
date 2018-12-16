@@ -10,5 +10,16 @@
 
         // The question difficulty level
         public int? Level { get; set; }
+
+        public string Semester { get; set; }
+
+        public string Department { get; set; } 
+
+        public int? Chapter { get; set; }
+
+        public int? QuestionType { get; set; }
+
+        public int? UnitId { get; set; }
+
     }
 }
