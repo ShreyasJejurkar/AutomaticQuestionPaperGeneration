@@ -94,7 +94,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             _context.SaveChangesAsync();
 
             TempData["QuestionAdded"] = "Question added successfully";
-            
+
             return Json("Question added successfully", JsonRequestBehavior.AllowGet);
 
         }
@@ -115,27 +115,48 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditQuestionDetails(string question)
+        public ActionResult EditQuestionDetails(string question, string level, string semester, string department, string chapter, string type, string unit)
         {
-            var semesterId = Convert.ToString(TempData["Semester-id"]);
-            var departmentId = Convert.ToString(TempData["Department-id"]);
+            var levelInt = Convert.ToInt32(level);
+            var chap = Convert.ToInt32(chapter);
+            var quesType = Convert.ToInt32(type);
+            var unitNo = Convert.ToInt32(unit);
+            var ques = _context.Questions.FirstOrDefault(t =>
+                t.QuestionText == question &&
+                t.DifficultyLevel == levelInt &&
+                t.SemesterId == semester &&
+                t.DepartmentId == department &&
+                t.ChapterId == chap &&
+                t.QuestionType == quesType &&
+                t.UnitId == unitNo
+                );
+            var sem = Convert.ToInt32(ques.SemesterId);
+            var dep = Convert.ToInt32(ques.DepartmentId);
 
-            var subjectId = (int?)TempData["Subject-id"];
-            var chapterId = (int?)TempData["Chapter-id"];
-            var unitInt = (int?)TempData["Unit-id"];
+            TempData["Semester-Name"] = _context.Semesters.FirstOrDefault(x => x.Id == sem).SemesterName;
+            TempData["Department-Name"] = _context.Departments.FirstOrDefault(x => x.Id == dep).DepartmentName;
+            TempData["Subject-Name"] = _context.Courses.FirstOrDefault(x => x.Courseid == ques.CourseId).CourseName;
+            TempData["Chapter-Name"] = _context.Chapters.FirstOrDefault(x => x.Id == ques.ChapterId).ChapterName;
+            TempData["Level"] = level;
 
-            var dbQuestion = _context.Questions.FirstOrDefault(x =>
-                x.SemesterId == semesterId && x.DepartmentId == departmentId && x.CourseId == subjectId &&
-                x.ChapterId == chapterId && x.QuestionText == question && x.UnitId == unitInt);
+            if (ques.QuestionType == 0)
+            {
+                TempData["Type-Name"] = "InSem";
+            }
+            else if (ques.QuestionType == 1)
+            {
+                TempData["Type-Name"] = "EndSem";
+            }
+
 
             // TODO lot of work has to be done in view. start with fetching allocated subject list
 
 
-            return View(dbQuestion);
+            return View(ques);
         }
 
         [HttpPost]
-        public ActionResult EditQuestionDetails(string selectedSemester, string selectedDepartment, string selectedSubject, string selectedUnit, string chapterName, string question, int? QuestionHiddenId)
+        public ActionResult EditQuestionDetails(string selectedSemester, string selectedDepartment, string selectedSubject, string selectedUnit, string chapterName, string question, int? QuestionHiddenId, string difficultyLevel)
         {
             var num = Convert.ToInt32(Request.Form["Id"]);
 
@@ -156,7 +177,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             dbQuestion.ChapterId = chapters;
             dbQuestion.CourseId = subjectId;
             dbQuestion.DepartmentId = Convert.ToString(departmentId);
-            dbQuestion.DifficultyLevel = 1;
+            dbQuestion.DifficultyLevel = Convert.ToInt32(difficultyLevel);
             dbQuestion.QuestionText = question;
             dbQuestion.QuestionType = 1;
             dbQuestion.SemesterId = Convert.ToString(semesterId);
@@ -166,7 +187,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
             _context.SaveChanges();
 
-            return RedirectToAction("Index");
+            return RedirectToAction("QuestionRepository");
         }
 
         [HttpGet]
@@ -183,7 +204,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
             TempData["QuestionDeletedSuccessMessage"] = "Question deleted successfully";
 
-            return RedirectToAction("Index");
+            return RedirectToAction("QuestionRepository");
         }
 
         [HttpGet]
@@ -191,7 +212,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         {
             return View();
         }
-        
+
         [HttpPost]
         public ActionResult QuestionRepository(string selectedSemester, string selectedDepartment, string selectedSubject, string unitNo, string chapterName, string examType)
         {
@@ -207,8 +228,8 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             var type = (int)Enum.Parse(typeof(ExamType), examType);
 
             var chapterId = _context.Chapters.FirstOrDefault(x => x.SemesterId == semesterId && x.DepartmentId == departmentId && x.CourseId == subjectId && x.UnitNo == unitInt && x.ChapterName == chapterName)?.Id;
-            
-            var questions = _context.Questions.Where(x => x.SemesterId == semesterId.ToString() && x.DepartmentId == departmentId.ToString() && x.CourseId == subjectId && x.UnitId == unitInt && x.ChapterId == chapterId && x.QuestionType == type).Select(x => new { x.QuestionText , x.DifficultyLevel }).ToList();
+
+            var questions = _context.Questions.Where(x => x.SemesterId == semesterId.ToString() && x.DepartmentId == departmentId.ToString() && x.CourseId == subjectId && x.UnitId == unitInt && x.ChapterId == chapterId && x.QuestionType == type).Select(x => new { x.QuestionText, x.DifficultyLevel, x.SemesterId, x.DepartmentId, x.ChapterId, x.QuestionType, x.UnitId }).ToList();
 
             // TODO Create a strongly type class and pass it to view
 
@@ -219,10 +240,14 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                 ques.Add(new QuestionFormat
                 {
                     Question = item.QuestionText,
-                    Level = item.DifficultyLevel
+                    Level = item.DifficultyLevel,
+                    Semester = item.SemesterId,
+                    Chapter = item.ChapterId,
+                    Department = item.DepartmentId,
+                    UnitId = item.UnitId,
+                    QuestionType = item.QuestionType
                 });
             }
-
 
             return PartialView("QuestionList", ques);
         }

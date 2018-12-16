@@ -54,13 +54,21 @@
         <span class="field-validation-valid text-danger" data-valmsg-for="question" data-valmsg-replace="true"></span>
     </div>
 
+    <div>
+        <label class="col-form-label">Difficulty level</label>
+        <select id="difficultyLevel" name="difficultyLevel" class="form-control" data-val="true" data-val-required="The difficulty level field is required">
+        </select>
+        <span class="field-validation-valid text-danger" data-valmsg-for="difficultyLevel" data-valmsg-replace="true"></span>
+    </div>
+
+
     <div class="form-group">
         <input type="submit" value="Edit" class="form-control btn btn-secondary" id="ChapterFormSubmit" name="ChapterFormSubmit" />
     </div>
 
 
     <div class="form-group">
-        <input type="button" value="Delete" class="form-control btn btn-danger" id="DeleteQuestion" name="DeleteQuestion" />
+        @Html.ActionLink("Edit", "DeleteQuestion", new { Id = @Model.Id })
     </div>
 }
 
@@ -72,12 +80,29 @@
     <script>
         $(function() {
 
-            var unitNo = '@TempData["Unit-id"]';
+            var unitNo = '@Model.UnitId';
             //var selected_semester = '@TempData["Semester-Name"]';
             //var selected_department = '@TempData["Department-Name"]';
             //var selected_subject = '@TempData["Subject-Name"]';
 
+            var level = '@TempData["Level"]';
+            console.log(level);
+            $("#difficultyLevel").empty();
+
+            for (var k = 1; k <= 10; k++) {
+                console.log(k);
+                if (level == k) {
+                    $("#difficultyLevel").append("<option selected>" + k + "</option>");
+                } else {
+                    $("#difficultyLevel").append("<option>" + k + "</option>");
+                }
+            }
+
+
             var type = '@TempData["Type-Name"]';
+
+
+
 
             for (var i = 1; i <= 6; i++) {
 
@@ -87,17 +112,17 @@
                     $("#selectedUnit").append("<option>" + i + "</option>");
                 }
             }
-            
+
             if (type == 'InSem') {
-                $("#ExamType").append("<option selected>" + "InSem" + "</option>");     
-                $("#ExamType").append("<option>" + "EndSem" + "</option>"); 
+                $("#ExamType").append("<option selected>" + "InSem" + "</option>");
+                $("#ExamType").append("<option>" + "EndSem" + "</option>");
             }
             else if (type == 'EndSem')
             {
-                $("#ExamType").append("<option>" + "InSem" + "</option>");     
-                $("#ExamType").append("<option selected>" + "EndSem" + "</option>"); 
+                $("#ExamType").append("<option>" + "InSem" + "</option>");
+                $("#ExamType").append("<option selected>" + "EndSem" + "</option>");
             }
-            
+
 
             $.ajax({
                 url: '@Url.Action("GetAllocatedSemesters", "Chapter")',
@@ -395,17 +420,6 @@
                             "Message" +
                             thrownError +
                             "");
-                    }
-                });
-            });
-
-            $("#DeleteQuestion").click(function() {
-
-                $.ajax({
-                    url: '@Url.Action("DeleteQuestion")',
-                    dataType: 'json',
-                    data: {
-                        Id: $("#Id").val()
                     }
                 });
             });
