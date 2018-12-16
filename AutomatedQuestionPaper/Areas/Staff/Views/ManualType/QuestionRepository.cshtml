@@ -7,6 +7,27 @@
     Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
 }
 
+@if (TempData["QuestionEditedSuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["QuestionEditedSuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+@if (TempData["QuestionDeletedSuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["QuestionDeletedSuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
+
+
 <form>
     <div>
         <label class="col-form-label">Semester</label>
@@ -191,7 +212,7 @@
 
                 });
             });
-            
+
             $("#QuestionSubmitButton").click(function(e) {
 
                 e.preventDefault();
