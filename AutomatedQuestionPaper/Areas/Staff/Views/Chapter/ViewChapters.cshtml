@@ -82,7 +82,7 @@
                         @data.ChapterName
                     </td>
                     <td style="border: 1px solid black">
-                        @Html.ActionLink("Edit", "EditChapterDetails", new { name = data.ChapterName }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
+                        @Html.ActionLink("Edit", "EditChapterDetails", new { name = data.ChapterName, semester = data.SemesterId, department = data.DepartmentId, subjectId = data.SubjectId }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
                         @Html.ActionLink("Delete", "DeleteChapter", new { name = data.ChapterName, semester = data.SemesterId, department  = data.DepartmentId, subjectId = data.SubjectId }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
                     </td>
                 </tr>

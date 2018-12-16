@@ -74,9 +74,15 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         }
 
         [HttpGet]
-        public ActionResult EditChapterDetails(string name)
+        public ActionResult EditChapterDetails(string name, string semester, string department, string subjectId)
         {
-            var chapterId = _context.Chapters.FirstOrDefault(u => u.ChapterName == name)?.Id;
+            var semId = Convert.ToInt32(semester);
+            var depId = Convert.ToInt32(department);
+            var subId = Convert.ToInt32(subjectId);
+            
+            var chapterId = _context.Chapters.FirstOrDefault(u =>
+                u.ChapterName == name && u.SemesterId == semId && u.DepartmentId == depId && u.CourseId == subId)?.Id;
+                
 
             var chapterInfo = _context.Chapters.FirstOrDefault(u => u.Id == chapterId);
 
