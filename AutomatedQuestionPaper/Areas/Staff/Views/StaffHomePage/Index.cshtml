@@ -18,39 +18,58 @@
 }
 else
 {
-    ViewBag.Title = "Index";
+    ViewBag.Title = $@"{Model.Name} (Staff) Home Page";
     Layout = "~/Areas/Staff/Views/Shared/_staffLoginLayoutPage.cshtml";
 
+    <br />
     <h2>@Model.Name Management Panel</h2>
 
-    <div>
+    <div style="text-align: center">
         <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
-            <img class="card-img-top" src="~/Images/staff management.png" alt="Card image cap">
+            <img class="card-img-top" height="180" src="~/Images/question.jpg" alt="Card image cap">
             <div class="card-body">
-                <a class="card-title" href="@Url.Action("Index", "Question")">Add questions</a>
+                <a class="card-title" href="@Url.Action("Index", "Question")">Questions management</a>
             </div>
         </div>
 
         <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
-            <img class="card-img-top" src="~/Images/course teacher.svg" alt="Card image cap">
+            <img class="card-img-top" height="180" src="~/Images/chapter.jpg" alt="Card image cap">
             <div class="card-body">
-                <br />
-                <a class="card-title" href="@Url.Action("Index", "Chapter")">Add chapters</a>
+                <a class="card-title" href="@Url.Action("Index", "Chapter")">Chapter management</a>
             </div>
         </div>
 
         <div class="card " style="float: left; height: 285px; margin: 10px; width: 12rem;">
-            <img class="card-img-top" src="~/Images/department.png" alt="Card image cap">
+            <img class="card-img-top" height="180" src="~/Images/question paper.jpg" alt="Card image cap">
             <div class="card-body">
-                <a class="card-title" href="@Url.Action("Index", "Department")">Create question paper</a>
+                <a class="card-title" href="@Url.Action("Index", "Department")">Question Paper creation</a>
             </div>
         </div>
 
         <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
-            <img class="card-img-top" src="~/Images/course.png" alt="Card image cap">
+            <img class="card-img-top" height="180" src="~/Images/question paper repository.jpg" alt="Card image cap">
             <div class="card-body">
-                <a class="card-title" href="@Url.Action("Index", "Course")">Question paper repository</a>
+                <a class="card-title" href="@Url.Action("Index", "Course")">Question Paper repository</a>
             </div>
         </div>
     </div>
+}
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function () {
+            $(".card").css('transition', '0.2s');
+
+            $(".card").hover(
+                function () {
+                    $(this).addClass('shadow-lg').css('cursor', 'pointer');
+                }, function () {
+                    $(this).removeClass('shadow-lg');
+                }
+            );
+        });
+    </script>
 }
