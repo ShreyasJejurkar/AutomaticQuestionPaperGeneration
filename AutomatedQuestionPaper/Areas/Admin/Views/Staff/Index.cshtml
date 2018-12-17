@@ -23,7 +23,7 @@
     }
 }
 
-<br/>
+<br />
 
 @if (TempData["StaffDetailsEditedSuccessfully"] != null)
 {
@@ -68,13 +68,11 @@
 <h4> Staff details </h4>
 
 <div class="float-right m-2">
-    <a href=@Url.Action("TeacherAdd", "Staff") class="btn btn-secondary btn-outline-success btn-me">Add</a>
-    <a href=@Url.Action("TeacherEdit", "Staff") class="btn btn-secondary btn-outline-warning">Edit</a>
-    <a href=@Url.Action("DeleteTeacher", "Staff") class="btn btn-secondary btn-outline-danger">Delete</a>
+    <a href=@Url.Action("TeacherAdd", "Staff") class="btn btn-secondary btn-outline-success">Add</a>
 </div>
 
-<br/>
-<br/>
+<br />
+<br />
 
 @grid.GetHtml("table table-bordered table-striped table-responsive-lg ",
     mode: WebGridPagerModes.All,
@@ -89,7 +87,9 @@
         grid.Column("address", "Address"),
         grid.Column("phone", "Phone Number"),
         grid.Column("email", "Email"),
-        grid.Column("password", "Password")
-        ))
+        grid.Column("password", "Password"),
+        grid.Column(format: @<text>@Html.ActionLink("Edit", "TeacherEdit", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary btn-outline-warning" })</text>),
+                grid.Column(format: @<text>@Html.ActionLink("Delete", "DeleteTeacher", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary btn-outline-danger" })</text>)
+                        ))
 
 @Scripts.Render("~/bundles/jquery")

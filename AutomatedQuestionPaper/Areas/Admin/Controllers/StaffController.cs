@@ -20,40 +20,13 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult TeacherEdit()
+        public ActionResult TeacherEdit(int id)
         {
-            return View();
-        }
+            // Find the corresponding staff details as per ID
+            var teacherDb = _context.Staffs.SingleOrDefault(u => u.Id == id);
 
-        [HttpPost]
-        public ActionResult TeacherEdit(Models.Staff teacher)
-        {
-            return View();
-        }
-
-        /// <summary>
-        ///     Will do a POST request to DB for staff information
-        /// </summary>
-        /// <param name="id">ID of staff</param>
-        /// <returns>Returns Corresponding view</returns>
-        [HttpPost]
-        public ActionResult GetStaffDetails(int id)
-        {
-            // Get the details of specified ID
-            _dbTeacher = _context.Staffs.FirstOrDefault(u => u.Id == id);
-
-            if (_dbTeacher == null)
-            {
-                // Set the message for View
-                ViewBag.StaffNotFoundErrorMessage = "Staff details not found. Please ensure you entered correct ID";
-
-                return View("TeacherEdit", null);
-            }
-
-            // Else pass the staff information to View
-            return View("TeacherEdit", _dbTeacher);
-        }
-
+            return View("TeacherEdit", teacherDb);        }
+        
         [HttpPost]
         public ActionResult StaffEditSaveChanges(Models.Staff editedStaffDetails)
         {
@@ -99,20 +72,12 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "Staff");
         }
-
+        
         [HttpGet]
-        public ActionResult DeleteTeacher()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [Route("/Admin/Staff/DeleteTeacher")]
-        public ActionResult DeleteTeacher(int teacherId)
+        public ActionResult DeleteTeacher(int id)
         {
             // Find the corresponding staff details as per ID
-            var teacherDb = _context.Staffs.SingleOrDefault(u => u.Id == teacherId);
+            var teacherDb = _context.Staffs.SingleOrDefault(u => u.Id == id);
 
             // Make sure its not null
             if (teacherDb != null)
