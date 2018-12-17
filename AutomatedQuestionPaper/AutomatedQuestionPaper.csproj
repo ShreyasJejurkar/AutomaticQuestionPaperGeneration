@@ -150,6 +150,7 @@
     <Compile Include="Areas\Staff\Controllers\QuestionController.cs" />
     <Compile Include="Areas\Staff\Controllers\StaffHomePageController.cs" />
     <Compile Include="Areas\Staff\Models\ChapterDetails.cs" />
+    <Compile Include="Areas\Staff\Models\QuestionFormatCsv.cs" />
     <Compile Include="Areas\Staff\Models\StaffChapterOperation.cs" />
     <Compile Include="Areas\Staff\Models\DatabaseStaffOperations.cs" />
     <Compile Include="Areas\Staff\Models\DatabaseData.cs" />
@@ -240,11 +241,22 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Images\chapter.jpg" />
     <Content Include="Images\course teacher.svg" />
     <Content Include="Images\course.png" />
     <Content Include="Images\department.png" />
+    <Content Include="Images\question paper.jpg" />
+    <Content Include="Images\question paper repository.jpg" />
+    <Content Include="Images\question.jpg" />
     <Content Include="Images\semester.png" />
     <Content Include="Images\staff management.png" />
+    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\file.txt" />
+    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\gen.py" />
+    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\in.txt" />
+    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\new.txt" />
+    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\output.txt" />
+    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\quest.py" />
+    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\requirements.txt" />
     <Content Include="Models\DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBModel.edmx</DependentUpon>
@@ -260,6 +272,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\custom\BackButton.js" />
     <Content Include="Scripts\esm\popper-utils.js" />
     <Content Include="Scripts\esm\popper-utils.min.js" />
     <Content Include="Scripts\esm\popper.js" />
@@ -277,7 +290,6 @@
     <Content Include="Areas\Admin\Views\Semester\Create.cshtml" />
     <Content Include="Areas\Admin\Views\Semester\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Semester\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Staff\DeleteTeacher.cshtml" />
     <Content Include="Areas\Admin\Views\Staff\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Staff\TeacherAdd.cshtml" />
     <Content Include="Areas\Admin\Views\Staff\TeacherEdit.cshtml" />
@@ -317,6 +329,9 @@
     <Content Include="Areas\Staff\Views\ManualType\EditQuestionDetails.cshtml" />
     <Content Include="Areas\Staff\Views\FileUpload\Index.cshtml" />
     <Content Include="Areas\Staff\Views\ManualType\QuestionRepository.cshtml" />
+    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\README.md" />
+    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\report.md" />
+    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\u.Id" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
