@@ -1,6 +1,4 @@
-#Author: Indrajith Indraprastham
-#Date:  Wed Dec 20 00:12:39 IST 2017 (last update)
-
+# -*- coding: utf-8 -*-
 from textblob import TextBlob
 import nltk
 from textblob import Word
@@ -39,11 +37,11 @@ def genQuestion(line):
         if j[1] not in bucket:
             bucket[j[1]] = i  # Add all tags to the dictionary or bucket variable
     
-    if verbose:               # In verbose more print the key,values of dictionary
-        print('\n','-'*20)
-        print(line ,'\n')        
-        print("TAGS:",line.tags, '\n')  
-        print(bucket)
+   #if verbose:               # In verbose more print the key,values of dictionary
+        #print('\n','-'*20)
+        #print(line ,'\n')        
+        #print("TAGS:",line.tags, '\n')  
+        #print(bucket)
     
     question = ''            # Create an empty string 
 
@@ -121,14 +119,14 @@ def genQuestion(line):
 
     # When the tags are generated 's is split to ' and s. To overcome this issue.
     if 'VBZ' in bucket and line.words[bucket['VBZ']] == "’":
-        question = question.replace(" ’ ","'s ")
+        question = question.replace(u" ’ ","'s ")
 
     # Print the genetated questions as output.
     if question != '':
         print('\n', 'Question: ' + question )
 
     # Writes each question output to file
-    file1 = open("output.txt","a")
+    file1 = open("C:\\Users\\Shreyas.SHREYAS\\Desktop\\o.txt","a")
     file1.write(question + "\n");
     file1.close()
 
@@ -151,11 +149,11 @@ def main():
             verbose = True
 
     # Open the file given as argument in read-only mode.
-    filehandle = open(sys.argv[1], 'r')
+    filehandle = open("file.txt", 'r')
     textinput = filehandle.read()
-    print('\n-----------INPUT TEXT-------------\n')
-    print(textinput,'\n')
-    print('\n-----------INPUT END---------------\n')
+    #print('\n-----------INPUT TEXT-------------\n')
+    #print(textinput,'\n')
+    #print('\n-----------INPUT END---------------\n')
 
     # Send the content of text file as string to function parse()
     parse(textinput)
