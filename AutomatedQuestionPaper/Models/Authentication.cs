@@ -5,7 +5,7 @@ namespace AutomatedQuestionPaper.Models
     /// <summary>
     /// Performs authentication for users and admin
     /// </summary>
-    public class Authentication
+    public static class Authentication
     {
         // EF database context
         private static readonly DatabaseContext Context = new DatabaseContext();

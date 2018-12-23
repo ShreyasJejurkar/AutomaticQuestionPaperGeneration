@@ -9,8 +9,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
     {
         private readonly DatabaseContext _context = new DatabaseContext();
 
-        private Models.Staff _dbTeacher = new Models.Staff();
-
         [HttpGet]
         public ActionResult Index()
         {
