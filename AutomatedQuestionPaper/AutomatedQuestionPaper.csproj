@@ -169,6 +169,7 @@
     <Compile Include="Areas\Staff\Controllers\FileUploadController.cs" />
     <Compile Include="Areas\Staff\Controllers\ManualTypeController.cs" />
     <Compile Include="Areas\Staff\Controllers\QuestionController.cs" />
+    <Compile Include="Areas\Staff\Controllers\QuestionPaperCreationController.cs" />
     <Compile Include="Areas\Staff\Controllers\StaffHomePageController.cs" />
     <Compile Include="Areas\Staff\Models\ChapterDetails.cs" />
     <Compile Include="Areas\Staff\Models\QuestionFormatCsv.cs" />
@@ -403,6 +404,7 @@
     <Folder Include="Areas\Staff\Uploads\CSV\" />
     <Folder Include="Areas\Staff\Uploads\Excel\" />
     <Folder Include="Areas\Staff\Uploads\Word\" />
+    <Folder Include="Areas\Staff\Views\QuestionPaperCreation\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">
