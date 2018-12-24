@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
+    [SessionCheckStaff]
     public class QuestionPaperCreationController : Controller
     {
-        // GET: Staff/QuestionPaperCreation
+        DatabaseContext _context = new DatabaseContext();
+
         public ActionResult Index()
         {
-            return View();
+            var list = _context.ExamPapers.ToList();
+
+            return View(list);
         }
     }
 }

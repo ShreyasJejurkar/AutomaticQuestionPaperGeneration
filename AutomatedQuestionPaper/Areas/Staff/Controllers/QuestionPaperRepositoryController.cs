@@ -1,18 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 using System.Web.Mvc;
 using AutomatedQuestionPaper.Areas.Staff.Models;
 using AutomatedQuestionPaper.Models;
-
 
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
     [SessionCheckStaff]
     public class QuestionPaperRepositoryController : Controller
     {
-        DatabaseContext _context = new DatabaseContext();
+        private readonly DatabaseContext _context = new DatabaseContext();
 
         // GET: Staff/QuestionPaperRepository
         public ActionResult Index()
