@@ -170,8 +170,10 @@
     <Compile Include="Areas\Staff\Controllers\ManualTypeController.cs" />
     <Compile Include="Areas\Staff\Controllers\QuestionController.cs" />
     <Compile Include="Areas\Staff\Controllers\QuestionPaperCreationController.cs" />
+    <Compile Include="Areas\Staff\Controllers\QuestionPaperRepositoryController.cs" />
     <Compile Include="Areas\Staff\Controllers\StaffHomePageController.cs" />
     <Compile Include="Areas\Staff\Models\ChapterDetails.cs" />
+    <Compile Include="Areas\Staff\Models\PdfHandler.cs" />
     <Compile Include="Areas\Staff\Models\QuestionFormatCsv.cs" />
     <Compile Include="Areas\Staff\Models\StaffChapterOperation.cs" />
     <Compile Include="Areas\Staff\Models\DatabaseStaffOperations.cs" />
@@ -353,6 +355,11 @@
     <Content Include="ML_Algorithm\ParagraphQuestionGeneration\README.md" />
     <Content Include="ML_Algorithm\ParagraphQuestionGeneration\report.md" />
     <Content Include="ML_Algorithm\ParagraphQuestionGeneration\u.Id" />
+    <Content Include="Areas\Staff\Views\QuestionPaperCreation\Index.cshtml" />
+    <Content Include="Areas\Staff\Uploads\sample.pdf" />
+    <Content Include="Areas\Staff\Views\QuestionPaperRepository\Index.cshtml" />
+    <Content Include="App_Data\QuestionPapers\endsem.docx" />
+    <Content Include="App_Data\QuestionPapers\insem.doc" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -404,7 +411,6 @@
     <Folder Include="Areas\Staff\Uploads\CSV\" />
     <Folder Include="Areas\Staff\Uploads\Excel\" />
     <Folder Include="Areas\Staff\Uploads\Word\" />
-    <Folder Include="Areas\Staff\Views\QuestionPaperCreation\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

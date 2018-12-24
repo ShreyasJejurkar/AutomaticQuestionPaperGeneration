@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Web.Mvc;
+using AutomatedQuestionPaper.Areas.Staff.Models;
 using IronPython.Hosting;
 using Microsoft.Scripting.Hosting;
 
@@ -14,7 +15,6 @@ namespace AutomatedQuestionPaper.Controllers
         public ActionResult Index()
         {
             Session["Username"] = Session["Staff_Name"] = null;
-
 
             return View();
         }
