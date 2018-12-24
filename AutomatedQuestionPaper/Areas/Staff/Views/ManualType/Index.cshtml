@@ -16,81 +16,89 @@
 }
 
 
-
-
 <form onsubmit="return true">
-    <div>
-        <label class="col-form-label">Semester</label>
-        <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Semester</label>
+            <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Department</label>
+            <select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
+        </div>
     </div>
 
-    <div>
-        <label class="col-form-label">Department</label>
-        <select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Subject</label>
+            <select id="selectedSubject" name="selectedSubject" class="form-control" data-val="true" data-val-required="The subject field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedSubject" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Unit no</label>
+            <select id="selectedUnit" name="selectedUnit" class="form-control" data-val="true" data-val-required="The unit field is required">
+                <option selected disabled>---Select---</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedUnit" data-valmsg-replace="true"></span>
+        </div>
     </div>
 
-    <div>
-        <label class="col-form-label">Subject</label>
-        <select id="selectedSubject" name="selectedSubject" class="form-control" data-val="true" data-val-required="The subject field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedSubject" data-valmsg-replace="true"></span>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">ExamType</label>
+            <select id="ExamType" name="ExamType" class="form-control" data-val="true" data-val-required="The ExamType field is required">
+                <option selected disabled>---Select---</option>
+                <option>InSem</option>
+                <option>EndSem</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="ExamType" data-valmsg-replace="true"></span>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Chapter name</label>
+            <select id="chapterName" name="chapterName" class="form-control" data-val="true" data-val-required="The chapter name field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="chapterName" data-valmsg-replace="true"></span>
+        </div>
     </div>
 
-    <div>
-        <label class="col-form-label">Unit no</label>
-        <select id="selectedUnit" name="selectedUnit" class="form-control" data-val="true" data-val-required="The unit field is required">
-            <option selected disabled>---Select---</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-        </select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedUnit" data-valmsg-replace="true"></span>
+    <div class="row">
+        <div class="col">
+            <label class="col-form-label">Question</label>
+            <input type="text" name="question" id="question" class="form-control" data-val="true" data-val-required="The question is required" required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="question" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label class="col-form-label">Difficulty level</label>
+            <select id="difficultyLevel" name="difficultyLevel" class="form-control" data-val="true" data-val-required="The difficulty level field is required">
+                <option selected disabled>---Select---</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+                <option>7</option>
+                <option>8</option>
+                <option>9</option>
+                <option>10</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="difficultyLevel" data-valmsg-replace="true"></span>
+        </div>
     </div>
     
-    <div>
-        <label class="col-form-label">ExamType</label>
-        <select id="ExamType" name="ExamType" class="form-control" data-val="true" data-val-required="The ExamType field is required">
-            <option selected disabled>---Select---</option>
-            <option>InSem</option>
-            <option>EndSem</option>
-        </select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="ExamType" data-valmsg-replace="true"></span>
-    </div>
-
-
-    <div>
-        <label class="col-form-label">Chapter name</label>
-        <select id="chapterName" name="chapterName" class="form-control" data-val="true" data-val-required="The chapter name field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="chapterName" data-valmsg-replace="true"></span>
-    </div>
-
-    <div>
-        <label class="col-form-label">Question</label>
-        <input type="text" name="question" id="question" class="form-control" data-val="true" data-val-required="The chapter name field is required" required />
-        <span class="field-validation-valid text-danger" data-valmsg-for="question" data-valmsg-replace="true"></span>
-    </div>
+    <br/>
     
-    <div>
-        <label class="col-form-label">Difficulty level</label>
-        <select id="difficultyLevel" name="difficultyLevel" class="form-control" data-val="true" data-val-required="The difficulty level field is required">
-            <option selected disabled>---Select---</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-            <option>7</option>
-            <option>8</option>
-            <option>9</option>
-            <option>10</option>
-        </select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="difficultyLevel" data-valmsg-replace="true"></span>
-    </div>
 
     <div class="form-group">
         <input type="submit" value="Submit" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit" />
@@ -252,7 +260,7 @@
                             question: question,
                             examType: $("#ExamType option:selected").text(),
                             level: level
-                        }, 
+                        },
                         success: function(mess) {
                             console.log(mess);
                         }
