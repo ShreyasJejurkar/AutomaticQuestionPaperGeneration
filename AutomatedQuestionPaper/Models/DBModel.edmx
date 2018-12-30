@@ -61,6 +61,7 @@
           <Property Name="StaffId" Type="int" />
           <Property Name="PaperName" Type="nvarchar" MaxLength="50" />
           <Property Name="PaperValue" Type="varbinary(max)" />
+          <Property Name="PaperValueWord" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="Questions">
           <Key>
@@ -203,6 +204,7 @@
           <Property Name="StaffId" Type="Int32" />
           <Property Name="PaperName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PaperValue" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <Property Name="PaperValueWord" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="Question">
           <Key>
@@ -347,7 +349,8 @@
     <EntitySetMapping Name="ExamPapers">
       <EntityTypeMapping TypeName="IsTypeOf(DatabaseModel.ExamPaper)">
         <MappingFragment StoreEntitySet="ExamPapers">
-          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="PaperValueWord" ColumnName="PaperValueWord" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
           <ScalarProperty Name="StaffId" ColumnName="StaffId" />
           <ScalarProperty Name="PaperName" ColumnName="PaperName" />
           <ScalarProperty Name="PaperValue" ColumnName="PaperValue" />
