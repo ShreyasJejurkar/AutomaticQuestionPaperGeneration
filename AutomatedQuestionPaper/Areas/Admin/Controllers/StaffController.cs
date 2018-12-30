@@ -92,7 +92,8 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
             // Set the fail message if teacher ID not found. 
             ViewBag.TeacherNotFoundErrorMessage = "Teacher does not exists. Please check ID";
-            return View();
+
+            return View("Index");
         }
     }
 }
