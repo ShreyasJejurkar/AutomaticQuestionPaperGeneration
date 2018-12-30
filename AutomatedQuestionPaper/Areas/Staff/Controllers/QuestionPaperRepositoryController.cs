@@ -14,8 +14,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         public ActionResult Index()
         {
             var data = _context.ExamPapers.ToList();
-
-
+            
             return View(data);
         }
 
@@ -35,6 +34,12 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             TempData["QuestionPaperDeleted"] = "Question paper deleted";
 
             return RedirectToAction("Index");
+        }
+
+        public ActionResult QuestionPaperDownloadWord(int id)
+        {
+            var data = WordHandler.DownloadWordFile(id);
+            return data;
         }
     }
 }
