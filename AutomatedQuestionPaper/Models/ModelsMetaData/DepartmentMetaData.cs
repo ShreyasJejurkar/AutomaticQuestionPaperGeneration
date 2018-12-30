@@ -5,8 +5,7 @@ namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
     public class DepartmentMetaData
     {
-        [Key]
-        public int Id { get; set; }
+        [Key] public int Id { get; set; }
 
         [DataType(DataType.Text)]
         [DisplayName("Department name")]

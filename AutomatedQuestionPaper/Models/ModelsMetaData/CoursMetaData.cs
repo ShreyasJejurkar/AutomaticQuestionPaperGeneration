@@ -3,8 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
-    using System;
-
     public class CourseMetaData
     {
         [Key]
@@ -12,8 +10,7 @@ namespace AutomatedQuestionPaper.Models.ModelsMetaData
         [Required]
         public int Courseid { get; set; }
 
-        [DisplayName("Department name")]
-        public Nullable<int> DepartmentId { get; set; }
+        [DisplayName("Department name")] public int? DepartmentId { get; set; }
 
         [DataType(DataType.Text)]
         [Required]
@@ -24,10 +21,8 @@ namespace AutomatedQuestionPaper.Models.ModelsMetaData
         [Required]
         [DisplayName("Description")]
         public string Description { get; set; }
-        
-        [Required]
-        [DisplayName("Year")]
-        public string Year { get; set; }
+
+        [Required] [DisplayName("Year")] public string Year { get; set; }
 
         [Required]
         [DisplayName("Subject code")]

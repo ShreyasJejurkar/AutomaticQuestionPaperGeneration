@@ -3,14 +3,14 @@
 namespace AutomatedQuestionPaper.Models
 {
     /// <summary>
-    /// Performs authentication for users and admin
+    ///     Performs authentication for users and admin
     /// </summary>
     public static class Authentication
     {
         // EF database context
         private static readonly DatabaseContext Context = new DatabaseContext();
 
-        public static (int status , string authenticatedUserName) Authenticate(Admin user)
+        public static (int status, string authenticatedUserName) Authenticate(Admin user)
         {
             //Check if user is admin or not!
             var dbUser =
@@ -22,16 +22,10 @@ namespace AutomatedQuestionPaper.Models
                 var staffUser =
                     Context.Staffs.FirstOrDefault(T => T.Email == user.Username && T.Password == user.Password);
 
-                if (staffUser != null)
-                {
-                    return (1, staffUser.Name);
-                }
+                if (staffUser != null) return (1, staffUser.Name);
             }
 
-            if (dbUser != null)
-            {
-                return (2, dbUser.Username);
-            }
+            if (dbUser != null) return (2, dbUser.Username);
 
             return (0, null);
         }

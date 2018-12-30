@@ -21,7 +21,7 @@ else
     ViewBag.Title = $@"{Model.Name} (Staff) Home Page";
     Layout = "~/Areas/Staff/Views/Shared/_staffLoginLayoutPage.cshtml";
 
-    <br />
+    <br/>
     <h2>@Model.Name Management Panel</h2>
 
     <div style="text-align: center">
@@ -60,13 +60,14 @@ else
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
-        $(function () {
+        $(function() {
             $(".card").css('transition', '0.2s');
 
             $(".card").hover(
-                function () {
+                function() {
                     $(this).addClass('shadow-lg').css('cursor', 'pointer');
-                }, function () {
+                },
+                function() {
                     $(this).removeClass('shadow-lg');
                 }
             );

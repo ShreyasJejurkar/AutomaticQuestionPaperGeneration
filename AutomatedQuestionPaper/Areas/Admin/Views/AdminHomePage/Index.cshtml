@@ -1,6 +1,6 @@
 ﻿@model AutomatedQuestionPaper.Models.Admin
 
-<br />
+<br/>
 
 @if (TempData["SessionErrorMessage"] != null)
 {
@@ -65,14 +65,15 @@ else
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
-        $(function () {
+        $(function() {
 
             $(".card").css('transition', '0.2s');
 
-            $( ".card" ).hover(
+            $(".card").hover(
                 function() {
                     $(this).addClass('shadow-lg').css('cursor', 'pointer');
-                }, function() {
+                },
+                function() {
                     $(this).removeClass('shadow-lg');
                 }
             );

@@ -5,7 +5,7 @@
 
 
 <h2>Step : 1</h2>
-<hr />
+<hr/>
 <h3>Check for questions availability</h3>
 
 <form onsubmit="return true">
@@ -38,7 +38,7 @@
     </div>
 
     <div class="form-group">
-        <input type="submit" value="Check" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit" />
+        <input type="submit" value="Check" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit"/>
     </div>
 </form>
 
@@ -50,7 +50,7 @@
         $(function() {
 
             $.ajax({
-                url: '@Url.Action("GetAllocatedSemesters","Chapter")',
+                url: '@Url.Action("GetAllocatedSemesters", "Chapter")',
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -65,7 +65,11 @@
 
                 },
                 error: function(xhr, thrownError) {
-                    alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                    alert("Something went wrong. \nProblem description -  Error code " +
+                        xhr.status +
+                        "Message" +
+                        thrownError +
+                        "");
                 }
             });
 
@@ -93,7 +97,11 @@
                         $("#selectedUnit").prop("selectedIndex", 0);
                     },
                     error: function(xhr, thrownError) {
-                        alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                        alert("Something went wrong. \nProblem description -  Error code " +
+                            xhr.status +
+                            "Message" +
+                            thrownError +
+                            "");
                     }
 
                 });
@@ -103,7 +111,7 @@
                 var dept = $("#selectedDepartment option:selected").val();
                 var sem = $("#selectedSemester option:selected").val();
                 $.ajax({
-                    url: '@Url.Action("GetSubjectsList","Chapter")',
+                    url: '@Url.Action("GetSubjectsList", "Chapter")',
                     type: 'GET',
                     dataType: 'json',
                     data: {
@@ -121,7 +129,11 @@
                         $("#selectedUnit").prop("disabled", false);
                     },
                     error: function(xhr, thrownError) {
-                        alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                        alert("Something went wrong. \nProblem description -  Error code " +
+                            xhr.status +
+                            "Message" +
+                            thrownError +
+                            "");
                     }
                 });
             });

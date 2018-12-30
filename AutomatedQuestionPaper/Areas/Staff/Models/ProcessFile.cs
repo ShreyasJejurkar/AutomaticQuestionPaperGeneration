@@ -39,12 +39,13 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
 
             return false;
         }
-        
+
         public static bool ValidateCsvFile(HttpPostedFileBase file)
         {
-            var csv = new CsvReader(File.OpenText(HttpContext.Current.Server.MapPath($"~/Areas/Staff/Uploads/CSV/{file.FileName}")));
+            var csv = new CsvReader(
+                File.OpenText(HttpContext.Current.Server.MapPath($"~/Areas/Staff/Uploads/CSV/{file.FileName}")));
             csv.Read();
-            
+
             var headers = csv.FieldHeaders.ToList();
 
             if (headers.Count != 2)
@@ -53,7 +54,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
                 return false;
             }
 
-            if (!((headers[0] == "Question") && (headers[1] == "Level")))
+            if (!(headers[0] == "Question" && headers[1] == "Level"))
             {
                 csv.Dispose();
                 return false;
@@ -63,7 +64,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
 
             return true;
         }
-        
+
 
         public static List<QuestionFormat> WordFile(HttpPostedFileBase file)
         {
@@ -77,29 +78,27 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
             {
                 if (ValidateCsvFile(file))
                 {
-                    var csv = new CsvReader(File.OpenText(HttpContext.Current.Server.MapPath($"~/Areas/Staff/Uploads/CSV/{file.FileName}")));
+                    var csv = new CsvReader(
+                        File.OpenText(
+                            HttpContext.Current.Server.MapPath($"~/Areas/Staff/Uploads/CSV/{file.FileName}")));
                     var records = csv.GetRecords<QuestionFormatCsv>().ToList();
                     csv.Dispose();
                     DeleteFile(file, 1);
                     return (records, "Success");
                 }
-                else
-                {
-                    DeleteFile(file, 1);
-                    return (null, "The file is not in correct format. Please check uploaded file");
-                }
+
+                DeleteFile(file, 1);
+                return (null, "The file is not in correct format. Please check uploaded file");
             }
-            else
-            {
-                return (null, "Something went wrong. File was not save successfully. Try again later");
-            }
+
+            return (null, "Something went wrong. File was not save successfully. Try again later");
         }
 
         public static List<QuestionFormat> ExcelFile(HttpPostedFileBase file)
         {
             if (SaveFile(file, 2))
             {
-               // TODO read excel file here
+                // TODO read excel file here
             }
 
             return null;

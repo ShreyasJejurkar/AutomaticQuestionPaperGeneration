@@ -1,12 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Staff.Models
 {
     /// <summary>
-    ///  Provides most frequently information about database objects
+    ///     Provides most frequently information about database objects
     /// </summary>
     public class DatabaseStaffOperations
     {
@@ -98,7 +97,8 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
 
             var data = Context.Chapters.Where(u =>
                     u.SemesterId == semesterId && u.DepartmentId == departmentId && u.CourseId == subjectId)
-                .Select(x => new { x.UnitNo, x.ChapterNo, x.ChapterName, x.SemesterId, x.CourseId ,x.DepartmentId }).ToList();
+                .Select(x => new {x.UnitNo, x.ChapterNo, x.ChapterName, x.SemesterId, x.CourseId, x.DepartmentId})
+                .ToList();
 
             var list = data.Select(x => new ChapterDetails
             {

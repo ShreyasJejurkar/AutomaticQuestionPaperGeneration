@@ -16,7 +16,8 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
             var wordStream = new MemoryStream();
             wordStream.Write(fileByteData.PaperValueWord, 0, fileByteData.PaperValueWord.Length);
             wordStream.Position = 0;
-            HttpContext.Current.Response.AddHeader("content-disposition", $"attachment; filename={fileByteData.PaperName}.doc");
+            HttpContext.Current.Response.AddHeader("content-disposition",
+                $"attachment; filename={fileByteData.PaperName}.doc");
             return new FileStreamResult(wordStream, "application/msword");
         }
     }

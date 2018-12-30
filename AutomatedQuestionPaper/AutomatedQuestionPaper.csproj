@@ -96,6 +96,10 @@
       <HintPath>..\packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
+    <Reference Include="Microsoft.Office.Interop.Word, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Office.Interop.Word.15.0.4797.1003\lib\net20\Microsoft.Office.Interop.Word.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Microsoft.Scripting, Version=1.2.2.0, Culture=neutral, PublicKeyToken=7f709c5b713576e1, processorArchitecture=MSIL">
       <HintPath>..\packages\DynamicLanguageRuntime.1.2.2\lib\net45\Microsoft.Scripting.dll</HintPath>
     </Reference>
@@ -104,6 +108,9 @@
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Doc">
+      <HintPath>..\..\..\..\..\..\Program Files (x86)\e-iceblue\Spire.Doc-Fe\Bin\NET4.0\Spire.Doc.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -168,11 +175,13 @@
     <Compile Include="Areas\Staff\Controllers\ChapterController.cs" />
     <Compile Include="Areas\Staff\Controllers\FileUploadController.cs" />
     <Compile Include="Areas\Staff\Controllers\ManualTypeController.cs" />
+    <Compile Include="Areas\Staff\Controllers\ParagraphQuestionController.cs" />
     <Compile Include="Areas\Staff\Controllers\QuestionController.cs" />
     <Compile Include="Areas\Staff\Controllers\QuestionPaperCreationController.cs" />
     <Compile Include="Areas\Staff\Controllers\QuestionPaperRepositoryController.cs" />
     <Compile Include="Areas\Staff\Controllers\StaffHomePageController.cs" />
     <Compile Include="Areas\Staff\Models\ChapterDetails.cs" />
+    <Compile Include="Areas\Staff\Models\InSemQuestionPaperGenerator.cs" />
     <Compile Include="Areas\Staff\Models\PdfHandler.cs" />
     <Compile Include="Areas\Staff\Models\QuestionFormatCsv.cs" />
     <Compile Include="Areas\Staff\Models\StaffChapterOperation.cs" />
@@ -181,6 +190,7 @@
     <Compile Include="Areas\Staff\Models\ProcessFile.cs" />
     <Compile Include="Areas\Staff\Models\QuestionFormat.cs" />
     <Compile Include="Areas\Staff\Models\StaffQuestionOperation.cs" />
+    <Compile Include="Areas\Staff\Models\WordHandler.cs" />
     <Compile Include="Areas\Staff\SessionCheckStaff.cs" />
     <Compile Include="Areas\Staff\StaffAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -274,12 +284,6 @@
     <Content Include="Images\question.jpg" />
     <Content Include="Images\semester.png" />
     <Content Include="Images\staff management.png" />
-    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\file.txt" />
-    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\gen.py" />
-    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\in.txt" />
-    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\output.txt" />
-    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\quest.py" />
-    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\requirements.txt" />
     <Content Include="Models\DBModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>DBModel.edmx</DependentUpon>
@@ -352,14 +356,12 @@
     <Content Include="Areas\Staff\Views\ManualType\EditQuestionDetails.cshtml" />
     <Content Include="Areas\Staff\Views\FileUpload\Index.cshtml" />
     <Content Include="Areas\Staff\Views\ManualType\QuestionRepository.cshtml" />
-    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\README.md" />
-    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\report.md" />
-    <Content Include="ML_Algorithm\ParagraphQuestionGeneration\u.Id" />
     <Content Include="Areas\Staff\Views\QuestionPaperCreation\Index.cshtml" />
     <Content Include="Areas\Staff\Uploads\sample.pdf" />
     <Content Include="Areas\Staff\Views\QuestionPaperRepository\Index.cshtml" />
-    <Content Include="App_Data\QuestionPapers\endsem.docx" />
-    <Content Include="App_Data\QuestionPapers\insem.doc" />
+    <Content Include="App_Data\QuestionPapersFormat\endsem.docx" />
+    <Content Include="App_Data\QuestionPapersFormat\insem.doc" />
+    <Content Include="Areas\Staff\Views\ParagraphQuestion\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -407,6 +409,8 @@
     <Content Include="Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\GeneratedQuestionPaper\" />
+    <Folder Include="App_Data\PdfQuestionPapers\" />
     <Folder Include="Areas\Admin\Views\Question\" />
     <Folder Include="Areas\Staff\Uploads\CSV\" />
     <Folder Include="Areas\Staff\Uploads\Excel\" />

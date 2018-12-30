@@ -37,7 +37,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             // Get a selected Semester Id
             var semester = _context.Semesters.FirstOrDefault(u => u.SemesterName == selectedSemester);
             if (semester != null) semesterId = semester.Id;
-            
+
             // Get a selected staff Id
             var staff = _context.Staffs.FirstOrDefault(u => u.Name == selectedStaff);
             if (staff != null) staffId = staff.Id;

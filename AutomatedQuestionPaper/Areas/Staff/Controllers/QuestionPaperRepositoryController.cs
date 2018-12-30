@@ -14,7 +14,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         public ActionResult Index()
         {
             var data = _context.ExamPapers.ToList();
-            
+
             return View(data);
         }
 
@@ -26,7 +26,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
         public ActionResult QuestionPaperDelete(int id)
         {
-            var examPaper = _context.ExamPapers.FirstOrDefault(i=>i.Id == id);
+            var examPaper = _context.ExamPapers.FirstOrDefault(i => i.Id == id);
             _context.ExamPapers.Remove(examPaper);
 
             _context.SaveChanges();

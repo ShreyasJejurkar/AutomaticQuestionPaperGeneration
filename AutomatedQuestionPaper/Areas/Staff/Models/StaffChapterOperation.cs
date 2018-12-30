@@ -16,7 +16,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
 
             var subjectId = GetCourseInfo(selectedSubject).Courseid;
 
-            Context.Chapters.Add(new Chapter()
+            Context.Chapters.Add(new Chapter
             {
                 ChapterName = chapterName,
                 ChapterNo = Convert.ToInt32(chapterNumber),

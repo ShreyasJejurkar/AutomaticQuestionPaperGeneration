@@ -52,25 +52,21 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table table-bordered table-striped table-responsive-lg">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DepartmentName)
-        </th>
-        <th></th>
-    </tr>
 
-    @foreach (var item in Model)
-    {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.DepartmentName)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new {id = item.Id}) |
-                @Html.ActionLink("Delete", "Delete", new {id = item.Id})
-            </td>
-        </tr>
-    }
+@{
+    var grid = new WebGrid();
+    grid.Bind(Model);
+}
 
-</table>
+@grid.GetHtml("table table-bordered table-striped table-responsive-lg ",
+    mode: WebGridPagerModes.All,
+    firstText: "<< First",
+    previousText: "< Prev",
+    nextText: "Next >",
+    lastText: "Last >>",
+    columns: grid.Columns(
+        grid.Column("Id", "Id"),
+        grid.Column("DepartmentName", "Department name"),
+        grid.Column(format: @<text>@Html.ActionLink("Edit", "Edit", new {id = item.Id}, new {@class = "btn btn-outline-primary"}) </text>),
+        grid.Column(format: @<text>@Html.ActionLink("Delete", "Delete", new {id = item.Id}, new {onclick = "return confirm('Are you sure you wish to delete this department ?');", @class = "btn btn-outline-secondary"})</text>))
+    )

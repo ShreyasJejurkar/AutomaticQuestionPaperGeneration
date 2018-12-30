@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<br />
+<br/>
 @if (TempData["SessionErrorMessage"] != null)
 {
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -30,29 +30,29 @@
 {
     @Html.AntiForgeryToken()
 
-    <div style="width: 50%; margin: 0 auto;">
+    <div style="margin: 0 auto; width: 50%;">
         <h3 class="display-4" style="text-align: center">Log in</h3>
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
         <div class="form-group">
-            @Html.LabelFor(model => model.Username, new { @class = "" })
+            @Html.LabelFor(model => model.Username, new {@class = ""})
             <div class="">
-                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Username, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Username, "", new {@class = "text-danger"})
                 <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Password, new { @class = "" })
+            @Html.LabelFor(model => model.Password, new {@class = ""})
             <div class="">
-                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
             </div>
         </div>
 
         <div class="form-group" style="text-align: center">
             <div class="">
-                <input type="submit" value="Sign in" class="btn btn-primary btn-lg" />
+                <input type="submit" value="Sign in" class="btn btn-primary btn-lg"/>
             </div>
         </div>
     </div>

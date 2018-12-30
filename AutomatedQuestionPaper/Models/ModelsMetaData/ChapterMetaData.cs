@@ -3,27 +3,22 @@ using System.ComponentModel.DataAnnotations;
 
 namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
-    using System;
-
     public class ChapterMetaData
     {
-        [Key]
-        public int Id { get; set; }
+        [Key] public int Id { get; set; }
 
 
-        public Nullable<int> CourseId { get; set; }
+        public int? CourseId { get; set; }
 
-        public Nullable<int> ChapterNo { get; set; }
+        public int? ChapterNo { get; set; }
 
         [DataType(DataType.Text)]
         [DisplayName("Chapter name")]
         [Required]
         public string ChapterName { get; set; }
 
-        public Nullable<int> UnitNo { get; set; }
-        public Nullable<int> SemesterId { get; set; }
-        public Nullable<int> DepartmentId { get; set; }
-
-
+        public int? UnitNo { get; set; }
+        public int? SemesterId { get; set; }
+        public int? DepartmentId { get; set; }
     }
 }

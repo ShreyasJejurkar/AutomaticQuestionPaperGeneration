@@ -50,7 +50,7 @@
     </div>
 
     <div class="form-group">
-        <input type="submit" value="Submit" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit" />
+        <input type="submit" value="Submit" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit"/>
     </div>
 }
 
@@ -69,24 +69,24 @@
             </th>
         </tr>
         <tbody>
-            @foreach (var data in Model)
-            {
-                <tr>
-                    <td style="border:1px solid black">
-                        @data.UnitNo
-                    </td>
-                    <td style="border:1px solid black">
-                        @data.ChapterNo
-                    </td>
-                    <td style="border:1px solid black">
-                        @data.ChapterName
-                    </td>
-                    <td style="border: 1px solid black">
-                        @Html.ActionLink("Edit", "EditChapterDetails", new { name = data.ChapterName, semester = data.SemesterId, department = data.DepartmentId, subjectId = data.SubjectId }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
-                        @Html.ActionLink("Delete", "DeleteChapter", new { name = data.ChapterName, semester = data.SemesterId, department  = data.DepartmentId, subjectId = data.SubjectId }, htmlAttributes: new { @class = "btn btn-outline-secondary" })
-                    </td>
-                </tr>
-            }
+        @foreach (var data in Model)
+        {
+            <tr>
+                <td style="border: 1px solid black">
+                    @data.UnitNo
+                </td>
+                <td style="border: 1px solid black">
+                    @data.ChapterNo
+                </td>
+                <td style="border: 1px solid black">
+                    @data.ChapterName
+                </td>
+                <td style="border: 1px solid black">
+                    @Html.ActionLink("Edit", "EditChapterDetails", new {name = data.ChapterName, semester = data.SemesterId, department = data.DepartmentId, subjectId = data.SubjectId}, new {@class = "btn btn-outline-secondary"})
+                    @Html.ActionLink("Delete", "DeleteChapter", new {name = data.ChapterName, semester = data.SemesterId, department = data.DepartmentId, subjectId = data.SubjectId}, new {@class = "btn btn-outline-secondary"})
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
 }
@@ -96,7 +96,7 @@
 {
     @Scripts.Render("~/bundles/jqueryval")
     <script>
-        $(function () {
+        $(function() {
 
             $("#selectedDepartment").prop("disabled", true);
             $("#selectedSubject").prop("disabled", true);
@@ -118,7 +118,11 @@
 
                 },
                 error: function(xhr, thrownError) {
-                    alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                    alert("Something went wrong. \nProblem description -  Error code " +
+                        xhr.status +
+                        "Message" +
+                        thrownError +
+                        "");
                 }
             });
 
@@ -144,7 +148,11 @@
                         $("#selectedSubject").prop("disabled", false);
                     },
                     error: function(xhr, thrownError) {
-                        alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                        alert("Something went wrong. \nProblem description -  Error code " +
+                            xhr.status +
+                            "Message" +
+                            thrownError +
+                            "");
                     }
 
                 });
@@ -172,13 +180,17 @@
                         $("#selectedUnit").prop("disabled", false);
                     },
                     error: function(xhr, thrownError) {
-                        alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                        alert("Something went wrong. \nProblem description -  Error code " +
+                            xhr.status +
+                            "Message" +
+                            thrownError +
+                            "");
                     }
 
                 });
             });
 
-            $("#ChapterFormSubmit").click(function (e) {
+            $("#ChapterFormSubmit").click(function(e) {
 
 
             });

@@ -14,7 +14,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
         public ChapterController()
         {
-            var staffName = (string)System.Web.HttpContext.Current.Session["Staff_Name"];
+            var staffName = (string) System.Web.HttpContext.Current.Session["Staff_Name"];
 
             _db = new DatabaseStaffOperations(staffName);
         }
@@ -26,7 +26,8 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         }
 
         [HttpPost]
-        public ActionResult AddChapter(string selectedSemester, string selectedDepartment, string selectedSubject, string selectedUnit, string chapterNumber, string chapterName)
+        public ActionResult AddChapter(string selectedSemester, string selectedDepartment, string selectedSubject,
+            string selectedUnit, string chapterNumber, string chapterName)
         {
             StaffChapterOperation.AddChapter(selectedSemester, selectedDepartment, selectedSubject, selectedUnit,
                 chapterNumber, chapterName);
@@ -79,10 +80,10 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             var semId = Convert.ToInt32(semester);
             var depId = Convert.ToInt32(department);
             var subId = Convert.ToInt32(subjectId);
-            
+
             var chapterId = _context.Chapters.FirstOrDefault(u =>
                 u.ChapterName == name && u.SemesterId == semId && u.DepartmentId == depId && u.CourseId == subId)?.Id;
-                
+
 
             var chapterInfo = _context.Chapters.FirstOrDefault(u => u.Id == chapterId);
 
@@ -98,7 +99,8 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         }
 
         [HttpPost]
-        public ActionResult EditChapterDetails(Chapter chap, string selectedSemester, string selectedDepartment, string selectedUnit)
+        public ActionResult EditChapterDetails(Chapter chap, string selectedSemester, string selectedDepartment,
+            string selectedUnit)
         {
             // Get a corresponding chapter from db
             var dbChapter = _context.Chapters.FirstOrDefault(u => u.Id == chap.Id);

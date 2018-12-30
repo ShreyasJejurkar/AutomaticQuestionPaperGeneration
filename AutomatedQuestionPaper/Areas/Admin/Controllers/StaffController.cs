@@ -23,8 +23,9 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             // Find the corresponding staff details as per ID
             var teacherDb = _context.Staffs.SingleOrDefault(u => u.Id == id);
 
-            return View("TeacherEdit", teacherDb);        }
-        
+            return View("TeacherEdit", teacherDb);
+        }
+
         [HttpPost]
         public ActionResult StaffEditSaveChanges(Models.Staff editedStaffDetails)
         {
@@ -70,7 +71,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 
             return RedirectToAction("Index", "Staff");
         }
-        
+
         [HttpGet]
         public ActionResult DeleteTeacher(int id)
         {

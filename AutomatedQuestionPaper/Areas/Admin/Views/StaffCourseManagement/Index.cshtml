@@ -64,7 +64,7 @@
 
 
     <script>
-        $(function () {
+        $(function() {
 
             $("#selectedSubject").prop("disabled", true);
 
@@ -90,8 +90,12 @@
 
                     },
                     error: function(xhr, thrownError) {
-                    alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
-                }
+                        alert("Something went wrong. \nProblem description -  Error code " +
+                            xhr.status +
+                            "Message" +
+                            thrownError +
+                            "");
+                    }
                 });
             });
         });

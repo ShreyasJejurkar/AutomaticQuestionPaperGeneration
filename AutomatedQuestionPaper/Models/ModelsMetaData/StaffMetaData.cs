@@ -4,12 +4,11 @@ using System.ComponentModel.DataAnnotations;
 namespace AutomatedQuestionPaper.Models.ModelsMetaData
 {
     /// <summary>
-    /// Meta data type class for Staff
+    ///     Meta data type class for Staff
     /// </summary>
     public class StaffMetaData
     {
-        [Key]
-        public int Id { get; set; }
+        [Key] public int Id { get; set; }
 
         [DataType(DataType.Text)]
         [MinLength(5, ErrorMessage = "Please enter at least 5 characters")]

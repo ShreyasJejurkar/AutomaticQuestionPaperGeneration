@@ -5,17 +5,17 @@
 
 @if (TempData["QuestionAddedSuccessfully"] != null)
 {
-<div class="alert alert-success alert-dismissible fade show" role="alert">
-    @TempData["QuestionAddedSuccessfully"]
-    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-    </button>
-</div>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["QuestionAddedSuccessfully"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
 }
 
 <h3>Ways to add questions</h3>
 
-<a class="btn btn-outline-primary" href="@Url.Action("Index","ManualType")">Manual Typing</a>
-<a class="btn btn-outline-secondary" href="@Url.Action("Index","FileUpload")">File upload</a>
-<a class="btn btn-outline-secondary" href="@Url.Action("QuestionRepository","ManualType")">Question repository</a>
-<a class="btn btn-outline-secondary" href="@Url.Action("Index","ParagraphQuestion")">Question repository</a>
+<a class="btn btn-outline-primary" href="@Url.Action("Index", "ManualType")">Manual Typing</a>
+<a class="btn btn-outline-secondary" href="@Url.Action("Index", "FileUpload")">File upload</a>
+<a class="btn btn-outline-secondary" href="@Url.Action("QuestionRepository", "ManualType")">Question repository</a>
+<a class="btn btn-outline-secondary" href="@Url.Action("Index", "ParagraphQuestion")">Question repository</a>

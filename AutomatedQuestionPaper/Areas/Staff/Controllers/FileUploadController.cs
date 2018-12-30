@@ -20,7 +20,9 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         }
 
         [HttpPost]
-        public ActionResult QuestionFileUpload(string selectedFileType, HttpPostedFileBase fileControl, string selectedSemester, string selectedDepartment, string selectedSubject, string selectedUnit, string ExamType, string chapterName)
+        public ActionResult QuestionFileUpload(string selectedFileType, HttpPostedFileBase fileControl,
+            string selectedSemester, string selectedDepartment, string selectedSubject, string selectedUnit,
+            string ExamType, string chapterName)
         {
             var extension = Path.GetExtension(fileControl.FileName);
 
@@ -34,19 +36,21 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             var semesterId = DatabaseData.GetSemesterInfo(selectedSemester)?.Id;
 
             var unit = Convert.ToInt32(selectedUnit);
-            
-            var type = (int)Enum.Parse(typeof(ExamType), ExamType);
 
-            var chapterId = _context.Chapters.FirstOrDefault(x => x.SemesterId == semesterId && x.DepartmentId == departmentId && x.CourseId == subjectId && x.UnitNo == unit && x.ChapterName == chapterName)?.Id;
-            
+            var type = (int) Enum.Parse(typeof(ExamType), ExamType);
+
+            var chapterId = _context.Chapters.FirstOrDefault(x =>
+                x.SemesterId == semesterId && x.DepartmentId == departmentId && x.CourseId == subjectId &&
+                x.UnitNo == unit && x.ChapterName == chapterName)?.Id;
+
             // Word file
-            if (extension == ".docx" || extension == ".doc") 
+            if (extension == ".docx" || extension == ".doc")
             {
                 ProcessFile.WordFile(fileControl);
             }
 
             // CSV file
-            else if (extension == ".csv" || extension == ".CSV") 
+            else if (extension == ".csv" || extension == ".CSV")
             {
                 var data = ProcessFile.CsvFile(fileControl);
                 if (data.questions == null)
@@ -54,29 +58,24 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                     TempData["UploadError"] = data.error;
                     return View("Index");
                 }
-                else
-                {
-                    foreach (var q in data.questions)
+
+                foreach (var q in data.questions)
+                    _context.Questions.Add(new Question
                     {
-                        _context.Questions.Add(new Question
-                        {
-                            ChapterId = chapterId,
-                            CourseId = subjectId,
-                            DepartmentId = Convert.ToString(departmentId),
-                            DifficultyLevel = q.Level,
-                            QuestionText = q.Question,
-                            QuestionType = type,
-                            SemesterId = Convert.ToString(semesterId),
-                            UnitId = unit
-                        });
-                    }
-                    _context.SaveChangesAsync();
+                        ChapterId = chapterId,
+                        CourseId = subjectId,
+                        DepartmentId = Convert.ToString(departmentId),
+                        DifficultyLevel = q.Level,
+                        QuestionText = q.Question,
+                        QuestionType = type,
+                        SemesterId = Convert.ToString(semesterId),
+                        UnitId = unit
+                    });
+                _context.SaveChangesAsync();
 
-                    TempData["QuestionAddedSuccessfully"] = "Question set added successfully";
+                TempData["QuestionAddedSuccessfully"] = "Question set added successfully";
 
-                    return RedirectToAction("Index","Question");
-                }
-
+                return RedirectToAction("Index", "Question");
             }
 
             // Excel file

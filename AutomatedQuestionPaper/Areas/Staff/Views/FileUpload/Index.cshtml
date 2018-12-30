@@ -16,11 +16,11 @@
 }
 
 
-@using (Html.BeginForm("QuestionFileUpload", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (Html.BeginForm("QuestionFileUpload", "FileUpload", FormMethod.Post, new {enctype = "multipart/form-data"}))
 {
     <div class="form-group">
         <label class="col-form-label">Select file</label>
-        <input type="file" id="fileControl" name="fileControl" class="form-control-file" required="required" />
+        <input type="file" id="fileControl" name="fileControl" class="form-control-file" required="required"/>
         <span class="field-validation-valid text-danger" data-valmsg-for="fileControl" data-valmsg-replace="true"></span>
     </div>
 
@@ -85,7 +85,7 @@
     </div>
 
     <div class="form-group">
-        <input type="submit" value="Submit" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit" />
+        <input type="submit" value="Submit" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit"/>
     </div>
 }
 

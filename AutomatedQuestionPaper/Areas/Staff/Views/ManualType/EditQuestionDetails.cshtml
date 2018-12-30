@@ -8,8 +8,8 @@
 
 @using (Html.BeginForm("EditQuestionDetails", "ManualType", FormMethod.Post))
 {
-
-    @Html.HiddenFor(x => x.Id);
+    @Html.HiddenFor(x => x.Id)
+    ;
 
     <div class="row">
         <div class="col-sm-12 col-lg-6">
@@ -17,7 +17,7 @@
             <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
             <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
         </div>
-        
+
         <div class="col-sm-12 col-lg-6">
             <label class="col-form-label">Semester</label>
             <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
@@ -65,7 +65,7 @@
 
     <div>
         <label class="col-form-label">Question</label>
-        <input type="text" name="question" id="question" value="@Model.QuestionText" class="form-control" data-val="true" data-val-required="The chapter name field is required" required />
+        <input type="text" name="question" id="question" value="@Model.QuestionText" class="form-control" data-val="true" data-val-required="The chapter name field is required" required/>
         <span class="field-validation-valid text-danger" data-valmsg-for="question" data-valmsg-replace="true"></span>
     </div>
 
@@ -77,12 +77,12 @@
 
 
     <div class="form-group">
-        <input type="submit" value="Edit" class="form-control btn btn-secondary" id="ChapterFormSubmit" name="ChapterFormSubmit" />
+        <input type="submit" value="Edit" class="form-control btn btn-secondary" id="ChapterFormSubmit" name="ChapterFormSubmit"/>
     </div>
 
 
     <div class="form-group">
-        @Html.ActionLink("Edit", "DeleteQuestion", new { Id = @Model.Id })
+        @Html.ActionLink("Edit", "DeleteQuestion", new {Model.Id})
     </div>
 }
 
@@ -116,8 +116,6 @@
             var type = '@TempData["Type-Name"]';
 
 
-
-
             for (var i = 1; i <= 6; i++) {
 
                 if (unitNo == i) {
@@ -130,9 +128,7 @@
             if (type == 'InSem') {
                 $("#ExamType").append("<option selected>" + "InSem" + "</option>");
                 $("#ExamType").append("<option>" + "EndSem" + "</option>");
-            }
-            else if (type == 'EndSem')
-            {
+            } else if (type == 'EndSem') {
                 $("#ExamType").append("<option>" + "InSem" + "</option>");
                 $("#ExamType").append("<option selected>" + "EndSem" + "</option>");
             }

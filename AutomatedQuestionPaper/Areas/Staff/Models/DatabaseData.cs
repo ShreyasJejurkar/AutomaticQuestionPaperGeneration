@@ -4,7 +4,7 @@ using AutomatedQuestionPaper.Models;
 namespace AutomatedQuestionPaper.Areas.Staff.Models
 {
     /// <summary>
-    /// Provides most frequently information about database objects
+    ///     Provides most frequently information about database objects
     /// </summary>
     public class DatabaseData
     {
@@ -12,7 +12,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
         private static readonly DatabaseContext Context = new DatabaseContext();
 
         /// <summary>
-        /// Provides semester information based on semester name
+        ///     Provides semester information based on semester name
         /// </summary>
         /// <param name="semesterName">Name of semester</param>
         /// <returns>Semester</returns>
@@ -23,7 +23,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
         }
 
         /// <summary>
-        /// Provides semester information based on department name
+        ///     Provides semester information based on department name
         /// </summary>
         /// <param name="departmentName">Name of department</param>
         /// <returns></returns>
@@ -34,7 +34,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
         }
 
         /// <summary>
-        /// Provides subject information based on subject name
+        ///     Provides subject information based on subject name
         /// </summary>
         /// <param name="subjectName">Name of subject</param>
         /// <returns>Subject</returns>

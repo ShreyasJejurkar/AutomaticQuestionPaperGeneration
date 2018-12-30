@@ -32,13 +32,13 @@
     columns: grid.Columns(
         grid.Column("Id", "Id"),
         grid.Column("PaperName", "Question paper name"),
-        grid.Column(format: @<text>@Html.ActionLink("PDF", "QuestionPaperView", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary btn-outline-warning" })</text>),
-        grid.Column(format: @<text>@Html.ActionLink("Word", "QuestionPaperDownloadWord", new { id = item.Id }, htmlAttributes: new { @class = "btn btn-secondary btn-outline-warning" })</text>),
-                        grid.Column(format: @<text>@Html.ActionLink("Delete",
-                                                       "QuestionPaperDelete",
-                                                       new { id = item.Id },
-                                                       htmlAttributes: new { onclick = "return confirm('Are you sure you wish to delete this article?');" , @class = "btn btn-secondary btn-outline-danger" }
-                                                       )</text>)
-                                        ))
+        grid.Column(format: @<text>@Html.ActionLink("PDF", "QuestionPaperView", new {id = item.Id}, new {@class = "btn btn-secondary btn-outline-warning"})</text>),
+        grid.Column(format: @<text>@Html.ActionLink("Word", "QuestionPaperDownloadWord", new {id = item.Id}, new {@class = "btn btn-secondary btn-outline-warning"})</text>),
+        grid.Column(format: @<text>@Html.ActionLink("Delete",
+                                       "QuestionPaperDelete",
+                                       new {id = item.Id},
+                                       new {onclick = "return confirm('Are you sure you wish to delete this article?');", @class = "btn btn-secondary btn-outline-danger"}
+                                       )</text>)
+        ))
 
 @Scripts.Render("~/bundles/jquery")

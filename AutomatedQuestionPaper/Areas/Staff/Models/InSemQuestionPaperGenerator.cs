@@ -8,32 +8,33 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
     public class InSemQuestionPaperGenerator
     {
         public string Department_Name;
-        public string Subject_Name;
-        
+
         public string Question1_A;
         public string Question1_B;
 
         public string Question2_A;
         public string Question2_B;
-        
+
         public string Question3_A;
         public string Question3_B;
-        
+
         public string Question4_A;
         public string Question4_B;
-        
+
         public string Question5_A;
         public string Question5_B;
-        
+
         public string Question6_A;
         public string Question6_B;
+        public string Subject_Name;
 
 
         public void GenerateQuestionPaper()
         {
-            var questionPaperFormatFilePath = HttpContext.Current.Server.MapPath("~/App_Data/QuestionPapersFormat/insem.doc");
+            var questionPaperFormatFilePath =
+                HttpContext.Current.Server.MapPath("~/App_Data/QuestionPapersFormat/insem.doc");
             var questionPaperPath = HttpContext.Current.Server.MapPath("~/App_Data/GeneratedQuestionPaper/sample.doc");
-            
+
             var doc = new Document();
             doc.LoadFromFile(questionPaperFormatFilePath);
 
@@ -56,7 +57,5 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
 
             PdfHandler.ConvertToPdf(questionPaperPath);
         }
-
-        
     }
 }

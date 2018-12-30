@@ -79,7 +79,7 @@
     </div>
 
     <div class="form-group">
-        <input type="submit" value="Submit" class="form-control btn btn-primary" id="QuestionSubmitButton" name="QuestionSubmitButton" />
+        <input type="submit" value="Submit" class="form-control btn btn-primary" id="QuestionSubmitButton" name="QuestionSubmitButton"/>
     </div>
 </form>
 
@@ -94,7 +94,7 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
-        $(function () {
+        $(function() {
 
             $("#selectedDepartment").prop("disabled", true);
             $("#selectedSubject").prop("disabled", true);
@@ -102,7 +102,7 @@
             $("#selectedSubject").prop("disabled", true);
 
             $.ajax({
-                url: '@Url.Action("GetAllocatedSemesters","Chapter")',
+                url: '@Url.Action("GetAllocatedSemesters", "Chapter")',
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -117,7 +117,11 @@
 
                 },
                 error: function(xhr, thrownError) {
-                    alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                    alert("Something went wrong. \nProblem description -  Error code " +
+                        xhr.status +
+                        "Message" +
+                        thrownError +
+                        "");
                 }
             });
 
@@ -145,7 +149,11 @@
                         $("#selectedUnit").prop("selectedIndex", 0);
                     },
                     error: function(xhr, thrownError) {
-                        alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                        alert("Something went wrong. \nProblem description -  Error code " +
+                            xhr.status +
+                            "Message" +
+                            thrownError +
+                            "");
                     }
 
                 });
@@ -155,7 +163,7 @@
                 var dept = $("#selectedDepartment option:selected").val();
                 var sem = $("#selectedSemester option:selected").val();
                 $.ajax({
-                    url: '@Url.Action("GetSubjectsList","Chapter")',
+                    url: '@Url.Action("GetSubjectsList", "Chapter")',
                     type: 'GET',
                     dataType: 'json',
                     data: {
@@ -173,7 +181,11 @@
                         $("#selectedUnit").prop("disabled", false);
                     },
                     error: function(xhr, thrownError) {
-                        alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                        alert("Something went wrong. \nProblem description -  Error code " +
+                            xhr.status +
+                            "Message" +
+                            thrownError +
+                            "");
                     }
 
                 });
@@ -207,7 +219,11 @@
                         $("#selectedUnit").prop("disabled", false);
                     },
                     error: function(xhr, thrownError) {
-                        alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                        alert("Something went wrong. \nProblem description -  Error code " +
+                            xhr.status +
+                            "Message" +
+                            thrownError +
+                            "");
                     }
 
                 });
@@ -223,27 +239,27 @@
                 var chapterName = $("#chapterName option:selected").text();
                 var type = $("#ExamType option:selected").text();
                 if (unit !== "---Select---") {
-                $.ajax({
-                    type: 'Post',
-                    url: '@Url.Action("QuestionRepository","ManualType")',
-                    dataType: 'html',
-                    data: {
-                        selectedSemester: semester,
-                        selectedDepartment: department,
-                        selectedSubject: subject,
-                        unitNo: unit,
-                        chapterName: chapterName,
-                        examType: type
-                    },
-                    success: function (data) {
-                        e.preventDefault();
-                        $("#questionList").html(data);
-                    },
-                    error: function (err) {
-                        e.preventDefault();
-                        $("#questionList").html(data);
-                    }
-                });
+                    $.ajax({
+                        type: 'Post',
+                        url: '@Url.Action("QuestionRepository", "ManualType")',
+                        dataType: 'html',
+                        data: {
+                            selectedSemester: semester,
+                            selectedDepartment: department,
+                            selectedSubject: subject,
+                            unitNo: unit,
+                            chapterName: chapterName,
+                            examType: type
+                        },
+                        success: function(data) {
+                            e.preventDefault();
+                            $("#questionList").html(data);
+                        },
+                        error: function(err) {
+                            e.preventDefault();
+                            $("#questionList").html(data);
+                        }
+                    });
                 } else {
                     alert("Please select all the fields");
                 }

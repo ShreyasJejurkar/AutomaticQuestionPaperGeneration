@@ -81,7 +81,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             return RedirectToActionPermanent("Index", _data);
         }
 
-
+        [HttpGet]
         public ActionResult Delete(int id)
         {
             if (id != 0)

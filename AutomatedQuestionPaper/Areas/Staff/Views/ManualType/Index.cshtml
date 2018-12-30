@@ -3,7 +3,7 @@
     ViewBag.Title = "Add question manually";
     Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
 }
-<br />
+<br/>
 
 @if (TempData["QuestionAdded"] != null)
 {
@@ -72,7 +72,7 @@
     <div class="row">
         <div class="col">
             <label class="col-form-label">Question</label>
-            <input type="text" name="question" id="question" class="form-control" data-val="true" data-val-required="The question is required" required />
+            <input type="text" name="question" id="question" class="form-control" data-val="true" data-val-required="The question is required" required/>
             <span class="field-validation-valid text-danger" data-valmsg-for="question" data-valmsg-replace="true"></span>
         </div>
     </div>
@@ -96,12 +96,12 @@
             <span class="field-validation-valid text-danger" data-valmsg-for="difficultyLevel" data-valmsg-replace="true"></span>
         </div>
     </div>
-    
+
     <br/>
-    
+
 
     <div class="form-group">
-        <input type="submit" value="Submit" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit" />
+        <input type="submit" value="Submit" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit"/>
     </div>
 </form>
 
@@ -110,13 +110,12 @@
 </div>
 
 
-
 @section Scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
-        $(function () {
+        $(function() {
 
             $("#selectedDepartment").prop("disabled", true);
             $("#selectedSubject").prop("disabled", true);
@@ -124,7 +123,7 @@
             $("#selectedSubject").prop("disabled", true);
 
             $.ajax({
-                url: '@Url.Action("GetAllocatedSemesters","Chapter")',
+                url: '@Url.Action("GetAllocatedSemesters", "Chapter")',
                 type: 'GET',
                 dataType: 'json',
                 success: function(data) {
@@ -139,7 +138,11 @@
 
                 },
                 error: function(xhr, thrownError) {
-                    alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                    alert("Something went wrong. \nProblem description -  Error code " +
+                        xhr.status +
+                        "Message" +
+                        thrownError +
+                        "");
                 }
             });
 
@@ -167,7 +170,11 @@
                         $("#selectedUnit").prop("selectedIndex", 0);
                     },
                     error: function(xhr, thrownError) {
-                        alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                        alert("Something went wrong. \nProblem description -  Error code " +
+                            xhr.status +
+                            "Message" +
+                            thrownError +
+                            "");
                     }
 
                 });
@@ -177,7 +184,7 @@
                 var dept = $("#selectedDepartment option:selected").val();
                 var sem = $("#selectedSemester option:selected").val();
                 $.ajax({
-                    url: '@Url.Action("GetSubjectsList","Chapter")',
+                    url: '@Url.Action("GetSubjectsList", "Chapter")',
                     type: 'GET',
                     dataType: 'json',
                     data: {
@@ -195,7 +202,11 @@
                         $("#selectedUnit").prop("disabled", false);
                     },
                     error: function(xhr, thrownError) {
-                        alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                        alert("Something went wrong. \nProblem description -  Error code " +
+                            xhr.status +
+                            "Message" +
+                            thrownError +
+                            "");
                     }
 
                 });
@@ -229,14 +240,18 @@
                         $("#selectedUnit").prop("disabled", false);
                     },
                     error: function(xhr, thrownError) {
-                        alert("Something went wrong. \nProblem description -  Error code " + xhr.status + "Message" + thrownError + "");
+                        alert("Something went wrong. \nProblem description -  Error code " +
+                            xhr.status +
+                            "Message" +
+                            thrownError +
+                            "");
                     }
 
                 });
             });
 
 
-            $("#ChapterFormSubmit").click(function (e) {
+            $("#ChapterFormSubmit").click(function(e) {
                 var semester = $("#selectedSemester option:selected").text();
                 var department = $("#selectedDepartment option:selected").text();
                 var subject = $("#selectedSubject option:selected").text();
@@ -248,7 +263,7 @@
                 if (unit !== "---Select---" && question !== "" && level !== "---Select---") {
                     $.ajax({
                         type: 'Get',
-                        url: '@Url.Action("AddQuestion","ManualType")',
+                        url: '@Url.Action("AddQuestion", "ManualType")',
                         dataType: 'application/json; charset=utf-8',
                         data: {
                             selectedSemester: semester,

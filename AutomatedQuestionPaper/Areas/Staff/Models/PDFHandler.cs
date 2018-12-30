@@ -19,7 +19,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
 
             d.SaveToFile(pathToSavePdf, FileFormat.PDF);
 
-           SaveQuestionPaper(pathToSavePdf, questionPaperPath);
+            SaveQuestionPaper(pathToSavePdf, questionPaperPath);
         }
 
         private static void SaveQuestionPaper(string pathPdf, string pathWord)
@@ -30,13 +30,13 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
             {
                 con.Open();
                 var fileStream = File.OpenRead(pathPdf);
-                byte[] contentPdf = new byte[fileStream.Length];
-                fileStream.Read(contentPdf, 0, (int)fileStream.Length);
+                var contentPdf = new byte[fileStream.Length];
+                fileStream.Read(contentPdf, 0, (int) fileStream.Length);
                 fileStream.Close();
 
                 var fileStream1 = File.OpenRead(pathWord);
-                byte[] contentWord = new byte[fileStream1.Length];
-                fileStream1.Read(contentWord, 0, (int)fileStream1.Length);
+                var contentWord = new byte[fileStream1.Length];
+                fileStream1.Read(contentWord, 0, (int) fileStream1.Length);
                 fileStream1.Close();
 
                 context.ExamPapers.Add(new ExamPaper
@@ -60,7 +60,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
         {
             var context = new DatabaseContext();
             var fileByteData = context.ExamPapers.FirstOrDefault(i => i.Id == id);
-            
+
             var pdfStream = new MemoryStream();
             pdfStream.Write(fileByteData.PaperValue, 0, fileByteData.PaperValue.Length);
             pdfStream.Position = 0;
@@ -70,6 +70,5 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
         }
 
         // TODO make a method for displaying word file same as DisplayPDf
-
     }
 }
