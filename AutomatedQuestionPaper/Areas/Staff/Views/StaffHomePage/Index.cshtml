@@ -25,31 +25,31 @@ else
     <h2>@Model.Name Management Panel</h2>
 
     <div style="text-align: center">
-        <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+        <div id="questionDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" height="180" src="~/Images/question.jpg" alt="Card image cap">
             <div class="card-body">
-                <a class="card-title" href="@Url.Action("Index", "Question")">Questions management</a>
+                <a class="card-title text-primary">Questions management</a>
             </div>
         </div>
 
-        <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+        <div id="chapterDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" height="180" src="~/Images/chapter.jpg" alt="Card image cap">
             <div class="card-body">
-                <a class="card-title" href="@Url.Action("Index", "Chapter")">Chapter management</a>
+                <a class="card-title text-primary">Chapter management</a>
             </div>
         </div>
 
-        <div class="card " style="float: left; height: 285px; margin: 10px; width: 12rem;">
+        <div id="paperCreationDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" height="180" src="~/Images/question paper.jpg" alt="Card image cap">
             <div class="card-body">
-                <a class="card-title" href="@Url.Action("Index", "PaperCreation")">Question Paper creation</a>
+                <a class="card-title text-primary">Question Paper creation</a>
             </div>
         </div>
 
-        <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+        <div id="paperRepositoryDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" height="180" src="~/Images/question paper repository.jpg" alt="Card image cap">
             <div class="card-body">
-                <a class="card-title" href="@Url.Action("Index", "QuestionPaperRepository")">Question Paper repository</a>
+                <a class="card-title text-primary">Question Paper repository</a>
             </div>
         </div>
     </div>
@@ -71,6 +71,26 @@ else
                     $(this).removeClass('shadow-lg');
                 }
             );
+
+            $("a.card-title.text-primary").hover(function () {
+                $(this).toggleClass("text-primary text-danger");
+            });
+
+            $("#questionDiv").click(function() {
+                window.location.href = "@Url.Action("Index", "Question")";
+            });
+
+            $("#chapterDiv").click(function() {
+                window.location.href = "@Url.Action("Index", "Chapter")";
+            });
+
+            $("#paperCreationDiv").click(function() {
+                window.location.href = "@Url.Action("Index", "PaperCreation")";
+            });
+
+            $("#paperRepositoryDiv").click(function() {
+                window.location.href = "@Url.Action("Index", "QuestionPaperRepository")";
+            });
         });
     </script>
 }
