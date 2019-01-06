@@ -11,9 +11,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
         public ActionResult Index()
         {
-            var list = _context.ExamPapers.ToList();
-
-            return View(list);
+            return View();
         }
     }
 }
