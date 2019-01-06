@@ -156,7 +156,7 @@
     <Compile Include="Areas\Staff\Controllers\ManualTypeController.cs" />
     <Compile Include="Areas\Staff\Controllers\ParagraphQuestionController.cs" />
     <Compile Include="Areas\Staff\Controllers\QuestionController.cs" />
-    <Compile Include="Areas\Staff\Controllers\QuestionPaperCreationController.cs" />
+    <Compile Include="Areas\Staff\Controllers\PaperCreationController.cs" />
     <Compile Include="Areas\Staff\Controllers\QuestionPaperRepositoryController.cs" />
     <Compile Include="Areas\Staff\Controllers\StaffHomePageController.cs" />
     <Compile Include="Areas\Staff\Models\ChapterDetails.cs" />
@@ -335,7 +335,7 @@
     <Content Include="Areas\Staff\Views\ManualType\EditQuestionDetails.cshtml" />
     <Content Include="Areas\Staff\Views\FileUpload\Index.cshtml" />
     <Content Include="Areas\Staff\Views\ManualType\QuestionRepository.cshtml" />
-    <Content Include="Areas\Staff\Views\QuestionPaperCreation\Index.cshtml" />
+    <Content Include="Areas\Staff\Views\PaperCreation\Index.cshtml" />
     <Content Include="Areas\Staff\Uploads\sample.pdf" />
     <Content Include="Areas\Staff\Views\QuestionPaperRepository\Index.cshtml" />
     <Content Include="App_Data\QuestionPapersFormat\endsem.docx" />
