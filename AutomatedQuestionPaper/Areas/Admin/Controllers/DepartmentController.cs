@@ -11,15 +11,11 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         private readonly DatabaseContext _context = new DatabaseContext();
         private readonly DbSet<Department> _data;
 
-        public DepartmentController() : this(1)
-        {
-        }
-
-        public DepartmentController(int data)
+        public DepartmentController()
         {
             _data = _context.Departments;
         }
-
+        
         [HttpGet]
         public ActionResult Index()
         {

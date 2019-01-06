@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using AutomatedQuestionPaper.Models;
@@ -11,16 +10,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
     public class CourseController : Controller
     {
         private readonly DatabaseContext _context = new DatabaseContext();
-        private readonly DbSet<Course> _data;
-
-        public CourseController() : this(1)
-        {
-        }
-
-        public CourseController(int data)
-        {
-            _data = _context.Courses;
-        }
 
         [HttpGet]
         public ActionResult Index()

@@ -10,12 +10,8 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
     {
         private readonly DatabaseContext _context = new DatabaseContext();
         private readonly DbSet<Semester> _data;
-
-        public SemesterController() : this(1)
-        {
-        }
-
-        public SemesterController(int data)
+        
+        public SemesterController()
         {
             _data = _context.Semesters;
         }
