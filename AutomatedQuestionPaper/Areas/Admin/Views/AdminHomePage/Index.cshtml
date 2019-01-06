@@ -21,42 +21,41 @@ else
 
     <h2>@Model.Username Management Panel</h2>
 
-    <div style="text-align: center">
-        <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+    <div style="text-align: center" id="sectionDiv">
+        <div id="staffDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" height="200" width="100" src="~/Images/staff management.png" alt="Card image cap">
             <div class="card-body">
-                <a class="card-title" href="@Url.Action("Index", "Staff")">Staff Management</a>
+                <a class="card-title text-primary">Staff Management</a>
             </div>
         </div>
 
-        <div class="card " style="float: left; height: 285px; margin: 10px; width: 12rem;">
+        <div id="departmentDiv" class="card " style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" height="200" width="100" src="~/Images/department.png" alt="Card image cap">
             <div class="card-body">
-                <a class="card-title" href="@Url.Action("Index", "Department")">Department management</a>
+                <a class="card-title text-primary">Department management</a>
             </div>
         </div>
 
-        <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+        <div id="courseDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" height="200" src="~/Images/course.png" alt="Card image cap">
             <div class="card-body">
-                <a class="card-title" href="@Url.Action("Index", "Course")">Course Management</a>
+                <a class="card-title text-primary">Course Management</a>
             </div>
         </div>
 
-        <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+        <div id="semesterDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" height="200" src="~/Images/semester.png" alt="Card image cap">
             <div class="card-body">
-                <a class="card-title" href="@Url.Action("Index", "Semester")">Semester Management</a>
+                <a class="card-title text-primary">Semester Management</a>
             </div>
         </div>
 
-        <div class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+        <div id="staffCourseDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
             <img class="card-img-top" height="200" src="~/Images/semester.png" alt="Card image cap">
             <div class="card-body">
-                <a class="card-title" href="@Url.Action("Index", "StaffCourseManagement")">Staff course Management</a>
+                <a class="card-title text-primary">Staff course Management</a>
             </div>
         </div>
-
     </div>
 }
 
@@ -77,6 +76,32 @@ else
                     $(this).removeClass('shadow-lg');
                 }
             );
+
+            // TODO have a look at this
+
+            $("a.card-title.text-primary").hover(function() {
+                $(this).toggleClass("text-primary text-danger");
+            });
+
+            $("#staffDiv").click(function() {
+                window.location.href = "@Url.Action("Index", "Staff")";
+            });
+
+            $("#departmentDiv").click(function() {
+                window.location.href = "@Url.Action("Index", "Department")";
+            });
+
+            $("#semesterDiv").click(function() {
+                window.location.href = "@Url.Action("Index", "Semester")";
+            });
+
+            $("#staffCourseDiv").click(function() {
+                window.location.href = "@Url.Action("Index", "StaffCourseManagement")";
+            });
+
+            $("#courseDiv").click(function() {
+                window.location.href = "@Url.Action("Index", "Course")";
+            });
         });
     </script>
 }
