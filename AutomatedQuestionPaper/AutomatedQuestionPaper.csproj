@@ -161,6 +161,7 @@
     <Compile Include="Areas\Staff\Controllers\StaffHomePageController.cs" />
     <Compile Include="Areas\Staff\Models\ChapterDetails.cs" />
     <Compile Include="Areas\Staff\Models\InSemQuestionPaperGenerator.cs" />
+    <Compile Include="Areas\Staff\Models\PaperCreationQuestionFormat.cs" />
     <Compile Include="Areas\Staff\Models\PdfHandler.cs" />
     <Compile Include="Areas\Staff\Models\QuestionFormatCsv.cs" />
     <Compile Include="Areas\Staff\Models\StaffChapterOperation.cs" />
@@ -208,6 +209,7 @@
     <Compile Include="Models\Department.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ErrorMessages.cs" />
     <Compile Include="Models\ExamPaper.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
@@ -341,6 +343,7 @@
     <Content Include="App_Data\QuestionPapersFormat\endsem.docx" />
     <Content Include="App_Data\QuestionPapersFormat\insem.doc" />
     <Content Include="Areas\Staff\Views\ParagraphQuestion\Index.cshtml" />
+    <Content Include="Areas\Staff\Views\PaperCreation\CreateQuestionPaper.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
