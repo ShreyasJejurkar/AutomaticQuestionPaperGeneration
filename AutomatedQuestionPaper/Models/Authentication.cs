@@ -9,7 +9,7 @@ namespace AutomatedQuestionPaper.Models
     {
         // EF database context
         private static readonly DatabaseContext Context = new DatabaseContext();
-
+        
         public static (int status, string authenticatedUserName) Authenticate(Admin user)
         {
             //Check if user is admin or not!
