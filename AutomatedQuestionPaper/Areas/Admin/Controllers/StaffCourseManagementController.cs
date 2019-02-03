@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web.Mvc;
 using AutomatedQuestionPaper.Models;
+using AutomatedQuestionPaper.Areas.Staff.Models;
 
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
@@ -13,11 +15,30 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         // GET: Admin/StaffCourseManagement
         public ActionResult Index()
         {
-            // Set them in ViewBag for the view
-            ViewBag.SemesterList = new SelectList(_context.Semesters, "SemesterName", "SemesterName");
-            ViewBag.StaffMembersList = new SelectList(_context.Staffs, "Name", "Name");
-            ViewBag.DepartmentList = new SelectList(_context.Departments, "DepartmentName", "DepartmentName");
-            ViewBag.Subject = new SelectList(_context.Courses, "CourseName", "CourseName");
+            var T1 = new Thread(() =>
+            {
+                ViewBag.SemesterList = new SelectList(_context.Semesters, "SemesterName", "SemesterName");
+            });
+            T1.Start();
+
+            var T2 = new Thread(() =>
+            {
+                ViewBag.StaffMembersList = new SelectList(_context.Staffs, "Name", "Name");
+            });
+            T2.Start();
+
+            var T3 = new Thread(() =>
+            {
+                ViewBag.DepartmentList = new SelectList(_context.Departments, "DepartmentName", "DepartmentName");
+            });
+            T3.Start();
+
+            var T4 = new Thread(() =>
+            {
+                ViewBag.Subject = new SelectList(_context.Courses, "CourseName", "CourseName");
+            });
+            T4.Start();
+
             return View();
         }
 
@@ -32,30 +53,28 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
 
-            int semesterId = 0, staffId = 0, subjectId = 0, departmentID = 0;
+            var staffId = 0;
 
             // Get a selected Semester Id
-            var semester = _context.Semesters.FirstOrDefault(u => u.SemesterName == selectedSemester);
-            if (semester != null) semesterId = semester.Id;
+            var semesterId = DatabaseData.GetSemesterInfo(selectedSemester).Id;
 
             // Get a selected staff Id
             var staff = _context.Staffs.FirstOrDefault(u => u.Name == selectedStaff);
             if (staff != null) staffId = staff.Id;
 
             // Get a selected department Id
-            var department = _context.Departments.FirstOrDefault(u => u.DepartmentName == selectedDepartment);
-            if (department != null) departmentID = department.Id;
+            var departmentId = DatabaseData.GetDepartmentInfo(selectedDepartment).Id;
 
             // Get a selected subject id
-            var subject = _context.Courses.FirstOrDefault(u => u.CourseName == selectedSubject);
-            if (subject != null) subjectId = subject.Courseid;
+            var subjectId = DatabaseData.GetCourseInfo(selectedSubject).Courseid;
+
 
             var newAllocatedCourse = new StaffCourse
             {
                 CourseId = subjectId,
                 SemesterId = semesterId,
                 StaffId = staffId,
-                DepartmentId = departmentID
+                DepartmentId = departmentId
             };
 
             _context.StaffCourses.Add(newAllocatedCourse);
