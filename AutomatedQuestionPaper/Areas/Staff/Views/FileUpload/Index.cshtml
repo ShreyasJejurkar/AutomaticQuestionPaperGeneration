@@ -29,7 +29,6 @@
         <select id="selectedFileType" name="selectedFileType" class="form-control" data-val="true" data-val-required="The file type field is required" required>
             <option selected disabled>---Select---</option>
             <option>CSV (.csv)</option>
-            <option>Excel file (.xls)</option>
             <option>Word file (.docx)</option>
         </select>
         <small id="fileHelp" name="fileHelp" class="form-text text-muted">Don't worry if possible we will automatically select the type of file you uploaded.</small>
@@ -241,12 +240,6 @@
 
                 if (extension == 'docx' || extension == 'DOCX') {
                     $("#selectedFileType").val("Word file (.docx)");
-                    $("#fileHelp").text("We automatically selected the type of file you uploaded");
-                    return;
-                }
-
-                if (extension == 'xls' || extension == 'XLS') {
-                    $("#selectedFileType").val("Excel file (.xls)");
                     $("#fileHelp").text("We automatically selected the type of file you uploaded");
                     return;
                 }

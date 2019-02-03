@@ -1,13 +1,13 @@
 ﻿@using AutomatedQuestionPaper.Areas.Staff.Models
 @{
+    /**/
+
     ViewBag.Title = "Tentative created question paper";
     Layout = "~/Areas/Staff/Views/Shared/_staffLoginLayoutPage.cshtml";
 }
 
 
 <h3>Tentative created question paper</h3>
-
-
 
 <div class="container">
     <h3>Tentative created question paper</h3>
@@ -35,6 +35,7 @@
                             }
                         }
                     </select>
+                    <span id="Question1AError" name="Question1AError" class="field-validation-valid text-danger">Question repeated</span>
                 </td>
             </tr>
             <tr>
@@ -51,6 +52,7 @@
                             }
                         }
                     </select>
+                    <span id="Question1BError" class="field-validation-valid text-danger">Question repeated</span>
                 </td>
             </tr>
             <tr>
@@ -74,6 +76,7 @@
                             }
                         }
                     </select>
+                    <span id="Question2AError" class="field-validation-valid text-danger">Question repeated</span>
                 </td>
             </tr>
             <tr>
@@ -90,6 +93,7 @@
                             }
                         }
                     </select>
+                    <span id="Question2BError" class="field-validation-valid text-danger">Question repeated</span>
                 </td>
             </tr>
             <tr>
@@ -106,6 +110,7 @@
                             }
                         }
                     </select>
+                    <span id="Question3AError" class="field-validation-valid text-danger">Question repeated</span>
                 </td>
             </tr>
             <tr>
@@ -122,6 +127,7 @@
                             }
                         }
                     </select>
+                    <span id="Question3BError" class="field-validation-valid text-danger">Question repeated</span>
                 </td>
             </tr>
             <tr>
@@ -146,6 +152,7 @@
                             }
                         }
                     </select>
+                    <span id="Question4AError" class="field-validation-valid text-danger">Question repeated</span>
                 </td>
             </tr>
             <tr>
@@ -162,6 +169,7 @@
                             }
                         }
                     </select>
+                    <span id="Question4BError" class="field-validation-valid text-danger">Question repeated</span>
                 </td>
             </tr>
             <tr>
@@ -178,6 +186,7 @@
                             }
                         }
                     </select>
+                    <span id="Question5AError" class="field-validation-valid text-danger">Question repeated</span>
                 </td>
             </tr>
             <tr>
@@ -194,6 +203,7 @@
                             }
                         }
                     </select>
+                    <span id="Question5BError" class="field-validation-valid text-danger">Question repeated</span>
                 </td>
             </tr>
             <tr>
@@ -219,6 +229,7 @@
                             }
                         }
                     </select>
+                    <span id="Question6AError" class="field-validation-valid text-danger">Question repeated</span>
                 </td>
             </tr>
             <tr>
@@ -235,10 +246,16 @@
                             }
                         }
                     </select>
+                    <span id="Question6BError" class="field-validation-valid text-danger">Question repeated</span>
                 </td>
             </tr>
         </tbody>
     </table>
+
+    <br />
+
+    <button id="nextButton" name="nextButton" class="btn btn-block btn-outline-secondary" href="@Url.Action("ValidateQuestionPaper", "PaperCreation")">Next</button>
+    <br />
 </div>
 
 
@@ -247,8 +264,10 @@
     @Scripts.Render("~/bundles/jqueryval")
 
     <script>
+
         $(function () {
 
+            $('span.field-validation-valid.text-danger').hide();
 
             $("table").css("border-collapse", "separate");
             $("table").css("border-spacing", "0 1em");
@@ -271,6 +290,529 @@
 
             $('#Question6A option')[2].selected = true;
             $('#Question6B option')[3].selected = true;
+
+
+            $("#Question1A").change(function () {
+                if ($("#Question1A option:selected").text() === $("#Question1B option:selected").text()) {
+                    $("span#Question1AError").show();
+                    $("span#Question1BError").show();
+                    $("select#Question1A").css("border-color", "red");
+                    $("select#Question1B").css("border-color", "red");
+                } else {
+                    $("select#Question1A").css("border-color", "");
+                    $("select#Question1B").css("border-color", "");
+                    $("span#Question1AError").hide();
+                    $("span#Question1BError").hide();
+                }
+
+                if ($("#Question1A option:selected").text() === $("#Question2A option:selected").text()) {
+                    $("span#Question1AError").show();
+                    $("span#Question2AError").show();
+                    $("select#Question1A").css("border-color", "red");
+                    $("select#Question2A").css("border-color", "red");
+                } else {
+                    $("select#Question1A").css("border-color", "");
+                    $("select#Question2A").css("border-color", "");
+                    $("span#Question1AError").hide();
+                    $("span#Question2AError").hide();
+                }
+
+                if ($("#Question1A option:selected").text() === $("#Question2B option:selected").text()) {
+                    $("span#Question1AError").show();
+                    $("span#Question2BError").show();
+                    $("select#Question1A").css("border-color", "red");
+                    $("select#Question2B").css("border-color", "red");
+                } else {
+                    $("select#Question1A").css("border-color", "");
+                    $("select#Question2B").css("border-color", "");
+                    $("span#Question1AError").hide();
+                    $("span#Question2BError").hide();
+                }
+            });
+
+            $("#Question1B").change(function () {
+                if ($("#Question1B option:selected").text() === $("#Question1A option:selected").text()) {
+                    $("span#Question1AError").show();
+                    $("span#Question1BError").show();
+                    $("select#Question1A").css("border-color", "red");
+                    $("select#Question1B").css("border-color", "red");
+                } else {
+                    $("select#Question1A").css("border-color", "");
+                    $("select#Question1B").css("border-color", "");
+                    $("span#Question1AError").hide();
+                    $("span#Question1BError").hide();
+                }
+
+                if ($("#Question1B option:selected").text() === $("#Question2A option:selected").text()) {
+                    $("span#Question1BError").show();
+                    $("span#Question2AError").show();
+                    $("select#Question1B").css("border-color", "red");
+                    $("select#Question2A").css("border-color", "red");
+                } else {
+                    $("select#Question1B").css("border-color", "");
+                    $("select#Question2A").css("border-color", "");
+                    $("span#Question1BError").hide();
+                    $("span#Question2AError").hide();
+                }
+
+                if ($("#Question1B option:selected").text() === $("#Question2B option:selected").text()) {
+                    $("span#Question1BError").show();
+                    $("span#Question2BError").show();
+                    $("select#Question1B").css("border-color", "red");
+                    $("select#Question2B").css("border-color", "red");
+                } else {
+                    $("select#Question1B").css("border-color", "");
+                    $("select#Question2B").css("border-color", "");
+                    $("span#Question1BError").hide();
+                    $("span#Question2BError").hide();
+                }
+            });
+
+            $("#Question2A").change(function () {
+                if ($("#Question2A option:selected").text() === $("#Question1A option:selected").text()) {
+                    $("span#Question2AError").show();
+                    $("span#Question1AError").show();
+                    $("select#Question2A").css("border-color", "red");
+                    $("select#Question1A").css("border-color", "red");
+                } else {
+                    $("select#Question2A").css("border-color", "");
+                    $("select#Question1A").css("border-color", "");
+                    $("span#Question2AError").hide();
+                    $("span#Question1AError").hide();
+                }
+
+                if ($("#Question2A option:selected").text() === $("#Question1B option:selected").text()) {
+                    $("span#Question1BError").show();
+                    $("span#Question2AError").show();
+                    $("select#Question1B").css("border-color", "red");
+                    $("select#Question2A").css("border-color", "red");
+                } else {
+                    $("select#Question1B").css("border-color", "");
+                    $("select#Question2A").css("border-color", "");
+                    $("span#Question1BError").hide();
+                    $("span#Question2AError").hide();
+                }
+
+                if ($("#Question2A option:selected").text() === $("#Question2B option:selected").text()) {
+                    $("span#Question2AError").show();
+                    $("span#Question2BError").show();
+                    $("select#Question2A").css("border-color", "red");
+                    $("select#Question2B").css("border-color", "red");
+                } else {
+                    $("select#Question2A").css("border-color", "");
+                    $("select#Question2B").css("border-color", "");
+                    $("span#Question2AError").hide();
+                    $("span#Question2BError").hide();
+                }
+            });
+
+            $("#Question2B").change(function () {
+                if ($("#Question2B option:selected").text() === $("#Question1A option:selected").text()) {
+                    $("span#Question2BError").show();
+                    $("span#Question1AError").show();
+                    $("select#Question2B").css("border-color", "red");
+                    $("select#Question1A").css("border-color", "red");
+                } else {
+                    $("select#Question2B").css("border-color", "");
+                    $("select#Question1A").css("border-color", "");
+                    $("span#Question2BError").hide();
+                    $("span#Question1AError").hide();
+                }
+
+                if ($("#Question2B option:selected").text() === $("#Question1B option:selected").text()) {
+                    $("span#Question1BError").show();
+                    $("span#Question2BError").show();
+                    $("select#Question1B").css("border-color", "red");
+                    $("select#Question2B").css("border-color", "red");
+                } else {
+                    $("select#Question1B").css("border-color", "");
+                    $("select#Question2B").css("border-color", "");
+                    $("span#Question1BError").hide();
+                    $("span#Question2BError").hide();
+                }
+
+                if ($("#Question2B option:selected").text() === $("#Question2A option:selected").text()) {
+                    $("span#Question2AError").show();
+                    $("span#Question2BError").show();
+                    $("select#Question2A").css("border-color", "red");
+                    $("select#Question2B").css("border-color", "red");
+                } else {
+                    $("select#Question2A").css("border-color", "");
+                    $("select#Question2B").css("border-color", "");
+                    $("span#Question2AError").hide();
+                    $("span#Question2BError").hide();
+                }
+            });
+
+            $("#Question3A").change(function () {
+                if ($("#Question3A option:selected").text() === $("#Question3B option:selected").text()) {
+                    $("span#Question3AError").show();
+                    $("span#Question3BError").show();
+                    $("select#Question3A").css("border-color", "red");
+                    $("select#Question3B").css("border-color", "red");
+                } else {
+                    $("select#Question3A").css("border-color", "");
+                    $("select#Question3B").css("border-color", "");
+                    $("span#Question3AError").hide();
+                    $("span#Question3BError").hide();
+                }
+
+                if ($("#Question3A option:selected").text() === $("#Question4A option:selected").text()) {
+                    $("span#Question3AError").show();
+                    $("span#Question4AError").show();
+                    $("select#Question3A").css("border-color", "red");
+                    $("select#Question4A").css("border-color", "red");
+                } else {
+                    $("select#Question3A").css("border-color", "");
+                    $("select#Question4A").css("border-color", "");
+                    $("span#Question3AError").hide();
+                    $("span#Question4AError").hide();
+                }
+
+                if ($("#Question3A option:selected").text() === $("#Question4B option:selected").text()) {
+                    $("span#Question3AError").show();
+                    $("span#Question4BError").show();
+                    $("select#Question3A").css("border-color", "red");
+                    $("select#Question4B").css("border-color", "red");
+                } else {
+                    $("select#Question3A").css("border-color", "");
+                    $("select#Question4B").css("border-color", "");
+                    $("span#Question3AError").hide();
+                    $("span#Question4BError").hide();
+                }
+            });
+
+            $("#Question3B").change(function () {
+                if ($("#Question3B option:selected").text() === $("#Question4A option:selected").text()) {
+                    $("span#Question3BError").show();
+                    $("span#Question4AError").show();
+                    $("select#Question3B").css("border-color", "red");
+                    $("select#Question4A").css("border-color", "red");
+                } else {
+                    $("select#Question4A").css("border-color", "");
+                    $("select#Question3B").css("border-color", "");
+                    $("span#Question4AError").hide();
+                    $("span#Question3BError").hide();
+                }
+
+                if ($("#Question3B option:selected").text() === $("#Question3A option:selected").text()) {
+                    $("span#Question3BError").show();
+                    $("span#Question3AError").show();
+                    $("select#Question3B").css("border-color", "red");
+                    $("select#Question3A").css("border-color", "red");
+                } else {
+                    $("select#Question3B").css("border-color", "");
+                    $("select#Question3A").css("border-color", "");
+                    $("span#Question3BError").hide();
+                    $("span#Question3AError").hide();
+                }
+
+                if ($("#Question3B option:selected").text() === $("#Question4B option:selected").text()) {
+                    $("span#Question3BError").show();
+                    $("span#Question4BError").show();
+                    $("select#Question3B").css("border-color", "red");
+                    $("select#Question4B").css("border-color", "red");
+                } else {
+                    $("select#Question3B").css("border-color", "");
+                    $("select#Question4B").css("border-color", "");
+                    $("span#Question3BError").hide();
+                    $("span#Question4BError").hide();
+                }
+            });
+
+            $("#Question4A").change(function () {
+                if ($("#Question4A option:selected").text() === $("#Question3A option:selected").text()) {
+                    $("span#Question3AError").show();
+                    $("span#Question3AError").show();
+                    $("select#Question4A").css("border-color", "red");
+                    $("select#Question3A").css("border-color", "red");
+                } else {
+                    $("select#Question4A").css("border-color", "");
+                    $("select#Question3A").css("border-color", "");
+                    $("span#Question3AError").hide();
+                    $("span#Question4AError").hide();
+                }
+
+                if ($("#Question4A option:selected").text() === $("#Question3B option:selected").text()) {
+                    $("span#Question3BError").show();
+                    $("span#Question4AError").show();
+                    $("select#Question3B").css("border-color", "red");
+                    $("select#Question4A").css("border-color", "red");
+                } else {
+                    $("select#Question3B").css("border-color", "");
+                    $("select#Question4A").css("border-color", "");
+                    $("span#Question3BError").hide();
+                    $("span#Question4AError").hide();
+                }
+
+                if ($("#Question4A option:selected").text() === $("#Question4B option:selected").text()) {
+                    $("span#Question4AError").show();
+                    $("span#Question4BError").show();
+                    $("select#Question4A").css("border-color", "red");
+                    $("select#Question4B").css("border-color", "red");
+                } else {
+                    $("select#Question4A").css("border-color", "");
+                    $("select#Question4B").css("border-color", "");
+                    $("span#Question4AError").hide();
+                    $("span#Question4BError").hide();
+                }
+            });
+
+            $("#Question4B").change(function () {
+                if ($("#Question4B option:selected").text() === $("#Question3A option:selected").text()) {
+                    $("span#Question4BError").show();
+                    $("span#Question3AError").show();
+                    $("select#Question4B").css("border-color", "red");
+                    $("select#Question3A").css("border-color", "red");
+                } else {
+                    $("select#Question4B").css("border-color", "");
+                    $("select#Question3A").css("border-color", "");
+                    $("span#Question4BError").hide();
+                    $("span#Question3AError").hide();
+                }
+
+                if ($("#Question4B option:selected").text() === $("#Question3B option:selected").text()) {
+                    $("span#Question4BError").show();
+                    $("span#Question3BError").show();
+                    $("select#Question4B").css("border-color", "red");
+                    $("select#Question3B").css("border-color", "red");
+                } else {
+                    $("select#Question4B").css("border-color", "");
+                    $("select#Question3B").css("border-color", "");
+                    $("span#Question4BError").hide();
+                    $("span#Question3BError").hide();
+                }
+
+                if ($("#Question4B option:selected").text() === $("#Question4A option:selected").text()) {
+                    $("span#Question4AError").show();
+                    $("span#Question4BError").show();
+                    $("select#Question4A").css("border-color", "red");
+                    $("select#Question4B").css("border-color", "red");
+                } else {
+                    $("select#Question4A").css("border-color", "");
+                    $("select#Question4B").css("border-color", "");
+                    $("span#Question4AError").hide();
+                    $("span#Question4BError").hide();
+                }
+            });
+
+            $("#Question5A").change(function () {
+                if ($("#Question5A option:selected").text() === $("#Question5B option:selected").text()) {
+                    $("span#Question5AError").show();
+                    $("span#Question5BError").show();
+                    $("select#Question5A").css("border-color", "red");
+                    $("select#Question5B").css("border-color", "red");
+                } else {
+                    $("select#Question5A").css("border-color", "");
+                    $("select#Question5B").css("border-color", "");
+                    $("span#Question5AError").hide();
+                    $("span#Question5BError").hide();
+                }
+
+                if ($("#Question5A option:selected").text() === $("#Question6A option:selected").text()) {
+                    $("span#Question5AError").show();
+                    $("span#Question6AError").show();
+                    $("select#Question5A").css("border-color", "red");
+                    $("select#Question6A").css("border-color", "red");
+                } else {
+                    $("select#Question5A").css("border-color", "");
+                    $("select#Question6A").css("border-color", "");
+                    $("span#Question5AError").hide();
+                    $("span#Question6AError").hide();
+                }
+
+                if ($("#Question5A option:selected").text() === $("#Question6B option:selected").text()) {
+                    $("span#Question5AError").show();
+                    $("span#Question6BError").show();
+                    $("select#Question5A").css("border-color", "red");
+                    $("select#Question6B").css("border-color", "red");
+                } else {
+                    $("select#Question5A").css("border-color", "");
+                    $("select#Question6B").css("border-color", "");
+                    $("span#Question5AError").hide();
+                    $("span#Question6BError").hide();
+                }
+            });
+
+            $("#Question5B").change(function () {
+                if ($("#Question5B option:selected").text() === $("#Question5A option:selected").text()) {
+                    $("span#Question5BError").show();
+                    $("span#Question5AError").show();
+                    $("select#Question5B").css("border-color", "red");
+                    $("select#Question5A").css("border-color", "red");
+                } else {
+                    $("select#Question5A").css("border-color", "");
+                    $("select#Question5B").css("border-color", "");
+                    $("span#Question5AError").hide();
+                    $("span#Question5BError").hide();
+                }
+
+                if ($("#Question5B option:selected").text() === $("#Question6A option:selected").text()) {
+                    $("span#Question5BError").show();
+                    $("span#Question6AError").show();
+                    $("select#Question5B").css("border-color", "red");
+                    $("select#Question6A").css("border-color", "red");
+                } else {
+                    $("select#Question5B").css("border-color", "");
+                    $("select#Question6A").css("border-color", "");
+                    $("span#Question5BError").hide();
+                    $("span#Question6AError").hide();
+                }
+
+                if ($("#Question5B option:selected").text() === $("#Question6B option:selected").text()) {
+                    $("span#Question5BError").show();
+                    $("span#Question6BError").show();
+                    $("select#Question5B").css("border-color", "red");
+                    $("select#Question6B").css("border-color", "red");
+                } else {
+                    $("select#Question5B").css("border-color", "");
+                    $("select#Question6B").css("border-color", "");
+                    $("span#Question5BError").hide();
+                    $("span#Question6BError").hide();
+                }
+            });
+
+            $("#Question6A").change(function () {
+                if ($("#Question6A option:selected").text() === $("#Question5A option:selected").text()) {
+                    $("span#Question6AError").show();
+                    $("span#Question5AError").show();
+                    $("select#Question6A").css("border-color", "red");
+                    $("select#Question5A").css("border-color", "red");
+                } else {
+                    $("select#Question6A").css("border-color", "");
+                    $("select#Question5A").css("border-color", "");
+                    $("span#Question6AError").hide();
+                    $("span#Question5AError").hide();
+                }
+
+                if ($("#Question6A option:selected").text() === $("#Question5B option:selected").text()) {
+                    $("span#Question5BError").show();
+                    $("span#Question6AError").show();
+                    $("select#Question5B").css("border-color", "red");
+                    $("select#Question6A").css("border-color", "red");
+                } else {
+                    $("select#Question5B").css("border-color", "");
+                    $("select#Question6A").css("border-color", "");
+                    $("span#Question5BError").hide();
+                    $("span#Question6AError").hide();
+                }
+
+                if ($("#Question6A option:selected").text() === $("#Question6B option:selected").text()) {
+                    $("span#Question6AError").show();
+                    $("span#Question6BError").show();
+                    $("select#Question6A").css("border-color", "red");
+                    $("select#Question6B").css("border-color", "red");
+                } else {
+                    $("select#Question6A").css("border-color", "");
+                    $("select#Question6B").css("border-color", "");
+                    $("span#Question6AError").hide();
+                    $("span#Question6BError").hide();
+                }
+            });
+
+            $("#Question6B").change(function () {
+                if ($("#Question6B option:selected").text() === $("#Question5A option:selected").text()) {
+                    $("span#Question6BError").show();
+                    $("span#Question5AError").show();
+                    $("select#Question6B").css("border-color", "red");
+                    $("select#Question5A").css("border-color", "red");
+                } else {
+                    $("select#Question6B").css("border-color", "");
+                    $("select#Question5A").css("border-color", "");
+                    $("span#Question6BError").hide();
+                    $("span#Question5AError").hide();
+                }
+
+                if ($("#Question6B option:selected").text() === $("#Question5B option:selected").text()) {
+                    $("span#Question6BError").show();
+                    $("span#Question5BError").show();
+                    $("select#Question6B").css("border-color", "red");
+                    $("select#Question5B").css("border-color", "red");
+                } else {
+                    $("select#Question6B").css("border-color", "");
+                    $("select#Question5B").css("border-color", "");
+                    $("span#Question6BError").hide();
+                    $("span#Question5BError").hide();
+                }
+
+                if ($("#Question6B option:selected").text() === $("#Question6A option:selected").text()) {
+                    $("span#Question6AError").show();
+                    $("span#Question6BError").show();
+                    $("select#Question6A").css("border-color", "red");
+                    $("select#Question6B").css("border-color", "red");
+                } else {
+                    $("select#Question6A").css("border-color", "");
+                    $("select#Question6B").css("border-color", "");
+                    $("span#Question6AError").hide();
+                    $("span#Question6BError").hide();
+                }
+            });
+
+
+            $("#nextButton").click(function () {
+                if ($("#Question1AError").is(":visible") === false &&
+                    $("#Question1BError").is(":visible") === false &&
+                    $("#Question2AError").is(":visible") === false &&
+                    $("#Question2BError").is(":visible") === false &&
+                    $("#Question3AError").is(":visible") === false &&
+                    $("#Question3BError").is(":visible") === false &&
+                    $("#Question4AError").is(":visible") === false &&
+                    $("#Question4BError").is(":visible") === false &&
+                    $("#Question5AError").is(":visible") === false &&
+                    $("#Question5BError").is(":visible") === false &&
+                    $("#Question6AError").is(":visible") === false &&
+                    $("#Question6BError").is(":visible") === false) {
+
+
+                    var Question1A = $("#Question1A :selected").text();
+                    var Question1B = $("#Question1B :selected").text();
+                    var Question2A = $("#Question2A :selected").text();
+                    var Question2B = $("#Question2B :selected").text();
+                    var Question3A = $("#Question3A :selected").text();
+                    var Question3B = $("#Question3B :selected").text();
+                    var Question4A = $("#Question4A :selected").text();
+                    var Question4B = $("#Question4B :selected").text();
+                    var Question5A = $("#Question5A :selected").text();
+                    var Question5B = $("#Question5B :selected").text();
+                    var Question6A = $("#Question6A :selected").text();
+                    var Question6B = $("#Question6B :selected").text();
+
+                    var paperName = prompt("Enter question paper name", "In-sem question paper");
+
+                    var questions = [
+                        Question1A,
+                        Question1B,
+                        Question2A,
+                        Question2B,
+                        Question3A,
+                        Question3B,
+                        Question4A,
+                        Question4B,
+                        Question5A,
+                        Question5B,
+                        Question6A,
+                        Question6B,
+                        paperName
+                    ];
+
+                    $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("ValidateQuestionPaper")',
+                        contentType: 'application/json',
+                        data: JSON.stringify(questions),
+                        success: function (response) {
+                            alert(
+                                "Question paper created successfully. You will be redirected to question paper repository");
+                            window.location.href = '@Url.Action("Index","QuestionPaperRepository")';
+                        }
+                    });
+
+                } else {
+                    alert("Some questions are repeating. Please check again.");
+                }
+
+            });
+
 
         });
     </script>

@@ -77,13 +77,6 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
                 return RedirectToAction("Index", "Question");
             }
-
-            // Excel file
-            else if (extension == ".xls")
-            {
-                ProcessFile.ExcelFile(fileControl);
-            }
-
             return null;
         }
     }

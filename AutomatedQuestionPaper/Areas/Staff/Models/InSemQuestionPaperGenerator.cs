@@ -29,11 +29,11 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
         public string Subject_Name;
 
 
-        public void GenerateQuestionPaper()
+        public void GenerateQuestionPaper(string name)
         {
             var questionPaperFormatFilePath =
                 HttpContext.Current.Server.MapPath("~/App_Data/QuestionPapersFormat/insem.doc");
-            var questionPaperPath = HttpContext.Current.Server.MapPath("~/App_Data/GeneratedQuestionPaper/sample.doc");
+            var questionPaperPath = HttpContext.Current.Server.MapPath($"~/App_Data/GeneratedQuestionPaper/{name}.doc");
 
             var doc = new Document();
             doc.LoadFromFile(questionPaperFormatFilePath);
@@ -51,6 +51,8 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
             doc.Replace("QUESTION5_B", Question5_B, true, true);
             doc.Replace("QUESTION6_A", Question6_A, true, true);
             doc.Replace("QUESTION6_B", Question6_B, true, true);
+            doc.Replace("DEPARTMENT_NAME", Department_Name, true, true);
+            doc.Replace("SUBJECT_NAME", Subject_Name, true, true);
 
             doc.SaveToFile(questionPaperPath);
             doc.Dispose();

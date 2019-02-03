@@ -10,12 +10,16 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
 {
     public static class PdfHandler
     {
+        private static readonly DatabaseContext _context = new DatabaseContext();
+
+
         public static void ConvertToPdf(string questionPaperPath)
         {
             var d = new Document();
             d.LoadFromFile(questionPaperPath);
+            var filename = Path.GetFileNameWithoutExtension(questionPaperPath);
 
-            var pathToSavePdf = HttpContext.Current.Server.MapPath("~/App_Data/PdfQuestionPapers/sample.pdf");
+            var pathToSavePdf = HttpContext.Current.Server.MapPath($"~/App_Data/PdfQuestionPapers/{filename}.pdf");
 
             d.SaveToFile(pathToSavePdf, FileFormat.PDF);
 
@@ -39,13 +43,18 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
                 fileStream1.Read(contentWord, 0, (int) fileStream1.Length);
                 fileStream1.Close();
 
+                var staffName = HttpContext.Current.Session["Staff_Name"];
+
+                // Get the staff details from database
+                var staffId = _context.Staffs.FirstOrDefault(u => u.Name == (string)staffName).Id;
+
                 context.ExamPapers.Add(new ExamPaper
                 {
                     // TODO Create the name of paper as per semester department and subject
-                    PaperName = "test",
+                    PaperName = Path.GetFileNameWithoutExtension(pathPdf),
 
                     // TODO Get the logged in staff id and assign it here
-                    StaffId = 10,
+                    StaffId = staffId,
 
                     PaperValue = contentPdf,
 
@@ -64,7 +73,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
             var pdfStream = new MemoryStream();
             pdfStream.Write(fileByteData.PaperValue, 0, fileByteData.PaperValue.Length);
             pdfStream.Position = 0;
-            HttpContext.Current.Response.AppendHeader("content-disposition", "attachment; filename=form.pdf");
+            HttpContext.Current.Response.AppendHeader("content-disposition", "attachment; filename=paper.pdf");
 
             return new FileStreamResult(pdfStream, "application/pdf");
         }

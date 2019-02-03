@@ -259,3 +259,9 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/AutomatedQuestionPaper/App_Data/GeneratedQuestionPaper
+/AutomatedQuestionPaper/App_Data/PdfQuestionPapers/test qustion paper03-02-2019 23.44.44.pdf
+/AutomatedQuestionPaper/App_Data/PdfQuestionPapers/saurbh question paper03-02-2019 23.39.50.pdf
+/AutomatedQuestionPaper/App_Data/PdfQuestionPapers/Rename insem paper03-02-2019 18.23.36.pdf
+/AutomatedQuestionPaper/App_Data/PdfQuestionPapers/In-sem question paper03-02-2019 18.36.31.pdf
+/AutomatedQuestionPaper/App_Data/PdfQuestionPapers/In-sem question paper03-02-2019 18.32.30.pdf

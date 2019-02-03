@@ -23,6 +23,9 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         {
             var errorList = new ErrorMessagesList();
 
+            TempData["QuestionPaperDepartment"] = selectedDepartment;
+            TempData["QuestionPaperSubject"] = selectedSubject;
+
             var semesterId = DatabaseData.GetSemesterInfo(selectedSemester).Id.ToString();
             var departmentId = DatabaseData.GetDepartmentInfo(selectedDepartment).Id.ToString();
             var subjectId = DatabaseData.GetCourseInfo(selectedSubject).Courseid;
@@ -143,6 +146,32 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             ViewData["Question5And6"] = formedQuestionSetUnit3;
 
             return View();
+        }
+
+        [HttpPost]
+        public ActionResult ValidateQuestionPaper(List<string> question)
+        {
+            var insem = new InSemQuestionPaperGenerator
+            {
+                Department_Name = (string) TempData["QuestionPaperDepartment"].ToString().Replace("department",""),
+                Question1_A = question[0],
+                Question1_B = question[1],
+                Question2_A = question[2],
+                Question2_B = question[3],
+                Question3_A = question[4],
+                Question3_B = question[5],
+                Question4_A = question[6],
+                Question4_B = question[7],
+                Question5_A = question[8],
+                Question5_B = question[9],
+                Question6_A = question[10],
+                Question6_B = question[11],
+                Subject_Name = (string) TempData["QuestionPaperSubject"]
+            };
+
+            insem.GenerateQuestionPaper(question[12]+ " " + $"{DateTime.Now.ToString().Replace('/', '-').Replace(':', '.')}");
+
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }
     }
 }
