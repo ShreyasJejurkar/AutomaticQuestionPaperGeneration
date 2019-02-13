@@ -13,31 +13,30 @@
 
         </tr>
         <tbody>
-            @foreach (var data in Model)
-            {
-                <tr>
-                    <td style="border: 1px solid black">
-                        @data.Question
-                    </td>
-                    <td style="border: 1px solid black">
-                        @data.Level
-                    </td>
-                    <td style="border: 1px solid black">
-                        @Html.ActionLink("Edit", "EditQuestionDetails",
-                            new
-                            {
-                                question = data.Question,
-                                level = data.Level,
-                                semester = data.Semester,
-                                department = data.Department,
-                                chapter = data.Chapter,
-                                type = data.QuestionType,
-                                unit = data.UnitId
-                            }
-                            , new {@class = "btn btn-outline-secondary", id = "QuestionEditButton", name = "QuestionEditButton", data_question = data})
-                    </td>
-                </tr>
-            }
+        @foreach (var data in Model)
+        {
+            <tr>
+                <td style="border: 1px solid black">
+                    @data.Question
+                </td>
+                <td style="border: 1px solid black">
+                    @data.Level
+                </td>
+                <td style="border: 1px solid black">
+                    @Html.ActionLink("Edit", "EditQuestionDetails",
+                        new
+                        {
+                            question = data.Question,
+                            level = data.Level,
+                            semester = data.Semester,
+                            department = data.Department,
+                            chapter = data.Chapter,
+                            type = data.QuestionType,
+                            unit = data.UnitId
+                        }
+                        , new {@class = "btn btn-outline-secondary", id = "QuestionEditButton", name = "QuestionEditButton", data_question = data})
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
-}
