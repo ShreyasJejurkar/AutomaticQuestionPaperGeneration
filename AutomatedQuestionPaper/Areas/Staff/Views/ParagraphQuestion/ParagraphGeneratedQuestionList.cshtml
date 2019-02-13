@@ -1,0 +1,54 @@
+﻿@model List<string>
+
+@if (Model != null)
+{
+    using (Html.BeginForm("AddQuestion", "ParagraphQuestion"))
+    {
+        <table class="table table-bordered table-responsive table-hover table-striped">
+            <tr>
+                <th>
+
+                </th>
+                <th>
+                    Questions
+                </th>
+                <th>
+                    Difficulty Level
+                </th>
+            </tr>
+            <tbody>
+                @foreach (var data in Model)
+                {
+                    <tr>
+                        <td style="border: 1px solid black">
+                            <input type="checkbox" name="selectedQuestions" id="selectedQuestions" value="@data" />
+                        </td>
+
+                        <td style="border: 1px solid black">
+                            @data
+                        </td>
+                        <td style="border: 1px solid black">
+                            <select id="selectedLevel" name="selectedLevel">
+                                <option>0</option>
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                                <option>6</option>
+                                <option>7</option>
+                                <option>8</option>
+                                <option>9</option>
+                                <option>10</option>
+                            </select>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <div class="form-group text-center">
+            <input type="submit" class="btn btn-primary" value="Add questions" />
+        </div>
+    }
+}

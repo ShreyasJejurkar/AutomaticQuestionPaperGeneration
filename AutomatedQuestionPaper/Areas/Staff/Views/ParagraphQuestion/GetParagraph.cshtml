@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "GetParagraph";
+    Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
+}
+
+<br/>
+<h4>Paragraph text : </h4>
+<br/>
+
+<form onsubmit="return false">
+    <div class="form-group">
+        <textarea class="form-control" style="min-height: 200px" name="ParagraphText" id="ParagraphText" required></textarea>
+        
+        
+        <br/>
+        <button class="btn btn-outline-success btn-block" name="ParagraphSubmit" id="ParagraphSubmit">Generate</button>
+    </div>
+</form>
+
+<br/>
+
+<h3>Generated questions : </h3>
+<div id="QuestionList" name="QuestionList">
+
+</div>
+
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function() {
+            $("#ParagraphSubmit").click(function(e) {
+
+                e.preventDefault();
+                var paragraphText = $("#ParagraphText").val();
+                console.log(paragraphText);
+                if (paragraphText !== '') {
+                    $.ajax({
+                        type: 'Post',
+                        url: '@Url.Action("GenerateQuestion", "ParagraphQuestion")',
+                        dataType: 'html',
+                        data: {
+                            paragraphContent: paragraphText
+                        },
+                        success: function(data) {
+                            e.preventDefault();
+                            $("#QuestionList").html(data);
+                        },
+                        error: function(err) {
+                            e.preventDefault();
+                            $("#QuestionList").html(data);
+                        }
+                    });
+                } else {
+                    alert("Please select all the fields");
+                }
+
+
+            });
+        });
+    </script>
+}

@@ -4,6 +4,252 @@
     Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
 }
 
-<h3>Paragraph</h3>
+<br/>
+@if (TempData["QuestionAddedSuccessMessage"] != null)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @TempData["QuestionAddedSuccessMessage"]
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+}
 
-  
+<h3>Paragraph Question extractor</h3>
+
+<form>
+    <div>
+        <label class="col-form-label">Semester</label>
+        <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
+        <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
+    </div>
+
+    <div>
+        <label class="col-form-label">Department</label>
+        <select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
+        <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
+    </div>
+
+    <div>
+        <label class="col-form-label">Subject</label>
+        <select id="selectedSubject" name="selectedSubject" class="form-control" data-val="true" data-val-required="The subject field is required"></select>
+        <span class="field-validation-valid text-danger" data-valmsg-for="selectedSubject" data-valmsg-replace="true"></span>
+    </div>
+
+    <div>
+        <label class="col-form-label">Unit no</label>
+        <select id="selectedUnit" name="selectedUnit" class="form-control" data-val="true" data-val-required="The unit field is required">
+            <option selected disabled>---Select---</option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+            <option>5</option>
+            <option>6</option>
+        </select>
+        <span class="field-validation-valid text-danger" data-valmsg-for="selectedUnit" data-valmsg-replace="true"></span>
+    </div>
+
+    <div>
+        <label class="col-form-label">ExamType</label>
+        <select id="ExamType" name="ExamType" class="form-control" data-val="true" data-val-required="The ExamType field is required">
+            <option selected disabled>---Select---</option>
+            <option>InSem</option>
+            <option>EndSem</option>
+        </select>
+        <span class="field-validation-valid text-danger" data-valmsg-for="ExamType" data-valmsg-replace="true"></span>
+    </div>
+
+
+    <div>
+        <label class="col-form-label">Chapter name</label>
+        <select id="chapterName" name="chapterName" class="form-control" data-val="true" data-val-required="The chapter name field is required"></select>
+        <span class="field-validation-valid text-danger" data-valmsg-for="chapterName" data-valmsg-replace="true"></span>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Submit" class="form-control btn btn-primary" id="QuestionSubmitButton" name="QuestionSubmitButton" />
+    </div>
+</form>
+
+@section Scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+    <script>
+        $(function() {
+
+            $("#selectedDepartment").prop("disabled", true);
+            $("#selectedSubject").prop("disabled", true);
+            $("#selectedUnit").prop("disabled", true);
+            $("#selectedSubject").prop("disabled", true);
+
+            $.ajax({
+                url: '@Url.Action("GetAllocatedSemesters", "Chapter")',
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    $("#selectedSemester").empty();
+                    $("#selectedSemester").append("<option selected disabled>---Select---</option>");
+                    for (var i = 0; i < data.length; i++) {
+                        $("#selectedSemester").append("<option>" + data[i] + "</option>");
+                    }
+
+                    $("#selectedSemester").prop("disabled", false);
+                    $("#selectedDepartment").prop("disabled", false);
+
+                },
+                error: function(xhr, thrownError) {
+                    alert("Something went wrong. \nProblem description -  Error code " +
+                        xhr.status +
+                        "Message" +
+                        thrownError +
+                        "");
+                }
+            });
+
+
+            $("#selectedSemester").change(function() {
+                var sem = $("#selectedSemester option:selected").val();
+                $.ajax({
+                    url: '@Url.Action("GetAllocatedDepartments", "Chapter")',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        semesterName: sem
+                    },
+
+                    success: function(data) {
+                        $("#selectedDepartment").empty();
+                        $("#selectedDepartment").append("<option selected disabled>---Select---</option>");
+                        for (var i = 0; i < data.length; i++) {
+                            $("#selectedDepartment").append("<option>" + data[i] + "</option>");
+                        }
+
+                        $("#selectedDepartment").prop("disabled", false);
+                        $("#selectedSubject").prop("disabled", false);
+                        $("#selectedUnit").prop("disabled", true);
+                        $("#selectedUnit").prop("selectedIndex", 0);
+                    },
+                    error: function(xhr, thrownError) {
+                        alert("Something went wrong. \nProblem description -  Error code " +
+                            xhr.status +
+                            "Message" +
+                            thrownError +
+                            "");
+                    }
+
+                });
+            });
+
+            $("#selectedDepartment").change(function() {
+                var dept = $("#selectedDepartment option:selected").val();
+                var sem = $("#selectedSemester option:selected").val();
+                $.ajax({
+                    url: '@Url.Action("GetSubjectsList", "Chapter")',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        departmentName: dept,
+                        semesterName: sem
+                    },
+                    success: function(data) {
+                        $("#selectedSubject").empty();
+                        $("#selectedSubject").append("<option selected disabled>---Select---</option>");
+                        for (var i = 0; i < data.length; i++) {
+                            $("#selectedSubject").append("<option>" + data[i] + "</option>");
+                        }
+
+                        $("#selectedSubject").prop("disabled", false);
+                        $("#selectedUnit").prop("disabled", false);
+                    },
+                    error: function(xhr, thrownError) {
+                        alert("Something went wrong. \nProblem description -  Error code " +
+                            xhr.status +
+                            "Message" +
+                            thrownError +
+                            "");
+                    }
+
+                });
+            });
+
+            $("#selectedUnit").change(function() {
+                var dept = $("#selectedDepartment option:selected").val();
+                var sem = $("#selectedSemester option:selected").val();
+                var sub = $("#selectedSubject option:selected").val();
+                var unit = $("#selectedUnit option:selected").val();
+
+                $.ajax({
+                    url: '@Url.Action("GetChapterList", "ManualType")',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: {
+                        semester: sem,
+                        department: dept,
+                        subject: sub,
+                        unit: unit
+                    },
+
+                    success: function(data) {
+                        $("#chapterName").empty();
+                        $("#chapterName").append("<option selected disabled>---Select---</option>");
+                        for (var i = 0; i < data.length; i++) {
+                            $("#chapterName").append("<option>" + data[i] + "</option>");
+                        }
+
+                        $("#selectedSubject").prop("disabled", false);
+                        $("#selectedUnit").prop("disabled", false);
+                    },
+                    error: function(xhr, thrownError) {
+                        alert("Something went wrong. \nProblem description -  Error code " +
+                            xhr.status +
+                            "Message" +
+                            thrownError +
+                            "");
+                    }
+
+                });
+            });
+
+            $("#QuestionSubmitButton").click(function(e) {
+
+                e.preventDefault();
+                var semester = $("#selectedSemester option:selected").text();
+                var department = $("#selectedDepartment option:selected").text();
+                var subject = $("#selectedSubject option:selected").text();
+                var unit = $("#selectedUnit  option:selected").text();
+                var chapterName = $("#chapterName option:selected").text();
+                var type = $("#ExamType option:selected").text();
+                if (unit !== "---Select---") {
+                    $.ajax({
+                        type: 'Post',
+                        url: '@Url.Action("NextStep", "ParagraphQuestion")',
+                        dataType: 'html',
+                        data: {
+                            selectedSemester: semester,
+                            selectedDepartment: department,
+                            selectedSubject: subject,
+                            unitNo: unit,
+                            chapterName: chapterName,
+                            examType: type
+                        },
+                        success: function(data) {
+                            window.location.href = '@Url.Action("GetParagraph","ParagraphQuestion")'; //Will take you to Google.
+                        },
+                        error: function(err) {
+                            e.preventDefault();
+                            $("#questionList").html(data);
+                        }
+                    });
+                } else {
+                    alert("Please select all the fields");
+                }
+
+
+            });
+
+
+        });
+    </script>
+}
