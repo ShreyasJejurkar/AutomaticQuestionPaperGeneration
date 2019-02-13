@@ -30,14 +30,13 @@
     nextText: "Next >",
     lastText: "Last >>",
     columns: grid.Columns(
-        grid.Column("Id", "Id"),
         grid.Column("PaperName", "Question paper name"),
         grid.Column(format: @<text>@Html.ActionLink("PDF", "QuestionPaperView", new {id = item.Id}, new {@class = "btn btn-secondary btn-outline-warning"})</text>),
         grid.Column(format: @<text>@Html.ActionLink("Word", "QuestionPaperDownloadWord", new {id = item.Id}, new {@class = "btn btn-secondary btn-outline-warning"})</text>),
         grid.Column(format: @<text>@Html.ActionLink("Delete",
                                        "QuestionPaperDelete",
                                        new {id = item.Id},
-                                       new {onclick = "return confirm('Are you sure you wish to delete this article?');", @class = "btn btn-secondary btn-outline-danger"}
+                                       new {onclick = "return confirm('Are you sure you wish to delete this paper?');", @class = "btn btn-secondary btn-outline-danger"}
                                        )</text>)
         ))
 

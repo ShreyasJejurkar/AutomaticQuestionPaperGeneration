@@ -276,6 +276,13 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </Content>
+    <Content Include="Paragraph-question-generator\file.txt" />
+    <Content Include="Paragraph-question-generator\gen.py" />
+    <Content Include="Paragraph-question-generator\in.txt" />
+    <Content Include="Paragraph-question-generator\new.txt" />
+    <Content Include="Paragraph-question-generator\output.txt" />
+    <Content Include="Paragraph-question-generator\quest.py" />
+    <Content Include="Paragraph-question-generator\requirements.txt" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
     <Content Include="Scripts\bootstrap.js" />
@@ -344,6 +351,14 @@
     <Content Include="App_Data\QuestionPapersFormat\insem.doc" />
     <Content Include="Areas\Staff\Views\ParagraphQuestion\Index.cshtml" />
     <Content Include="Areas\Staff\Views\PaperCreation\CreateQuestionPaper.cshtml" />
+    <Content Include="Areas\Staff\Views\ParagraphQuestion\GetParagraph.cshtml" />
+    <Content Include="Paragraph-question-generator\build\quest\quest.exe.manifest" />
+    <Content Include="Paragraph-question-generator\q.bat" />
+    <Content Include="Paragraph-question-generator\quest.spec" />
+    <Content Include="Paragraph-question-generator\README.md" />
+    <Content Include="Paragraph-question-generator\report.md" />
+    <Content Include="Paragraph-question-generator\u.Id" />
+    <Content Include="Areas\Staff\Views\ParagraphQuestion\ParagraphGeneratedQuestionList.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -397,6 +412,7 @@
     <Folder Include="Areas\Staff\Uploads\CSV\" />
     <Folder Include="Areas\Staff\Uploads\Excel\" />
     <Folder Include="Areas\Staff\Uploads\Word\" />
+    <Folder Include="Paragraph-question-generator\dist\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config">

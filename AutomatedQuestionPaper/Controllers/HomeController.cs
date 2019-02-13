@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Diagnostics;
+using System.Web.Mvc;
 
 namespace AutomatedQuestionPaper.Controllers
 {
@@ -8,22 +9,6 @@ namespace AutomatedQuestionPaper.Controllers
         [Route("/")]
         public ActionResult Index()
         {
-            //var directory = string.Format(@"C:\genquest-master");
-            //var proc = new Process
-            //{
-            //    StartInfo =
-            //    {
-            //        WorkingDirectory = directory,
-            //        FileName = "q.bat",
-            //        WindowStyle = ProcessWindowStyle.Hidden,
-            //        CreateNoWindow = true
-            //    }
-            //};
-            //proc.Start();
-            //proc.WaitForExit();
-            //proc.Close();
-
-
             Session["Username"] = Session["Staff_Name"] = null;
             return View();
         }

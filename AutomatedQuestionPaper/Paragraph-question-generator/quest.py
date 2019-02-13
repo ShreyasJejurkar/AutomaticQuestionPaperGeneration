@@ -147,7 +147,7 @@ def main():
     textinput = filehandle.read()
     #print('\n-----------INPUT TEXT-------------\n')
     #print(textinput,'\n')
-    #print('\n-----------INPUT END---------------\n')
+    print('\n-----------INPUT END---------------\n')
 
     # Send the content of text file as string to function parse()
     parse(textinput)
