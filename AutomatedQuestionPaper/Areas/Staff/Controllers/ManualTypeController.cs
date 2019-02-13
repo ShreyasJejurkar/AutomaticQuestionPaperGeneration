@@ -137,17 +137,16 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             var sem = Convert.ToInt32(ques.SemesterId);
             var dep = Convert.ToInt32(ques.DepartmentId);
 
-            TempData["Semester-Name"] = _context.Semesters.FirstOrDefault(x => x.Id == sem).SemesterName;
-            TempData["Department-Name"] = _context.Departments.FirstOrDefault(x => x.Id == dep).DepartmentName;
-            TempData["Subject-Name"] = _context.Courses.FirstOrDefault(x => x.Courseid == ques.CourseId).CourseName;
-            TempData["Chapter-Name"] = _context.Chapters.FirstOrDefault(x => x.Id == ques.ChapterId).ChapterName;
+            TempData["Semester-Name"] = _context.Semesters.FirstOrDefault(x => x.Id == sem)?.SemesterName;
+            TempData["Department-Name"] = _context.Departments.FirstOrDefault(x => x.Id == dep)?.DepartmentName;
+            TempData["Subject-Name"] = _context.Courses.FirstOrDefault(x => x.Courseid == ques.CourseId)?.CourseName;
+            TempData["Chapter-Name"] = _context.Chapters.FirstOrDefault(x => x.Id == ques.ChapterId)?.ChapterName;
             TempData["Level"] = level;
 
             if (ques.QuestionType == 0)
                 TempData["Type-Name"] = "InSem";
             else if (ques.QuestionType == 1) TempData["Type-Name"] = "EndSem";
-
-
+            
             // TODO lot of work has to be done in view. start with fetching allocated subject list
 
 
