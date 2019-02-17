@@ -1,11 +1,10 @@
-﻿@model IEnumerable<AutomatedQuestionPaper.Models.Question>
-
-
-@{
+﻿@{
 
     ViewBag.Title = "File upload";
     Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
 }
+
+<br/>
 
 @if (TempData["QuestionEditedSuccessMessage"] != null)
 {
@@ -27,64 +26,74 @@
     </div>
 }
 
+<form onsubmit="return false">
 
-<form>
-    <div>
-        <label class="col-form-label">Semester</label>
-        <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Semester</label>
+            <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Department</label>
+            <select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
+        </div>
     </div>
 
-    <div>
-        <label class="col-form-label">Department</label>
-        <select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Subject</label>
+            <select id="selectedSubject" name="selectedSubject" class="form-control" data-val="true" data-val-required="The subject field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedSubject" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Unit no</label>
+            <select id="selectedUnit" name="selectedUnit" class="form-control" data-val="true" data-val-required="The unit field is required">
+                <option selected disabled>---Select---</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedUnit" data-valmsg-replace="true"></span>
+        </div>
     </div>
 
-    <div>
-        <label class="col-form-label">Subject</label>
-        <select id="selectedSubject" name="selectedSubject" class="form-control" data-val="true" data-val-required="The subject field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedSubject" data-valmsg-replace="true"></span>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">ExamType</label>
+            <select id="ExamType" name="ExamType" class="form-control" data-val="true" data-val-required="The ExamType field is required">
+                <option selected disabled>---Select---</option>
+                <option>InSem</option>
+                <option>EndSem</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="ExamType" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Chapter name</label>
+            <select id="chapterName" name="chapterName" class="form-control" data-val="true" data-val-required="The chapter name field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="chapterName" data-valmsg-replace="true"></span>
+        </div>
     </div>
+    
+    <br/>
 
-    <div>
-        <label class="col-form-label">Unit no</label>
-        <select id="selectedUnit" name="selectedUnit" class="form-control" data-val="true" data-val-required="The unit field is required">
-            <option selected disabled>---Select---</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-        </select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedUnit" data-valmsg-replace="true"></span>
-    </div>
-
-    <div>
-        <label class="col-form-label">ExamType</label>
-        <select id="ExamType" name="ExamType" class="form-control" data-val="true" data-val-required="The ExamType field is required">
-            <option selected disabled>---Select---</option>
-            <option>InSem</option>
-            <option>EndSem</option>
-        </select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="ExamType" data-valmsg-replace="true"></span>
-    </div>
-
-
-    <div>
-        <label class="col-form-label">Chapter name</label>
-        <select id="chapterName" name="chapterName" class="form-control" data-val="true" data-val-required="The chapter name field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="chapterName" data-valmsg-replace="true"></span>
-    </div>
-
-    <div class="form-group">
-        <input type="submit" value="Submit" class="form-control btn btn-primary" id="QuestionSubmitButton" name="QuestionSubmitButton"/>
+    <div class="row">
+        <div class="col">
+            <button class="form-control btn btn-primary" id="QuestionSubmitButton" name="QuestionSubmitButton">Submit</button>
+        </div>
     </div>
 </form>
 
+<br/>
 
-<div id="questionList">
+<div id="questionList" name="questionList">
 
 </div>
 
@@ -257,17 +266,13 @@
                         },
                         error: function(err) {
                             e.preventDefault();
-                            $("#questionList").html(data);
+                            $("#questionList").html(err);
                         }
                     });
                 } else {
                     alert("Please select all the fields");
                 }
-
-
             });
-
-
         });
     </script>
 }

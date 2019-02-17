@@ -4,7 +4,7 @@
     Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
 }
 
-<br/>
+<br />
 @if (TempData["UploadError"] != null)
 {
     <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -16,75 +16,93 @@
 }
 
 
-@using (Html.BeginForm("QuestionFileUpload", "FileUpload", FormMethod.Post, new {enctype = "multipart/form-data"}))
+@using (Html.BeginForm("QuestionFileUpload", "FileUpload", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
-    <div class="form-group">
-        <label class="col-form-label">Select file</label>
-        <input type="file" id="fileControl" name="fileControl" class="form-control-file" required="required"/>
-        <span class="field-validation-valid text-danger" data-valmsg-for="fileControl" data-valmsg-replace="true"></span>
+
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Select file</label>
+            <input type="file" id="fileControl" name="fileControl" class="form-control-file" required="required" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="fileControl" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">File type</label>
+            <select id="selectedFileType" name="selectedFileType" class="form-control" data-val="true" data-val-required="The file type field is required" required>
+                <option selected disabled>---Select---</option>
+                <option>CSV (.csv)</option>
+                <option>Word file (.docx)</option>
+            </select>
+            <small id="fileHelp" name="fileHelp" class="form-text text-muted">Don't worry if possible we will automatically select the type of file you uploaded.</small>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedFileType" data-valmsg-replace="true"></span>
+        </div>
+
+
     </div>
 
-    <div class="form-group">
-        <label class="col-form-label">File type</label>
-        <select id="selectedFileType" name="selectedFileType" class="form-control" data-val="true" data-val-required="The file type field is required" required>
-            <option selected disabled>---Select---</option>
-            <option>CSV (.csv)</option>
-            <option>Word file (.docx)</option>
-        </select>
-        <small id="fileHelp" name="fileHelp" class="form-text text-muted">Don't worry if possible we will automatically select the type of file you uploaded.</small>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedFileType" data-valmsg-replace="true"></span>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Semester</label>
+            <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
+
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Department</label>
+            <select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
+
+        </div>
     </div>
 
-    <div class="form-group">
-        <label class="col-form-label">Semester</label>
-        <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Subject</label>
+            <select id="selectedSubject" name="selectedSubject" class="form-control" data-val="true" data-val-required="The subject field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedSubject" data-valmsg-replace="true"></span>
+
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Unit no</label>
+            <select id="selectedUnit" name="selectedUnit" class="form-control" data-val="true" data-val-required="The unit field is required">
+                <option selected disabled>---Select---</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedUnit" data-valmsg-replace="true"></span>
+        </div>
     </div>
 
-    <div class="form-group">
-        <label class="col-form-label">Department</label>
-        <select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">ExamType</label>
+            <select id="ExamType" name="ExamType" class="form-control" data-val="true" data-val-required="The ExamType field is required">
+                <option selected disabled>---Select---</option>
+                <option>InSem</option>
+                <option>EndSem</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="ExamType" data-valmsg-replace="true"></span>
+
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Chapter name</label>
+            <select id="chapterName" name="chapterName" class="form-control" data-val="true" data-val-required="The chapter name field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="chapterName" data-valmsg-replace="true"></span>
+
+        </div>
     </div>
 
-    <div class="form-group">
-        <label class="col-form-label">Subject</label>
-        <select id="selectedSubject" name="selectedSubject" class="form-control" data-val="true" data-val-required="The subject field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedSubject" data-valmsg-replace="true"></span>
-    </div>
+    <br/>
 
-    <div class="form-group">
-        <label class="col-form-label">Unit no</label>
-        <select id="selectedUnit" name="selectedUnit" class="form-control" data-val="true" data-val-required="The unit field is required">
-            <option selected disabled>---Select---</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-        </select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedUnit" data-valmsg-replace="true"></span>
-    </div>
+    <div class="row">
+        <div class="col">
+            <input type="submit" value="Submit" class="form-control btn btn-outline-primary" id="ChapterFormSubmit" name="ChapterFormSubmit" />
+        </div>
 
-    <div class="form-group">
-        <label class="col-form-label">ExamType</label>
-        <select id="ExamType" name="ExamType" class="form-control" data-val="true" data-val-required="The ExamType field is required">
-            <option selected disabled>---Select---</option>
-            <option>InSem</option>
-            <option>EndSem</option>
-        </select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="ExamType" data-valmsg-replace="true"></span>
-    </div>
-
-    <div class="form-group">
-        <label class="col-form-label">Chapter name</label>
-        <select id="chapterName" name="chapterName" class="form-control" data-val="true" data-val-required="The chapter name field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="chapterName" data-valmsg-replace="true"></span>
-    </div>
-
-    <div class="form-group">
-        <input type="submit" value="Submit" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit"/>
     </div>
 }
 

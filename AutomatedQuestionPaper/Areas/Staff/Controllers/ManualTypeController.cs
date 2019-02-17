@@ -18,60 +18,16 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             return View();
         }
 
-        /*
-
-        public ActionResult LoadQuestion(string selectedSemester, string selectedDepartment, string selectedSubject, string unitNo, string chapterName, string examType)
-        {
-            var semesterId = _context.Semesters.FirstOrDefault(x => x.SemesterName == selectedSemester)?.Id;
-
-            // Get the department Id
-            var departmentId = _context.Departments.FirstOrDefault(x => x.DepartmentName == selectedDepartment)?.Id;
-
-            var subjectId = _context.Courses.FirstOrDefault(x => x.CourseName == selectedSubject)?.Courseid;
-
-            var unitInt = Convert.ToInt32(unitNo);
-
-            var type = (int)Enum.Parse(typeof(ExamType), examType);
-
-            var chapterId = _context.Chapters.FirstOrDefault(x => x.SemesterId == semesterId && x.DepartmentId == departmentId && x.CourseId == subjectId && x.UnitNo == unitInt && x.ChapterName == chapterName)?.Id;
-
-            new Thread(() =>
-            {
-                TempData["Semester-id"] = semesterId;
-                TempData["Department-id"] = departmentId;
-                TempData["Subject-id"] = subjectId;
-                TempData["Chapter-id"] = chapterId;
-                TempData["Unit-id"] = unitInt;
-                TempData["Type-id"] = type;
-            }).Start();
-
-            new Thread(() =>
-            {
-                TempData["Semester-Name"] = selectedSemester;
-                TempData["Department-Name"] = selectedDepartment;
-                TempData["Subject-Name"] = selectedSubject;
-                TempData["Chapter-Name"] = chapterName;
-                TempData["Unit-Name"] = unitNo;
-                TempData["Type-Name"] = examType;
-            }).Start();
-
-
-            var questions = _context.Questions.Where(x => x.SemesterId == semesterId.ToString() && x.DepartmentId == departmentId.ToString() && x.CourseId == subjectId && x.UnitId == unitInt && x.ChapterId == chapterId && x.QuestionType == type).Select(x => x.QuestionText).ToList();
-
-            return PartialView("QuestionList", questions);
-        }
-        */
-
         public ActionResult AddQuestion(string selectedSemester, string selectedDepartment, string selectedSubject,
             string unitNo, string chapterName, string question, string examType, string level)
         {
             // Get the semester Id
-            var semesterId = _context.Semesters.FirstOrDefault(x => x.SemesterName == selectedSemester)?.Id;
+            var semesterId = DatabaseData.GetSemesterInfo(selectedSemester).Id;
 
             // Get the department Id
-            var departmentId = _context.Departments.FirstOrDefault(x => x.DepartmentName == selectedDepartment)?.Id;
+            var departmentId = DatabaseData.GetDepartmentInfo(selectedDepartment).Id;
 
-            var subjectId = _context.Courses.FirstOrDefault(x => x.CourseName == selectedSubject)?.Courseid;
+            var subjectId = DatabaseData.GetCourseInfo(selectedSubject).Courseid;
 
             var unitInt = Convert.ToInt32(unitNo);
 
@@ -79,7 +35,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                 x.SemesterId == semesterId && x.DepartmentId == departmentId && x.CourseId == subjectId &&
                 x.UnitNo == unitInt && x.ChapterName == chapterName)?.Id;
 
-            var type = (int) Enum.Parse(typeof(ExamType), examType);
+            var type = (int)Enum.Parse(typeof(ExamType), examType);
 
             _context.Questions.Add(new Question
             {
@@ -146,7 +102,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             if (ques.QuestionType == 0)
                 TempData["Type-Name"] = "InSem";
             else if (ques.QuestionType == 1) TempData["Type-Name"] = "EndSem";
-            
+
             // TODO lot of work has to be done in view. start with fetching allocated subject list
 
 
@@ -156,7 +112,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         [HttpPost]
         public ActionResult EditQuestionDetails(string selectedSemester, string selectedDepartment,
             string selectedSubject, string selectedUnit, string chapterName, string question, int? QuestionHiddenId,
-            string difficultyLevel)
+            string difficultyLevel, string ExamType)
         {
             var num = Convert.ToInt32(Request.Form["Id"]);
 
@@ -172,6 +128,8 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
             var unitNo = Convert.ToInt32(selectedUnit);
 
+            var type = (int)Enum.Parse(typeof(ExamType), ExamType);
+
             var chapters = _context.Chapters.FirstOrDefault(x =>
                 x.SemesterId == semesterId && x.DepartmentId == departmentId && x.CourseId == subjectId &&
                 x.UnitNo == unitNo && x.ChapterName == chapterName)?.Id;
@@ -181,7 +139,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             dbQuestion.DepartmentId = Convert.ToString(departmentId);
             dbQuestion.DifficultyLevel = Convert.ToInt32(difficultyLevel);
             dbQuestion.QuestionText = question;
-            dbQuestion.QuestionType = 1;
+            dbQuestion.QuestionType = type;
             dbQuestion.SemesterId = Convert.ToString(semesterId);
             dbQuestion.UnitId = unitNo;
 
@@ -228,7 +186,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
             var unitInt = Convert.ToInt32(unitNo);
 
-            var type = (int) Enum.Parse(typeof(ExamType), examType);
+            var type = (int)Enum.Parse(typeof(ExamType), examType);
 
             var chapterId = _context.Chapters.FirstOrDefault(x =>
                 x.SemesterId == semesterId && x.DepartmentId == departmentId && x.CourseId == subjectId &&
@@ -237,29 +195,18 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             var questions = _context.Questions
                 .Where(x => x.SemesterId == semesterId.ToString() && x.DepartmentId == departmentId.ToString() &&
                             x.CourseId == subjectId && x.UnitId == unitInt && x.ChapterId == chapterId &&
-                            x.QuestionType == type).Select(x => new
-                {
-                    x.QuestionText, x.DifficultyLevel, x.SemesterId, x.DepartmentId, x.ChapterId, x.QuestionType,
-                    x.UnitId
-                }).ToList();
+                            x.QuestionType == type).Select(x => new QuestionFormat
+                            {
+                                Question = x.QuestionText,
+                                Level = x.DifficultyLevel,
+                                Semester = x.SemesterId,
+                                Department = x.DepartmentId,
+                                Chapter = x.ChapterId,
+                                QuestionType = x.QuestionType,
+                                UnitId = x.UnitId
+                            }).ToList();
 
-            // TODO Create a strongly type class and pass it to view
-
-            var ques = new List<QuestionFormat>();
-
-            foreach (var item in questions)
-                ques.Add(new QuestionFormat
-                {
-                    Question = item.QuestionText,
-                    Level = item.DifficultyLevel,
-                    Semester = item.SemesterId,
-                    Chapter = item.ChapterId,
-                    Department = item.DepartmentId,
-                    UnitId = item.UnitId,
-                    QuestionType = item.QuestionType
-                });
-
-            return PartialView("QuestionList", ques);
+            return PartialView("QuestionList", questions);
         }
     }
 }

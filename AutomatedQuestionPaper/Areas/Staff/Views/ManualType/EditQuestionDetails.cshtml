@@ -19,70 +19,67 @@
         </div>
 
         <div class="col-sm-12 col-lg-6">
-            <label class="col-form-label">Semester</label>
-            <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
-            <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
+            <label class="col-form-label">Department</label>
+            <select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Subject</label>
+            <select id="selectedSubject" name="selectedSubject" class="form-control" data-val="true" data-val-required="The subject field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedSubject" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Unit no</label>
+            <select id="selectedUnit" name="selectedUnit" class="form-control" data-val="true" data-val-required="The unit field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedUnit" data-valmsg-replace="true"></span>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Chapter name</label>
+            <select id="chapterName" name="chapterName" class="form-control" data-val="true" data-val-required="The chapter name field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="chapterName" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Exam Type</label>
+            <select id="ExamType" name="ExamType" class="form-control" data-val="true" data-val-required="The chapter name field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="ExamType" data-valmsg-replace="true"></span>
         </div>
     </div>
 
 
-    <div>
-        <label class="col-form-label">Semester</label>
-        <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Question</label>
+            <input type="text" name="question" id="question" value="@Model.QuestionText" class="form-control" data-val="true" data-val-required="The chapter name field is required" required />
+            <span class="field-validation-valid text-danger" data-valmsg-for="question" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Difficulty level</label>
+            <select id="difficultyLevel" name="difficultyLevel" class="form-control" data-val="true" data-val-required="The difficulty level field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="difficultyLevel" data-valmsg-replace="true"></span>
+        </div>
     </div>
 
-    <div>
-        <label class="col-form-label">Department</label>
-        <select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
+    <br/>
+
+    <div class="row">
+        <div class="col">
+            <input type="submit" value="Edit" class="form-control btn btn-secondary" id="ChapterFormSubmit" name="ChapterFormSubmit" />
+        </div>
     </div>
 
-    <div>
-        <label class="col-form-label">Subject</label>
-        <select id="selectedSubject" name="selectedSubject" class="form-control" data-val="true" data-val-required="The subject field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedSubject" data-valmsg-replace="true"></span>
-    </div>
-
-    <div>
-        <label class="col-form-label">Unit no</label>
-        <select id="selectedUnit" name="selectedUnit" class="form-control" data-val="true" data-val-required="The unit field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedUnit" data-valmsg-replace="true"></span>
-    </div>
-
-    <div>
-        <label class="col-form-label">Chapter name</label>
-        <select id="chapterName" name="chapterName" class="form-control" data-val="true" data-val-required="The chapter name field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="chapterName" data-valmsg-replace="true"></span>
-    </div>
-
-    <div>
-        <label class="col-form-label">Exam Type</label>
-        <select id="ExamType" name="ExamType" class="form-control" data-val="true" data-val-required="The chapter name field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="ExamType" data-valmsg-replace="true"></span>
-    </div>
-
-
-    <div>
-        <label class="col-form-label">Question</label>
-        <input type="text" name="question" id="question" value="@Model.QuestionText" class="form-control" data-val="true" data-val-required="The chapter name field is required" required/>
-        <span class="field-validation-valid text-danger" data-valmsg-for="question" data-valmsg-replace="true"></span>
-    </div>
-
-    <div>
-        <label class="col-form-label">Difficulty level</label>
-        <select id="difficultyLevel" name="difficultyLevel" class="form-control" data-val="true" data-val-required="The difficulty level field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="difficultyLevel" data-valmsg-replace="true"></span>
-    </div>
-
+    <br/>
 
     <div class="form-group">
-        <input type="submit" value="Edit" class="form-control btn btn-secondary" id="ChapterFormSubmit" name="ChapterFormSubmit"/>
-    </div>
-
-
-    <div class="form-group">
-        @Html.ActionLink("Edit", "DeleteQuestion", new {Model.Id})
+        @Html.ActionLink("Delete", "DeleteQuestion", new { Model.Id }, htmlAttributes: new { @class = "btn btn-outline-danger btn-block", onclick = "return confirm('Are you sure you wish to delete this question?');" })
     </div>
 }
 
@@ -104,7 +101,7 @@
             $("#difficultyLevel").empty();
 
             for (var k = 1; k <= 10; k++) {
-                console.log(k);
+                
                 if (level == k) {
                     $("#difficultyLevel").append("<option selected>" + k + "</option>");
                 } else {
