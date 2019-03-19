@@ -2,12 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using AutomatedQuestionPaper.Controllers;
 using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     [SessionCheckAdmin]
-    public class CourseController : Controller
+    public class CourseController : BaseController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
 
@@ -61,6 +62,8 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             _context.Courses.Add(c);
             _context.SaveChanges();
 
+
+
             return RedirectToAction("Index", "Course");
         }
 
@@ -86,9 +89,10 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         }
 
         [HttpGet]
-        public ActionResult Edit()
+        public ActionResult Edit(int id)
         {
-            return View();
+            var dbCourse = _context.Courses.FirstOrDefault(u => u.Courseid == id);
+            return View(dbCourse);
         }
 
         [HttpPost]
@@ -141,9 +145,8 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                     var listOfCourses = _context.Courses.Where(u => u.DepartmentId == departmentId).ToList();
 
                     TempData["CoursesList"] = listOfCourses;
+                    return View("Index", listOfCourses);
                 }
-
-                return RedirectToAction("Index", "Course");
             }
 
             // In case user didn't selected any department 

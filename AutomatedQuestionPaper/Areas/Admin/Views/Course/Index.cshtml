@@ -57,6 +57,8 @@
     </div>
 }
 
+<br/>
+
 @using (Html.BeginForm("GetSubjects", "Course", FormMethod.Post))
 {
     <div class="col-md-10">
@@ -109,11 +111,12 @@
                 nextText: "Next >",
                 lastText: "Last >>",
                 columns: grid.Columns(
-                    grid.Column("Courseid", "Id"),
                     grid.Column("CourseCode", "Subject code"),
                     grid.Column("CourseName", "Name"),
                     grid.Column("Description", "Description"),
-                    grid.Column("Year", "Year")
+                    grid.Column("Year", "Year"),
+                    grid.Column(format: @<text>@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-warning" })</text>),
+                    grid.Column(format: @<text>@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn  btn-outline-danger", onclick = "return confirm('Are you sure you wish to delete this staff?');" })</text>)
                     ))
         }
         catch (Exception e)

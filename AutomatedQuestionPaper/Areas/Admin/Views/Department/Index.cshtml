@@ -50,13 +50,21 @@
 
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    <div class="float-md-right mb-3">
+        <a href=@Url.Action("Create", "Department") class="btn btn-outline-success btn-block">
+            <span class="fa fa-plus" aria-hidden="true"></span>
+            Add new
+        </a>
+    </div>
 </p>
+
+
 
 @{
     var grid = new WebGrid();
     grid.Bind(Model);
 }
+
 
 @grid.GetHtml("table table-bordered table-striped table-responsive-lg ",
     mode: WebGridPagerModes.All,

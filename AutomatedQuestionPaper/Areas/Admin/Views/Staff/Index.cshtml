@@ -1,5 +1,10 @@
-﻿@using AutomatedQuestionPaper.Models
+﻿@using AutomatedQuestionPaper.Models;
 @model IEnumerable<AutomatedQuestionPaper.Models.Staff>
+@using X.PagedList;
+@using X.PagedList.Mvc;
+@using X.PagedList.Mvc.Bootstrap4;
+
+
 
 @{
     ViewBag.Title = "Staff details";
@@ -23,7 +28,7 @@
     }
 }
 
-<br/>
+<br />
 
 @if (TempData["StaffDetailsEditedSuccessfully"] != null)
 {
@@ -67,28 +72,116 @@
 
 <h4> Staff details </h4>
 
-<div class="float-right m-2">
-    <a href=@Url.Action("TeacherAdd", "Staff") class="btn btn-secondary btn-outline-success">Add</a>
+
+<div class="row">
+    <div class="col"></div>
+
+    <div class="col">
+
+    </div>
+
+    <div class="col">
+        <div class="float-md-right">
+            <a href=@Url.Action("TeacherAdd", "Staff") class="btn btn-outline-success btn-block">
+                <span class="fa fa-plus" aria-hidden="true"></span>
+                Add
+            </a>
+        </div>
+    </div>
 </div>
 
-<br/>
-<br/>
+<br />
 
-@grid.GetHtml("table table-bordered table-striped table-responsive-lg ",
-    mode: WebGridPagerModes.All,
-    firstText: "<< First",
-    previousText: "< Prev",
-    nextText: "Next >",
-    lastText: "Last >>",
-    columns: grid.Columns(
-        grid.Column("name", "Name"),
-        grid.Column("surname", "Surname"),
-        grid.Column("address", "Address"),
-        grid.Column("phone", "Phone Number"),
-        grid.Column("email", "Email"),
-        grid.Column("password", "Password"),
-        grid.Column(format: @<text>@Html.ActionLink("Edit", "TeacherEdit", new {id = item.Id}, new {@class = "btn btn-secondary btn-outline-warning"})</text>),
-        grid.Column(format: @<text>@Html.ActionLink("Delete", "DeleteTeacher", new {id = item.Id}, new {@class = "btn btn-secondary btn-outline-danger", onclick = "return confirm('Are you sure you wish to delete this article?');"})</text>)
-        ))
+<div class="row">
+    <div class="col">
+        <div class="float-left">
 
-@Scripts.Render("~/bundles/jquery")
+            @using (Html.BeginForm("Index", "Staff", FormMethod.Get))
+            {
+                <div class="row">
+                    <div class="col">
+                        <select id="searchOption" name="searchOption" class="form-control custom-select">
+                            <option>Name</option>
+                            <option>Email</option>
+                            <option>Phone Number</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <input class="form-control" type="text" id="searchText" name="searchText" />
+                    </div>
+
+                    <div class="col">
+                        <input class="form-control btn btn-outline-warning" type="submit" value="Search" />
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+<br />
+
+@using (Html.BeginForm("DeleteMultiple", "Staff", FormMethod.Post))
+{
+    @grid.GetHtml("table table-bordered table-striped table-responsive-lg ", htmlAttributes: new { id = "staffGridView" },
+        mode: WebGridPagerModes.All,
+        firstText: "<< First",
+        previousText: "< Prev",
+        nextText: "Next >",
+        lastText: "Last >>",
+        columns: grid.Columns(
+            grid.Column(null,null,format: @<text><input name="selectedIds" id="selectedIds" type="checkbox" value="@item.Id" /></text>),
+                        grid.Column("name", "Name"),
+                        grid.Column("surname", "Surname"),
+                        grid.Column("address", "Address"),
+                        grid.Column("phone", "Phone Number"),
+                        grid.Column("email", "Email"),
+                        grid.Column("password", "Password"),
+                        grid.Column(format: @<text>@Html.ActionLink("Edit", "TeacherEdit", new { id = item.Id }, new { @class = "btn btn-outline-warning" })</text>),
+                                    grid.Column(format: @<text>@Html.ActionLink("Delete", "DeleteTeacher", new { id = item.Id }, new { @class = "btn  btn-outline-danger", onclick = "return confirm('Are you sure you wish to delete this staff?');" })</text>)
+                                                ))
+
+
+    <input type="submit" value="Delete selected staff" class="btn btn-outline-danger" onclick="return confirm('Are you sure you wish to delete this staff?');" />
+}
+
+
+
+
+
+
+<div class="h-100 d-flex justify-content-center">
+
+    @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new
+{
+    page,
+    searchOption = Request.QueryString["searchOption"],
+    searchText = Request.QueryString["searchText"]
+}), Bootstrap4PagedListRenderOptions.Classic)
+
+
+</div>
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jquery")
+    <script>
+        $(function () {
+            alert("Hello");
+            $('.staffGridView thead tr th:first').html(
+                $('<input/>', {
+                    type: 'checkbox',
+                    click: function () {
+                        var checkboxes = $(this).closest('table').find('tbody tr td input[type="checkbox"]');
+                        checkboxes.prop('checked', $(this).is(':checked'));
+                    }
+                })
+            );
+        });
+    </script>
+
+}
+
