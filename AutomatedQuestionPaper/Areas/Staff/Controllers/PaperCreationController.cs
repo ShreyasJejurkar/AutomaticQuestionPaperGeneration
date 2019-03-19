@@ -30,9 +30,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             var semesterId = DatabaseData.GetSemesterInfo(selectedSemester).Id.ToString();
             var departmentId = DatabaseData.GetDepartmentInfo(selectedDepartment).Id.ToString();
             var subjectId = DatabaseData.GetCourseInfo(selectedSubject).Courseid;
-
-
-
+            
             if (ExamType == "InSem")
             {
                 var inSemQuestions = _context.Questions.Where(x => x.SemesterId == semesterId

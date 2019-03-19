@@ -3,7 +3,7 @@
     /**/
 
     ViewBag.Title = "Tentative created question paper";
-    Layout = "~/Areas/Staff/Views/Shared/_staffLoginLayoutPage.cshtml";
+    Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
 }
 
 
@@ -747,8 +747,7 @@
                     $("span#Question6BError").hide();
                 }
             });
-
-
+            
             $("#nextButton").click(function () {
                 if ($("#Question1AError").is(":visible") === false &&
                     $("#Question1BError").is(":visible") === false &&
