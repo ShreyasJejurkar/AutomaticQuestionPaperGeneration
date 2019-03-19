@@ -1,0 +1,486 @@
+﻿@using AutomatedQuestionPaper.Areas.Staff.Models
+
+@{
+    ViewBag.Title = "EndSemQuestionPaper";
+    Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
+}
+
+<h2>EndSemQuestionPaper</h2>
+
+<div class="container">
+    <h3>Tentative created question paper</h3>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col" width="100"></th>
+                <th scope="col" width="80"></th>
+                <th scope="col" width="1000"></th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <th scope="row">Q1</th>
+                <td>A</td>
+                <td>
+                    <select id="Question1A" name="Question1A" class="form-control">
+                        @{
+                            var firstA = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
+
+                            foreach (var item in firstA)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question1AError" name="Question1AError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>B</td>
+                <td>
+                    <select id="Question1B" name="Question1B" class="form-control">
+                        @{
+                            var firstB = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
+
+                            foreach (var item in firstB)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question1BError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td>
+                    <h6 style="text-align: center">OR</h6>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Q2</th>
+                <td>A</td>
+                <td>
+                    <select id="Question2A" name="Question2A" class="form-control">
+                        @{
+                            var secondA = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
+
+                            foreach (var item in secondA)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question2AError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>B</td>
+                <td>
+                    <select id="Question2B" name="Question2B" class="form-control">
+                        @{
+                            var secondB = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
+
+                            foreach (var item in secondB)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question2BError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Q3</th>
+                <td>A</td>
+                <td>
+                    <select id="Question3A" name="Question3A" class="form-control">
+                        @{
+                            var thirdA = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
+
+                            foreach (var item in thirdA)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question3AError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>B</td>
+                <td>
+                    <select id="Question3B" name="Question3B" class="form-control">
+                        @{
+                            var thirdB = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
+
+                            foreach (var item in thirdB)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question3BError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>C</td>
+                <td>
+                    <select id="Question3C" name="Question3C" class="form-control">
+                        @{
+                            var thirdC = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
+
+                            foreach (var item in thirdC)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question3CError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td>
+                    <h6 style="text-align: center">OR</h6>
+                </td>
+            </tr>
+            <tr>
+            <tr>
+                <th scope="row">Q4</th>
+                <td>A</td>
+                <td>
+                    <select id="Question4A" name="Question4A" class="form-control">
+                        @{
+                            var fourthA = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
+
+                            foreach (var item in fourthA)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question4AError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>B</td>
+                <td>
+                    <select id="Question4B" name="Question4B" class="form-control">
+                        @{
+                            var fourthB = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
+
+                            foreach (var item in fourthB)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question4BError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>C</td>
+                <td>
+                    <select id="Question4C" name="Question4C" class="form-control">
+                        @{
+                            var fourthC = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
+
+                            foreach (var item in fourthC)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question4CError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Q5</th>
+                <td>A</td>
+                <td>
+                    <select id="Question5A" name="Question5A" class="form-control">
+                        @{
+                            var fifthA = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+                            foreach (var item in fifthA)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question5AError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>B</td>
+                <td>
+                    <select id="Question5B" name="Question5B" class="form-control">
+                        @{
+                            var fifthB = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+                            foreach (var item in fifthB)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question5BError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td>
+                    <h6 style="text-align: center">OR</h6>
+                </td>
+            </tr>
+            <tr>
+
+            <tr>
+                <th scope="row">Q6</th>
+                <td>A</td>
+                <td>
+                    <select id="Question6A" name="Question6A" class="form-control">
+                        @{
+                            var sixthA = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+                            foreach (var item in sixthA)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question6AError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>B</td>
+                <td>
+                    <select id="Question6B" name="Question6B" class="form-control">
+                        @{
+                            var sixthB = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+                            foreach (var item in sixthB)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question6BError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row">Q7</th>
+                <td>A</td>
+                <td>
+                    <select id="Question7A" name="Question7A" class="form-control">
+                        @{
+                            var seventhA = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+                            foreach (var item in seventhA)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question7AError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>B</td>
+                <td>
+                    <select id="Question7B" name="Question7B" class="form-control">
+                        @{
+                            var seventhB = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+                            foreach (var item in seventhB)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question7BError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td>
+                    <h6 style="text-align: center">OR</h6>
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">Q8</th>
+                <td>A</td>
+                <td>
+                    <select id="Question8A" name="Question8A" class="form-control">
+                        @{
+                            var eightA = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+                            foreach (var item in eightA)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question8AError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>B</td>
+                <td>
+                    <select id="Question8B" name="Question8B" class="form-control">
+                        @{
+                            var eightB = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+                            foreach (var item in eightB)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question8BError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row">Q9</th>
+                <td>A</td>
+                <td>
+                    <select id="Question9A" name="Question9A" class="form-control">
+                        @{
+                            var nineA = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+                            foreach (var item in nineA)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question9AError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>B</td>
+                <td>
+                    <select id="Question9B" name="Question9B" class="form-control">
+                        @{
+                            var nineB = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+                            foreach (var item in nineB)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question9BError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row"></th>
+                <td>C</td>
+                <td>
+                    <select id="Question9C" name="Question9C" class="form-control">
+                        @{
+                            var nineC = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+                            foreach (var item in nineC)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question9CError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row"></th>
+                <td></td>
+                <td>
+                    <h6 style="text-align: center">OR</h6>
+                </td>
+            </tr>
+
+
+            <tr>
+                <th scope="row">Q10</th>
+                <td>A</td>
+                <td>
+                    <select id="Question10A" name="Question10A" class="form-control">
+                        @{
+                            var tenA = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+                            foreach (var item in tenA)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question10AError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"></th>
+                <td>B</td>
+                <td>
+                    <select id="Question10B" name="Question10B" class="form-control">
+                        @{
+                            var tenB = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+                            foreach (var item in tenB)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question10BError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+
+            <tr>
+                <th scope="row"></th>
+                <td>C</td>
+                <td>
+                    <select id="Question10C" name="Question9C" class="form-control">
+                        @{
+                            var tenC = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+                            foreach (var item in tenC)
+                            {
+                                <option>@item.Question</option>
+                            }
+                        }
+                    </select>
+                    <span id="Question10CError" class="field-validation-valid text-danger">Question repeated</span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <br />
+
+    <button id="nextButton" name="nextButton" class="btn btn-block btn-outline-secondary" href="@Url.Action("ValidateQuestionPaper", "PaperCreation")">Next</button>
+    <br />
+</div>
+
