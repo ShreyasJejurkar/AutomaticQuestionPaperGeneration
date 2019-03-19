@@ -10,9 +10,8 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
 {
     public static class PdfHandler
     {
-        private static readonly DatabaseContext _context = new DatabaseContext();
-
-
+        private static readonly DatabaseContext Context = new DatabaseContext();
+        
         public static void ConvertToPdf(string questionPaperPath)
         {
             var d = new Document();
@@ -46,18 +45,13 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
                 var staffName = HttpContext.Current.Session["Staff_Name"];
 
                 // Get the staff details from database
-                var staffId = _context.Staffs.FirstOrDefault(u => u.Name == (string)staffName).Id;
+                var staffId = Context.Staffs.FirstOrDefault(u => u.Name == (string)staffName).Id;
 
                 context.ExamPapers.Add(new ExamPaper
                 {
-                    // TODO Create the name of paper as per semester department and subject
                     PaperName = Path.GetFileNameWithoutExtension(pathPdf),
-
-                    // TODO Get the logged in staff id and assign it here
                     StaffId = staffId,
-
                     PaperValue = contentPdf,
-
                     PaperValueWord = contentWord
                 });
 
@@ -77,7 +71,5 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
 
             return new FileStreamResult(pdfStream, "application/pdf");
         }
-
-        // TODO make a method for displaying word file same as DisplayPDf
     }
 }

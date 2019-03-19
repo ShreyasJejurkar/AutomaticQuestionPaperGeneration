@@ -13,7 +13,16 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         // GET: Staff/QuestionPaperRepository
         public ActionResult Index()
         {
-            var data = _context.ExamPapers.ToList();
+            var loggedInStaff = (string) Session["Staff_Name"];
+
+            var staffId = _context.Staffs.FirstOrDefault(u => u.Name == loggedInStaff)?.Id;
+
+            var data = _context.ExamPapers.Where(x => x.StaffId == staffId).Select(x => x).ToList();
+
+            if (data.Count == 0)
+            {
+                TempData["NoQuestionPaper"] = "There are no previous question paper available";
+            }
 
             return View(data);
         }

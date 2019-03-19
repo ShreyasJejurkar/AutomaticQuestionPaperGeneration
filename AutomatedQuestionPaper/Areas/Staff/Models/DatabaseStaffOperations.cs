@@ -76,11 +76,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
 
             foreach (var id in subjectIDs)
             {
-                var subjectName = Context.Courses.FirstOrDefault(u => u.Courseid == id)?.CourseName;
-                subjectsName.Add(subjectName);
-
-                // TODO can we make it inline like this
-                // subjectsName.Add(Context.Courses.FirstOrDefault(u => u.Courseid == id)?.CourseName);
+                subjectsName.Add(Context.Courses.FirstOrDefault(u => u.Courseid == id)?.CourseName);
             }
 
             return subjectsName;

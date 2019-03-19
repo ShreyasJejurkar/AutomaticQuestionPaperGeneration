@@ -46,6 +46,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         public List<string> GetQuestions(string content)
         {
             const string directory = @"C:\Paragraph-question-generator";
+
             System.IO.File.WriteAllText(@"C:\Paragraph-question-generator\file.txt", content);
             var proc = new Process
             {
