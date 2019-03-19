@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - Automatic Question Paper</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/fontawesome")
+    <script src="~/Scripts/custom/BackButton.js"></script>
+    <script src="~/Scripts/custom/Toast.js"></script>
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark bg-info">
@@ -21,6 +24,7 @@
     </div>
 </nav>
 <div class="container">
+    @Html.Partial("_NotificationPanel")
     @RenderBody()
 </div>
 

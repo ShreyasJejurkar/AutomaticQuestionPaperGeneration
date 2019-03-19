@@ -1,10 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@using System.Web.UI.WebControls
+<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8"/>
+    <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/fontawesome")
+    <script src="~/Scripts/custom/Toast.js"></script>
     <script src="~/Scripts/custom/BackButton.js"></script>
 </head>
 <body>
@@ -31,8 +34,9 @@
     </div>
 </nav>
 <div class="container">
+    @Html.Partial("_NotificationPanel")
     @RenderBody()
-    <hr/>
+    <hr />
 </div>
 
 @Scripts.Render("~/bundles/jquery")
