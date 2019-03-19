@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using AutomatedQuestionPaper.Areas.Staff.Models;
+using AutomatedQuestionPaper.Controllers;
 using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
     [SessionCheckStaff]
-    public class PaperCreationController : Controller
+    public class PaperCreationController : BaseController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
         private readonly Random _r = new Random();
@@ -18,7 +19,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             return View("Index", null);
         }
 
-        [HttpPost]
+        [HttpGet]
         public ActionResult Check(string selectedSemester, string selectedDepartment, string selectedSubject, string ExamType)
         {
             var errorList = new ErrorMessagesList();
@@ -32,56 +33,143 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
 
 
-            // TODO Apply same kind of mapping on other position of antonymous class to strongly build class
-            var inSemQuestions = _context.Questions.Where(x => x.SemesterId == semesterId
-                                                               && x.DepartmentId == departmentId
-                                                               && x.CourseId == subjectId
-                                                               && x.UnitId == 1 || x.UnitId == 2 || x.UnitId == 3)
-                .Select(x => new PaperCreationQuestionFormat()
-                {
-                    Question = x.QuestionText,
-                    Level = x.DifficultyLevel,
-                    Unit = x.UnitId
-                }).ToList();
-
-            TempData["FetchedQuestions"] = inSemQuestions;
-
-
-            var unitNo1 = inSemQuestions.Count(x => x.Unit == 1);
-            var unitNo2 = inSemQuestions.Count(x => x.Unit == 2);
-            var unitNo3 = inSemQuestions.Count(x => x.Unit == 3);
-
-            TempData["Unit1Count"] = unitNo1;
-            TempData["Unit2Count"] = unitNo2;
-            TempData["Unit3Count"] = unitNo3;
-
-
-            if (unitNo1 <= 4)
+            if (ExamType == "InSem")
             {
-                errorList.Add(new ErrorMessages
+                var inSemQuestions = _context.Questions.Where(x => x.SemesterId == semesterId
+                                                                   && x.DepartmentId == departmentId
+                                                                   && x.CourseId == subjectId
+                                                                   && x.UnitId == 1 || x.UnitId == 2 || x.UnitId == 3)
+                    .Select(x => new PaperCreationQuestionFormat()
+                    {
+                        Question = x.QuestionText,
+                        Level = x.DifficultyLevel,
+                        Unit = x.UnitId
+                    }).ToList();
+
+                TempData["FetchedQuestions"] = inSemQuestions;
+
+
+                var unitNo1 = inSemQuestions.Count(x => x.Unit == 1);
+                var unitNo2 = inSemQuestions.Count(x => x.Unit == 2);
+                var unitNo3 = inSemQuestions.Count(x => x.Unit == 3);
+
+                TempData["Unit1Count"] = unitNo1;
+                TempData["Unit2Count"] = unitNo2;
+                TempData["Unit3Count"] = unitNo3;
+
+
+                if (unitNo1 <= 4)
                 {
-                    ErrorText = $"At least 5 questions from unit 1 should be available (Current count {unitNo1})"
-                });
+                    errorList.Add(new ErrorMessages
+                    {
+                        ErrorText = $"At least 5 questions from unit 1 should be available (Current count {unitNo1})"
+                    });
+                }
+
+                if (unitNo2 <= 4)
+                {
+                    errorList.Add(new ErrorMessages
+                    {
+                        ErrorText = $"At least 5 questions from unit 2 should be available (Current count {unitNo2})"
+                    });
+                }
+
+                if (unitNo3 <= 4)
+                {
+                    errorList.Add(new ErrorMessages
+                    {
+                        ErrorText = $"At least 5 questions from unit 3 should be available (Current count {unitNo3})"
+                    });
+                }
+
+                TempData["Errors"] = errorList;
+
+                return View("Index", errorList);
             }
 
-            if (unitNo2 <= 4)
+            if (ExamType == "EndSem")
             {
-                errorList.Add(new ErrorMessages
+                var endSemQuestions = _context.Questions.Where(x => x.SemesterId == semesterId
+                                                                   && x.DepartmentId == departmentId
+                                                                   && x.CourseId == subjectId
+                                                                   && x.UnitId == 1 || x.UnitId == 2 || x.UnitId == 3 ||
+                                                                   x.UnitId == 4 || x.UnitId == 5
+                                                                   || x.UnitId == 6).Select(x => new PaperCreationQuestionFormat()
+                                                                   {
+                                                                       Question = x.QuestionText,
+                                                                       Level = x.DifficultyLevel,
+                                                                       Unit = x.UnitId
+                                                                   }).ToList();
+
+
+                TempData["FetchedQuestions"] = endSemQuestions;
+
+                var unitNo1 = endSemQuestions.Count(x => x.Unit == 1);
+                var unitNo2 = endSemQuestions.Count(x => x.Unit == 2);
+                var unitNo3 = endSemQuestions.Count(x => x.Unit == 3);
+                var unitNo4 = endSemQuestions.Count(x => x.Unit == 4);
+                var unitNo5 = endSemQuestions.Count(x => x.Unit == 5);
+                var unitNo6 = endSemQuestions.Count(x => x.Unit == 6);
+
+                TempData["Unit1Count"] = unitNo1;
+                TempData["Unit2Count"] = unitNo2;
+                TempData["Unit3Count"] = unitNo3;
+                TempData["Unit4Count"] = unitNo4;
+                TempData["Unit5Count"] = unitNo5;
+                TempData["Unit6Count"] = unitNo6;
+
+                if (unitNo1 <= 3)
                 {
-                    ErrorText = $"At least 5 questions from unit 2 should be available (Current count {unitNo2})"
-                });
+                    errorList.Add(new ErrorMessages
+                    {
+                        ErrorText = $"At least 4 questions from unit 1 should be available (Current count {unitNo1})"
+                    });
+                }
+
+                if (unitNo2 <= 3)
+                {
+                    errorList.Add(new ErrorMessages
+                    {
+                        ErrorText = $"At least 4 questions from unit 2 should be available (Current count {unitNo2})"
+                    });
+                }
+
+                if (unitNo3 <= 2)
+                {
+                    errorList.Add(new ErrorMessages
+                    {
+                        ErrorText = $"At least 3 questions from unit 3 should be available (Current count {unitNo3})"
+                    });
+                }
+
+                if (unitNo4 <= 2)
+                {
+                    errorList.Add(new ErrorMessages
+                    {
+                        ErrorText = $"At least 3 questions from unit 4 should be available (Current count {unitNo4})"
+                    });
+                }
+
+                if (unitNo5 <= 2)
+                {
+                    errorList.Add(new ErrorMessages
+                    {
+                        ErrorText = $"At least 3 questions from unit 5 should be available (Current count {unitNo5})"
+                    });
+                }
+
+                if (unitNo6 <= 2)
+                {
+                    errorList.Add(new ErrorMessages
+                    {
+                        ErrorText = $"At least 3 questions from unit 6 should be available (Current count {unitNo6})"
+                    });
+                }
+
+                return View("Index", errorList);
             }
 
-            if (unitNo3 <= 4)
-            {
-                errorList.Add(new ErrorMessages
-                {
-                    ErrorText = $"At least 5 questions from unit 3 should be available (Current count {unitNo3})"
-                });
-            }
-
-            TempData["Errors"] = errorList;
-
+            Alert("Error","Something went wrong.",Enums.NotificationType.error);
             return View("Index", errorList);
         }
 
