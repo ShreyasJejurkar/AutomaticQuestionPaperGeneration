@@ -3,7 +3,7 @@ using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Controllers
 {
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         [HttpGet]
         public ActionResult Index()
@@ -19,7 +19,7 @@ namespace AutomatedQuestionPaper.Controllers
 
             if (auth.status == 0)
             {
-                ViewBag.LoginErrorMessage = "Incorrect Credentials";
+                Alert("Incorrect credentials");
                 return View();
             }
 
@@ -28,10 +28,16 @@ namespace AutomatedQuestionPaper.Controllers
                 //Saving data to session for login functionality
                 Session["Staff_Name"] = auth.authenticatedUserName;
 
+
+                Alert($"Hello {Session["Staff_Name"]}");
+
+
                 return RedirectToAction("Index", "StaffHomePage", new
                 {
                     area = "Staff"
                 });
+
+
             }
 
             if (auth.status == 2 && auth.authenticatedUserName != null)
