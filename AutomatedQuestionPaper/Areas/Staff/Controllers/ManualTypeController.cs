@@ -1,9 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Web.Mvc;
 using AutomatedQuestionPaper.Areas.Staff.Models;
 using AutomatedQuestionPaper.Models;
+using System.Collections.Generic;
 
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
@@ -37,17 +38,65 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
             var type = (int)Enum.Parse(typeof(ExamType), examType);
 
-            _context.Questions.Add(new Question
+
+            var questionsList = _context.Questions.Where(x => x.SemesterId == semesterId.ToString()
+                                                              && x.DepartmentId == departmentId.ToString()
+                                                              && x.CourseId == subjectId
+                                                              && x.UnitId == unitInt
+                                                              && x.ChapterId == chapterId
+                                                              && x.QuestionType == type)
+                                                              .Select(x => x.QuestionText)
+                .ToList();
+
+
+            var client = new HttpClient();
+            var url = "http://127.0.0.1:5000/semantic";
+
+
+            if (questionsList.Count != 0)
             {
-                ChapterId = chapterId,
-                CourseId = subjectId,
-                DepartmentId = departmentId.ToString(),
-                DifficultyLevel = Convert.ToInt32(level),
-                QuestionText = question,
-                QuestionType = type,
-                SemesterId = semesterId.ToString(),
-                UnitId = unitInt
-            });
+                //foreach (var que in questionsList)
+                //{
+                //    var data = new
+                //    {
+                //        first_text = question,
+                //        second_text = que
+                //    };
+
+                //    var cli = new WebClient();
+                //    cli.Headers[HttpRequestHeader.ContentType] = "application/json";
+                //    var response = cli.UploadString(url, JsonConvert.SerializeObject(data));
+                //    var output = JsonConvert.DeserializeObject<ServerOutputData>(response);
+
+                //}
+
+                _context.Questions.Add(new Question
+                {
+                    ChapterId = chapterId,
+                    CourseId = subjectId,
+                    DepartmentId = departmentId.ToString(),
+                    DifficultyLevel = Convert.ToInt32(level),
+                    QuestionText = question,
+                    QuestionType = type,
+                    SemesterId = semesterId.ToString(),
+                    UnitId = unitInt
+                });
+            }
+            else
+            {
+                _context.Questions.Add(new Question
+                {
+                    ChapterId = chapterId,
+                    CourseId = subjectId,
+                    DepartmentId = departmentId.ToString(),
+                    DifficultyLevel = Convert.ToInt32(level),
+                    QuestionText = question,
+                    QuestionType = type,
+                    SemesterId = semesterId.ToString(),
+                    UnitId = unitInt
+                });
+            }
+
 
             _context.SaveChangesAsync();
 
@@ -175,38 +224,62 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
         [HttpPost]
         public ActionResult QuestionRepository(string selectedSemester, string selectedDepartment,
-            string selectedSubject, string unitNo, string chapterName, string examType)
+            string selectedSubject, string unitNo, string chapterName, string examType, string searchText)
         {
-            var semesterId = _context.Semesters.FirstOrDefault(x => x.SemesterName == selectedSemester)?.Id;
+            if (searchText == null)
+            {
+                var semesterId = _context.Semesters.FirstOrDefault(x => x.SemesterName == selectedSemester)?.Id;
 
-            // Get the department Id
-            var departmentId = _context.Departments.FirstOrDefault(x => x.DepartmentName == selectedDepartment)?.Id;
+                // Get the department Id
+                var departmentId = _context.Departments.FirstOrDefault(x => x.DepartmentName == selectedDepartment)?.Id;
 
-            var subjectId = _context.Courses.FirstOrDefault(x => x.CourseName == selectedSubject)?.Courseid;
+                var subjectId = _context.Courses.FirstOrDefault(x => x.CourseName == selectedSubject)?.Courseid;
 
-            var unitInt = Convert.ToInt32(unitNo);
+                var unitInt = Convert.ToInt32(unitNo);
 
-            var type = (int)Enum.Parse(typeof(ExamType), examType);
+                var type = (int)Enum.Parse(typeof(ExamType), examType);
 
-            var chapterId = _context.Chapters.FirstOrDefault(x =>
-                x.SemesterId == semesterId && x.DepartmentId == departmentId && x.CourseId == subjectId &&
-                x.UnitNo == unitInt && x.ChapterName == chapterName)?.Id;
+                var chapterId = _context.Chapters.FirstOrDefault(x =>
+                    x.SemesterId == semesterId && x.DepartmentId == departmentId && x.CourseId == subjectId &&
+                    x.UnitNo == unitInt && x.ChapterName == chapterName)?.Id;
 
-            var questions = _context.Questions
-                .Where(x => x.SemesterId == semesterId.ToString() && x.DepartmentId == departmentId.ToString() &&
-                            x.CourseId == subjectId && x.UnitId == unitInt && x.ChapterId == chapterId &&
-                            x.QuestionType == type).Select(x => new QuestionFormat
-                            {
-                                Question = x.QuestionText,
-                                Level = x.DifficultyLevel,
-                                Semester = x.SemesterId,
-                                Department = x.DepartmentId,
-                                Chapter = x.ChapterId,
-                                QuestionType = x.QuestionType,
-                                UnitId = x.UnitId
-                            }).ToList();
+                var questions = _context.Questions
+                    .Where(x => x.SemesterId == semesterId.ToString() && x.DepartmentId == departmentId.ToString() &&
+                                x.CourseId == subjectId && x.UnitId == unitInt && x.ChapterId == chapterId &&
+                                x.QuestionType == type).Select(x => new QuestionFormat
+                                {
+                                    Question = x.QuestionText,
+                                    Level = x.DifficultyLevel,
+                                    Semester = x.SemesterId,
+                                    Department = x.DepartmentId,
+                                    Chapter = x.ChapterId,
+                                    QuestionType = x.QuestionType,
+                                    UnitId = x.UnitId
+                                }).ToList();
 
-            return PartialView("QuestionList", questions);
+                TempData["QuestionList"] = questions;
+
+
+                return PartialView("QuestionList", questions);
+            }
+            else
+            {
+                var questionsList = (List<QuestionFormat>)TempData["QuestionList"];
+
+                var questionWithSearch = questionsList
+                    .Where(x => x.Question.StartsWith(searchText)).Select(x => new QuestionFormat
+                    {
+                        Question = x.Question,
+                        Level = x.Level,
+                        Semester = x.Semester,
+                        Department = x.Department,
+                        Chapter = x.Chapter,
+                        QuestionType = x.QuestionType,
+                        UnitId = x.UnitId
+                    }).ToList();
+
+                return PartialView("QuestionList", questionWithSearch);
+            }
         }
     }
 }

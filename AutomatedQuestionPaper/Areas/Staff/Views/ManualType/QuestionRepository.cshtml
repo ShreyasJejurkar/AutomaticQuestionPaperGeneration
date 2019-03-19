@@ -93,6 +93,27 @@
 
 <br/>
 
+
+@*<div class="row">
+    <div class="col">
+        <div class="float-left">
+            @using (Html.BeginForm("QuestionRepository","ManualType", FormMethod.Post))
+            {
+                <div class="row">
+                    <div class="col">
+                        <input class="form-control" type="text" id="searchText" name="searchText" required="required" />
+                    </div>
+
+                    <div class="col">
+                        <button class="form-control btn btn-outline-warning" name="searchFormSubmit" id="searchFormSubmit" type="submit" value="Search"></button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>*@
+
+
 <div id="questionList" name="questionList">
 
 </div>
@@ -273,6 +294,51 @@
                     alert("Please select all the fields");
                 }
             });
+
+
+            $("#searchFormSubmit").click(function () {
+                e.preventDefault();
+                if ($("#searchText").text() == null) {
+                    alert("Please provide search text");
+                } else {
+                    var semester = $("#selectedSemester option:selected").text();
+                    var department = $("#selectedDepartment option:selected").text();
+                    var subject = $("#selectedSubject option:selected").text();
+                    var unit = $("#selectedUnit  option:selected").text();
+                    var chapterName = $("#chapterName option:selected").text();
+                    var type = $("#ExamType option:selected").text();
+                    var searchText = $("#searchText").val();
+                    if (unit !== "---Select---") {
+                        $.ajax({
+                            type: 'Post',
+                            url: '@Url.Action("QuestionRepository", "ManualType")',
+                            dataType: 'html',
+                            data: {
+                                selectedSemester: semester,
+                                selectedDepartment: department,
+                                selectedSubject: subject,
+                                unitNo: unit,
+                                chapterName: chapterName,
+                                examType: type,
+                                searchText: searchText
+                            },
+                            success: function(data) {
+                                e.preventDefault();
+                                $("#questionList").html(data);
+                            },
+                            error: function(err) {
+                                e.preventDefault();
+                                $("#questionList").html(err);
+                            }
+                        });
+                    } else {
+                        alert("Please select all the fields");
+                    }
+                }
+                
+            });
+
+
         });
     </script>
 }
