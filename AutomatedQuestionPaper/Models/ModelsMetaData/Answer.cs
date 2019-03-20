@@ -6,12 +6,16 @@
 //     Manual changes to this file will be overwritten if the code is regenerated.
 // </auto-generated>
 //------------------------------------------------------------------------------
-
+using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace AutomatedQuestionPaper.Models.ModelsMetaData
+namespace AutomatedQuestionPaper.Models
 {
-    using System;
+    [MetadataType(typeof(AnswerMetaData))]
+    public partial class Answer
+    {
+
+    }
 
     public partial class AnswerMetaData
     {

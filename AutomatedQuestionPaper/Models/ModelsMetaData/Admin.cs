@@ -1,16 +1,19 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace AutomatedQuestionPaper.Models.ModelsMetaData
+namespace AutomatedQuestionPaper.Models
 {
-    /// <summary>
-    ///     MetaData class for Admin class in Models
-    /// </summary>
-    public class AdminMetaData
+    [MetadataType(typeof(AdminMetaData))]
+    public partial class Admin
     {
-        [Key] public int id { get; set; }
 
-
+    }
+    
+    public class AdminMetaData 
+    {
+        [Key]
+        public int id { get; set; }
+        
         [DisplayName("Username/Email")]
         [MaxLength(256)]
         [Required]

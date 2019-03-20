@@ -1,11 +1,15 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace AutomatedQuestionPaper.Models.ModelsMetaData
+namespace AutomatedQuestionPaper.Models
 {
-    /// <summary>
-    ///     Meta data type class for Staff
-    /// </summary>
+    [MetadataType(typeof(StaffMetaData))]
+    public partial class Staff
+    {
+
+    }
+
+
     public class StaffMetaData
     {
         [Key] public int Id { get; set; }

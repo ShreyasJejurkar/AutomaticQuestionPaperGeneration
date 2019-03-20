@@ -36,8 +36,6 @@ namespace AutomatedQuestionPaper.Controllers
                 {
                     area = "Staff"
                 });
-
-
             }
 
             if (auth.status == 2 && auth.authenticatedUserName != null)

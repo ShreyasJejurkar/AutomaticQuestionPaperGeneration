@@ -96,8 +96,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                     UnitId = unitInt
                 });
             }
-
-
+            
             _context.SaveChangesAsync();
 
             TempData["QuestionAdded"] = "Question added successfully";

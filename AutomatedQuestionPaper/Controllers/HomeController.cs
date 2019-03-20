@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Controllers
 {
@@ -9,7 +8,6 @@ namespace AutomatedQuestionPaper.Controllers
         [Route("/")]
         public ActionResult Index()
         {
-            
             Session["Username"] = Session["Staff_Name"] = null;
             return View();
         }

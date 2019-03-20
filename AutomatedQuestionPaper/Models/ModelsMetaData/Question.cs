@@ -3,8 +3,16 @@ using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Diagnostics.CodeAnalysis;
 
-namespace AutomatedQuestionPaper.Models.ModelsMetaData
+namespace AutomatedQuestionPaper.Models
 {
+
+    [MetadataType(typeof(QuestionMetaData))]
+    public partial class Question
+    {
+
+    }
+
+
     public class QuestionMetaData
     {
         [SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]

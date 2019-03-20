@@ -7,15 +7,11 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-using AutomatedQuestionPaper.Models.ModelsMetaData;
-
 namespace AutomatedQuestionPaper.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
-    [MetadataType(typeof(SemesterMetaData))]
+    
     public partial class Semester
     {
         public int Id { get; set; }

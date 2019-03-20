@@ -1,8 +1,15 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace AutomatedQuestionPaper.Models.ModelsMetaData
+namespace AutomatedQuestionPaper.Models
 {
+    [MetadataType(typeof(CourseMetaData))]
+    public partial class Course
+    {
+
+    }
+
+
     public class CourseMetaData
     {
         [Key]
