@@ -1,0 +1,128 @@
+﻿@model AutomatedQuestionPaper.Areas.Staff.Models.ServerOutputData
+
+@{
+
+	ViewBag.Title = "Similar question";
+	Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
+}
+
+<button type="button" class="btn btn-primary" id="showButton" name="showButton" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button>
+
+<!-- Modal -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Similar question found</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col">
+							We found a similar meaning question in repository which matches to the question that you are
+							trying to add.
+						</div>
+					</div>
+
+					<div class="row">
+						<div class="col">
+							<b>Question details are as follows</b>
+						</div>
+					</div>
+					<div style="margin-top: 10px;"></div>
+					<div class="row">
+						<div class="col">
+							<table class="table table-primary">
+								<tbody>
+									<tr>
+										<th style="width: 190px">Question in repository</th>
+										<td>@Model.SecondText</td>
+									</tr>
+									<tr>
+										<th>Your question</th>
+										<td>@Model.FirstText</td>
+
+									</tr>
+									<tr>
+										<th>Similarity score</th>
+										<td>@Model.SemanticScore</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+
+				</div>
+			</div>
+			<div class="modal-footer">
+				@using (Html.BeginForm("AddSemanticSimilarQuestion","ManualType",FormMethod.Post))
+				{
+					<input type="submit" class="btn btn-secondary" value="Still, i want to add it"/>
+				}
+				
+				<button type="button" class="btn btn-primary" data-dismiss="modal" data-toggle="modal" data-target=".newQuestionmodal">Edit current question</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="modal fade newQuestionmodal" id="newModal" name="newModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLongTitle">Similar question found</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<label class="col-form-label">Edit current question</label>
+				@using (Html.BeginForm("AddSemanticSimilarQuestion", "ManualType", FormMethod.Post))
+				{
+					<div class="form-group">
+						<input type="text" data-val="true" id="newQuestionText" name="newQuestionText" data-val-required="The semester field is required" placeholder="Older question - @Model.FirstText" class="form-control"/>
+						<span class="field-validation-valid text-danger" data-valmsg-for="newQuestionText" data-valmsg-replace="true"></span>
+					</div>
+					<label class="col-form-label">Difficulty level</label>
+					<select id="difficultyLevel" name="difficultyLevel" class="form-control" data-val="true" data-val-required="The difficulty level field is required">
+						<option selected disabled>---Select---</option>
+						<option>1</option>
+						<option>2</option>
+						<option>3</option>
+						<option>4</option>
+						<option>5</option>
+						<option>6</option>
+						<option>7</option>
+						<option>8</option>
+						<option>9</option>
+						<option>10</option>
+					</select>
+					<span class="field-validation-valid text-danger" data-valmsg-for="difficultyLevel" data-valmsg-replace="true"></span>
+					<br />
+					<input type="submit" id="submitButton" name="submitButton" class="btn btn-secondary float-left btn-block" value="Submit">
+				}
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+@section scripts
+{
+	@Scripts.Render("~/bundles/jqueryval")
+	<script>
+		$(function () {
+
+			$("#showButton").click();
+
+
+		});
+	</script>
+}

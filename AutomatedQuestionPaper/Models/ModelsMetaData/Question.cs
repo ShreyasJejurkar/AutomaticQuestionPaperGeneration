@@ -25,16 +25,7 @@ namespace AutomatedQuestionPaper.Models
         [Key] public int Id { get; set; }
 
         [DisplayName("Chapter Id")] [Required] public int? ChapterId { get; set; }
-
-        [DisplayName("Question Type Id")]
-        [Required]
-        public int? QuestionTypeId { get; set; }
-
-        [DisplayName("Name")] [Required] public string Name { get; set; }
-
-
-        public bool? IsActive { get; set; }
-
+        
         [SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AnswerMetaData> Answers { get; set; }
     }

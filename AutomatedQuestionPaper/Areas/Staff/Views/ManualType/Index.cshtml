@@ -1,4 +1,5 @@
-﻿@model List<string>
+﻿@using System.Diagnostics
+@model List<string>
 @{
     ViewBag.Title = "Add question manually";
     Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
@@ -16,7 +17,8 @@
 }
 
 
-<form onsubmit="return true">
+@using (Html.BeginForm("AddQuestion", "ManualType", FormMethod.Post))
+{
     <div class="row">
         <div class="col-sm-12 col-lg-6">
             <label class="col-form-label">Semester</label>
@@ -96,17 +98,42 @@
             <span class="field-validation-valid text-danger" data-valmsg-for="difficultyLevel" data-valmsg-replace="true"></span>
         </div>
     </div>
-
-    <br/>
-
-
     <div class="form-group">
         <input type="submit" value="Submit" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit"/>
     </div>
-</form>
+}
+
+
+@if (ViewBag.similar == "hello")
+{
+    <button type="button" class="btn btn-primary" id="showButton" name="showButton" data-toggle="modal" data-target="#exampleModalCenter">
+        Launch demo modal
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
 
 <div id="questionList">
-
+   
 </div>
 
 
@@ -251,38 +278,7 @@
             });
 
 
-            $("#ChapterFormSubmit").click(function(e) {
-                var semester = $("#selectedSemester option:selected").text();
-                var department = $("#selectedDepartment option:selected").text();
-                var subject = $("#selectedSubject option:selected").text();
-                var unit = $("#selectedUnit  option:selected").text();
-                var chapterName = $("#chapterName option:selected").text();
-                var question = $("#question").val();
-                var level = $("#difficultyLevel  option:selected").text();
-
-                if (unit !== "---Select---" && question !== "" && level !== "---Select---") {
-                    $.ajax({
-                        type: 'Get',
-                        url: '@Url.Action("AddQuestion", "ManualType")',
-                        dataType: 'application/json; charset=utf-8',
-                        data: {
-                            selectedSemester: semester,
-                            selectedDepartment: department,
-                            selectedSubject: subject,
-                            unitNo: unit,
-                            chapterName: chapterName,
-                            question: question,
-                            examType: $("#ExamType option:selected").text(),
-                            level: level
-                        },
-                        success: function(mess) {
-                            console.log(mess);
-                        }
-                    });
-                } else {
-                    alert("Please select all the fields");
-                }
-            });
+            
 
         });
     </script>
