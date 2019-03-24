@@ -8,6 +8,11 @@ namespace AutomatedQuestionPaper.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            if (TempData["SessionErrorMessage"] != null)
+            {
+                Alert("Session error", (string)TempData["SessionErrorMessage"], Enums.NotificationType.error);
+            }
+
             return View();
         }
 
@@ -19,7 +24,7 @@ namespace AutomatedQuestionPaper.Controllers
 
             if (auth.status == 0)
             {
-                Alert("Incorrect credentials");
+                Alert("Error","Incorrect credentials", Enums.NotificationType.error);
                 return View();
             }
 
@@ -29,9 +34,8 @@ namespace AutomatedQuestionPaper.Controllers
                 Session["Staff_Name"] = auth.authenticatedUserName;
 
 
-                Alert($"Hello {Session["Staff_Name"]}");
-
-
+                Alert("Welcome",$"Hello {Session["Staff_Name"]}", Enums.NotificationType.success);
+                
                 return RedirectToAction("Index", "StaffHomePage", new
                 {
                     area = "Staff"
@@ -42,6 +46,8 @@ namespace AutomatedQuestionPaper.Controllers
             {
                 //Saving data to session for login functionality
                 Session["Username"] = auth.authenticatedUserName;
+
+                Alert("Welcome", $"Hello {Session["Username"]}", Enums.NotificationType.success);
 
                 return RedirectToAction("Index", "AdminHomePage", new
                 {

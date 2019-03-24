@@ -1,105 +1,103 @@
 ﻿@model AutomatedQuestionPaper.Models.Admin
-
+@using AutomatedQuestionPaper.Controllers;
+@using AutomatedQuestionPaper.Models
 <br/>
 
 @if (TempData["SessionErrorMessage"] != null)
 {
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @TempData["SessionErrorMessage"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+	
+	BaseController bs = new BaseController();
+	bs.Alert("Session error", (string) TempData["SessionErrorMessage"], Enums.NotificationType.error);
+	
 }
 else
 {
-    ViewBag.Title = "Index";
-    Layout = "~/Areas/Admin/Views/Shared/_adminLoginLayoutPage.cshtml";
+	ViewBag.Title = "Index";
+	Layout = "~/Areas/Admin/Views/Shared/_adminLoginLayoutPage.cshtml";
 
-    <h2>@Model.Username Management Panel</h2>
+	<h2>@Model.Username Management Panel</h2>
 
-    <div style="text-align: center" id="sectionDiv">
-        <div id="staffDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
-            <img class="card-img-top" height="200" width="100" src="~/Images/staff management.png" alt="Card image cap">
-            <div class="card-body">
-                <a class="card-title text-primary">Staff Management</a>
-            </div>
-        </div>
+	<div style="text-align: center" id="sectionDiv">
+		<div id="staffDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+			<img class="card-img-top" height="200" width="100" src="~/Images/staff management.png" alt="Card image cap">
+			<div class="card-body">
+				<a class="card-title text-primary">Staff Management</a>
+			</div>
+		</div>
 
-        <div id="departmentDiv" class="card " style="float: left; height: 285px; margin: 10px; width: 12rem;">
-            <img class="card-img-top" height="200" width="100" src="~/Images/department.png" alt="Card image cap">
-            <div class="card-body">
-                <a class="card-title text-primary">Department management</a>
-            </div>
-        </div>
+		<div id="departmentDiv" class="card " style="float: left; height: 285px; margin: 10px; width: 12rem;">
+			<img class="card-img-top" height="200" width="100" src="~/Images/department.png" alt="Card image cap">
+			<div class="card-body">
+				<a class="card-title text-primary">Department management</a>
+			</div>
+		</div>
 
-        <div id="courseDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
-            <img class="card-img-top" height="200" src="~/Images/course.png" alt="Card image cap">
-            <div class="card-body">
-                <a class="card-title text-primary">Course Management</a>
-            </div>
-        </div>
+		<div id="courseDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+			<img class="card-img-top" height="200" src="~/Images/course.png" alt="Card image cap">
+			<div class="card-body">
+				<a class="card-title text-primary">Course Management</a>
+			</div>
+		</div>
 
-        <div id="semesterDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
-            <img class="card-img-top" height="200" src="~/Images/semester.png" alt="Card image cap">
-            <div class="card-body">
-                <a class="card-title text-primary">Semester Management</a>
-            </div>
-        </div>
+		<div id="semesterDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+			<img class="card-img-top" height="200" src="~/Images/semester.png" alt="Card image cap">
+			<div class="card-body">
+				<a class="card-title text-primary">Semester Management</a>
+			</div>
+		</div>
 
-        <div id="staffCourseDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
-            <img class="card-img-top" height="200" src="~/Images/semester.png" alt="Card image cap">
-            <div class="card-body">
-                <a class="card-title text-primary">Staff course Management</a>
-            </div>
-        </div>
-    </div>
+		<div id="staffCourseDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+			<img class="card-img-top" height="200" src="~/Images/semester.png" alt="Card image cap">
+			<div class="card-body">
+				<a class="card-title text-primary">Staff course Management</a>
+			</div>
+		</div>
+	</div>
 }
 
 @section Scripts
 {
-    @Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jqueryval")
 
-    <script>
-        $(function() {
+	<script>
+		$(function() {
 
-            $(".card").css('transition', '0.2s');
+			$(".card").css('transition', '0.2s');
 
-            $(".card").hover(
-                function() {
-                    $(this).addClass('shadow-lg').css('cursor', 'pointer');
-                },
-                function() {
-                    $(this).removeClass('shadow-lg');
-                }
-            );
+			$(".card").hover(
+				function() {
+					$(this).addClass('shadow-lg').css('cursor', 'pointer');
+				},
+				function() {
+					$(this).removeClass('shadow-lg');
+				}
+			);
 
-            $("a.card-title.text-primary").hover(function() {
-                $(this).toggleClass("text-primary text-danger");
-            });
+			$("a.card-title.text-primary").hover(function() {
+				$(this).toggleClass("text-primary text-danger");
+			});
 
-            $("#staffDiv").click(function() {
-                window.location.href = "@Url.Action("Index", "Staff")";
-            });
+			$("#staffDiv").click(function() {
+				window.location.href = "@Url.Action("Index", "Staff")";
+			});
 
-            $("#departmentDiv").click(function() {
-                window.location.href = "@Url.Action("Index", "Department")";
-            });
+			$("#departmentDiv").click(function() {
+				window.location.href = "@Url.Action("Index", "Department")";
+			});
 
-            $("#semesterDiv").click(function() {
-                window.location.href = "@Url.Action("Index", "Semester")";
-            });
+			$("#semesterDiv").click(function() {
+				window.location.href = "@Url.Action("Index", "Semester")";
+			});
 
-            $("#staffCourseDiv").click(function() {
-                window.location.href = "@Url.Action("Index", "StaffCourseManagement")";
-            });
+			$("#staffCourseDiv").click(function() {
+				window.location.href = "@Url.Action("Index", "StaffCourseManagement")";
+			});
 
-            $("#courseDiv").click(function() {
-                window.location.href = "@Url.Action("Index", "Course")";
-            });
-        });
-    </script>
+			$("#courseDiv").click(function() {
+				window.location.href = "@Url.Action("Index", "Course")";
+			});
+		});
+	</script>
 }

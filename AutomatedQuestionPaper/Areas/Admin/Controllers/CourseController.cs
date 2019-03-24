@@ -77,8 +77,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 _context.Courses.Remove(subject);
                 _context.SaveChanges();
 
-                // Set the success message 
-                TempData["SubjectedDeletedSuccessfully"] = "Subject deleted successfully";
+                Alert("Success", "Subject deleted successfully", Enums.NotificationType.success);
 
                 return RedirectToAction("Index", "Course");
             }
@@ -113,8 +112,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 //Commit it to database
                 _context.SaveChanges();
 
-                //Set success message
-                TempData["SubjectedEditedSuccessfully"] = "Subject detail edited successfully";
+                Alert("message", "Subject detail edited successfully", Enums.NotificationType.success);
 
                 return RedirectToAction("Index");
             }

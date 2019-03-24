@@ -1,4 +1,6 @@
-﻿@model AutomatedQuestionPaper.Models.Admin
+﻿@using AutomatedQuestionPaper.Controllers
+@using AutomatedQuestionPaper.Models
+@model AutomatedQuestionPaper.Models.Admin
 
 @{
     ViewBag.Title = "Index";
@@ -8,12 +10,9 @@
 <br/>
 @if (TempData["SessionErrorMessage"] != null)
 {
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @TempData["SessionErrorMessage"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+    BaseController bs = new BaseController();
+    bs.Alert("Session error", (string) TempData["SessionErrorMessage"], Enums.NotificationType.error);
+
 }
 
 @if (ViewBag.LoginErrorMessage != null)
