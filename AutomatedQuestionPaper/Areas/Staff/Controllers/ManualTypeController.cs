@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Linq;
-using System.Net.Http;
 using System.Web.Mvc;
 using AutomatedQuestionPaper.Areas.Staff.Models;
 using AutomatedQuestionPaper.Models;
@@ -61,7 +60,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
             var url = "http://127.0.0.1:5000/semantic";
 
-            List<ServerOutputData> serverOutputDataList = new List<ServerOutputData>();
+            var serverOutputDataList = new List<ServerOutputData>();
 
             
             if (questionsList.Count != 0)
@@ -74,8 +73,10 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                         second_text = que
                     };
 
-                    var cli = new WebClient();
-                    cli.Headers[HttpRequestHeader.ContentType] = "application/json";
+                    var cli = new WebClient
+                    {
+                        Headers = {[HttpRequestHeader.ContentType] = "application/json"}
+                    };
                     var response = cli.UploadString(url, JsonConvert.SerializeObject(data));
                     var output = JsonConvert.DeserializeObject<ServerOutputData>(response);
                     serverOutputDataList.Add(output);
@@ -85,22 +86,9 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
                 if (highestSemanticScore.SemanticScore > 0.75)
                 {
-                    ViewBag.similar = "hello";
                     TempData["oldquestion"] = highestSemanticScore.FirstText;
                     return RedirectToAction("Semantic", highestSemanticScore);
                 }
-                
-                _context.Questions.Add(new Question
-                {
-                    ChapterId = chapterId,
-                    CourseId = subjectId,
-                    DepartmentId = departmentId.ToString(),
-                    DifficultyLevel = Convert.ToInt32(difficultyLevel),
-                    QuestionText = question,
-                    QuestionType = type,
-                    SemesterId = semesterId.ToString(),
-                    UnitId = unitInt
-                });
             }
             else
             {

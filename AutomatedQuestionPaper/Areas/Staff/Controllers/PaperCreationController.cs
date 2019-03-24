@@ -20,12 +20,13 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         }
 
         [HttpGet]
-        public ActionResult Check(string selectedSemester, string selectedDepartment, string selectedSubject, string ExamType)
+        public ActionResult Check(string selectedSemester, string selectedDepartment, string selectedSubject, string ExamType, string DifficultyLevel)
         {
             var errorList = new ErrorMessagesList();
 
             TempData["QuestionPaperDepartment"] = selectedDepartment;
             TempData["QuestionPaperSubject"] = selectedSubject;
+            TempData["DifficultyLevel"] = DifficultyLevel;
 
             var semesterId = DatabaseData.GetSemesterInfo(selectedSemester).Id.ToString();
             var departmentId = DatabaseData.GetDepartmentInfo(selectedDepartment).Id.ToString();
@@ -198,33 +199,393 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                     Unit = x.Unit,
                     Level = x.Level
                 }).ToList();
-
-            List<PaperCreationQuestionFormat> formedQuestionSetUnit1 = new List<PaperCreationQuestionFormat>();
+            
+            List <PaperCreationQuestionFormat> formedQuestionSetUnit1 = new List<PaperCreationQuestionFormat>();
             List<PaperCreationQuestionFormat> formedQuestionSetUnit2 = new List<PaperCreationQuestionFormat>();
             List<PaperCreationQuestionFormat> formedQuestionSetUnit3 = new List<PaperCreationQuestionFormat>();
 
-            while (unit1QuestionsList.Count != 0 && formedQuestionSetUnit1.Count != 4)
-            {
-                var unit1Random = _r.Next(1, unit1QuestionsList.Count);
+            var level = (string) TempData["DifficultyLevel"];
+            
 
-                formedQuestionSetUnit1.Add(unit1QuestionsList[unit1Random]);
-                unit1QuestionsList.Remove(unit1QuestionsList[unit1Random]);
+            while (unit1QuestionsList.Count != 0)
+            {
+                if (level == "Low")
+                {
+                    TempData["LevelValue"] = 10;
+
+                    var firstQuestion = unit1QuestionsList.FirstOrDefault(x => x.Level < 10);
+                    if (firstQuestion == null)
+                    {
+                        break;
+                    }
+                    formedQuestionSetUnit1.Add(firstQuestion);
+                    var remainLevel = 10 - firstQuestion.Level;
+                    var nextQuestion =
+                        unit1QuestionsList.FirstOrDefault(x => x.Level == remainLevel && x.Question != firstQuestion.Question);
+                    if (nextQuestion != null)
+                    {
+                        formedQuestionSetUnit1.Add(nextQuestion);
+                        unit1QuestionsList.Remove(nextQuestion);
+                    }
+                    else
+                    {
+                        if (unit1QuestionsList.Count != 1)
+                        {
+                            var anotherNextQuestion = unit1QuestionsList
+                                .FirstOrDefault(x => x.Level <= remainLevel && x.Question != firstQuestion.Question);
+
+                            if (anotherNextQuestion == null)
+                            {
+                                var randomQuestion = _r.Next(1, unit1QuestionsList.Count);
+                                formedQuestionSetUnit1.Add(unit1QuestionsList[randomQuestion]);
+                                unit1QuestionsList.Remove(unit1QuestionsList[randomQuestion]);
+                            }
+                            else
+                            {
+                                formedQuestionSetUnit1.Add(anotherNextQuestion);
+                                unit1QuestionsList.Remove(anotherNextQuestion);
+                            }
+                        }
+                    }
+                    unit1QuestionsList.Remove(firstQuestion);
+                }
+
+                if (level == "Medium")
+                {
+                    TempData["LevelValue"] = 12;
+
+                    var firstQuestion = unit1QuestionsList.FirstOrDefault(x => x.Level < 12);
+                    if (firstQuestion == null)
+                    {
+                        break;
+                    }
+                    formedQuestionSetUnit1.Add(firstQuestion);
+                    var remainLevel = 12 - firstQuestion.Level;
+                    var nextQuestion =
+                        unit1QuestionsList.FirstOrDefault(x => x.Level == remainLevel && x.Question != firstQuestion.Question);
+                    if (nextQuestion != null)
+                    {
+                        formedQuestionSetUnit1.Add(nextQuestion);
+                        unit1QuestionsList.Remove(nextQuestion);
+                    }
+                    else
+                    {
+                        if (unit1QuestionsList.Count != 1)
+                        {
+                            var anotherNextQuestion = unit1QuestionsList
+                                .FirstOrDefault(x => x.Level <= remainLevel && x.Question != firstQuestion.Question);
+
+                            if (anotherNextQuestion == null)
+                            {
+                                var randomQuestion = _r.Next(1, unit1QuestionsList.Count);
+                                formedQuestionSetUnit1.Add(unit1QuestionsList[randomQuestion]);
+                                unit1QuestionsList.Remove(unit1QuestionsList[randomQuestion]);
+                            }
+                            else
+                            {
+                                formedQuestionSetUnit1.Add(anotherNextQuestion);
+                                unit1QuestionsList.Remove(anotherNextQuestion);
+                            }
+                        }
+                    }
+                    unit1QuestionsList.Remove(firstQuestion);
+                }
+
+                if (level == "High")
+                {
+                    TempData["LevelValue"] = 15;
+
+                    var firstQuestion = unit1QuestionsList.FirstOrDefault(x => x.Level < 15);
+                    if (firstQuestion == null)
+                    {
+                        break;
+                    }
+                    formedQuestionSetUnit1.Add(firstQuestion);
+                    var remainLevel = 15 - firstQuestion.Level;
+                    var nextQuestion =
+                        unit1QuestionsList.FirstOrDefault(x => x.Level == remainLevel && x.Question != firstQuestion.Question);
+                    if (nextQuestion != null)
+                    {
+                        formedQuestionSetUnit1.Add(nextQuestion);
+                        unit1QuestionsList.Remove(nextQuestion);
+                    }
+                    else
+                    {
+                        if (unit1QuestionsList.Count != 1)
+                        {
+                            var anotherNextQuestion = unit1QuestionsList
+                                .FirstOrDefault(x => x.Level <= remainLevel && x.Question != firstQuestion.Question);
+
+                            if (anotherNextQuestion == null)
+                            {
+                                var randomQuestion = _r.Next(1, unit1QuestionsList.Count);
+                                formedQuestionSetUnit1.Add(unit1QuestionsList[randomQuestion]);
+                                unit1QuestionsList.Remove(unit1QuestionsList[randomQuestion]);
+                            }
+                            else
+                            {
+                                formedQuestionSetUnit1.Add(anotherNextQuestion);
+                                unit1QuestionsList.Remove(anotherNextQuestion);
+                            }
+                        }
+                    }
+                    unit1QuestionsList.Remove(firstQuestion);
+                }
+
             }
 
-            while (unit2QuestionsList.Count != 0 && formedQuestionSetUnit2.Count != 4)
+            while (unit2QuestionsList.Count != 0)
             {
-                var unit2Random = _r.Next(1, unit2QuestionsList.Count);
+                if (level == "Low")
+                {
+                    var firstQuestion = unit2QuestionsList.FirstOrDefault(x => x.Level < 10);
+                    if (firstQuestion == null)
+                    {
+                        break;
+                    }
+                    formedQuestionSetUnit2.Add(firstQuestion);
+                    
+                    var remainLevel = 10 - firstQuestion.Level;
+                    var nextQuestion =
+                        unit2QuestionsList.FirstOrDefault(x => x.Level == remainLevel && x.Question != firstQuestion.Question);
+                    if (nextQuestion != null)
+                    {
+                        formedQuestionSetUnit2.Add(nextQuestion);
+                        unit2QuestionsList.Remove(nextQuestion);
+                    }
+                    else
+                    {
+                        if (unit2QuestionsList.Count != 1)
+                        {
+                            var anotherNextQuestion = unit2QuestionsList
+                                .FirstOrDefault(x => x.Level <= remainLevel && x.Question != firstQuestion.Question);
 
-                formedQuestionSetUnit2.Add(unit2QuestionsList[unit2Random]);
-                unit2QuestionsList.Remove(unit2QuestionsList[unit2Random]);
+                            if (anotherNextQuestion == null)
+                            {
+                                var randomQuestion = _r.Next(1, unit2QuestionsList.Count);
+                                formedQuestionSetUnit2.Add(unit2QuestionsList[randomQuestion]);
+                                unit2QuestionsList.Remove(unit2QuestionsList[randomQuestion]);
+                            }
+                            else
+                            {
+                                formedQuestionSetUnit2.Add(anotherNextQuestion);
+                                unit2QuestionsList.Remove(anotherNextQuestion);
+                            }
+                        }
+                        
+                    }
+                    unit2QuestionsList.Remove(firstQuestion);
+                }
+
+                if (level == "Medium")
+                {
+                    var firstQuestion = unit2QuestionsList.FirstOrDefault(x => x.Level < 12);
+                    if (firstQuestion == null)
+                    {
+                        break;
+                    }
+                    formedQuestionSetUnit2.Add(firstQuestion);
+
+                    var remainLevel = 12 - firstQuestion.Level;
+                    var nextQuestion =
+                        unit2QuestionsList.FirstOrDefault(x => x.Level == remainLevel && x.Question != firstQuestion.Question);
+                    if (nextQuestion != null)
+                    {
+                        formedQuestionSetUnit2.Add(nextQuestion);
+                        unit2QuestionsList.Remove(nextQuestion);
+                    }
+                    else
+                    {
+                        if (unit2QuestionsList.Count != 1)
+                        {
+                            var anotherNextQuestion = unit2QuestionsList
+                                .FirstOrDefault(x => x.Level <= remainLevel && x.Question != firstQuestion.Question);
+
+                            if (anotherNextQuestion == null)
+                            {
+                                var randomQuestion = _r.Next(1, unit2QuestionsList.Count);
+                                formedQuestionSetUnit2.Add(unit2QuestionsList[randomQuestion]);
+                                unit2QuestionsList.Remove(unit2QuestionsList[randomQuestion]);
+                            }
+                            else
+                            {
+                                formedQuestionSetUnit2.Add(anotherNextQuestion);
+                                unit2QuestionsList.Remove(anotherNextQuestion);
+                            }
+                        }
+
+                    }
+                    unit2QuestionsList.Remove(firstQuestion);
+                }
+
+                if (level == "High")
+                {
+                    var firstQuestion = unit2QuestionsList.FirstOrDefault(x => x.Level < 15);
+                    if (firstQuestion == null)
+                    {
+                        break;
+                    }
+                    formedQuestionSetUnit2.Add(firstQuestion);
+
+                    var remainLevel = 15 - firstQuestion.Level;
+                    var nextQuestion =
+                        unit2QuestionsList.FirstOrDefault(x => x.Level == remainLevel && x.Question != firstQuestion.Question);
+                    if (nextQuestion != null)
+                    {
+                        formedQuestionSetUnit2.Add(nextQuestion);
+                        unit2QuestionsList.Remove(nextQuestion);
+                    }
+                    else
+                    {
+                        if (unit2QuestionsList.Count != 1)
+                        {
+                            var anotherNextQuestion = unit2QuestionsList
+                                .FirstOrDefault(x => x.Level <= remainLevel && x.Question != firstQuestion.Question);
+
+                            if (anotherNextQuestion == null)
+                            {
+                                var randomQuestion = _r.Next(1, unit2QuestionsList.Count);
+                                formedQuestionSetUnit2.Add(unit2QuestionsList[randomQuestion]);
+                                unit2QuestionsList.Remove(unit2QuestionsList[randomQuestion]);
+                            }
+                            else
+                            {
+                                formedQuestionSetUnit2.Add(anotherNextQuestion);
+                                unit2QuestionsList.Remove(anotherNextQuestion);
+                            }
+                        }
+
+                    }
+                    unit2QuestionsList.Remove(firstQuestion);
+                }
+
             }
 
-            while (unit3QuestionsList.Count != 0 && formedQuestionSetUnit3.Count != 4)
+            while (unit3QuestionsList.Count != 0)
             {
-                var unit3Random = _r.Next(1, unit3QuestionsList.Count);
+                if (level == "Low")
+                {
+                    var firstQuestion = unit3QuestionsList.FirstOrDefault(x => x.Level < 10);
+                    if (firstQuestion == null)
+                    {
+                        break;
+                    }
+                    formedQuestionSetUnit3.Add(firstQuestion);
+                    
+                    var remainLevel = 10 - firstQuestion.Level;
+                    var nextQuestion =
+                        unit3QuestionsList.FirstOrDefault(x => x.Level == remainLevel && x.Question != firstQuestion.Question);
+                    if (nextQuestion != null)
+                    {
+                        formedQuestionSetUnit3.Add(nextQuestion);
+                        unit3QuestionsList.Remove(nextQuestion);
+                    }
+                    else
+                    {
+                        if (unit3QuestionsList.Count != 1)
+                        {
+                            var anotherNextQuestion = unit3QuestionsList
+                                .FirstOrDefault(x => x.Level <= remainLevel && x.Question != firstQuestion.Question);
 
-                formedQuestionSetUnit3.Add(unit3QuestionsList[unit3Random]);
-                unit3QuestionsList.Remove(unit3QuestionsList[unit3Random]);
+                            if (anotherNextQuestion == null)
+                            {
+                                var randomQuestion = _r.Next(1, unit3QuestionsList.Count);
+                                formedQuestionSetUnit3.Add(unit3QuestionsList[randomQuestion]);
+                                unit3QuestionsList.Remove(unit3QuestionsList[randomQuestion]);
+                            }
+                            else
+                            {
+                                formedQuestionSetUnit3.Add(anotherNextQuestion);
+                                unit3QuestionsList.Remove(anotherNextQuestion);
+                            }
+                        }
+                    }
+
+                    unit3QuestionsList.Remove(firstQuestion);
+                }
+
+                if (level == "Medium")
+                {
+                    var firstQuestion = unit3QuestionsList.FirstOrDefault(x => x.Level < 12);
+                    if (firstQuestion == null)
+                    {
+                        break;
+                    }
+                    formedQuestionSetUnit3.Add(firstQuestion);
+
+                    var remainLevel = 12 - firstQuestion.Level;
+                    var nextQuestion =
+                        unit3QuestionsList.FirstOrDefault(x => x.Level == remainLevel && x.Question != firstQuestion.Question);
+                    if (nextQuestion != null)
+                    {
+                        formedQuestionSetUnit3.Add(nextQuestion);
+                        unit3QuestionsList.Remove(nextQuestion);
+                    }
+                    else
+                    {
+                        if (unit3QuestionsList.Count != 1)
+                        {
+                            var anotherNextQuestion = unit3QuestionsList
+                                .FirstOrDefault(x => x.Level <= remainLevel && x.Question != firstQuestion.Question);
+
+                            if (anotherNextQuestion == null)
+                            {
+                                var randomQuestion = _r.Next(1, unit3QuestionsList.Count);
+                                formedQuestionSetUnit3.Add(unit3QuestionsList[randomQuestion]);
+                                unit3QuestionsList.Remove(unit3QuestionsList[randomQuestion]);
+                            }
+                            else
+                            {
+                                formedQuestionSetUnit3.Add(anotherNextQuestion);
+                                unit3QuestionsList.Remove(anotherNextQuestion);
+                            }
+                        }
+                    }
+
+                    unit3QuestionsList.Remove(firstQuestion);
+                }
+
+                if (level == "High")
+                {
+                    var firstQuestion = unit3QuestionsList.FirstOrDefault(x => x.Level < 15);
+                    if (firstQuestion == null)
+                    {
+                        break;
+                    }
+                    formedQuestionSetUnit3.Add(firstQuestion);
+
+                    var remainLevel = 15 - firstQuestion.Level;
+                    var nextQuestion =
+                        unit3QuestionsList.FirstOrDefault(x => x.Level == remainLevel && x.Question != firstQuestion.Question);
+                    if (nextQuestion != null)
+                    {
+                        formedQuestionSetUnit3.Add(nextQuestion);
+                        unit3QuestionsList.Remove(nextQuestion);
+                    }
+                    else
+                    {
+                        if (unit3QuestionsList.Count != 1)
+                        {
+                            var anotherNextQuestion = unit3QuestionsList
+                                .FirstOrDefault(x => x.Level <= remainLevel && x.Question != firstQuestion.Question);
+
+                            if (anotherNextQuestion == null)
+                            {
+                                var randomQuestion = _r.Next(1, unit3QuestionsList.Count);
+                                formedQuestionSetUnit3.Add(unit3QuestionsList[randomQuestion]);
+                                unit3QuestionsList.Remove(unit3QuestionsList[randomQuestion]);
+                            }
+                            else
+                            {
+                                formedQuestionSetUnit3.Add(anotherNextQuestion);
+                                unit3QuestionsList.Remove(anotherNextQuestion);
+                            }
+                        }
+                    }
+
+                    unit3QuestionsList.Remove(firstQuestion);
+                }
+
             }
 
             ViewData["Question1And2"] = formedQuestionSetUnit1;
