@@ -21,7 +21,7 @@ namespace AutomatedQuestionPaper.Models
         public string Name { get; set; }
 
         [DataType(DataType.Text)]
-        [MinLength(5, ErrorMessage = "Please enter at least 5 characters")]
+        [MinLength(3, ErrorMessage = "Please enter at least 3 characters")]
         [Required]
         [DisplayName("Surname")]
         public string Surname { get; set; }
@@ -32,11 +32,12 @@ namespace AutomatedQuestionPaper.Models
         [DisplayName("Address")]
         public string Address { get; set; }
 
-        [DataType(DataType.PhoneNumber)]
+        
         [MinLength(10, ErrorMessage = "Phone number cannot be less than 10 digit")]
         [MaxLength(10, ErrorMessage = "Phone number cannot be greater than 10 digit")]
         [Required]
         [DisplayName("Phone number")]
+        [DataType(DataType.PhoneNumber)]
         public string Phone { get; set; }
 
         [DataType(DataType.EmailAddress)]

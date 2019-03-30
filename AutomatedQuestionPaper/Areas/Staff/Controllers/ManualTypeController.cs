@@ -6,11 +6,12 @@ using AutomatedQuestionPaper.Models;
 using System.Collections.Generic;
 using System.Net;
 using Newtonsoft.Json;
+using AutomatedQuestionPaper.Controllers;
 
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
     [SessionCheckStaff]
-    public class ManualTypeController : Controller
+    public class ManualTypeController : BaseController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
 
@@ -89,6 +90,22 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                     TempData["oldquestion"] = highestSemanticScore.FirstText;
                     return RedirectToAction("Semantic", highestSemanticScore);
                 }
+                else
+                {
+                    _context.Questions.Add(new Question
+                    {
+                        ChapterId = chapterId,
+                        CourseId = subjectId,
+                        DepartmentId = departmentId.ToString(),
+                        DifficultyLevel = Convert.ToInt32(difficultyLevel),
+                        QuestionText = question,
+                        QuestionType = type,
+                        SemesterId = semesterId.ToString(),
+                        UnitId = unitInt
+                    });
+
+                    _context.SaveChanges();
+                }
             }
             else
             {
@@ -103,13 +120,13 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                     SemesterId = semesterId.ToString(),
                     UnitId = unitInt
                 });
+
+                _context.SaveChangesAsync();
             }
             
-            _context.SaveChangesAsync();
-
             TempData["QuestionAdded"] = "Question added successfully";
-
-            return Json("Question added successfully", JsonRequestBehavior.AllowGet);
+            Alert("Success", "Question added successfully", Enums.NotificationType.success);
+            return View("Index");
         }
 
         [HttpPost]
@@ -276,7 +293,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
         [HttpPost]
         public ActionResult QuestionRepository(string selectedSemester, string selectedDepartment,
-            string selectedSubject, string unitNo, string chapterName, string examType, string searchText)
+            string selectedSubject, string unitNo, string chapterName, string examType)
         {
                 var semesterId = _context.Semesters.FirstOrDefault(x => x.SemesterName == selectedSemester)?.Id;
 

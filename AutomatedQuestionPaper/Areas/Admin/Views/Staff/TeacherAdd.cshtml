@@ -63,14 +63,6 @@
                         @Html.ValidationMessageFor(model => model.Email, "", new {@class = "text-danger"})
                     </div>
                 </div>
-
-                <div class="col-lg-6 col-sm-12">
-                    @Html.LabelFor(model => model.Password)
-                    <div>
-                        @Html.EditorFor(model => model.Password, new {htmlAttributes = new {@class = "form-control"}})
-                        @Html.ValidationMessageFor(model => model.Password, "", new {@class = "text-danger"})
-                    </div>
-                </div>
             </div>
 
             <br/>

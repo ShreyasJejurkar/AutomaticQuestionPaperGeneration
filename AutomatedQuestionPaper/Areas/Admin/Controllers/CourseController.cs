@@ -129,6 +129,9 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult GetSubjects(string departmentList)
         {
+            ViewBag.DepartmentList = _context.Departments.ToList();
+
+
             // Check for user has selected a department or not
             if (departmentList.Contains("department"))
             {

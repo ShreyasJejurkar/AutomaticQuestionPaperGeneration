@@ -93,27 +93,6 @@
 
 <br/>
 
-
-@*<div class="row">
-    <div class="col">
-        <div class="float-left">
-            @using (Html.BeginForm("QuestionRepository","ManualType", FormMethod.Post))
-            {
-                <div class="row">
-                    <div class="col">
-                        <input class="form-control" type="text" id="searchText" name="searchText" required="required" />
-                    </div>
-
-                    <div class="col">
-                        <button class="form-control btn btn-outline-warning" name="searchFormSubmit" id="searchFormSubmit" type="submit" value="Search"></button>
-                    </div>
-                </div>
-            }
-        </div>
-    </div>
-</div>*@
-
-
 <div id="questionList" name="questionList">
 
 </div>
@@ -307,7 +286,6 @@
                     var unit = $("#selectedUnit  option:selected").text();
                     var chapterName = $("#chapterName option:selected").text();
                     var type = $("#ExamType option:selected").text();
-                    var searchText = $("#searchText").val();
                     if (unit !== "---Select---") {
                         $.ajax({
                             type: 'Post',
@@ -335,10 +313,7 @@
                         alert("Please select all the fields");
                     }
                 }
-                
             });
-
-
         });
     </script>
 }

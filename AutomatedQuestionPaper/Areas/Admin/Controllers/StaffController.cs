@@ -89,7 +89,10 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         public ActionResult TeacherAdd(Models.Staff data)
         {
             // Add it to context and commit it to DB
+            data.Password = "test_test";
+
             _context.Staffs.Add(data);
+
             _context.SaveChanges();
 
             // Set the success message  
@@ -139,9 +142,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 Alert("Successful", "Selected staff records deleted", Enums.NotificationType.success);
                 return RedirectToAction("Index");
             }
-           
-            return null;
         }
-
     }
 }

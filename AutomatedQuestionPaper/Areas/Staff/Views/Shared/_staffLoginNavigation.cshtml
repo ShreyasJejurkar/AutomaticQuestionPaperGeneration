@@ -18,19 +18,19 @@
     <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index", "StaffHomePage")">Staff home</a>
+                <a class="nav-link" href="@Url.Action("Index", "StaffHomePage" )">Staff home</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index", "Department")">Question management</a>
+                <a class="nav-link" href="@Url.Action("Index", "Question",  new { Area = "Staff" })">Question management</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index", "Staff")">Chapter management</a>
+                <a class="nav-link" href="@Url.Action("Index", "Chapter",  new { Area = "Staff" })">Chapter management</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index", "Semester")">Create Question paper</a>
+                <a class="nav-link" href="@Url.Action("Index", "PaperCreation",  new { Area = "Staff" })">Create Question paper</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="@Url.Action("Index", "Course")">Question Paper repository</a>
+                <a class="nav-link" href="@Url.Action("Index", "QuestionPaperRepository",  new { Area = "Staff" })">Question Paper repository</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/Home">Log out</a>

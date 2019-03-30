@@ -1,98 +1,137 @@
 ﻿@model AutomatedQuestionPaper.Models.Staff
 @{
-    ViewBag.Title = $@"{Model.Name} (Staff) Home Page";
-    Layout = "~/Areas/Staff/Views/Shared/_staffLoginLayoutPage.cshtml";
+	ViewBag.Title = $@"{Model.Name} (Staff) Home Page";
+	Layout = "~/Areas/Staff/Views/Shared/_staffLoginLayoutPage.cshtml";
 }
 
 @if (TempData["SessionErrorMessage"] != null)
 {
-    ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+	ViewBag.Title = "Index";
+	Layout = "~/Views/Shared/_Layout.cshtml";
 
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @TempData["SessionErrorMessage"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+	<div class="alert alert-danger alert-dismissible fade show" role="alert">
+		@TempData["SessionErrorMessage"]
+		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+			<span aria-hidden="true">&times;</span>
+		</button>
+	</div>
 }
 else
 {
-    ViewBag.Title = $@"{Model.Name} (Staff) Home Page";
-    Layout = "~/Areas/Staff/Views/Shared/_staffLoginLayoutPage.cshtml";
+	ViewBag.Title = $@"{Model.Name} (Staff) Home Page";
+	Layout = "~/Areas/Staff/Views/Shared/_staffLoginLayoutPage.cshtml";
 
-    <br/>
-    <h2>@Model.Name Management Panel</h2>
+	<br/>
+	<h2>@Model.Name Management Panel</h2>
 
-    <div style="text-align: center">
-        <div id="questionDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
-            <img class="card-img-top" height="180" src="~/Images/question.jpg" alt="Card image cap">
-            <div class="card-body">
-                <a class="card-title text-primary">Questions management</a>
-            </div>
-        </div>
+	if (Model.Password == "test_test")
+	{
+		<!-- Button trigger modal -->
+		<button type="button" class="btn btn-primary" style="display: none" id="passwordDialog" name="passwordDialog" data-toggle="modal" data-target="#exampleModalCenter">
+			Launch demo modal
+		</button>
 
-        <div id="chapterDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
-            <img class="card-img-top" height="180" src="~/Images/chapter.jpg" alt="Card image cap">
-            <div class="card-body">
-                <a class="card-title text-primary">Chapter management</a>
-            </div>
-        </div>
 
-        <div id="paperCreationDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
-            <img class="card-img-top" height="180" src="~/Images/question paper.jpg" alt="Card image cap">
-            <div class="card-body">
-                <a class="card-title text-primary">Question Paper creation</a>
-            </div>
-        </div>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					@using (Html.BeginForm("SetPassword", "StaffHomePage", FormMethod.Post))
+					{
+						<div class="modal-body">
+							<label>Please enter password for account</label>
+							<input type="password" class="form-control" name="passwordField" id="passwordField" placeholder="password" data-val="true" data-val-required="The password field is required" />
+							<span class="field-validation-valid text-danger" data-valmsg-for="passwordField" data-valmsg-replace="true"></span>
+						</div>
+						<div class="modal-footer">
+							<input type="submit" class="btn btn-outline-primary" value="Save changes" />
+						</div>
+					}
+				</div>
+			</div>
+		</div>
+	}
 
-        <div id="paperRepositoryDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
-            <img class="card-img-top" height="180" src="~/Images/question paper repository.jpg" alt="Card image cap">
-            <div class="card-body">
-                <a class="card-title text-primary">Question Paper repository</a>
-            </div>
-        </div>
-    </div>
+
+
+
+	<div style="text-align: center">
+		<div id="questionDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+			<img class="card-img-top" height="180" src="~/Images/question.jpg" alt="Card image cap">
+			<div class="card-body">
+				<a class="card-title text-primary">Questions management</a>
+			</div>
+		</div>
+
+		<div id="chapterDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+			<img class="card-img-top" height="180" src="~/Images/chapter.jpg" alt="Card image cap">
+			<div class="card-body">
+				<a class="card-title text-primary">Chapter management</a>
+			</div>
+		</div>
+
+		<div id="paperCreationDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+			<img class="card-img-top" height="180" src="~/Images/question paper.jpg" alt="Card image cap">
+			<div class="card-body">
+				<a class="card-title text-primary">Question Paper creation</a>
+			</div>
+		</div>
+
+		<div id="paperRepositoryDiv" class="card" style="float: left; height: 285px; margin: 10px; width: 12rem;">
+			<img class="card-img-top" height="180" src="~/Images/question paper repository.jpg" alt="Card image cap">
+			<div class="card-body">
+				<a class="card-title text-primary">Question Paper repository</a>
+			</div>
+		</div>
+	</div>
 }
 
 
 @section Scripts
 {
-    @Scripts.Render("~/bundles/jqueryval")
+	@Scripts.Render("~/bundles/jqueryval")
 
-    <script>
+	<script>
 
-        $(function() {
-            $(".card").css('transition', '0.2s');
+		$("#passwordDialog").click();
 
-            $(".card").hover(
-                function() {
-                    $(this).addClass('shadow-lg').css('cursor', 'pointer');
-                },
-                function() {
-                    $(this).removeClass('shadow-lg');
-                }
-            );
+		$(function() {
+			$(".card").css('transition', '0.2s');
 
-            $("a.card-title.text-primary").hover(function () {
-                $(this).toggleClass("text-primary text-danger");
-            });
+			$(".card").hover(
+				function() {
+					$(this).addClass('shadow-lg').css('cursor', 'pointer');
+				},
+				function() {
+					$(this).removeClass('shadow-lg');
+				}
+			);
 
-            $("#questionDiv").click(function() {
-                window.location.href = "@Url.Action("Index", "Question")";
-            });
+			$("a.card-title.text-primary").hover(function () {
+				$(this).toggleClass("text-primary text-danger");
+			});
 
-            $("#chapterDiv").click(function() {
-                window.location.href = "@Url.Action("Index", "Chapter")";
-            });
+			$("#questionDiv").click(function() {
+				window.location.href = "@Url.Action("Index", "Question")";
+			});
 
-            $("#paperCreationDiv").click(function() {
-                window.location.href = "@Url.Action("Index", "PaperCreation")";
-            });
+			$("#chapterDiv").click(function() {
+				window.location.href = "@Url.Action("Index", "Chapter")";
+			});
 
-            $("#paperRepositoryDiv").click(function() {
-                window.location.href = "@Url.Action("Index", "QuestionPaperRepository")";
-            });
-        });
-    </script>
+			$("#paperCreationDiv").click(function() {
+				window.location.href = "@Url.Action("Index", "PaperCreation")";
+			});
+
+			$("#paperRepositoryDiv").click(function() {
+				window.location.href = "@Url.Action("Index", "QuestionPaperRepository")";
+			});
+		});
+	</script>
 }
