@@ -62,8 +62,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             _context.Courses.Add(c);
             _context.SaveChanges();
 
-
-
             return RedirectToAction("Index", "Course");
         }
 

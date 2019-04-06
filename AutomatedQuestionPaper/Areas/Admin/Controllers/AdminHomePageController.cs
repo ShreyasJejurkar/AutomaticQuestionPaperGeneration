@@ -1,11 +1,12 @@
 ﻿using System.Linq;
 using System.Web.Mvc;
+using AutomatedQuestionPaper.Controllers;
 using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     [SessionCheckAdmin]
-    public class AdminHomePageController : Controller
+    public class AdminHomePageController : BaseController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
 

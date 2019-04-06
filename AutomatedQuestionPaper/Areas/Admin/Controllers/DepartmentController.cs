@@ -1,12 +1,13 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
+using AutomatedQuestionPaper.Controllers;
 using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     [SessionCheckAdmin]
-    public class DepartmentController : Controller
+    public class DepartmentController : BaseController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
         private readonly DbSet<Department> _data;

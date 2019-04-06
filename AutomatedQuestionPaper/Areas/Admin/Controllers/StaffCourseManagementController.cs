@@ -4,11 +4,12 @@ using System.Threading;
 using System.Web.Mvc;
 using AutomatedQuestionPaper.Models;
 using AutomatedQuestionPaper.Areas.Staff.Models;
+using AutomatedQuestionPaper.Controllers;
 
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     [SessionCheckAdmin]
-    public class StaffCourseManagementController : Controller
+    public class StaffCourseManagementController : BaseController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
 

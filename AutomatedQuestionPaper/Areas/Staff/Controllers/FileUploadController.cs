@@ -4,12 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using AutomatedQuestionPaper.Areas.Staff.Models;
+using AutomatedQuestionPaper.Controllers;
 using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
     [SessionCheckStaff]
-    public class FileUploadController : Controller
+    public class FileUploadController : BaseController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
 

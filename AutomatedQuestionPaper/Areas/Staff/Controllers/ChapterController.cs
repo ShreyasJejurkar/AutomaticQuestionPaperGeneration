@@ -2,12 +2,13 @@
 using System.Linq;
 using System.Web.Mvc;
 using AutomatedQuestionPaper.Areas.Staff.Models;
+using AutomatedQuestionPaper.Controllers;
 using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
     [SessionCheckStaff]
-    public class ChapterController : Controller
+    public class ChapterController : BaseController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
         private readonly DatabaseStaffOperations _db;
