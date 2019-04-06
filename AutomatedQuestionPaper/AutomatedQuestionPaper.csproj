@@ -185,7 +185,6 @@
     <Compile Include="Areas\Staff\Controllers\QuestionController.cs" />
     <Compile Include="Areas\Staff\Controllers\PaperCreationController.cs" />
     <Compile Include="Areas\Staff\Controllers\QuestionPaperRepositoryController.cs" />
-    <Compile Include="Areas\Staff\Controllers\StaffHomePageController.cs" />
     <Compile Include="Areas\Staff\Models\ChapterDetails.cs" />
     <Compile Include="Areas\Staff\Models\EndSemQuestionPaperGenerator.cs" />
     <Compile Include="Areas\Staff\Models\InSemQuestionPaperGenerator.cs" />
@@ -364,7 +363,6 @@
     <Content Include="Areas\Staff\Views\FileUpload\Index.cshtml" />
     <Content Include="Areas\Staff\Views\ManualType\QuestionRepository.cshtml" />
     <Content Include="Areas\Staff\Views\PaperCreation\Index.cshtml" />
-    <Content Include="Areas\Staff\Uploads\sample.pdf" />
     <Content Include="Areas\Staff\Views\QuestionPaperRepository\Index.cshtml" />
     <Content Include="App_Data\QuestionPapersFormat\endsem.docx" />
     <Content Include="App_Data\QuestionPapersFormat\insem.doc" />
@@ -440,8 +438,6 @@
     <Folder Include="App_Data\PdfQuestionPapers\" />
     <Folder Include="Areas\Admin\Views\Question\" />
     <Folder Include="Areas\Staff\Uploads\CSV\" />
-    <Folder Include="Areas\Staff\Uploads\Excel\" />
-    <Folder Include="Areas\Staff\Uploads\Word\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
