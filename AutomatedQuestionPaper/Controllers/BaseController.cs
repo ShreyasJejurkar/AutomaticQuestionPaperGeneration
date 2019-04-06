@@ -17,7 +17,6 @@ namespace AutomatedQuestionPaper.Controllers
             TempData["notification"] = msg;
         }
 
-
         public void Alert(string message)
         {
             var msg = $"<script language='javascript'>swal('{message}')" + "</script>";
