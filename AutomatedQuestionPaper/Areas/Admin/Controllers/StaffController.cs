@@ -10,7 +10,11 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
     [SessionCheckAdmin]
     public class StaffController : BaseController
     {
+        /// <summary>
+        /// Object responsible for database connection and querying
+        /// </summary>
         private readonly DatabaseContext _context = new DatabaseContext();
+
 
         [HttpGet]
         public ActionResult Index(string searchOption, string searchText, int? page)

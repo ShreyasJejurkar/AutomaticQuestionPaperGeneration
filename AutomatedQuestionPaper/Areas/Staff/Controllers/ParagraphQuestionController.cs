@@ -12,12 +12,10 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
     {
         private readonly DatabaseContext _context = new DatabaseContext();
 
-        // GET: Staff/ParagraphQuestion
         public ActionResult Index()
         {
             return View();
         }
-
 
         public ActionResult NextStep(string selectedSemester, string selectedDepartment, string selectedSubject, string examType, string chapterName, string unitNo)
         {

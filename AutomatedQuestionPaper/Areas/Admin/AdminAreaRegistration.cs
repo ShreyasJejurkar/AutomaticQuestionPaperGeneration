@@ -4,7 +4,7 @@ namespace AutomatedQuestionPaper.Areas.Admin
 {
     public class AdminAreaRegistration : AreaRegistration
     {
-        public string AreaName => "Admin";
+        public override string AreaName => "Admin";
 
         public override void RegisterArea(AreaRegistrationContext context)
         {

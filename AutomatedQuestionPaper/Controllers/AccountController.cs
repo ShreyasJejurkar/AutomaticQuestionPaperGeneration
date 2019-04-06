@@ -5,6 +5,10 @@ namespace AutomatedQuestionPaper.Controllers
 {
     public class AccountController : BaseController
     {
+        /// <summary>
+        /// Action responsible for displaying Account Homepage
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Index()
         {

@@ -1,6 +1,4 @@
 ﻿using System.Collections.Generic;
-
-
 namespace AutomatedQuestionPaper.Models
 {
     public class ErrorMessages
@@ -8,10 +6,8 @@ namespace AutomatedQuestionPaper.Models
         public string ErrorText { get; set; }
     }
 
-
     public class ErrorMessagesList : List<ErrorMessages>
     {
 
     }
-
 }

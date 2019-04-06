@@ -10,6 +10,9 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
     [SessionCheckAdmin]
     public class CourseController : BaseController
     {
+        /// <summary>
+        /// Object responsible for database connection and querying
+        /// </summary>
         private readonly DatabaseContext _context = new DatabaseContext();
 
         [HttpGet]

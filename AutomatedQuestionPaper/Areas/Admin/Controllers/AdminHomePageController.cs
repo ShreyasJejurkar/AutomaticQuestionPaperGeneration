@@ -8,8 +8,15 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
     [SessionCheckAdmin]
     public class AdminHomePageController : BaseController
     {
+        /// <summary>
+        /// Object responsible for database connection and querying
+        /// </summary>
         private readonly DatabaseContext _context = new DatabaseContext();
 
+        /// <summary>
+        /// Action displays Admin Home page. 
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public ActionResult Index()
         {
