@@ -6,7 +6,7 @@ namespace AutomatedQuestionPaper.Controllers
     public class AccountController : BaseController
     {
         /// <summary>
-        /// Action responsible for displaying Account Homepage
+        ///     Action responsible for displaying Account Homepage
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -28,7 +28,7 @@ namespace AutomatedQuestionPaper.Controllers
 
             if (auth.status == 0)
             {
-                Alert("Error","Incorrect credentials", Enums.NotificationType.error);
+                Alert("Error", "Incorrect credentials", Enums.NotificationType.error);
                 return View();
             }
 
@@ -38,8 +38,8 @@ namespace AutomatedQuestionPaper.Controllers
                 Session["Staff_Name"] = auth.authenticatedUserName;
 
 
-                Alert("Welcome",$"Hello {Session["Staff_Name"]}", Enums.NotificationType.success);
-                
+                Alert("Welcome", $"Hello {Session["Staff_Name"]}", Enums.NotificationType.success);
+
                 return RedirectToAction("Index", "StaffHomePage", new
                 {
                     area = "Staff"

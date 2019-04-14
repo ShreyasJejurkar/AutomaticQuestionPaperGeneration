@@ -95,7 +95,13 @@
       <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Spire.Doc">
-      <HintPath>..\..\..\..\..\..\Program Files (x86)\e-iceblue\Spire.Doc-Fe\Bin\NET4.0\Spire.Doc.dll</HintPath>
+      <HintPath>..\..\..\..\Desktop\project files\New folder\Spire.Doc.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.License">
+      <HintPath>..\..\..\..\Desktop\project files\New folder\Spire.License.dll</HintPath>
+    </Reference>
+    <Reference Include="Spire.Pdf">
+      <HintPath>..\..\..\..\Desktop\project files\New folder\Spire.Pdf.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />

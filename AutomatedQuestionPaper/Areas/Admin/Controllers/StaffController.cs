@@ -15,7 +15,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         /// </summary>
         private readonly DatabaseContext _context = new DatabaseContext();
 
-
         [HttpGet]
         public ActionResult Index(string searchOption, string searchText, int? page)
         {
