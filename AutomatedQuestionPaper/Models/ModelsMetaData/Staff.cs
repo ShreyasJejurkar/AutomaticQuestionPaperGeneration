@@ -1,5 +1,6 @@
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace AutomatedQuestionPaper.Models
 {
@@ -44,6 +45,7 @@ namespace AutomatedQuestionPaper.Models
         [MinLength(5, ErrorMessage = "Email ID should be more than 5 characters")]
         [Required]
         [DisplayName("Email")]
+        [Remote("IsEmailAvailable", "Staff", ErrorMessage = "Email is already in use")]
         public string Email { get; set; }
 
         [DataType(DataType.Password)]

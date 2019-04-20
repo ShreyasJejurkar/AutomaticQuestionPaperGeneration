@@ -88,6 +88,16 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Checks if email is already registered or not
+        /// </summary>
+        /// <param name="email">email used at time of registering </param>
+        /// <returns></returns>
+        public JsonResult IsEmailAvailable(string email)
+        {
+            return Json(!_context.Staffs.Any(staff => staff.Email == email), JsonRequestBehavior.AllowGet);
+        }
+
         [HttpPost]
         public ActionResult TeacherAdd(Models.Staff data)
         {
