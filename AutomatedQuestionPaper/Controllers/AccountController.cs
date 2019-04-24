@@ -5,10 +5,6 @@ namespace AutomatedQuestionPaper.Controllers
 {
     public class AccountController : BaseController
     {
-        /// <summary>
-        ///     Action responsible for displaying Account Homepage
-        /// </summary>
-        /// <returns></returns>
         [HttpGet]
         public ActionResult Index()
         {
@@ -34,10 +30,8 @@ namespace AutomatedQuestionPaper.Controllers
 
             if (auth.status == 1 && auth.authenticatedUserName != null)
             {
-                //Saving data to session for login functionality
+                
                 Session["Staff_Name"] = auth.authenticatedUserName;
-
-
                 Alert("Welcome", $"Hello {Session["Staff_Name"]}", Enums.NotificationType.success);
 
                 return RedirectToAction("Index", "StaffHomePage", new
@@ -48,7 +42,6 @@ namespace AutomatedQuestionPaper.Controllers
 
             if (auth.status == 2 && auth.authenticatedUserName != null)
             {
-                //Saving data to session for login functionality
                 Session["Username"] = auth.authenticatedUserName;
 
                 Alert("Welcome", $"Hello {Session["Username"]}", Enums.NotificationType.success);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web.Mvc;
 using AutomatedQuestionPaper.Areas.Staff.Models;
@@ -616,7 +617,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                 Subject_Name = (string) TempData["QuestionPaperSubject"]
             };
 
-            insem.GenerateQuestionPaper(question[12]+ " " + $"{DateTime.Now.ToString().Replace('/', '-').Replace(':', '.')}");
+            insem.GenerateQuestionPaper(question[12]+ " " + $"{DateTime.Now.ToString(CultureInfo.CurrentCulture).Replace('/', '-').Replace(':', '.')}");
 
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }

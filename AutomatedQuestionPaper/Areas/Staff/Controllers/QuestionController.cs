@@ -1,5 +1,5 @@
-﻿using System.Web.Mvc;
-using AutomatedQuestionPaper.Controllers;
+﻿using AutomatedQuestionPaper.Controllers;
+using System.Web.Mvc;
 
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {

@@ -16,29 +16,29 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         // GET: Admin/StaffCourseManagement
         public ActionResult Index()
         {
-            var T1 = new Thread(() =>
+            var t1 = new Thread(() =>
             {
                 ViewBag.SemesterList = new SelectList(_context.Semesters, "SemesterName", "SemesterName");
             });
-            T1.Start();
+            t1.Start();
 
-            var T2 = new Thread(() =>
+            var t2 = new Thread(() =>
             {
                 ViewBag.StaffMembersList = new SelectList(_context.Staffs, "Name", "Name");
             });
-            T2.Start();
+            t2.Start();
 
-            var T3 = new Thread(() =>
+            var t3 = new Thread(() =>
             {
                 ViewBag.DepartmentList = new SelectList(_context.Departments, "DepartmentName", "DepartmentName");
             });
-            T3.Start();
+            t3.Start();
 
-            var T4 = new Thread(() =>
+            var t4 = new Thread(() =>
             {
                 ViewBag.Subject = new SelectList(_context.Courses, "CourseName", "CourseName");
             });
-            T4.Start();
+            t4.Start();
 
             return View();
         }

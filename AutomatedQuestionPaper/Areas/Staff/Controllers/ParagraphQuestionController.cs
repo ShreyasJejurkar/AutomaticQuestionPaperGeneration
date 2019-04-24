@@ -1,10 +1,10 @@
-﻿using System;
+﻿using AutomatedQuestionPaper.Areas.Staff.Models;
+using AutomatedQuestionPaper.Models;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
-using AutomatedQuestionPaper.Models;
-using AutomatedQuestionPaper.Areas.Staff.Models;
 
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {

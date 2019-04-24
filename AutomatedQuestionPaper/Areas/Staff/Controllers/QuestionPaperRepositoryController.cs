@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using System.Web.Mvc;
-using AutomatedQuestionPaper.Areas.Staff.Models;
+﻿using AutomatedQuestionPaper.Areas.Staff.Models;
 using AutomatedQuestionPaper.Controllers;
 using AutomatedQuestionPaper.Models;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
@@ -14,7 +14,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         // GET: Staff/QuestionPaperRepository
         public ActionResult Index()
         {
-            var loggedInStaff = (string) Session["Staff_Name"];
+            var loggedInStaff = (string)Session["Staff_Name"];
 
             var staffId = _context.Staffs.FirstOrDefault(u => u.Name == loggedInStaff)?.Id;
 
