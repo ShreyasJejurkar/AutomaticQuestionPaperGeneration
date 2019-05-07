@@ -1,485 +1,2691 @@
 ﻿@using AutomatedQuestionPaper.Areas.Staff.Models
 
 @{
-    ViewBag.Title = "EndSemQuestionPaper";
-    Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
+	ViewBag.Title = "EndSemQuestionPaper";
+	Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
 }
 
 <h2>EndSemQuestionPaper</h2>
 
 <div class="container">
-    <h3>Tentative created question paper</h3>
+	<h3>Tentative created question paper</h3>
 
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col" width="100"></th>
-                <th scope="col" width="80"></th>
-                <th scope="col" width="1000"></th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">Q1</th>
-                <td>A</td>
-                <td>
-                    <select id="Question1A" name="Question1A" class="form-control">
-                        @{
-                            var firstA = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
+	<table class="table table-bordered">
+		<thead>
+			<tr>
+				<th scope="col" width="100"></th>
+				<th scope="col" width="80"></th>
+				<th scope="col" width="1100">
+					<div class="row">
+						<div class="col-10">Question</div>
+						<div class="col-2">Difficulty Level</div>
+					</div>
+				</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<th scope="row">Q1</th>
+				<td>A</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question1A" name="Question1A" class="form-control">
+								@{
+									var firstA = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
 
-                            foreach (var item in firstA)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question1AError" name="Question1AError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>B</td>
-                <td>
-                    <select id="Question1B" name="Question1B" class="form-control">
-                        @{
-                            var firstB = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
+									foreach (var item in firstA)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question1AError" name="Question1AError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question1ALevel" name="Question1ALevel" class="form-control">
+								@{
+									var firstALevel = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
 
-                            foreach (var item in firstB)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question1BError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td>
-                    <h6 style="text-align: center">OR</h6>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Q2</th>
-                <td>A</td>
-                <td>
-                    <select id="Question2A" name="Question2A" class="form-control">
-                        @{
-                            var secondA = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
+									foreach (var item in firstALevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question1ALevelError" name="Question1AError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td>B</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question1B" name="Question1B" class="form-control">
+								@{
+									var firstB = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
 
-                            foreach (var item in secondA)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question2AError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>B</td>
-                <td>
-                    <select id="Question2B" name="Question2B" class="form-control">
-                        @{
-                            var secondB = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
+									foreach (var item in firstB)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question1BError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question1BLevel" name="Question1BLevel" class="form-control">
+								@{
+									var firstBLevel = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
 
-                            foreach (var item in secondB)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question2BError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Q3</th>
-                <td>A</td>
-                <td>
-                    <select id="Question3A" name="Question3A" class="form-control">
-                        @{
-                            var thirdA = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
+									foreach (var item in firstBLevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question1BLevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
 
-                            foreach (var item in thirdA)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question3AError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>B</td>
-                <td>
-                    <select id="Question3B" name="Question3B" class="form-control">
-                        @{
-                            var thirdB = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td></td>
+				<td>
+					<h6 style="text-align: center">OR</h6>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">Q2</th>
+				<td>A</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question2A" name="Question2A" class="form-control">
+								@{
+									var secondA = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
 
-                            foreach (var item in thirdB)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question3BError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>C</td>
-                <td>
-                    <select id="Question3C" name="Question3C" class="form-control">
-                        @{
-                            var thirdC = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
+									foreach (var item in secondA)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question2AError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question2ALevel" name="Question2ALevel" class="form-control">
+								@{
+									var secondALevel = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
 
-                            foreach (var item in thirdC)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question3CError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td>
-                    <h6 style="text-align: center">OR</h6>
-                </td>
-            </tr>
-            <tr>
-            <tr>
-                <th scope="row">Q4</th>
-                <td>A</td>
-                <td>
-                    <select id="Question4A" name="Question4A" class="form-control">
-                        @{
-                            var fourthA = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
-
-                            foreach (var item in fourthA)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question4AError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>B</td>
-                <td>
-                    <select id="Question4B" name="Question4B" class="form-control">
-                        @{
-                            var fourthB = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
-
-                            foreach (var item in fourthB)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question4BError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>C</td>
-                <td>
-                    <select id="Question4C" name="Question4C" class="form-control">
-                        @{
-                            var fourthC = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
-
-                            foreach (var item in fourthC)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question4CError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Q5</th>
-                <td>A</td>
-                <td>
-                    <select id="Question5A" name="Question5A" class="form-control">
-                        @{
-                            var fifthA = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
-
-                            foreach (var item in fifthA)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question5AError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>B</td>
-                <td>
-                    <select id="Question5B" name="Question5B" class="form-control">
-                        @{
-                            var fifthB = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
-
-                            foreach (var item in fifthB)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question5BError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td>
-                    <h6 style="text-align: center">OR</h6>
-                </td>
-            </tr>
-            <tr>
-
-            <tr>
-                <th scope="row">Q6</th>
-                <td>A</td>
-                <td>
-                    <select id="Question6A" name="Question6A" class="form-control">
-                        @{
-                            var sixthA = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
-
-                            foreach (var item in sixthA)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question6AError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>B</td>
-                <td>
-                    <select id="Question6B" name="Question6B" class="form-control">
-                        @{
-                            var sixthB = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
-
-                            foreach (var item in sixthB)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question6BError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-
-            <tr>
-                <th scope="row">Q7</th>
-                <td>A</td>
-                <td>
-                    <select id="Question7A" name="Question7A" class="form-control">
-                        @{
-                            var seventhA = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
-
-                            foreach (var item in seventhA)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question7AError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>B</td>
-                <td>
-                    <select id="Question7B" name="Question7B" class="form-control">
-                        @{
-                            var seventhB = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
-
-                            foreach (var item in seventhB)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question7BError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td>
-                    <h6 style="text-align: center">OR</h6>
-                </td>
-            </tr>
+									foreach (var item in secondALevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question2ALevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
 
 
-            <tr>
-                <th scope="row">Q8</th>
-                <td>A</td>
-                <td>
-                    <select id="Question8A" name="Question8A" class="form-control">
-                        @{
-                            var eightA = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td>B</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question2B" name="Question2B" class="form-control">
+								@{
+									var secondB = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
 
-                            foreach (var item in eightA)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question8AError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>B</td>
-                <td>
-                    <select id="Question8B" name="Question8B" class="form-control">
-                        @{
-                            var eightB = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+									foreach (var item in secondB)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question2BError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question2BLevel" name="Question2BLevel" class="form-control">
+								@{
+									var secondBLevel = (List<PaperCreationQuestionFormat>)ViewData["Question1And2"];
 
-                            foreach (var item in eightB)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question8BError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
+									foreach (var item in secondBLevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question2BLevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row">Q3</th>
+				<td>A</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question3A" name="Question3A" class="form-control">
+								@{
+									var thirdA = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
 
-            <tr>
-                <th scope="row">Q9</th>
-                <td>A</td>
-                <td>
-                    <select id="Question9A" name="Question9A" class="form-control">
-                        @{
-                            var nineA = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+									foreach (var item in thirdA)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question3AError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question3ALevel" name="Question3ALevel" class="form-control">
+								@{
+									var thirdALevel = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
 
-                            foreach (var item in nineA)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question9AError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>B</td>
-                <td>
-                    <select id="Question9B" name="Question9B" class="form-control">
-                        @{
-                            var nineB = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+									foreach (var item in thirdALevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question3ALevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td>B</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question3B" name="Question3B" class="form-control">
+								@{
+									var thirdB = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
 
-                            foreach (var item in nineB)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question9BError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
+									foreach (var item in thirdB)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question3BError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question3BLevel" name="Question3BLevel" class="form-control">
+								@{
+									var thirdBLevel = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
 
-            <tr>
-                <th scope="row"></th>
-                <td>C</td>
-                <td>
-                    <select id="Question9C" name="Question9C" class="form-control">
-                        @{
-                            var nineC = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+									foreach (var item in thirdBLevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question3BLevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
 
-                            foreach (var item in nineC)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question9CError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
+				</td>
+			</tr>
 
-            <tr>
-                <th scope="row"></th>
-                <td></td>
-                <td>
-                    <h6 style="text-align: center">OR</h6>
-                </td>
-            </tr>
+			<tr>
+				<th scope="row"></th>
+				<td>C</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question3C" name="Question3C" class="form-control">
+								@{
+									var thirdC = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
+
+									foreach (var item in thirdB)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question3CError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question3CLevel" name="Question3CLevel" class="form-control">
+								@{
+									var thirdCLevel = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
+
+									foreach (var item in thirdBLevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question3CLevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
 
 
-            <tr>
-                <th scope="row">Q10</th>
-                <td>A</td>
-                <td>
-                    <select id="Question10A" name="Question10A" class="form-control">
-                        @{
-                            var tenA = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+			<tr>
+				<th scope="row"></th>
+				<td></td>
+				<td>
+					<h6 style="text-align: center">OR</h6>
+				</td>
+			</tr>
+			<tr>
+			<tr>
+				<th scope="row">Q4</th>
+				<td>A</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question4A" name="Question4A" class="form-control">
+								@{
+									var fourthA = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
 
-                            foreach (var item in tenA)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question10AError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"></th>
-                <td>B</td>
-                <td>
-                    <select id="Question10B" name="Question10B" class="form-control">
-                        @{
-                            var tenB = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+									foreach (var item in fourthA)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question4AError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question4ALevel" name="Question4ALevel" class="form-control">
+								@{
+									var fourthALevel = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
 
-                            foreach (var item in tenB)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question10BError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
+									foreach (var item in fourthALevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question4ALevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
 
-            <tr>
-                <th scope="row"></th>
-                <td>C</td>
-                <td>
-                    <select id="Question10C" name="Question9C" class="form-control">
-                        @{
-                            var tenC = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td>B</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question4B" name="Question4B" class="form-control">
+								@{
+									var fourthB = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
 
-                            foreach (var item in tenC)
-                            {
-                                <option>@item.Question</option>
-                            }
-                        }
-                    </select>
-                    <span id="Question10CError" class="field-validation-valid text-danger">Question repeated</span>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <br />
+									foreach (var item in fourthB)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question4BError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question4BLevel" name="Question4BLevel" class="form-control">
+								@{
+									var fourthBLevel = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
 
-    <button id="nextButton" name="nextButton" class="btn btn-block btn-outline-secondary" href="@Url.Action("ValidateQuestionPaper", "PaperCreation")">Next</button>
-    <br />
+									foreach (var item in fourthBLevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question4BLevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<th scope="row"></th>
+				<td>C</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question4C" name="Question4C" class="form-control">
+								@{
+									var fourthC = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
+
+									foreach (var item in fourthB)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question4CError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question4CLevel" name="Question4CLevel" class="form-control">
+								@{
+									var fourthCLevel = (List<PaperCreationQuestionFormat>)ViewData["Question3And4"];
+
+									foreach (var item in fourthBLevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question4CLevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<th scope="row">Q5</th>
+				<td>A</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question5A" name="Question5A" class="form-control">
+								@{
+									var fifthA = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+									foreach (var item in fifthA)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question5AError" class="field-validation-valid text-danger">Question repeated</span>
+
+						</div>
+						<div class="col-2">
+							<select id="Question5ALevel" name="Question5ALevel" class="form-control">
+								@{
+									var fifthALevel = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+									foreach (var item in fifthALevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question5ALevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td>B</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question5B" name="Question5B" class="form-control">
+								@{
+									var fifthB = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+									foreach (var item in fifthB)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question5BError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question5BLevel" name="Question5BLevel" class="form-control">
+								@{
+									var fifthBLevel = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+									foreach (var item in fifthBLevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question5BLevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td></td>
+				<td>
+					<h6 style="text-align: center">OR</h6>
+				</td>
+			</tr>
+			<tr>
+
+			<tr>
+				<th scope="row">Q6</th>
+				<td>A</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question6A" name="Question6A" class="form-control">
+								@{
+									var sixthA = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+									foreach (var item in sixthA)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question6AError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question6ALevel" name="Question6ALevel" class="form-control">
+								@{
+									var sixthALevel = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+									foreach (var item in sixthALevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question6ALevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td>B</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question6B" name="Question6B" class="form-control">
+								@{
+									var sixthB = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+									foreach (var item in sixthB)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question6BError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question6BLevel" name="Question6BLevel" class="form-control">
+								@{
+									var sixthBLevel = (List<PaperCreationQuestionFormat>)ViewData["Question5And6"];
+
+									foreach (var item in sixthBLevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question6BLevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<th scope="row">Q7</th>
+				<td>A</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question7A" name="Question7A" class="form-control">
+								@{
+									var seventhA = (List<PaperCreationQuestionFormat>)ViewData["Question7And8"];
+
+									foreach (var item in seventhA)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question7AError" class="field-validation-valid text-danger">Question repeated</span>
+
+						</div>
+						<div class="col-2">
+							<select id="Question7ALevel" name="Question7ALevel" class="form-control">
+								@{
+									var seventhALevel = (List<PaperCreationQuestionFormat>)ViewData["Question7And8"];
+
+									foreach (var item in seventhALevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question7ALevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td>B</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question7B" name="Question7B" class="form-control">
+								@{
+									var seventhB = (List<PaperCreationQuestionFormat>)ViewData["Question7And8"];
+
+									foreach (var item in seventhB)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question7BError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question7BLevel" name="Question7BLevel" class="form-control">
+								@{
+									var seventhBLevel = (List<PaperCreationQuestionFormat>)ViewData["Question7And8"];
+
+									foreach (var item in seventhBLevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question7BLevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td></td>
+				<td>
+					<h6 style="text-align: center">OR</h6>
+				</td>
+			</tr>
+			<tr>
+
+			<tr>
+				<th scope="row">Q8</th>
+				<td>A</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question8A" name="Question8A" class="form-control">
+								@{
+									var eightA = (List<PaperCreationQuestionFormat>)ViewData["Question7And8"];
+
+									foreach (var item in eightA)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question8AError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question8ALevel" name="Question8ALevel" class="form-control">
+								@{
+									var eightALevel = (List<PaperCreationQuestionFormat>)ViewData["Question7And8"];
+
+									foreach (var item in eightALevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question8ALevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td>B</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question8B" name="Question8B" class="form-control">
+								@{
+									var eightB = (List<PaperCreationQuestionFormat>)ViewData["Question7And8"];
+
+									foreach (var item in eightB)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question8BError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question8BLevel" name="Question8BLevel" class="form-control">
+								@{
+									var eightBLevel = (List<PaperCreationQuestionFormat>)ViewData["Question7And8"];
+
+									foreach (var item in eightBLevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question8BLevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+
+				</td>
+			</tr>
+
+			<tr>
+				<th scope="row">Q9</th>
+				<td>A</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question9A" name="Question9A" class="form-control">
+								@{
+									var nineA = (List<PaperCreationQuestionFormat>)ViewData["Question9And10"];
+
+									foreach (var item in nineA)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question9AError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question9ALevel" name="Question9ALevel" class="form-control">
+								@{
+									var nineALevel = (List<PaperCreationQuestionFormat>)ViewData["Question9And10"];
+
+									foreach (var item in nineALevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question9ALevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td>B</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question9B" name="Question9B" class="form-control">
+								@{
+									var nineB = (List<PaperCreationQuestionFormat>)ViewData["Question9And10"];
+
+									foreach (var item in nineB)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question9BError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question9BLevel" name="Question9BLevel" class="form-control">
+								@{
+									var nineBLevel = (List<PaperCreationQuestionFormat>)ViewData["Question9And10"];
+
+									foreach (var item in nineBLevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question9BLevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+
+				</td>
+			</tr>
+
+			<tr>
+				<th scope="row"></th>
+				<td>C</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question9C" name="Question9C" class="form-control">
+								@{
+									var nineC = (List<PaperCreationQuestionFormat>)ViewData["Question9And10"];
+
+									foreach (var item in nineC)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question9CError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question9CLevel" name="Question9CLevel" class="form-control">
+								@{
+									var nineCLevel = (List<PaperCreationQuestionFormat>)ViewData["Question9And10"];
+
+									foreach (var item in nineCLevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question9CLevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td></td>
+				<td>
+					<h6 style="text-align: center">OR</h6>
+				</td>
+			</tr>
+			<tr>
+			<tr>
+				<th scope="row">Q10</th>
+				<td>A</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question10A" name="Question10A" class="form-control">
+								@{
+									var tenA = (List<PaperCreationQuestionFormat>)ViewData["Question9And10"];
+
+									foreach (var item in tenA)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question10AError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question10ALevel" name="Question10ALevel" class="form-control">
+								@{
+									var tenALevel = (List<PaperCreationQuestionFormat>)ViewData["Question9And10"];
+
+									foreach (var item in tenALevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question10ALevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+
+				</td>
+			</tr>
+			<tr>
+				<th scope="row"></th>
+				<td>B</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question10B" name="Question10B" class="form-control">
+								@{
+									var tenB = (List<PaperCreationQuestionFormat>)ViewData["Question9And10"];
+
+									foreach (var item in tenB)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question10BError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question10BLevel" name="Question10BLevel" class="form-control">
+								@{
+									var tenBLevel = (List<PaperCreationQuestionFormat>)ViewData["Question9And10"];
+
+									foreach (var item in tenBLevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question10BLevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+
+			<tr>
+				<th scope="row"></th>
+				<td>C</td>
+				<td>
+					<div class="row">
+						<div class="col-10">
+							<select id="Question10C" name="Question10C" class="form-control">
+								@{
+									var tenC = (List<PaperCreationQuestionFormat>)ViewData["Question9And10"];
+
+									foreach (var item in tenC)
+									{
+										<option>@item.Question</option>
+									}
+								}
+							</select>
+							<span id="Question10CError" class="field-validation-valid text-danger">Question repeated</span>
+						</div>
+						<div class="col-2">
+							<select id="Question10CLevel" name="Question10CLevel" class="form-control">
+								@{
+									var tenCLevel = (List<PaperCreationQuestionFormat>)ViewData["Question9And10"];
+
+									foreach (var item in tenCLevel)
+									{
+										<option>@item.Level</option>
+									}
+								}
+							</select>
+							<span id="Question10CLevelError" class="field-validation-valid text-warning">Difficulty level is higher</span>
+						</div>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<br />
+	<button id="nextButton" name="nextButton" class="btn btn-block btn-outline-secondary" href="@Url.Action("ValidateQuestionPaper", "PaperCreation")">Next</button>
+	<br />
 </div>
 
+@section scripts
+{
+	@Scripts.Render("~/bundles/jqueryval")
+
+	<script>
+
+		$(function() {
+			var levelValue = @TempData["LevelValue"];
+			console.log(levelValue);
+
+			$('span.field-validation-valid.text-danger').hide();
+			$('span.field-validation-valid.text-warning').hide();
+
+			$("table").css("border-collapse", "separate");
+			$("table").css("border-spacing", "0 1em");
+
+
+			$('#Question1A option')[0].selected = true;
+			$('#Question1B option')[1].selected = true;
+
+			$('#Question2A option')[2].selected = true;
+			$('#Question2B option')[3].selected = true;
+
+			$('#Question3A option')[0].selected = true;
+			$('#Question3B option')[1].selected = true;
+			$('#Question3C option')[2].selected = true;
+
+			$('#Question4A option')[3].selected = true;
+			$('#Question4B option')[4].selected = true;
+			$('#Question4C option')[5].selected = true;
+
+			$('#Question5A option')[0].selected = true;
+			$('#Question5B option')[1].selected = true;
+
+			$('#Question6A option')[2].selected = true;
+			$('#Question6B option')[3].selected = true;
+
+			$('#Question7A option')[0].selected = true;
+			$('#Question7B option')[1].selected = true;
+
+			$('#Question8A option')[2].selected = true;
+			$('#Question8B option')[3].selected = true;
+
+			$('#Question9A option')[0].selected = true;
+			$('#Question9B option')[1].selected = true;
+			$('#Question9C option')[2].selected = true;
+
+			$('#Question10A option')[3].selected = true;
+			$('#Question10B option')[4].selected = true;
+			$('#Question10C option')[5].selected = true;
+
+
+			$("#Question1ALevel").prop('disabled', true);
+			$("#Question1BLevel").prop('disabled', true);
+			$("#Question2ALevel").prop('disabled', true);
+			$("#Question2BLevel").prop('disabled', true);
+			$("#Question3ALevel").prop('disabled', true);
+			$("#Question3BLevel").prop('disabled', true);
+			$("#Question3CLevel").prop('disabled', true);
+			$("#Question4ALevel").prop('disabled', true);
+			$("#Question4BLevel").prop('disabled', true);
+			$("#Question5ALevel").prop('disabled', true);
+			$("#Question5BLevel").prop('disabled', true);
+			$("#Question6ALevel").prop('disabled', true);
+			$("#Question6BLevel").prop('disabled', true);
+			$("#Question7ALevel").prop('disabled', true);
+			$("#Question7BLevel").prop('disabled', true);
+			$("#Question8ALevel").prop('disabled', true);
+			$("#Question8BLevel").prop('disabled', true);
+			$("#Question9ALevel").prop('disabled', true);
+			$("#Question9BLevel").prop('disabled', true);
+			$("#Question9CLevel").prop('disabled', true);
+			$("#Question10ALevel").prop('disabled', true);
+			$("#Question10BLevel").prop('disabled', true);
+			$("#Question10CLevel").prop('disabled', true);
+
+			
+			$('#Question1ALevel option').eq($("#Question1A")[0].selectedIndex).prop('selected', true);
+			$('#Question1BLevel option').eq($("#Question1B")[0].selectedIndex).prop('selected', true);
+			$('#Question2ALevel option').eq($("#Question2A")[0].selectedIndex).prop('selected', true);
+			$('#Question2BLevel option').eq($("#Question2B")[0].selectedIndex).prop('selected', true);
+			$('#Question3ALevel option').eq($("#Question3A")[0].selectedIndex).prop('selected', true);
+			$('#Question3BLevel option').eq($("#Question3B")[0].selectedIndex).prop('selected', true);
+			$('#Question3CLevel option').eq($("#Question3C")[0].selectedIndex).prop('selected', true);
+			$('#Question4ALevel option').eq($("#Question4A")[0].selectedIndex).prop('selected', true);
+			$('#Question4BLevel option').eq($("#Question4B")[0].selectedIndex).prop('selected', true);
+			$('#Question4CLevel option').eq($("#Question4C")[0].selectedIndex).prop('selected', true);
+			$('#Question5ALevel option').eq($("#Question5A")[0].selectedIndex).prop('selected', true);
+			$('#Question5BLevel option').eq($("#Question5B")[0].selectedIndex).prop('selected', true);
+			$('#Question6ALevel option').eq($("#Question6A")[0].selectedIndex).prop('selected', true);
+			$('#Question6BLevel option').eq($("#Question6B")[0].selectedIndex).prop('selected', true);
+			$('#Question7ALevel option').eq($("#Question7A")[0].selectedIndex).prop('selected', true);
+			$('#Question7BLevel option').eq($("#Question7B")[0].selectedIndex).prop('selected', true);
+			$('#Question8ALevel option').eq($("#Question8A")[0].selectedIndex).prop('selected', true);
+			$('#Question8BLevel option').eq($("#Question8B")[0].selectedIndex).prop('selected', true);
+			$('#Question9ALevel option').eq($("#Question9A")[0].selectedIndex).prop('selected', true);
+			$('#Question9BLevel option').eq($("#Question9B")[0].selectedIndex).prop('selected', true);
+			$('#Question9CLevel option').eq($("#Question9C")[0].selectedIndex).prop('selected', true);
+			$('#Question10ALevel option').eq($("#Question10A")[0].selectedIndex).prop('selected', true);
+			$('#Question10BLevel option').eq($("#Question10B")[0].selectedIndex).prop('selected', true);
+			$('#Question10CLevel option').eq($("#Question10C")[0].selectedIndex).prop('selected', true);
+
+			$("#Question1A").change(function () {
+
+				var index = $("#Question1A")[0].selectedIndex;
+
+				$('#Question1ALevel option').eq(index).prop('selected', true);
+
+				console.log(parseInt($("#Question1ALevel option:selected").text()));
+				console.log(parseInt($("#Question1BLevel option:selected").text()));
+
+				console.log((parseInt($("#Question1ALevel option:selected").text()) +
+					parseInt($("#Question1BLevel option:selected").text())));
+
+				if ((parseInt($("#Question1ALevel option:selected").text()) +
+						parseInt($("#Question1BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question1ALevel").css("border-color", "red");
+					$("select#Question1BLevel").css("border-color", "red");
+
+				} else {
+					$("select#Question1ALevel").css("border-color", "");
+					$("select#Question1BLevel").css("border-color", "");
+					$("select#Question1ALevel").css("border-color", "");
+					$("select#Question1BLevel").css("box-shadow", "");
+				}
+
+
+				if ($("#Question1A option:selected").text() === $("#Question1B option:selected").text()) {
+					$("span#Question1AError").show();
+					$("span#Question1BError").show();
+					$("select#Question1A").css("border-color", "red");
+					$("select#Question1B").css("border-color", "red");
+				} else {
+					$("select#Question1A").css("border-color", "");
+					$("select#Question1B").css("border-color", "");
+					$("span#Question1AError").hide();
+					$("span#Question1BError").hide();
+				}
+
+				if ($("#Question1A option:selected").text() === $("#Question2A option:selected").text()) {
+					$("span#Question1AError").show();
+					$("span#Question2AError").show();
+					$("select#Question1A").css("border-color", "red");
+					$("select#Question2A").css("border-color", "red");
+				} else {
+					$("select#Question1A").css("border-color", "");
+					$("select#Question2A").css("border-color", "");
+					$("span#Question1AError").hide();
+					$("span#Question2AError").hide();
+				}
+
+				if ($("#Question1A option:selected").text() === $("#Question2B option:selected").text()) {
+					$("span#Question1AError").show();
+					$("span#Question2BError").show();
+					$("select#Question1A").css("border-color", "red");
+					$("select#Question2B").css("border-color", "red");
+				} else {
+					$("select#Question1A").css("border-color", "");
+					$("select#Question2B").css("border-color", "");
+					$("span#Question1AError").hide();
+					$("span#Question2BError").hide();
+				}
+			});
+
+			$("#Question1B").change(function () {
+
+				var index = $("#Question1B")[0].selectedIndex;
+
+				$('#Question1BLevel option').eq(index).prop('selected', true);
+
+
+				if ((parseInt($("#Question1ALevel option:selected").text()) +
+					parseInt($("#Question1BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question1ALevel").css("border-color", "red");
+					$("select#Question1BLevel").css("border-color", "red");
+				}
+				else {
+					$("select#Question1ALevel").css("border-color", "");
+					$("select#Question1BLevel").css("border-color", "");
+				}
+
+				if ($("#Question1B option:selected").text() === $("#Question1A option:selected").text()) {
+					$("span#Question1AError").show();
+					$("span#Question1BError").show();
+					$("select#Question1A").css("border-color", "red");
+					$("select#Question1B").css("border-color", "red");
+				} else {
+					$("select#Question1A").css("border-color", "");
+					$("select#Question1B").css("border-color", "");
+					$("span#Question1AError").hide();
+					$("span#Question1BError").hide();
+				}
+
+				if ($("#Question1B option:selected").text() === $("#Question2A option:selected").text()) {
+					$("span#Question1BError").show();
+					$("span#Question2AError").show();
+					$("select#Question1B").css("border-color", "red");
+					$("select#Question2A").css("border-color", "red");
+				} else {
+					$("select#Question1B").css("border-color", "");
+					$("select#Question2A").css("border-color", "");
+					$("span#Question1BError").hide();
+					$("span#Question2AError").hide();
+				}
+
+				if ($("#Question1B option:selected").text() === $("#Question2B option:selected").text()) {
+					$("span#Question1BError").show();
+					$("span#Question2BError").show();
+					$("select#Question1B").css("border-color", "red");
+					$("select#Question2B").css("border-color", "red");
+				} else {
+					$("select#Question1B").css("border-color", "");
+					$("select#Question2B").css("border-color", "");
+					$("span#Question1BError").hide();
+					$("span#Question2BError").hide();
+				}
+			});
+
+			$("#Question2A").change(function () {
+
+				var index = $("#Question2A")[0].selectedIndex;
+
+				$('#Question2ALevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question2ALevel option:selected").text()) +
+					parseInt($("#Question2BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question2ALevel").css("border-color", "red");
+					$("select#Question2BLevel").css("border-color", "red");
+				} else {
+					$("select#Question2ALevel").css("border-color", "");
+					$("select#Question2BLevel").css("border-color", "");
+				}
+
+				if ($("#Question2A option:selected").text() === $("#Question1A option:selected").text()) {
+					$("span#Question2AError").show();
+					$("span#Question1AError").show();
+					$("select#Question2A").css("border-color", "red");
+					$("select#Question1A").css("border-color", "red");
+				} else {
+					$("select#Question2A").css("border-color", "");
+					$("select#Question1A").css("border-color", "");
+					$("span#Question2AError").hide();
+					$("span#Question1AError").hide();
+				}
+
+				if ($("#Question2A option:selected").text() === $("#Question1B option:selected").text()) {
+					$("span#Question1BError").show();
+					$("span#Question2AError").show();
+					$("select#Question1B").css("border-color", "red");
+					$("select#Question2A").css("border-color", "red");
+				} else {
+					$("select#Question1B").css("border-color", "");
+					$("select#Question2A").css("border-color", "");
+					$("span#Question1BError").hide();
+					$("span#Question2AError").hide();
+				}
+
+				if ($("#Question2A option:selected").text() === $("#Question2B option:selected").text()) {
+					$("span#Question2AError").show();
+					$("span#Question2BError").show();
+					$("select#Question2A").css("border-color", "red");
+					$("select#Question2B").css("border-color", "red");
+				} else {
+					$("select#Question2A").css("border-color", "");
+					$("select#Question2B").css("border-color", "");
+					$("span#Question2AError").hide();
+					$("span#Question2BError").hide();
+				}
+			});
+
+			$("#Question2B").change(function () {
+
+				var index = $("#Question2B")[0].selectedIndex;
+
+				$('#Question2BLevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question2ALevel option:selected").text()) +
+					parseInt($("#Question2BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question2ALevel").css("border-color", "red");
+					$("select#Question2BLevel").css("border-color", "red");
+				}
+				else {
+					$("select#Question2ALevel").css("border-color", "");
+					$("select#Question2BLevel").css("border-color", "");
+				}
+
+				if ($("#Question2B option:selected").text() === $("#Question1A option:selected").text()) {
+					$("span#Question2BError").show();
+					$("span#Question1AError").show();
+					$("select#Question2B").css("border-color", "red");
+					$("select#Question1A").css("border-color", "red");
+				} else {
+					$("select#Question2B").css("border-color", "");
+					$("select#Question1A").css("border-color", "");
+					$("span#Question2BError").hide();
+					$("span#Question1AError").hide();
+				}
+
+				if ($("#Question2B option:selected").text() === $("#Question1B option:selected").text()) {
+					$("span#Question1BError").show();
+					$("span#Question2BError").show();
+					$("select#Question1B").css("border-color", "red");
+					$("select#Question2B").css("border-color", "red");
+				} else {
+					$("select#Question1B").css("border-color", "");
+					$("select#Question2B").css("border-color", "");
+					$("span#Question1BError").hide();
+					$("span#Question2BError").hide();
+				}
+
+				if ($("#Question2B option:selected").text() === $("#Question2A option:selected").text()) {
+					$("span#Question2AError").show();
+					$("span#Question2BError").show();
+					$("select#Question2A").css("border-color", "red");
+					$("select#Question2B").css("border-color", "red");
+				} else {
+					$("select#Question2A").css("border-color", "");
+					$("select#Question2B").css("border-color", "");
+					$("span#Question2AError").hide();
+					$("span#Question2BError").hide();
+				}
+			});
+
+			$("#Question3A").change(function () {
+
+				var index = $("#Question3A")[0].selectedIndex;
+
+				$('#Question3ALevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question3ALevel option:selected").text()) +
+					parseInt($("#Question3BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question3ALevel").css("border-color", "red");
+					$("select#Question3BLevel").css("border-color", "red");
+				} else {
+					$("select#Question3ALevel").css("border-color", "");
+					$("select#Question3BLevel").css("border-color", "");
+				}
+
+
+				if ($("#Question3A option:selected").text() === $("#Question3B option:selected").text()) {
+					$("span#Question3AError").show();
+					$("span#Question3BError").show();
+					$("select#Question3A").css("border-color", "red");
+					$("select#Question3B").css("border-color", "red");
+				} else {
+					$("select#Question3A").css("border-color", "");
+					$("select#Question3B").css("border-color", "");
+					$("span#Question3AError").hide();
+					$("span#Question3BError").hide();
+				}
+
+				if ($("#Question3A option:selected").text() === $("#Question3C option:selected").text()) {
+					$("span#Question3AError").show();
+					$("span#Question3CError").show();
+					$("select#Question3A").css("border-color", "red");
+					$("select#Question3C").css("border-color", "red");
+				} else {
+					$("select#Question3A").css("border-color", "");
+					$("select#Question3C").css("border-color", "");
+					$("span#Question3AError").hide();
+					$("span#Question3CError").hide();
+				}
+
+				if ($("#Question3A option:selected").text() === $("#Question4A option:selected").text()) {
+					$("span#Question3AError").show();
+					$("span#Question4AError").show();
+					$("select#Question3A").css("border-color", "red");
+					$("select#Question4A").css("border-color", "red");
+				} else {
+					$("select#Question3A").css("border-color", "");
+					$("select#Question4A").css("border-color", "");
+					$("span#Question3AError").hide();
+					$("span#Question4AError").hide();
+				}
+
+				if ($("#Question3A option:selected").text() === $("#Question4B option:selected").text()) {
+					$("span#Question3AError").show();
+					$("span#Question4BError").show();
+					$("select#Question3A").css("border-color", "red");
+					$("select#Question4B").css("border-color", "red");
+				} else {
+					$("select#Question3A").css("border-color", "");
+					$("select#Question4B").css("border-color", "");
+					$("span#Question3AError").hide();
+					$("span#Question4BError").hide();
+				}
+
+				if ($("#Question3A option:selected").text() === $("#Question4C option:selected").text()) {
+					$("span#Question3AError").show();
+					$("span#Question4CError").show();
+					$("select#Question3A").css("border-color", "red");
+					$("select#Question4C").css("border-color", "red");
+				} else {
+					$("select#Question3A").css("border-color", "");
+					$("select#Question4C").css("border-color", "");
+					$("span#Question3AError").hide();
+					$("span#Question4CError").hide();
+				}
+
+			});
+
+			$("#Question3B").change(function () {
+
+				var index = $("#Question3B")[0].selectedIndex;
+
+				$('#Question3BLevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question3ALevel option:selected").text()) +
+					parseInt($("#Question3BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question3ALevel").css("border-color", "red");
+					$("select#Question3BLevel").css("border-color", "red");
+				} else {
+					$("select#Question3ALevel").css("border-color", "");
+					$("select#Question3BLevel").css("border-color", "");
+				}
+
+
+				if ($("#Question3B option:selected").text() === $("#Question4A option:selected").text()) {
+					$("span#Question3BError").show();
+					$("span#Question4AError").show();
+					$("select#Question3B").css("border-color", "red");
+					$("select#Question4A").css("border-color", "red");
+				} else {
+					$("select#Question4A").css("border-color", "");
+					$("select#Question3B").css("border-color", "");
+					$("span#Question4AError").hide();
+					$("span#Question3BError").hide();
+				}
+
+				if ($("#Question3B option:selected").text() === $("#Question3A option:selected").text()) {
+					$("span#Question3BError").show();
+					$("span#Question3AError").show();
+					$("select#Question3B").css("border-color", "red");
+					$("select#Question3A").css("border-color", "red");
+				} else {
+					$("select#Question3B").css("border-color", "");
+					$("select#Question3A").css("border-color", "");
+					$("span#Question3BError").hide();
+					$("span#Question3AError").hide();
+				}
+
+				if ($("#Question3B option:selected").text() === $("#Question3C option:selected").text()) {
+					$("span#Question3BError").show();
+					$("span#Question3CError").show();
+					$("select#Question3B").css("border-color", "red");
+					$("select#Question3C").css("border-color", "red");
+				} else {
+					$("select#Question3B").css("border-color", "");
+					$("select#Question3C").css("border-color", "");
+					$("span#Question3BError").hide();
+					$("span#Question3CError").hide();
+				}
+
+				if ($("#Question3B option:selected").text() === $("#Question4B option:selected").text()) {
+					$("span#Question3BError").show();
+					$("span#Question4BError").show();
+					$("select#Question3B").css("border-color", "red");
+					$("select#Question4B").css("border-color", "red");
+				} else {
+					$("select#Question3B").css("border-color", "");
+					$("select#Question4B").css("border-color", "");
+					$("span#Question3BError").hide();
+					$("span#Question4BError").hide();
+				}
+
+				if ($("#Question3B option:selected").text() === $("#Question4C option:selected").text()) {
+					$("span#Question3BError").show();
+					$("span#Question4CError").show();
+					$("select#Question3B").css("border-color", "red");
+					$("select#Question4C").css("border-color", "red");
+				} else {
+					$("select#Question3B").css("border-color", "");
+					$("select#Question4C").css("border-color", "");
+					$("span#Question3BError").hide();
+					$("span#Question4CError").hide();
+				}
+
+			});
+
+			$("#Question3C").change(function () {
+
+				var index = $("#Question3C")[0].selectedIndex;
+
+				$('#Question3CLevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question3CLevel option:selected").text()) +
+					parseInt($("#Question3BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question3CLevel").css("border-color", "red");
+					$("select#Question3BLevel").css("border-color", "red");
+				} else {
+					$("select#Question3CLevel").css("border-color", "");
+					$("select#Question3BLevel").css("border-color", "");
+				}
+
+
+				if ($("#Question3C option:selected").text() === $("#Question3B option:selected").text()) {
+					$("span#Question3CError").show();
+					$("span#Question3BError").show();
+					$("select#Question3C").css("border-color", "red");
+					$("select#Question3B").css("border-color", "red");
+				} else {
+					$("select#Question3C").css("border-color", "");
+					$("select#Question3B").css("border-color", "");
+					$("span#Question3CError").hide();
+					$("span#Question3BError").hide();
+				 }
+
+
+				if ($("#Question3C option:selected").text() === $("#Question3A option:selected").text()) {
+					$("span#Question3CError").show();
+					$("span#Question3AError").show();
+					$("select#Question3C").css("border-color", "red");
+					$("select#Question3A").css("border-color", "red");
+				} else {
+					$("select#Question3C").css("border-color", "");
+					$("select#Question3A").css("border-color", "");
+					$("span#Question3CError").hide();
+					$("span#Question3AError").hide();
+				}
+
+				if ($("#Question3C option:selected").text() === $("#Question4C option:selected").text()) {
+					$("span#Question3CError").show();
+					$("span#Question4CError").show();
+					$("select#Question4C").css("border-color", "red");
+					$("select#Question3C").css("border-color", "red");
+				} else {
+					$("select#Question4C").css("border-color", "");
+					$("select#Question3C").css("border-color", "");
+					$("span#Question4CError").hide();
+					$("span#Question3CError").hide();
+				}
+
+				if ($("#Question3C option:selected").text() === $("#Question4A option:selected").text()) {
+					$("span#Question3CError").show();
+					$("span#Question4AError").show();
+					$("select#Question3C").css("border-color", "red");
+					$("select#Question4A").css("border-color", "red");
+				} else {
+					$("select#Question3C").css("border-color", "");
+					$("select#Question4A").css("border-color", "");
+					$("span#Question3CError").hide();
+					$("span#Question4AError").hide();
+				}
+
+				if ($("#Question3C option:selected").text() === $("#Question4B option:selected").text()) {
+					$("span#Question3CError").show();
+					$("span#Question4BError").show();
+					$("select#Question3C").css("border-color", "red");
+					$("select#Question4B").css("border-color", "red");
+				} else {
+					$("select#Question3C").css("border-color", "");
+					$("select#Question4B").css("border-color", "");
+					$("span#Question3CError").hide();
+					$("span#Question4BError").hide();
+				}
+
+				if ($("#Question3C option:selected").text() === $("#Question4C option:selected").text()) {
+					$("span#Question3CError").show();
+					$("span#Question4CError").show();
+					$("select#Question3C").css("border-color", "red");
+					$("select#Question4C").css("border-color", "red");
+				} else {
+					$("select#Question3C").css("border-color", "");
+					$("select#Question4C").css("border-color", "");
+					$("span#Question3CError").hide();
+					$("span#Question4CError").hide();
+				}
+
+			});
+
+
+			$("#Question4A").change(function () {
+
+
+				var index = $("#Question4A")[0].selectedIndex;
+
+				$('#Question4ALevel option').eq(index).prop('selected', true);
+
+
+				if ((parseInt($("#Question4ALevel option:selected").text()) +
+					parseInt($("#Question4BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question4ALevel").css("border-color", "red");
+					$("select#Question4BLevel").css("border-color", "red");
+				} else {
+					$("select#Question4ALevel").css("border-color", "");
+					$("select#Question4BLevel").css("border-color", "");
+				}
+
+				if ($("#Question4A option:selected").text() === $("#Question3A option:selected").text()) {
+					$("span#Question3AError").show();
+					$("span#Question3AError").show();
+					$("select#Question4A").css("border-color", "red");
+					$("select#Question3A").css("border-color", "red");
+				} else {
+					$("select#Question4A").css("border-color", "");
+					$("select#Question3A").css("border-color", "");
+					$("span#Question3AError").hide();
+					$("span#Question4AError").hide();
+				}
+
+				if ($("#Question4A option:selected").text() === $("#Question3B option:selected").text()) {
+					$("span#Question3BError").show();
+					$("span#Question4AError").show();
+					$("select#Question3B").css("border-color", "red");
+					$("select#Question4A").css("border-color", "red");
+				} else {
+					$("select#Question3B").css("border-color", "");
+					$("select#Question4A").css("border-color", "");
+					$("span#Question3BError").hide();
+					$("span#Question4AError").hide();
+				}
+
+				if ($("#Question4A option:selected").text() === $("#Question3C option:selected").text()) {
+					$("span#Question3CError").show();
+					$("span#Question4AError").show();
+					$("select#Question3C").css("border-color", "red");
+					$("select#Question4A").css("border-color", "red");
+				} else {
+					$("select#Question3C").css("border-color", "");
+					$("select#Question4A").css("border-color", "");
+					$("span#Question3CError").hide();
+					$("span#Question4AError").hide();
+				}
+
+
+				if ($("#Question4A option:selected").text() === $("#Question4B option:selected").text()) {
+					$("span#Question4AError").show();
+					$("span#Question4BError").show();
+					$("select#Question4A").css("border-color", "red");
+					$("select#Question4B").css("border-color", "red");
+				} else {
+					$("select#Question4A").css("border-color", "");
+					$("select#Question4B").css("border-color", "");
+					$("span#Question4AError").hide();
+					$("span#Question4BError").hide();
+				}
+
+				if ($("#Question4A option:selected").text() === $("#Question4C option:selected").text()) {
+					$("span#Question4AError").show();
+					$("span#Question4CError").show();
+					$("select#Question4A").css("border-color", "red");
+					$("select#Question4C").css("border-color", "red");
+				} else {
+					$("select#Question4A").css("border-color", "");
+					$("select#Question4C").css("border-color", "");
+					$("span#Question4AError").hide();
+					$("span#Question4CError").hide();
+				}
+
+			});
+
+			$("#Question4B").change(function () {
+
+				var index = $("#Question4B")[0].selectedIndex;
+
+				$('#Question4BLevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question4ALevel option:selected").text()) +
+					parseInt($("#Question4BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question4ALevel").css("border-color", "red");
+					$("select#Question4BLevel").css("border-color", "red");
+				} else {
+					$("select#Question4ALevel").css("border-color", "");
+					$("select#Question4BLevel").css("border-color", "");
+				}
+
+				if ($("#Question4B option:selected").text() === $("#Question3A option:selected").text()) {
+					$("span#Question4BError").show();
+					$("span#Question3AError").show();
+					$("select#Question4B").css("border-color", "red");
+					$("select#Question3A").css("border-color", "red");
+				} else {
+					$("select#Question4B").css("border-color", "");
+					$("select#Question3A").css("border-color", "");
+					$("span#Question4BError").hide();
+					$("span#Question3AError").hide();
+				}
+
+				if ($("#Question4B option:selected").text() === $("#Question3B option:selected").text()) {
+					$("span#Question4BError").show();
+					$("span#Question3BError").show();
+					$("select#Question4B").css("border-color", "red");
+					$("select#Question3B").css("border-color", "red");
+				} else {
+					$("select#Question4B").css("border-color", "");
+					$("select#Question3B").css("border-color", "");
+					$("span#Question4BError").hide();
+					$("span#Question3BError").hide();
+				}
+
+				if ($("#Question4B option:selected").text() === $("#Question3C option:selected").text()) {
+					$("span#Question4BError").show();
+					$("span#Question3CError").show();
+					$("select#Question4B").css("border-color", "red");
+					$("select#Question3C").css("border-color", "red");
+				} else {
+					$("select#Question4B").css("border-color", "");
+					$("select#Question3C").css("border-color", "");
+					$("span#Question4BError").hide();
+					$("span#Question3CError").hide();
+				}
+
+				if ($("#Question4B option:selected").text() === $("#Question4A option:selected").text()) {
+					$("span#Question4AError").show();
+					$("span#Question4BError").show();
+					$("select#Question4A").css("border-color", "red");
+					$("select#Question4B").css("border-color", "red");
+				} else {
+					$("select#Question4A").css("border-color", "");
+					$("select#Question4B").css("border-color", "");
+					$("span#Question4AError").hide();
+					$("span#Question4BError").hide();
+				}
+
+				if ($("#Question4B option:selected").text() === $("#Question4C option:selected").text()) {
+					$("span#Question4CError").show();
+					$("span#Question4BError").show();
+					$("select#Question4C").css("border-color", "red");
+					$("select#Question4B").css("border-color", "red");
+				} else {
+					$("select#Question4C").css("border-color", "");
+					$("select#Question4B").css("border-color", "");
+					$("span#Question4CError").hide();
+					$("span#Question4BError").hide();
+				}
+			});
+
+			$("#Question4C").change(function () {
+
+				var index = $("#Question4C")[0].selectedIndex;
+
+				$('#Question4CLevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question4ALevel option:selected").text()) +
+					parseInt($("#Question4CLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question4ALevel").css("border-color", "red");
+					$("select#Question4CLevel").css("border-color", "red");
+				} else {
+					$("select#Question4ALevel").css("border-color", "");
+					$("select#Question4CLevel").css("border-color", "");
+				}
+
+				if ($("#Question4C option:selected").text() === $("#Question3A option:selected").text()) {
+					$("span#Question4CError").show();
+					$("span#Question3AError").show();
+					$("select#Question4C").css("border-color", "red");
+					$("select#Question3A").css("border-color", "red");
+				} else {
+					$("select#Question4C").css("border-color", "");
+					$("select#Question3A").css("border-color", "");
+					$("span#Question4CError").hide();
+					$("span#Question3AError").hide();
+				}
+
+				if ($("#Question4C option:selected").text() === $("#Question3B option:selected").text()) {
+					$("span#Question4CError").show();
+					$("span#Question3BError").show();
+					$("select#Question4C").css("border-color", "red");
+					$("select#Question3B").css("border-color", "red");
+				} else {
+					$("select#Question4C").css("border-color", "");
+					$("select#Question3B").css("border-color", "");
+					$("span#Question4CError").hide();
+					$("span#Question3BError").hide();
+				}
+
+				if ($("#Question4C option:selected").text() === $("#Question3C option:selected").text()) {
+					$("span#Question4CError").show();
+					$("span#Question3CError").show();
+					$("select#Question4C").css("border-color", "red");
+					$("select#Question3C").css("border-color", "red");
+				} else {
+					$("select#Question4C").css("border-color", "");
+					$("select#Question3C").css("border-color", "");
+					$("span#Question4CError").hide();
+					$("span#Question3CError").hide();
+				}
+
+				if ($("#Question4C option:selected").text() === $("#Question4A option:selected").text()) {
+					$("span#Question4AError").show();
+					$("span#Question4CError").show();
+					$("select#Question4A").css("border-color", "red");
+					$("select#Question4C").css("border-color", "red");
+				} else {
+					$("select#Question4A").css("border-color", "");
+					$("select#Question4C").css("border-color", "");
+					$("span#Question4AError").hide();
+					$("span#Question4CError").hide();
+				}
+
+				if ($("#Question4C option:selected").text() === $("#Question4B option:selected").text()) {
+					$("span#Question4BError").show();
+					$("span#Question4CError").show();
+					$("select#Question4B").css("border-color", "red");
+					$("select#Question4C").css("border-color", "red");
+				} else {
+					$("select#Question4B").css("border-color", "");
+					$("select#Question4C").css("border-color", "");
+					$("span#Question4BError").hide();
+					$("span#Question4CError").hide();
+				}
+
+			});
+
+
+			$("#Question5A").change(function () {
+
+				var index = $("#Question5A")[0].selectedIndex;
+
+				$('#Question5ALevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question5ALevel option:selected").text()) +
+					parseInt($("#Question5BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question5ALevel").css("border-color", "red");
+					$("select#Question5BLevel").css("border-color", "red");
+				} else {
+					$("select#Question5ALevel").css("border-color", "");
+					$("select#Question5BLevel").css("border-color", "");
+				}
+
+				if ($("#Question5A option:selected").text() === $("#Question5B option:selected").text()) {
+					$("span#Question5AError").show();
+					$("span#Question5BError").show();
+					$("select#Question5A").css("border-color", "red");
+					$("select#Question5B").css("border-color", "red");
+				} else {
+					$("select#Question5A").css("border-color", "");
+					$("select#Question5B").css("border-color", "");
+					$("span#Question5AError").hide();
+					$("span#Question5BError").hide();
+				}
+
+				if ($("#Question5A option:selected").text() === $("#Question6A option:selected").text()) {
+					$("span#Question5AError").show();
+					$("span#Question6AError").show();
+					$("select#Question5A").css("border-color", "red");
+					$("select#Question6A").css("border-color", "red");
+				} else {
+					$("select#Question5A").css("border-color", "");
+					$("select#Question6A").css("border-color", "");
+					$("span#Question5AError").hide();
+					$("span#Question6AError").hide();
+				}
+
+				if ($("#Question5A option:selected").text() === $("#Question6B option:selected").text()) {
+					$("span#Question5AError").show();
+					$("span#Question6BError").show();
+					$("select#Question5A").css("border-color", "red");
+					$("select#Question6B").css("border-color", "red");
+				} else {
+					$("select#Question5A").css("border-color", "");
+					$("select#Question6B").css("border-color", "");
+					$("span#Question5AError").hide();
+					$("span#Question6BError").hide();
+				}
+			});
+
+			$("#Question5B").change(function () {
+
+				var index = $("#Question5B")[0].selectedIndex;
+
+				$('#Question5BLevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question5ALevel option:selected").text()) +
+					parseInt($("#Question5BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question5ALevel").css("border-color", "red");
+					$("select#Question5BLevel").css("border-color", "red");
+				} else {
+					$("select#Question5ALevel").css("border-color", "");
+					$("select#Question5BLevel").css("border-color", "");
+				}
+
+				if ($("#Question5B option:selected").text() === $("#Question5A option:selected").text()) {
+					$("span#Question5BError").show();
+					$("span#Question5AError").show();
+					$("select#Question5B").css("border-color", "red");
+					$("select#Question5A").css("border-color", "red");
+				} else {
+					$("select#Question5A").css("border-color", "");
+					$("select#Question5B").css("border-color", "");
+					$("span#Question5AError").hide();
+					$("span#Question5BError").hide();
+				}
+
+				if ($("#Question5B option:selected").text() === $("#Question6A option:selected").text()) {
+					$("span#Question5BError").show();
+					$("span#Question6AError").show();
+					$("select#Question5B").css("border-color", "red");
+					$("select#Question6A").css("border-color", "red");
+				} else {
+					$("select#Question5B").css("border-color", "");
+					$("select#Question6A").css("border-color", "");
+					$("span#Question5BError").hide();
+					$("span#Question6AError").hide();
+				}
+
+				if ($("#Question5B option:selected").text() === $("#Question6B option:selected").text()) {
+					$("span#Question5BError").show();
+					$("span#Question6BError").show();
+					$("select#Question5B").css("border-color", "red");
+					$("select#Question6B").css("border-color", "red");
+				} else {
+					$("select#Question5B").css("border-color", "");
+					$("select#Question6B").css("border-color", "");
+					$("span#Question5BError").hide();
+					$("span#Question6BError").hide();
+				}
+			});
+
+			$("#Question6A").change(function () {
+
+				var index = $("#Question6A")[0].selectedIndex;
+
+				$('#Question6ALevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question6ALevel option:selected").text()) +
+					parseInt($("#Question6BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question6ALevel").css("border-color", "red");
+					$("select#Question6BLevel").css("border-color", "red");
+				} else {
+					$("select#Question6ALevel").css("border-color", "");
+					$("select#Question6BLevel").css("border-color", "");
+				}
+
+				if ($("#Question6A option:selected").text() === $("#Question5A option:selected").text()) {
+					$("span#Question6AError").show();
+					$("span#Question5AError").show();
+					$("select#Question6A").css("border-color", "red");
+					$("select#Question5A").css("border-color", "red");
+				} else {
+					$("select#Question6A").css("border-color", "");
+					$("select#Question5A").css("border-color", "");
+					$("span#Question6AError").hide();
+					$("span#Question5AError").hide();
+				}
+
+				if ($("#Question6A option:selected").text() === $("#Question5B option:selected").text()) {
+					$("span#Question5BError").show();
+					$("span#Question6AError").show();
+					$("select#Question5B").css("border-color", "red");
+					$("select#Question6A").css("border-color", "red");
+				} else {
+					$("select#Question5B").css("border-color", "");
+					$("select#Question6A").css("border-color", "");
+					$("span#Question5BError").hide();
+					$("span#Question6AError").hide();
+				}
+
+				if ($("#Question6A option:selected").text() === $("#Question6B option:selected").text()) {
+					$("span#Question6AError").show();
+					$("span#Question6BError").show();
+					$("select#Question6A").css("border-color", "red");
+					$("select#Question6B").css("border-color", "red");
+				} else {
+					$("select#Question6A").css("border-color", "");
+					$("select#Question6B").css("border-color", "");
+					$("span#Question6AError").hide();
+					$("span#Question6BError").hide();
+				}
+			});
+
+			$("#Question6B").change(function () {
+
+				var index = $("#Question6B")[0].selectedIndex;
+
+				$('#Question6BLevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question6ALevel option:selected").text()) +
+					parseInt($("#Question6BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question6ALevel").css("border-color", "red");
+					$("select#Question6BLevel").css("border-color", "red");
+				} else {
+					$("select#Question6ALevel").css("border-color", "");
+					$("select#Question6BLevel").css("border-color", "");
+				}
+
+				if ($("#Question6B option:selected").text() === $("#Question5A option:selected").text()) {
+					$("span#Question6BError").show();
+					$("span#Question5AError").show();
+					$("select#Question6B").css("border-color", "red");
+					$("select#Question5A").css("border-color", "red");
+				} else {
+					$("select#Question6B").css("border-color", "");
+					$("select#Question5A").css("border-color", "");
+					$("span#Question6BError").hide();
+					$("span#Question5AError").hide();
+				}
+
+				if ($("#Question6B option:selected").text() === $("#Question5B option:selected").text()) {
+					$("span#Question6BError").show();
+					$("span#Question5BError").show();
+					$("select#Question6B").css("border-color", "red");
+					$("select#Question5B").css("border-color", "red");
+				} else {
+					$("select#Question6B").css("border-color", "");
+					$("select#Question5B").css("border-color", "");
+					$("span#Question6BError").hide();
+					$("span#Question5BError").hide();
+				}
+
+				if ($("#Question6B option:selected").text() === $("#Question6A option:selected").text()) {
+					$("span#Question6AError").show();
+					$("span#Question6BError").show();
+					$("select#Question6A").css("border-color", "red");
+					$("select#Question6B").css("border-color", "red");
+				} else {
+					$("select#Question6A").css("border-color", "");
+					$("select#Question6B").css("border-color", "");
+					$("span#Question6AError").hide();
+					$("span#Question6BError").hide();
+				}
+			});
+
+
+			$("#Question7A").change(function () {
+
+				var index = $("#Question7A")[0].selectedIndex;
+
+				$('#Question7ALevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question7ALevel option:selected").text()) +
+					parseInt($("#Question7ALevel option:selected").text())) >
+					levelValue) {
+					$("select#Question7ALevel").css("border-color", "red");
+					$("select#Question7ALevel").css("border-color", "red");
+				} else {
+					$("select#Question7ALevel").css("border-color", "");
+					$("select#Question7ALevel").css("border-color", "");
+				}
+
+				if ($("#Question7A option:selected").text() === $("#Question8A option:selected").text()) {
+					$("span#Question7AError").show();
+					$("span#Question8AError").show();
+					$("select#Question7A").css("border-color", "red");
+					$("select#Question8A").css("border-color", "red");
+				} else {
+					$("select#Question7A").css("border-color", "");
+					$("select#Question8A").css("border-color", "");
+					$("span#Question7AError").hide();
+					$("span#Question8AError").hide();
+				}
+
+				if ($("#Question7A option:selected").text() === $("#Question8B option:selected").text()) {
+					$("span#Question7AError").show();
+					$("span#Question8BError").show();
+					$("select#Question7A").css("border-color", "red");
+					$("select#Question8B").css("border-color", "red");
+				} else {
+					$("select#Question7A").css("border-color", "");
+					$("select#Question8B").css("border-color", "");
+					$("span#Question7AError").hide();
+					$("span#Question8BError").hide();
+				}
+
+				if ($("#Question7A option:selected").text() === $("#Question7B option:selected").text()) {
+					$("span#Question7AError").show();
+					$("span#Question7BError").show();
+					$("select#Question7A").css("border-color", "red");
+					$("select#Question7B").css("border-color", "red");
+				} else {
+					$("select#Question7A").css("border-color", "");
+					$("select#Question7B").css("border-color", "");
+					$("span#Question7AError").hide();
+					$("span#Question7BError").hide();
+				}
+			});
+
+			$("#Question7B").change(function () {
+
+				var index = $("#Question7B")[0].selectedIndex;
+
+				$('#Question7BLevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question7ALevel option:selected").text()) +
+					parseInt($("#Question7BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question7ALevel").css("border-color", "red");
+					$("select#Question7BLevel").css("border-color", "red");
+				} else {
+					$("select#Question7ALevel").css("border-color", "");
+					$("select#Question7BLevel").css("border-color", "");
+				}
+
+				if ($("#Question7B option:selected").text() === $("#Question8A option:selected").text()) {
+					$("span#Question7BError").show();
+					$("span#Question8AError").show();
+					$("select#Question7B").css("border-color", "red");
+					$("select#Question8A").css("border-color", "red");
+				} else {
+					$("select#Question7B").css("border-color", "");
+					$("select#Question8A").css("border-color", "");
+					$("span#Question7BError").hide();
+					$("span#Question8AError").hide();
+				}
+
+				if ($("#Question7B option:selected").text() === $("#Question8B option:selected").text()) {
+					$("span#Question7BError").show();
+					$("span#Question8BError").show();
+					$("select#Question7B").css("border-color", "red");
+					$("select#Question8B").css("border-color", "red");
+				} else {
+					$("select#Question7B").css("border-color", "");
+					$("select#Question8B").css("border-color", "");
+					$("span#Question7BError").hide();
+					$("span#Question8BError").hide();
+				}
+
+				if ($("#Question7B option:selected").text() === $("#Question7A option:selected").text()) {
+					$("span#Question7AError").show();
+					$("span#Question7BError").show();
+					$("select#Question7A").css("border-color", "red");
+					$("select#Question7B").css("border-color", "red");
+				} else {
+					$("select#Question7A").css("border-color", "");
+					$("select#Question7B").css("border-color", "");
+					$("span#Question7AError").hide();
+					$("span#Question7BError").hide();
+				}
+			});
+
+			$("#Question8A").change(function () {
+
+				var index = $("#Question8A")[0].selectedIndex;
+
+				$('#Question8ALevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question8ALevel option:selected").text()) +
+					parseInt($("#Question8ALevel option:selected").text())) >
+					levelValue) {
+					$("select#Question8ALevel").css("border-color", "red");
+					$("select#Question8ALevel").css("border-color", "red");
+				} else {
+					$("select#Question8ALevel").css("border-color", "");
+					$("select#Question8ALevel").css("border-color", "");
+				}
+
+				if ($("#Question8A option:selected").text() === $("#Question7A option:selected").text()) {
+					$("span#Question7AError").show();
+					$("span#Question8AError").show();
+					$("select#Question7A").css("border-color", "red");
+					$("select#Question8A").css("border-color", "red");
+				} else {
+					$("select#Question7A").css("border-color", "");
+					$("select#Question8A").css("border-color", "");
+					$("span#Question7AError").hide();
+					$("span#Question8AError").hide();
+				}
+
+				if ($("#Question8A option:selected").text() === $("#Question8B option:selected").text()) {
+					$("span#Question8AError").show();
+					$("span#Question8BError").show();
+					$("select#Question8A").css("border-color", "red");
+					$("select#Question8B").css("border-color", "red");
+				} else {
+					$("select#Question8A").css("border-color", "");
+					$("select#Question8B").css("border-color", "");
+					$("span#Question8AError").hide();
+					$("span#Question8BError").hide();
+				}
+
+				if ($("#Question8A option:selected").text() === $("#Question7B option:selected").text()) {
+					$("span#Question8AError").show();
+					$("span#Question7BError").show();
+					$("select#Question8A").css("border-color", "red");
+					$("select#Question7B").css("border-color", "red");
+				} else {
+					$("select#Question8A").css("border-color", "");
+					$("select#Question7B").css("border-color", "");
+					$("span#Question8AError").hide();
+					$("span#Question7BError").hide();
+				}
+			});
+
+			$("#Question8B").change(function () {
+
+				var index = $("#Question8B")[0].selectedIndex;
+
+				$('#Question8BLevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question7ALevel option:selected").text()) +
+					parseInt($("#Question8BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question7ALevel").css("border-color", "red");
+					$("select#Question8BLevel").css("border-color", "red");
+				} else {
+					$("select#Question7ALevel").css("border-color", "");
+					$("select#Question8BLevel").css("border-color", "");
+				}
+
+				if ($("#Question8B option:selected").text() === $("#Question8A option:selected").text()) {
+					$("span#Question8BError").show();
+					$("span#Question8AError").show();
+					$("select#Question8B").css("border-color", "red");
+					$("select#Question8A").css("border-color", "red");
+				} else {
+					$("select#Question8B").css("border-color", "");
+					$("select#Question8A").css("border-color", "");
+					$("span#Question8BError").hide();
+					$("span#Question8AError").hide();
+				}
+
+				if ($("#Question8B option:selected").text() === $("#Question7B option:selected").text()) {
+					$("span#Question7BError").show();
+					$("span#Question8BError").show();
+					$("select#Question7B").css("border-color", "red");
+					$("select#Question8B").css("border-color", "red");
+				} else {
+					$("select#Question7B").css("border-color", "");
+					$("select#Question8B").css("border-color", "");
+					$("span#Question7BError").hide();
+					$("span#Question8BError").hide();
+				}
+
+				if ($("#Question8B option:selected").text() === $("#Question7A option:selected").text()) {
+					$("span#Question7AError").show();
+					$("span#Question8BError").show();
+					$("select#Question7A").css("border-color", "red");
+					$("select#Question8B").css("border-color", "red");
+				} else {
+					$("select#Question7A").css("border-color", "");
+					$("select#Question8B").css("border-color", "");
+					$("span#Question7AError").hide();
+					$("span#Question8BError").hide();
+				}
+			});
+
+			$("#Question9A").change(function () {
+
+				var index = $("#Question9A")[0].selectedIndex;
+
+				$('#Question9ALevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question9ALevel option:selected").text()) +
+						parseInt($("#Question9ALevel option:selected").text())) >
+					levelValue) {
+					$("select#Question9ALevel").css("border-color", "red");
+					$("select#Question9ALevel").css("border-color", "red");
+				} else {
+					$("select#Question9ALevel").css("border-color", "");
+					$("select#Question9ALevel").css("border-color", "");
+				}
+
+				if ($("#Question9A option:selected").text() === $("#Question10A option:selected").text()) {
+					$("span#Question10AError").show();
+					$("span#Question9AError").show();
+					$("select#Question10A").css("border-color", "red");
+					$("select#Question9A").css("border-color", "red");
+				} else {
+					$("select#Question10A").css("border-color", "");
+					$("select#Question9A").css("border-color", "");
+					$("span#Question10AError").hide();
+					$("span#Question9AError").hide();
+				}
+
+				if ($("#Question9A option:selected").text() === $("#Question10C option:selected").text()) {
+					$("span#Question10CError").show();
+					$("span#Question9AError").show();
+					$("select#Question10C").css("border-color", "red");
+					$("select#Question9A").css("border-color", "red");
+				} else {
+					$("select#Question10C").css("border-color", "");
+					$("select#Question9A").css("border-color", "");
+					$("span#Question10CError").hide();
+					$("span#Question9AError").hide();
+				}
+
+				if ($("#Question9A option:selected").text() === $("#Question9C option:selected").text()) {
+					$("span#Question9CError").show();
+					$("span#Question9AError").show();
+					$("select#Question9C").css("border-color", "red");
+					$("select#Question9A").css("border-color", "red");
+				} else {
+					$("select#Question9C").css("border-color", "");
+					$("select#Question9A").css("border-color", "");
+					$("span#Question9CError").hide();
+					$("span#Question9AError").hide();
+				}
+
+				if ($("#Question9A option:selected").text() === $("#Question9B option:selected").text()) {
+					$("span#Question9AError").show();
+					$("span#Question9BError").show();
+					$("select#Question9A").css("border-color", "red");
+					$("select#Question9B").css("border-color", "red");
+				} else {
+					$("select#Question9A").css("border-color", "");
+					$("select#Question9B").css("border-color", "");
+					$("span#Question9AError").hide();
+					$("span#Question9BError").hide();
+				}
+
+				if ($("#Question9A option:selected").text() === $("#Question10B option:selected").text()) {
+					$("span#Question9AError").show();
+					$("span#Question10BError").show();
+					$("select#Question9A").css("border-color", "red");
+					$("select#Question10B").css("border-color", "red");
+				} else {
+					$("select#Question9A").css("border-color", "");
+					$("select#Question10B").css("border-color", "");
+					$("span#Question9AError").hide();
+					$("span#Question10BError").hide();
+				}
+			});
+
+			$("#Question9B").change(function () {
+
+				var index = $("#Question9B")[0].selectedIndex;
+
+				$('#Question9BLevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question10ALevel option:selected").text()) +
+						parseInt($("#Question9BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question10ALevel").css("border-color", "red");
+					$("select#Question9BLevel").css("border-color", "red");
+				} else {
+					$("select#Question10ALevel").css("border-color", "");
+					$("select#Question9BLevel").css("border-color", "");
+				}
+
+				if ($("#Question9B option:selected").text() === $("#Question9A option:selected").text()) {
+					$("span#Question9BError").show();
+					$("span#Question9AError").show();
+					$("select#Question9B").css("border-color", "red");
+					$("select#Question9A").css("border-color", "red");
+				} else {
+					$("select#Question9B").css("border-color", "");
+					$("select#Question9A").css("border-color", "");
+					$("span#Question9BError").hide();
+					$("span#Question9AError").hide();
+				 }
+
+				if ($("#Question9B option:selected").text() === $("#Question9C option:selected").text()) {
+					$("span#Question9BError").show();
+					$("span#Question9CError").show();
+					$("select#Question9B").css("border-color", "red");
+					$("select#Question9C").css("border-color", "red");
+				} else {
+					$("select#Question9B").css("border-color", "");
+					$("select#Question9C").css("border-color", "");
+					$("span#Question9BError").hide();
+					$("span#Question9CError").hide();
+				 }
+
+				if ($("#Question9B option:selected").text() === $("#Question10C option:selected").text()) {
+					$("span#Question9BError").show();
+					$("span#Question10CError").show();
+					$("select#Question9B").css("border-color", "red");
+					$("select#Question10C").css("border-color", "red");
+				} else {
+					$("select#Question9B").css("border-color", "");
+					$("select#Question10C").css("border-color", "");
+					$("span#Question9BError").hide();
+					$("span#Question10CError").hide();
+				}
+
+				if ($("#Question9B option:selected").text() === $("#Question10B option:selected").text()) {
+					$("span#Question10BError").show();
+					$("span#Question9BError").show();
+					$("select#Question10B").css("border-color", "red");
+					$("select#Question9B").css("border-color", "red");
+				} else {
+					$("select#Question10B").css("border-color", "");
+					$("select#Question9B").css("border-color", "");
+					$("span#Question10BError").hide();
+					$("span#Question9BError").hide();
+				}
+
+				if ($("#Question9B option:selected").text() === $("#Question10A option:selected").text()) {
+					$("span#Question10AError").show();
+					$("span#Question9BError").show();
+					$("select#Question10A").css("border-color", "red");
+					$("select#Question9B").css("border-color", "red");
+				} else {
+					$("select#Question10A").css("border-color", "");
+					$("select#Question9B").css("border-color", "");
+					$("span#Question10AError").hide();
+					$("span#Question9BError").hide();
+				}
+			});
+
+			$("#Question9C").change(function () {
+
+				var index = $("#Question9C")[0].selectedIndex;
+
+				$('#Question9CLevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question10ALevel option:selected").text()) +
+						parseInt($("#Question9CLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question10ALevel").css("border-color", "red");
+					$("select#Question9CLevel").css("border-color", "red");
+				} else {
+					$("select#Question10ALevel").css("border-color", "");
+					$("select#Question9CLevel").css("border-color", "");
+				}
+
+				if ($("#Question9C option:selected").text() === $("#Question9A option:selected").text()) {
+					$("span#Question9CError").show();
+					$("span#Question9AError").show();
+					$("select#Question9C").css("border-color", "red");
+					$("select#Question9A").css("border-color", "red");
+				} else {
+					$("select#Question9C").css("border-color", "");
+					$("select#Question9A").css("border-color", "");
+					$("span#Question9CError").hide();
+					$("span#Question9AError").hide();
+				 }
+
+				if ($("#Question9C option:selected").text() === $("#Question9B option:selected").text()) {
+					$("span#Question9BError").show();
+					$("span#Question9CError").show();
+					$("select#Question9B").css("border-color", "red");
+					$("select#Question9C").css("border-color", "red");
+				} else {
+					$("select#Question9B").css("border-color", "");
+					$("select#Question9C").css("border-color", "");
+					$("span#Question9BError").hide();
+					$("span#Question9CError").hide();
+				 }
+
+				if ($("#Question9C option:selected").text() === $("#Question10C option:selected").text()) {
+					$("span#Question9CError").show();
+					$("span#Question10CError").show();
+					$("select#Question9C").css("border-color", "red");
+					$("select#Question10C").css("border-color", "red");
+				} else {
+					$("select#Question9C").css("border-color", "");
+					$("select#Question10C").css("border-color", "");
+					$("span#Question9CError").hide();
+					$("span#Question10CError").hide();
+				}
+
+				if ($("#Question9C option:selected").text() === $("#Question10B option:selected").text()) {
+					$("span#Question10BError").show();
+					$("span#Question9CError").show();
+					$("select#Question10B").css("border-color", "red");
+					$("select#Question9C").css("border-color", "red");
+				} else {
+					$("select#Question10B").css("border-color", "");
+					$("select#Question9C").css("border-color", "");
+					$("span#Question10BError").hide();
+					$("span#Question9CError").hide();
+				}
+
+				if ($("#Question9C option:selected").text() === $("#Question10A option:selected").text()) {
+					$("span#Question10AError").show();
+					$("span#Question9CError").show();
+					$("select#Question10A").css("border-color", "red");
+					$("select#Question9C").css("border-color", "red");
+				} else {
+					$("select#Question10A").css("border-color", "");
+					$("select#Question9C").css("border-color", "");
+					$("span#Question10AError").hide();
+					$("span#Question9CError").hide();
+				}
+			 });
+
+			$("#Question10A").change(function () {
+
+				var index = $("#Question10A")[0].selectedIndex;
+
+				$('#Question10ALevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question10ALevel option:selected").text()) +
+						parseInt($("#Question10ALevel option:selected").text())) >
+					levelValue) {
+					$("select#Question10ALevel").css("border-color", "red");
+					$("select#Question10ALevel").css("border-color", "red");
+				} else {
+					$("select#Question10ALevel").css("border-color", "");
+					$("select#Question10ALevel").css("border-color", "");
+				}
+
+				if ($("#Question10A option:selected").text() === $("#Question9A option:selected").text()) {
+					$("span#Question10AError").show();
+					$("span#Question9AError").show();
+					$("select#Question10A").css("border-color", "red");
+					$("select#Question9A").css("border-color", "red");
+				} else {
+					$("select#Question10A").css("border-color", "");
+					$("select#Question9A").css("border-color", "");
+					$("span#Question10AError").hide();
+					$("span#Question9AError").hide();
+				}
+
+				if ($("#Question10A option:selected").text() === $("#Question9B option:selected").text()) {
+					$("span#Question10AError").show();
+					$("span#Question9BError").show();
+					$("select#Question10A").css("border-color", "red");
+					$("select#Question9B").css("border-color", "red");
+				} else {
+					$("select#Question10A").css("border-color", "");
+					$("select#Question9B").css("border-color", "");
+					$("span#Question10AError").hide();
+					$("span#Question9BError").hide();
+				}
+
+				if ($("#Question10A option:selected").text() === $("#Question10B option:selected").text()) {
+					$("span#Question10AError").show();
+					$("span#Question10BError").show();
+					$("select#Question10A").css("border-color", "red");
+					$("select#Question10B").css("border-color", "red");
+				} else {
+					$("select#Question10A").css("border-color", "");
+					$("select#Question10B").css("border-color", "");
+					$("span#Question10AError").hide();
+					$("span#Question10BError").hide();
+				}
+			});
+
+			$("#Question10B").change(function () {
+
+				var index = $("#Question10B")[0].selectedIndex;
+
+				$('#Question10BLevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question10ALevel option:selected").text()) +
+						parseInt($("#Question10BLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question10ALevel").css("border-color", "red");
+					$("select#Question10BLevel").css("border-color", "red");
+				} else {
+					$("select#Question10ALevel").css("border-color", "");
+					$("select#Question10BLevel").css("border-color", "");
+				}
+
+				if ($("#Question10B option:selected").text() === $("#Question9A option:selected").text()) {
+					$("span#Question10BError").show();
+					$("span#Question9AError").show();
+					$("select#Question10B").css("border-color", "red");
+					$("select#Question9A").css("border-color", "red");
+				} else {
+					$("select#Question10B").css("border-color", "");
+					$("select#Question9A").css("border-color", "");
+					$("span#Question10BError").hide();
+					$("span#Question9AError").hide();
+				}
+
+				if ($("#Question10B option:selected").text() === $("#Question9B option:selected").text()) {
+					$("span#Question10BError").show();
+					$("span#Question9BError").show();
+					$("select#Question10B").css("border-color", "red");
+					$("select#Question9B").css("border-color", "red");
+				} else {
+					$("select#Question10B").css("border-color", "");
+					$("select#Question9B").css("border-color", "");
+					$("span#Question9BError").hide();
+					$("span#Question10BError").hide();
+				 }
+
+				if ($("#Question10B option:selected").text() === $("#Question9C option:selected").text()) {
+					$("span#Question10BError").show();
+					$("span#Question9CError").show();
+					$("select#Question10B").css("border-color", "red");
+					$("select#Question9C").css("border-color", "red");
+				} else {
+					$("select#Question10B").css("border-color", "");
+					$("select#Question9C").css("border-color", "");
+					$("span#Question9CError").hide();
+					$("span#Question10BError").hide();
+				}
+
+				if ($("#Question10B option:selected").text() === $("#Question10A option:selected").text()) {
+					$("span#Question10AError").show();
+					$("span#Question10BError").show();
+					$("select#Question10A").css("border-color", "red");
+					$("select#Question10B").css("border-color", "red");
+				} else {
+					$("select#Question10A").css("border-color", "");
+					$("select#Question10B").css("border-color", "");
+					$("span#Question10AError").hide();
+					$("span#Question10BError").hide();
+				 }
+
+				if ($("#Question10B option:selected").text() === $("#Question10C option:selected").text()) {
+					$("span#Question10CError").show();
+					$("span#Question10BError").show();
+					$("select#Question10C").css("border-color", "red");
+					$("select#Question10B").css("border-color", "red");
+				} else {
+					$("select#Question10C").css("border-color", "");
+					$("select#Question10B").css("border-color", "");
+					$("span#Question10CError").hide();
+					$("span#Question10BError").hide();
+				}
+
+			});
+
+			$("#Question10C").change(function () {
+
+				var index = $("#Question10C")[0].selectedIndex;
+
+				$('#Question10CLevel option').eq(index).prop('selected', true);
+
+				if ((parseInt($("#Question10ALevel option:selected").text()) +
+						parseInt($("#Question10CLevel option:selected").text())) >
+					levelValue) {
+					$("select#Question10ALevel").css("border-color", "red");
+					$("select#Question10CLevel").css("border-color", "red");
+				} else {
+					$("select#Question10ALevel").css("border-color", "");
+					$("select#Question10CLevel").css("border-color", "");
+				}
+
+				if ($("#Question10C option:selected").text() === $("#Question9A option:selected").text()) {
+					$("span#Question10CError").show();
+					$("span#Question9AError").show();
+					$("select#Question10C").css("border-color", "red");
+					$("select#Question9A").css("border-color", "red");
+				} else {
+					$("select#Question10C").css("border-color", "");
+					$("select#Question9A").css("border-color", "");
+					$("span#Question10CError").hide();
+					$("span#Question9AError").hide();
+				 }
+
+				if ($("#Question10C option:selected").text() === $("#Question9B option:selected").text()) {
+					$("span#Question9BError").show();
+					$("span#Question10CError").show();
+					$("select#Question9B").css("border-color", "red");
+					$("select#Question10C").css("border-color", "red");
+				} else {
+					$("select#Question9B").css("border-color", "");
+					$("select#Question10C").css("border-color", "");
+					$("span#Question9BError").hide();
+					$("span#Question10CError").hide();
+				 }
+
+				if ($("#Question10C option:selected").text() === $("#Question9C option:selected").text()) {
+					$("span#Question10CError").show();
+					$("span#Question9CError").show();
+					$("select#Question10C").css("border-color", "red");
+					$("select#Question9C").css("border-color", "red");
+				} else {
+					$("select#Question10C").css("border-color", "");
+					$("select#Question9C").css("border-color", "");
+					$("span#Question10CError").hide();
+					$("span#Question9CError").hide();
+				}
+
+				if ($("#Question10C option:selected").text() === $("#Question10B option:selected").text()) {
+					$("span#Question10BError").show();
+					$("span#Question10CError").show();
+					$("select#Question10B").css("border-color", "red");
+					$("select#Question10C").css("border-color", "red");
+				} else {
+					$("select#Question10B").css("border-color", "");
+					$("select#Question10C").css("border-color", "");
+					$("span#Question10BError").hide();
+					$("span#Question10CError").hide();
+				}
+
+				if ($("#Question10C option:selected").text() === $("#Question10A option:selected").text()) {
+					$("span#Question10AError").show();
+					$("span#Question10CError").show();
+					$("select#Question10A").css("border-color", "red");
+					$("select#Question10C").css("border-color", "red");
+				} else {
+					$("select#Question10A").css("border-color", "");
+					$("select#Question10C").css("border-color", "");
+					$("span#Question10AError").hide();
+					$("span#Question10CError").hide();
+				}
+			 });
+
+			$("#nextButton").click(function () {
+				if ($("#Question1AError").is(":visible") === false &&
+					$("#Question1BError").is(":visible") === false &&
+					$("#Question2AError").is(":visible") === false &&
+					$("#Question2BError").is(":visible") === false &&
+					$("#Question3AError").is(":visible") === false &&
+					$("#Question3BError").is(":visible") === false &&
+					$("#Question3CError").is(":visible") === false &&
+					$("#Question4AError").is(":visible") === false &&
+					$("#Question4BError").is(":visible") === false &&
+					$("#Question4CError").is(":visible") === false &&
+					$("#Question5AError").is(":visible") === false &&
+					$("#Question5BError").is(":visible") === false &&
+					$("#Question6AError").is(":visible") === false &&
+					$("#Question6BError").is(":visible") === false &&
+					$("#Question7AError").is(":visible") === false &&
+					$("#Question7BError").is(":visible") === false &&
+					$("#Question8AError").is(":visible") === false &&
+					$("#Question8BError").is(":visible") === false &&
+					$("#Question9AError").is(":visible") === false &&
+					$("#Question9BError").is(":visible") === false &&
+					$("#Question9CError").is(":visible") === false &&
+					$("#Question10AError").is(":visible") === false &&
+					$("#Question10BError").is(":visible") === false &&
+					$("#Question10CError").is(":visible") === false)
+				{
+
+					var Question1A = $("#Question1A :selected").text();
+					var Question1B = $("#Question1B :selected").text();
+					var Question2A = $("#Question2A :selected").text();
+					var Question2B = $("#Question2B :selected").text();
+					var Question3A = $("#Question3A :selected").text();
+					var Question3B = $("#Question3B :selected").text();
+					var Question3C = $("#Question3C :selected").text();
+					var Question4A = $("#Question4A :selected").text();
+					var Question4B = $("#Question4B :selected").text();
+					var Question4C = $("#Question4C :selected").text();
+					var Question5A = $("#Question5A :selected").text();
+					var Question5B = $("#Question5B :selected").text();
+					var Question6A = $("#Question6A :selected").text();
+					var Question6B = $("#Question6B :selected").text();
+					var Question7A = $("#Question7A :selected").text();
+					var Question7B = $("#Question7B :selected").text();
+					var Question8A = $("#Question8A :selected").text();
+					var Question8B = $("#Question8B :selected").text();
+					var Question9A = $("#Question9A :selected").text();
+					var Question9B = $("#Question9B :selected").text();
+					var Question9C = $("#Question9C :selected").text();
+					var Question10A = $("#Question10A :selected").text();
+					var Question10B = $("#Question10B :selected").text();
+					var Question10C = $("#Question10C :selected").text();
+
+
+					var paperName = prompt("Enter question paper name", "In-sem question paper");
+
+					var questions = [
+						Question1A,
+						Question1B,
+						Question2A,
+						Question2B,
+						Question3A,
+						Question3B,
+						Question3C,
+						Question4A,
+                        Question4B,
+                        Question4C,
+						Question5A,
+						Question5B,
+						Question6A,
+						Question6B,
+						Question7A,
+						Question7B,
+						Question8A,
+						Question8B,
+						Question9A,
+						Question9B,
+						Question9C,
+						Question10A,
+						Question10B,
+						Question10C,
+						paperName
+					];
+
+					$.ajax({
+						type: 'POST',
+						url: '@Url.Action("ValidateQuestionPaperEndSem")',
+						contentType: 'application/json',
+						data: JSON.stringify(questions),
+						success: function (response) {
+							alert(
+								"Question paper created successfully. You will be redirected to question paper repository");
+							window.location.href = '@Url.Action("Index","QuestionPaperRepository")';
+						}
+					});
+
+				} else {
+					alert("Some questions are repeating. Please check again.");
+				}
+			});
+		});
+
+	</script>
+}
