@@ -124,7 +124,6 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                 _context.SaveChangesAsync();
             }
             
-            TempData["QuestionAdded"] = "Question added successfully";
             Alert("Success", "Question added successfully", Enums.NotificationType.success);
             return View("Index");
         }
@@ -164,7 +163,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
             _context.SaveChanges();
 
-            TempData["QuestionAdded"] = "Question added successfully";
+            Alert("Success", "Question added successfully", Enums.NotificationType.success);
 
             return View("Index");
         }
@@ -261,9 +260,9 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             dbQuestion.SemesterId = Convert.ToString(semesterId);
             dbQuestion.UnitId = unitNo;
 
-            TempData["QuestionEditedSuccessMessage"] = "Question edited successfully";
-
             _context.SaveChanges();
+
+            Alert("Success", "Question edited successfully", Enums.NotificationType.success);
 
             return RedirectToAction("QuestionRepository");
         }
@@ -280,7 +279,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                 _context.SaveChanges();
             }
 
-            TempData["QuestionDeletedSuccessMessage"] = "Question deleted successfully";
+            Alert("Success", "Question deleted successfully", Enums.NotificationType.success);
 
             return RedirectToAction("QuestionRepository");
         }

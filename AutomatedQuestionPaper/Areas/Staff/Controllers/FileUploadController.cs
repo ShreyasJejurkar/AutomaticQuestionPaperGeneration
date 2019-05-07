@@ -27,13 +27,10 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         {
             var extension = Path.GetExtension(fileControl.FileName);
 
-            // Get the Id of selected subject
             var subjectId = _context.Courses.FirstOrDefault(u => u.CourseName == selectedSubject)?.Courseid;
 
-            // Get the Id of selected department 
             var departmentId = DatabaseData.GetDepartmentInfo(selectedDepartment)?.Id;
 
-            // Get the Id of selected semester 
             var semesterId = DatabaseData.GetSemesterInfo(selectedSemester)?.Id;
 
             var unit = Convert.ToInt32(selectedUnit);
@@ -74,7 +71,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                     });
                 _context.SaveChangesAsync();
 
-                TempData["QuestionAddedSuccessfully"] = "Question set added successfully";
+                Alert("Success", "Question set added successfully", Enums.NotificationType.success);
 
                 return RedirectToAction("Index", "Question");
             }

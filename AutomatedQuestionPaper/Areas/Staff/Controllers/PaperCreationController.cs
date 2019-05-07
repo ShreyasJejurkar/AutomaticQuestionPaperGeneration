@@ -170,6 +170,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             }
 
             Alert("Error","Something went wrong.",Enums.NotificationType.error);
+
             return View("Index", errorList);
         }
 
@@ -177,7 +178,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         {
             var questions = (List<PaperCreationQuestionFormat>)TempData["FetchedQuestions"];
 
-            List<PaperCreationQuestionFormat> unit1QuestionsList =
+            var unit1QuestionsList =
                 questions.Where(x => x.Unit == 1).Select(x => new PaperCreationQuestionFormat
                 {
                     Question = x.Question,
@@ -185,7 +186,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                     Level = x.Level
                 }).ToList();
 
-            List<PaperCreationQuestionFormat> unit2QuestionsList =
+            var unit2QuestionsList =
                 questions.Where(x => x.Unit == 2).Select(x => new PaperCreationQuestionFormat
                 {
                     Question = x.Question,
@@ -193,7 +194,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                     Level = x.Level
                 }).ToList();
 
-            List<PaperCreationQuestionFormat> unit3QuestionsList =
+            var unit3QuestionsList =
                 questions.Where(x => x.Unit == 3).Select(x => new PaperCreationQuestionFormat
                 {
                     Question = x.Question,
@@ -201,9 +202,9 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                     Level = x.Level
                 }).ToList();
             
-            List <PaperCreationQuestionFormat> formedQuestionSetUnit1 = new List<PaperCreationQuestionFormat>();
-            List<PaperCreationQuestionFormat> formedQuestionSetUnit2 = new List<PaperCreationQuestionFormat>();
-            List<PaperCreationQuestionFormat> formedQuestionSetUnit3 = new List<PaperCreationQuestionFormat>();
+            var formedQuestionSetUnit1 = new List<PaperCreationQuestionFormat>();
+            var formedQuestionSetUnit2 = new List<PaperCreationQuestionFormat>();
+            var formedQuestionSetUnit3 = new List<PaperCreationQuestionFormat>();
 
             var level = (string) TempData["DifficultyLevel"];
             
@@ -618,6 +619,54 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             };
 
             insem.GenerateQuestionPaper(question[12]+ " " + $"{DateTime.Now.ToString(CultureInfo.CurrentCulture).Replace('/', '-').Replace(':', '.')}");
+
+            return Json(new { success = true }, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult ValidateQuestionPaperEndSem(List<string> question)
+        {
+            var endSem = new EndSemQuestionPaperGenerator()
+            {
+                Department_Name = (string)TempData["QuestionPaperDepartment"].ToString().Replace("department", ""),
+                Question1_A = question[0],
+                Question1_B = question[1],
+
+                Question2_A = question[2],
+                Question2_B = question[3],
+
+                Question3_A = question[4],
+                Question3_B = question[5],
+                Question3_C = question[6],
+
+                Question4_A = question[7],
+                Question4_B = question[8],
+                Question4_C = question[9],
+
+                Question5_A = question[10],
+                Question5_B = question[11],
+
+                Question6_A = question[12],
+                Question6_B = question[13],
+
+                Question7_A = question[14],
+                Question7_B = question[15],
+
+                Question8_A = question[16],
+                Question8_B = question[17],
+
+                Question9_A = question[18],
+                Question9_B = question[19],
+                Question9_C = question[20],
+
+                Question10_A = question[21],
+                Question10_B = question[22],
+                Question10_C = question[23],
+
+                Subject_Name = (string)TempData["QuestionPaperSubject"]
+            };
+
+            endSem.GenerateQuestionPaper(question[24] + " " + $"{DateTime.Now.ToString(CultureInfo.CurrentCulture).Replace('/', '-').Replace(':', '.')}");
 
             return Json(new { success = true }, JsonRequestBehavior.AllowGet);
         }

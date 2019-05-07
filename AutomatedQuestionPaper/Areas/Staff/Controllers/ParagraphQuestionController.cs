@@ -1,14 +1,15 @@
-﻿using AutomatedQuestionPaper.Areas.Staff.Models;
-using AutomatedQuestionPaper.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
+using AutomatedQuestionPaper.Controllers;
+using AutomatedQuestionPaper.Areas.Staff.Models;
+using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
-    public class ParagraphQuestionController : Controller
+    public class ParagraphQuestionController : BaseController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
 
@@ -100,7 +101,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
             _context.SaveChanges();
 
-            TempData["QuestionAddedSuccessMessage"] = "Question added successfully";
+            Alert("Success", "Question added successfully", Enums.NotificationType.success);
 
             return View("Index");
         }

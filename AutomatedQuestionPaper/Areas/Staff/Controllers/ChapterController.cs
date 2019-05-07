@@ -33,7 +33,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
             StaffChapterOperation.AddChapter(selectedSemester, selectedDepartment, selectedSubject, selectedUnit,
                 chapterNumber, chapterName);
 
-            TempData["ChapterAddedSuccessMessage"] = "Chapter added successfully";
+            Alert("Success", "Chapter added successfully",Enums.NotificationType.success);
 
             return View("Index");
         }
@@ -103,13 +103,10 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
         public ActionResult EditChapterDetails(Chapter chap, string selectedSemester, string selectedDepartment,
             string selectedUnit)
         {
-            // Get a corresponding chapter from db
             var dbChapter = _context.Chapters.FirstOrDefault(u => u.Id == chap.Id);
 
-            // Get the semester Id
             var semesterId = DatabaseData.GetSemesterInfo(selectedSemester).Id;
 
-            // Get the department Id
             var departmentId = DatabaseData.GetDepartmentInfo(selectedDepartment).Id;
 
             chap.DepartmentId = departmentId;
@@ -144,7 +141,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
                 _context.Chapters.Remove(subject);
                 _context.SaveChangesAsync();
 
-                TempData["ChapterDetailsDeletedSuccessfully"] = "Chapter deleted successfully";
+                Alert("Success", "Chapter deleted successfully", Enums.NotificationType.success);
 
                 return RedirectToAction("ViewChapters");
             }

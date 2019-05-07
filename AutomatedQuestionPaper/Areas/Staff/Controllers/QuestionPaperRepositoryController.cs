@@ -41,7 +41,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 
             _context.SaveChanges();
 
-            TempData["QuestionPaperDeleted"] = "Question paper deleted";
+            Alert("Success", "Question paper deleted", Enums.NotificationType.success);
 
             return RedirectToAction("Index");
         }
