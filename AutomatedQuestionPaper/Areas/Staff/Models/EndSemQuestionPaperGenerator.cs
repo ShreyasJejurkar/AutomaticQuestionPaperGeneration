@@ -62,9 +62,11 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
 
             doc.Replace("QUESTION3_A", Question3_A, true, true);
             doc.Replace("QUESTION3_B", Question3_B, true, true);
+            doc.Replace("QUESTION3_C", Question3_C, true, true);
 
             doc.Replace("QUESTION4_A", Question4_A, true, true);
             doc.Replace("QUESTION4_B", Question4_B, true, true);
+            doc.Replace("QUESTION4_C", Question4_C, true, true);
 
             doc.Replace("QUESTION5_A", Question5_A, true, true);
             doc.Replace("QUESTION5_B", Question5_B, true, true);
