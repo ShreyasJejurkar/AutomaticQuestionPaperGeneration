@@ -3,7 +3,7 @@ using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Controllers
 {
-    public class AccountController : BaseController
+    public class AccountController : AlertController
     {
         [HttpGet]
         public ActionResult Index()

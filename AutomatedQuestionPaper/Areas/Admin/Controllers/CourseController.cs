@@ -8,7 +8,7 @@ using AutomatedQuestionPaper.Models;
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     [SessionCheckAdmin]
-    public class CourseController : BaseController
+    public class CourseController : AlertController
     {
         /// <summary>
         /// Object responsible for database connection and querying

@@ -10,7 +10,7 @@ using AutomatedQuestionPaper.Models;
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
     [SessionCheckStaff]
-    public class FileUploadController : BaseController
+    public class FileUploadController : AlertController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
 

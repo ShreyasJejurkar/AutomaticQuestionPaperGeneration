@@ -4,7 +4,7 @@ using System.Web.Mvc;
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
     [SessionCheckStaff]
-    public class QuestionController : BaseController
+    public class QuestionController : AlertController
     {
         [HttpGet]
         public ActionResult Index()

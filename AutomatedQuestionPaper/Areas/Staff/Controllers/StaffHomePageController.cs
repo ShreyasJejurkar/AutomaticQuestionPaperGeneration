@@ -6,7 +6,7 @@ using AutomatedQuestionPaper.Models;
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
     [SessionCheckStaff]
-    public class StaffHomePageController : BaseController
+    public class StaffHomePageController : AlertController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
 

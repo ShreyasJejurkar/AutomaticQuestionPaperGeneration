@@ -8,7 +8,7 @@ using X.PagedList;
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     [SessionCheckAdmin]
-    public class StaffController : BaseController
+    public class StaffController : AlertController
     {
         /// <summary>
         /// Object responsible for database connection and querying

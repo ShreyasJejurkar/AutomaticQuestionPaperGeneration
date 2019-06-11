@@ -2,7 +2,7 @@
 
 namespace AutomatedQuestionPaper.Controllers
 {
-    public class HomeController : BaseController
+    public class HomeController : AlertController
     {
         [HttpGet]
         [Route("/")]

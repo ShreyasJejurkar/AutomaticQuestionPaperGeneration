@@ -3,7 +3,7 @@ using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Controllers
 {
-    public class BaseController : Controller
+    public class AlertController : Controller
     {
         [NonAction]
         public void Alert(string title, string message, Enums.NotificationType notificationType)

@@ -7,7 +7,7 @@ using System.Web.Mvc;
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
     [SessionCheckStaff]
-    public class QuestionPaperRepositoryController : BaseController
+    public class QuestionPaperRepositoryController : AlertController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
 

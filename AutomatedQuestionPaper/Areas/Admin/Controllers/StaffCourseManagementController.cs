@@ -9,7 +9,7 @@ using AutomatedQuestionPaper.Controllers;
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     [SessionCheckAdmin]
-    public class StaffCourseManagementController : BaseController
+    public class StaffCourseManagementController : AlertController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
 

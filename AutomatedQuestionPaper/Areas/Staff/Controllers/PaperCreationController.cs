@@ -10,7 +10,7 @@ using AutomatedQuestionPaper.Models;
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
     [SessionCheckStaff]
-    public class PaperCreationController : BaseController
+    public class PaperCreationController : AlertController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
         private readonly Random _r = new Random();

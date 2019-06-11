@@ -9,7 +9,7 @@ using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Staff.Controllers
 {
-    public class ParagraphQuestionController : BaseController
+    public class ParagraphQuestionController : AlertController
     {
         private readonly DatabaseContext _context = new DatabaseContext();
 

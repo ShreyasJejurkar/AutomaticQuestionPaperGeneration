@@ -6,7 +6,7 @@ using AutomatedQuestionPaper.Models;
 namespace AutomatedQuestionPaper.Areas.Admin.Controllers
 {
     [SessionCheckAdmin]
-    public class AdminHomePageController : BaseController
+    public class AdminHomePageController : AlertController
     {
         /// <summary>
         /// Object responsible for database connection and querying
