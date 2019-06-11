@@ -6,19 +6,18 @@
     Layout = "~/Areas/Admin/Views/Shared/_adminLoginNavigation.cshtml";
 }
 
-<h2>Create</h2>
+<br />
+
+<h3> Add subject </h3>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-    <div class="">
-        <h4>Course</h4>
-        <hr/>
-        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
-        <div class="form-group">
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="row">
+        <div class="col">
             <label class="col-form-label">Department</label>
-            <div class="col-md-10">
+            <div>
                 <select name="departmentList" class="form-control" id="departmentList" required>
                     <option>--------------------</option>
                     @foreach (var department in ViewBag.DepartmentList)
@@ -28,48 +27,55 @@
                 </select>
             </div>
         </div>
+        <div class="col">
+            <label class="col-form-label">Year</label>
+            <select name="yearList" class="form-control" id="yearList" required>
+                <option>--------------------</option>
+                @foreach (var year in ViewBag.YearsList)
+                {
+                    <option value="@year ">@year</option>
+                }
+            </select>
+        </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Year, new {@class = "col-md-2"})
-            <div class="col-md-10">
-                <select name="yearList" class="form-control" id="yearList" required>
-                    <option>--------------------</option>
-                    @foreach (var year in ViewBag.YearsList)
-                    {
-                        <option value="@year ">@year</option>
-                    }
-                </select>
+    <br />
+
+    <div class="row">
+        <div class="col">
+            @Html.LabelFor(model => model.CourseName)
+            <div>
+                @Html.EditorFor(model => model.CourseName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CourseName, "", new { @class = "text-danger" })
+
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.CourseName, new {@class = "col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CourseName, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.CourseName, "", new {@class = "text-danger"})
+        <div class="col">
+            @Html.LabelFor(model => model.CourseCode)
+            <div>
+                @Html.EditorFor(model => model.CourseCode, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.CourseCode, "", new { @class = "text-danger" })
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.CourseCode, new {@class = "col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.CourseCode, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.CourseCode, "", new {@class = "text-danger"})
+    <br />
+
+    <div class="row">
+        <div class="col">
+            @Html.LabelFor(model => model.Description)
+            <div>
+                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
             </div>
         </div>
+    </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, new {@class = "col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Description, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.Description, "", new {@class = "text-danger"})
-            </div>
-        </div>
+    <br />
 
-        <div class="form-group">
-            <div class="col-md-10">
-                <input type="submit" value="Create" class="btn btn-default"/>
-            </div>
+    <div class="row">
+        <div class="col">
+            <input type="submit" value="Create" class="btn btn-block btn-outline-primary" />
         </div>
     </div>
 }

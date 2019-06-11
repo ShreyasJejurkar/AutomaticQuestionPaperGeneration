@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web.Mvc;
 using AutomatedQuestionPaper.Controllers;
@@ -41,8 +42,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             _context.Departments.Add(dept);
             _context.SaveChanges();
 
-            // Create success message and pass it to view
-            TempData["DepartmentAddedSuccessMessage"] = "Department added successfully";
+            Alert("Success", "Department added successfully",Enums.NotificationType.success);
 
             return RedirectToAction("Index", _data);
         }
@@ -64,16 +64,14 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         [HttpPost]
         public ActionResult Edit(Department dep)
         {
-            // Get the old details of department from table
             var semesterDb = _context.Departments.FirstOrDefault(u => u.Id == dep.Id);
 
-            // Set the new details of department
             if (semesterDb != null)
                 semesterDb.DepartmentName = dep.DepartmentName;
 
-            // Save the changes and commit it to database
             _context.SaveChanges();
-            TempData["DepartmentDeleteSuccessMessage"] = "Department edited successfully";
+            
+            Alert("Success", "Department edited successfully", Enums.NotificationType.success);
 
             return RedirectToActionPermanent("Index", _data);
         }
@@ -92,17 +90,35 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                     _context.Departments.Remove(departmentDb);
                     _context.SaveChanges();
 
-                    //Set the success message
-                    ViewBag.DepartmentDeleteSuccessMessage = "Department deleted successfully";
+                    Alert("Success", "Department deleted successfully", Enums.NotificationType.success);
 
                     return View("Index", _data);
                 }
 
-                ViewBag.DepartmentDeleteFailtureMessage = "Something went wrong. Department cannot be deleted";
+                
+                Alert("Warning", "Something went wrong. Department cannot be deleted", Enums.NotificationType.error);
                 return View("Index", _data);
             }
 
             return View("Index", _data);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteMultipleDepartment(IEnumerable<int> selectedIds)
+        {
+            if (selectedIds == null)
+            {
+                Alert("", "Select at least one department record to delete", Enums.NotificationType.warning);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                _context.Departments.Where(x => selectedIds.Contains(x.Id))
+                    .ToList().ForEach(p => _context.Departments.Remove(p));
+                _context.SaveChanges();
+                Alert("Successful", "Selected staff records deleted", Enums.NotificationType.success);
+                return RedirectToAction("Index");
+            }
         }
     }
 }

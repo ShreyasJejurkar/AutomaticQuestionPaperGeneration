@@ -7,61 +7,17 @@
     Layout = "~/Areas/Admin/Views/Shared/_adminLoginNavigation.cshtml";
 }
 
-@if (TempData["DepartmentNotSelectedErrorMessage"] != null)
-{
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @TempData["DepartmentNotSelectedErrorMessage"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-}
-
-@if (TempData["SubjectedEditedSuccessfully"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["SubjectedEditedSuccessfully"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-}
-
-@if (TempData["SubjectedEditedFailure"] != null)
-{
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @TempData["SubjectedEditedFailure"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-}
-
-@if (TempData["SubjectedDeletedSuccessfully"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["SubjectedDeletedSuccessfully"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-}
-
-@if (TempData["SubjectedFailedSuccessfully"] != null)
-{
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @TempData["SubjectedFailedSuccessfully"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-}
-
 <br />
-@Html.ActionLink("Add subject", "Create", "", new { @class = "btn btn-success float-right" })
 
-<br />
-<br />
+<div class="row">
+    <div class="col-md-8">
+        <h3> Subject Management </h3>
+    </div>
+    <div class="col-md-4">
+        @Html.ActionLink("Add subject", "Create", "", new { @class = "btn btn-success float-right" })
+    </div>
+</div>
+
 <br />
 
 @using (Html.BeginForm("GetSubjects", "Course", FormMethod.Post))
@@ -90,7 +46,6 @@
             </div>
         </div>
     </div>
-
 }
 
 @{
@@ -112,22 +67,27 @@
 
                 grid.Bind(data);
             }
+            using (Html.BeginForm("DeleteMultipleSubjects", "Course", FormMethod.Post))
+            {
+                @grid.GetHtml("table table-bordered table-striped ",
+                    mode: WebGridPagerModes.All,
+                    firstText: "<< First",
+                    previousText: "< Prev",
+                    nextText: "Next >",
+                    lastText: "Last >>",
+                    columns: grid.Columns(
+                        grid.Column(null, null, format: @<text><input name="selectedIds" id="selectedIds" type="checkbox" value="@item.Courseid" /></text>),
+                        grid.Column("CourseCode", "Subject code"),
+                        grid.Column("CourseName", "Name"),
+                        grid.Column("Description", "Description"),
+                        grid.Column("Year", "Year"),
+                        grid.Column(format: @<text>@Html.ActionLink("Edit", "Edit", new { }, new { @class = "btn btn-outline-warning" })</text>),
+                        grid.Column(format: @<text>@Html.ActionLink("Delete", "Delete", new { }, new { @class = "btn  btn-outline-danger", onclick = "return confirm('Are you sure you wish to delete this staff?');" })</text>)
+                        ))
+                <input type="submit" value="Delete selected subjects" class="btn btn-outline-danger" onclick="return confirm('Are you sure you wish to delete this staff?');" />
 
-            @grid.GetHtml("table table-bordered table-striped ",
-                mode: WebGridPagerModes.All,
-                firstText: "<< First",
-                previousText: "< Prev",
-                nextText: "Next >",
-                lastText: "Last >>",
-                columns: grid.Columns(
-
-                    grid.Column("CourseCode", "Subject code"),
-                    grid.Column("CourseName", "Name"),
-                    grid.Column("Description", "Description"),
-                    grid.Column("Year", "Year"),
-                    grid.Column(format: @<text>@Html.ActionLink("Edit", "Edit", new { }, new { @class = "btn btn-outline-warning" })</text>),
-grid.Column(format: @<text>@Html.ActionLink("Delete", "Delete", new { }, new { @class = "btn  btn-outline-danger", onclick = "return confirm('Are you sure you wish to delete this staff?');" })</text>)
-))
+            }
+           
         }
         catch (Exception e)
         {

@@ -83,7 +83,7 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 return RedirectToAction("Index", "Course");
             }
 
-            TempData["SubjectedFailedSuccessfully"] = "Subject deletion failed";
+            Alert("Error", "Subject deletion failed", Enums.NotificationType.warning);
 
             return RedirectToAction("Index", "Course");
         }
@@ -113,12 +113,13 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 //Commit it to database
                 _context.SaveChanges();
 
-                Alert("message", "Subject detail edited successfully", Enums.NotificationType.success);
+                Alert("Success", "Subject detail edited successfully", Enums.NotificationType.success);
 
                 return RedirectToAction("Index");
             }
 
-            TempData["SubjectedEditedFailure"] = "Subjects details editing failed";
+            Alert("Error", "Subject detail edited failed", Enums.NotificationType.warning);
+
             return RedirectToAction("Index");
         }
 
@@ -131,7 +132,6 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
         public ActionResult GetSubjects(string departmentList)
         {
             ViewBag.DepartmentList = _context.Departments.ToList();
-
 
             // Check for user has selected a department or not
             if (departmentList.Contains("department"))
@@ -151,8 +151,8 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 }
             }
 
-            // In case user didn't selected any department 
-            TempData["DepartmentNotSelectedErrorMessage"] = "Please select department first";
+            Alert("Warning", "Please select department first", Enums.NotificationType.warning);
+
             return RedirectToAction("Index", "Course");
         }
 
@@ -174,8 +174,30 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
                 return View("Edit", subject);
             }
 
-            TempData["SubjectNotFoundErrorMessage"] = "Incorrect subject code.";
+
+            Alert("Warning", "Incorrect subject code", Enums.NotificationType.warning);
             return View("Edit", null);
         }
+
+
+        [HttpPost]
+        public ActionResult DeleteMultipleSubjects(IEnumerable<int> selectedIds)
+        {
+            if (selectedIds == null)
+            {
+                Alert("Error", "Select at least one subject record to delete", Enums.NotificationType.warning);
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                _context.Courses.Where(x => selectedIds.Contains(x.Courseid))
+                    .ToList().ForEach(p => _context.Courses.Remove(p));
+                _context.SaveChanges();
+
+                Alert("Success", "Selected subjects records deleted", Enums.NotificationType.success);
+                return RedirectToAction("Index");
+            }
+        }
+
     }
 }

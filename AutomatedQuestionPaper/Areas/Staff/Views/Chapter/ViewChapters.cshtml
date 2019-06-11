@@ -3,8 +3,9 @@
     ViewBag.Title = "Chapter details";
     Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
 }
+<br/>
 
-<h2>ViewChapters</h2>
+<h2>View Chapters</h2>
 
 @if (TempData["ChapterDetailsEditedSuccessfully"] != null)
 {
@@ -31,16 +32,18 @@
 
 @using (Html.BeginForm("GetChapters", "Chapter", FormMethod.Post))
 {
-    <div>
-        <label class="col-form-label">Semester</label>
-        <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
-    </div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Semester</label>
+            <select id="selectedSemester" name="selectedSemester" class="form-control custom-select" data-val="true" data-val-required="The semester field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
+        </div>
 
-    <div>
-        <label class="col-form-label">Department</label>
-        <select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Department</label>
+            <select id="selectedDepartment" name="selectedDepartment" class="form-control custom-select" data-val="true" data-val-required="The department field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
+        </div>
     </div>
 
     <div>
@@ -49,8 +52,10 @@
         <span class="field-validation-valid text-danger" data-valmsg-for="selectedSubject" data-valmsg-replace="true"></span>
     </div>
 
+    <br/>
+
     <div class="form-group">
-        <input type="submit" value="Submit" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit"/>
+        <input type="submit" value="Submit" class="form-control btn btn-outline-primary" id="ChapterFormSubmit" name="ChapterFormSubmit"/>
     </div>
 }
 
@@ -189,13 +194,6 @@
 
                 });
             });
-
-            $("#ChapterFormSubmit").click(function(e) {
-
-
-            });
-
-
         });
     </script>
 }

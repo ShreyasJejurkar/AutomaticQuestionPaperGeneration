@@ -1,36 +1,33 @@
 ﻿@model AutomatedQuestionPaper.Models.Department
 
 @{
-    ViewBag.Title = "Edit";
+    ViewBag.Title = "Edit department details";
     Layout = "~/Areas/Admin/Views/Shared/_adminLoginNavigation.cshtml";
 }
 
-<h2>Edit</h2>
+<br/>
 
+<h4> Edit department details</h4>
+<br/>
 
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-
-    <div class="">
-        <h4>Department</h4>
-        <hr/>
         @Html.ValidationSummary(true, "", new {@class = "text-danger"})
         @Html.HiddenFor(model => model.Id)
 
         <div class="form-group">
-            @Html.LabelFor(model => model.DepartmentName, new {@class = "col-md-2"})
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.DepartmentName, new {htmlAttributes = new {@class = "form-control"}})
-                @Html.ValidationMessageFor(model => model.DepartmentName, "", new {@class = "text-danger"})
+            <div class="row">
+                <div class="col">
+                    <label class="col-form-label">New department name</label>
+                    @Html.EditorFor(model => model.DepartmentName, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.DepartmentName, "", new { @class = "text-danger" })
+                </div>
             </div>
         </div>
 
-        <div class="form-group">
-            <div class=" col-md-10">
-                <input type="submit" value="Save" class="btn btn-default"/>
-            </div>
-        </div>
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-block btn-outline-primary"/>
     </div>
 }
 

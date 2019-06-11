@@ -1,21 +1,9 @@
-﻿@using System.Diagnostics
-@model List<string>
+﻿@model List<string>
 @{
     ViewBag.Title = "Add question manually";
     Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
 }
 <br/>
-
-@if (TempData["QuestionAdded"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["QuestionAdded"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-}
-
 
 @using (Html.BeginForm("AddQuestion", "ManualType", FormMethod.Post))
 {
@@ -98,16 +86,12 @@
             <span class="field-validation-valid text-danger" data-valmsg-for="difficultyLevel" data-valmsg-replace="true"></span>
         </div>
     </div>
+
+    <br/>
     <div class="form-group">
         <input type="submit" value="Submit" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit"/>
     </div>
 }
-
-
-<div id="questionList">
-   
-</div>
-
 
 @section Scripts
 {

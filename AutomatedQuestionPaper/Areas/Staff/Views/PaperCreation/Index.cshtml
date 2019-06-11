@@ -1,59 +1,60 @@
 ﻿@model AutomatedQuestionPaper.Models.ErrorMessagesList
 
 @{
-	ViewBag.Title = "File upload";
-	Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
+    ViewBag.Title = "File upload";
+    Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
 }
 
-
-<h2>Step : 1</h2>
-<hr />
+<br />
 <h3>Check for questions availability</h3>
 
 @using (Html.BeginForm("Check", "PaperCreation", FormMethod.Get))
 {
-	<div>
-		<label class="col-form-label">Semester</label>
-		<select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
-		<span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
-	</div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Semester</label>
+            <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Department</label>
+            <select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
+        </div>
+    </div>
 
-	<div>
-		<label class="col-form-label">Department</label>
-		<select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
-		<span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
-	</div>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Subject</label>
+            <select id="selectedSubject" name="selectedSubject" class="form-control" data-val="true" data-val-required="The subject field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedSubject" data-valmsg-replace="true"></span>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">ExamType</label>
+            <select id="ExamType" name="ExamType" class="form-control" data-val="true" data-val-required="The ExamType field is required">
+                <option selected disabled>---Select---</option>
+                <option>InSem</option>
+                <option>EndSem</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="ExamType" data-valmsg-replace="true"></span>
+        </div>
+    </div>
 
-	<div>
-		<label class="col-form-label">Subject</label>
-		<select id="selectedSubject" name="selectedSubject" class="form-control" data-val="true" data-val-required="The subject field is required"></select>
-		<span class="field-validation-valid text-danger" data-valmsg-for="selectedSubject" data-valmsg-replace="true"></span>
-	</div>
+    <div>
+        <label class="col-form-label">Difficulty level</label>
+        <select id="DifficultyLevel" name="DifficultyLevel" class="form-control" data-val="true" data-val-required="The difficulty level is required">
+            <option selected disabled>---Select---</option>
+            <option>Low</option>
+            <option>Medium</option>
+            <option>High</option>
+        </select>
+        <span class="field-validation-valid text-danger" data-valmsg-for="ExamType" data-valmsg-replace="true"></span>
+    </div>
+    <br />
 
-	<div>
-		<label class="col-form-label">ExamType</label>
-		<select id="ExamType" name="ExamType" class="form-control" data-val="true" data-val-required="The ExamType field is required">
-			<option selected disabled>---Select---</option>
-			<option>InSem</option>
-			<option>EndSem</option>
-		</select>
-		<span class="field-validation-valid text-danger" data-valmsg-for="ExamType" data-valmsg-replace="true"></span>
-	</div>
-
-	<div>
-		<label class="col-form-label">Difficulty level</label>
-		<select id="DifficultyLevel" name="DifficultyLevel" class="form-control" data-val="true" data-val-required="The difficulty level is required">
-			<option selected disabled>---Select---</option>
-			<option>Low</option>
-			<option>Medium</option>
-			<option>High</option>
-		</select>
-		<span class="field-validation-valid text-danger" data-valmsg-for="ExamType" data-valmsg-replace="true"></span>
-	</div>
-
-	<div class="form-group">
-		<button class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit">Check</button>
-	</div>
+    <div class="form-group">
+        <button class="form-control btn btn-outline-primary" id="ChapterFormSubmit" name="ChapterFormSubmit">Check</button>
+    </div>
 }
 
 
@@ -61,39 +62,54 @@
 
 @if (Model != null)
 {
-	if (Model.Count != 0)
-	{
-		<div class="alert alert-danger alert-dismissible fade show" role="alert">
+    if (Model.Count != 0)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
 
-			@foreach (var item in Model)
-			{
-				<span>@item.ErrorText</span>
-				<br />
-			}
+            @foreach (var item in Model)
+            {
+                <span>@item.ErrorText</span>
+                <br />
+            }
 
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-	}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    }
 
-	if (Model.Count == 0)
-	{
-		<div class="alert alert-success alert-dismissible fade show" role="alert">
-			We have validated all questions requirement. Click below button to proceed to next step.
-			<a href=@Url.Action("CreateQuestionPaper", "PaperCreation") class="btn btn-secondary">next step</a>
-			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-	}
+    if (Model.Count == 0)
+    {
+        if ((string)TempData["QuestionPaperType"] == "InSem")
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                We have validated all questions requirement. Click below button to proceed to next step.
+                <a href=@Url.Action("CreateQuestionPaper", "PaperCreation") class="btn btn-secondary">next step</a>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+        else if ((string)TempData["QuestionPaperType"] == "EndSem")
+        {
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                We have validated all questions requirement. Click below button to proceed to next step.
+                <a href=@Url.Action("CreateQuestionPaperEndSem", "PaperCreation") class="btn btn-secondary">next step</a>
+                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+        }
+
+
+    }
 }
 
 @section Scripts
 {
-	@Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/jqueryval")
 
-	<script>
+    <script>
 		$(function() {
 
 			$.ajax({
@@ -186,5 +202,5 @@
 			});
 
 		});
-	</script>
+    </script>
 }

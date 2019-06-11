@@ -1,67 +1,60 @@
 ﻿@{
 
-    ViewBag.Title = "Chapters list";
+    ViewBag.Title = "Chapters management";
     Layout = "~/Areas/Staff/Views/Shared/_staffLoginNavigation.cshtml";
 }
 
-<h2>Index</h2>
 
-@if (TempData["ChapterAddedSuccessMessage"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["ChapterAddedSuccessMessage"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-}
+
+<br/>
+
+<h3>Add chapters</h3>
 
 @using (Html.BeginForm("AddChapter", "Chapter", FormMethod.Post))
 {
-    <div>
-        <label class="col-form-label">Semester</label>
-        <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
+    <div class="row">
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Semester</label>
+            <select id="selectedSemester" name="selectedSemester" class="form-control" data-val="true" data-val-required="The semester field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedSemester" data-valmsg-replace="true"></span>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Department</label>
+            <select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Subject</label>
+            <select id="selectedSubject" name="selectedSubject" class="form-control" data-val="true" data-val-required="The subject field is required"></select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedSubject" data-valmsg-replace="true"></span>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Unit no</label>
+            <select id="selectedUnit" name="selectedUnit" class="form-control" data-val="true" data-val-required="The unit field is required">
+                <option selected disabled="">---Select---</option>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+                <option>6</option>
+            </select>
+            <span class="field-validation-valid text-danger" data-valmsg-for="selectedUnit" data-valmsg-replace="true"></span>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Chapter no</label>
+            <input type="number" name="chapterNumber" id="chapterNumber" class="form-control" data-val-range="Chapter no must be in 1 to 15" data-val-range-max="15" data-val-range-min="1" data-val="true" data-val-required="The chapter no field is required" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="chapterNumber" data-valmsg-replace="true"></span>
+        </div>
+
+        <div class="col-sm-12 col-lg-6">
+            <label class="col-form-label">Chapter name</label>
+            <input type="text" name="chapterName" id="chapterName" class="form-control" data-val="true" data-val-required="The chapter name field is required" />
+            <span class="field-validation-valid text-danger" data-valmsg-for="chapterName" data-valmsg-replace="true"></span>
+        </div>
     </div>
 
-    <div>
-        <label class="col-form-label">Department</label>
-        <select id="selectedDepartment" name="selectedDepartment" class="form-control" data-val="true" data-val-required="The department field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedDepartment" data-valmsg-replace="true"></span>
-    </div>
-
-    <div>
-        <label class="col-form-label">Subject</label>
-        <select id="selectedSubject" name="selectedSubject" class="form-control" data-val="true" data-val-required="The subject field is required"></select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedSubject" data-valmsg-replace="true"></span>
-    </div>
-
-    <div>
-        <label class="col-form-label">Unit no</label>
-        <select id="selectedUnit" name="selectedUnit" class="form-control" data-val="true" data-val-required="The unit field is required">
-            <option selected disabled="">---Select---</option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-            <option>5</option>
-            <option>6</option>
-        </select>
-        <span class="field-validation-valid text-danger" data-valmsg-for="selectedUnit" data-valmsg-replace="true"></span>
-    </div>
-
-    <div>
-        <label class="col-form-label">Chapter no</label>
-        <input type="number" name="chapterNumber" id="chapterNumber" class="form-control" data-val-range="Chapter no must be in 1 to 15" data-val-range-max="15" data-val-range-min="1" data-val="true" data-val-required="The chapter no field is required"/>
-        <span class="field-validation-valid text-danger" data-valmsg-for="chapterNumber" data-valmsg-replace="true"></span>
-    </div>
-
-    <div>
-        <label class="col-form-label">Chapter name</label>
-        <input type="text" name="chapterName" id="chapterName" class="form-control" data-val="true" data-val-required="The chapter name field is required"/>
-        <span class="field-validation-valid text-danger" data-valmsg-for="chapterName" data-valmsg-replace="true"></span>
-    </div>
-
+    <br/>
     <div class="form-group">
         <input type="submit" value="Submit" class="form-control btn btn-primary" id="ChapterFormSubmit" name="ChapterFormSubmit"/>
     </div>

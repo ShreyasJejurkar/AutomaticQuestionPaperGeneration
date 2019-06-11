@@ -4,14 +4,10 @@ using AutomatedQuestionPaper.Models;
 
 namespace AutomatedQuestionPaper.Areas.Staff.Models
 {
-    /// <summary>
-    ///     Provides most frequently information about database objects
-    /// </summary>
     public class DatabaseStaffOperations
     {
-        // EF Context for database
-        protected static readonly DatabaseContext Context = new DatabaseContext();
-        protected readonly AutomatedQuestionPaper.Models.Staff Staff;
+        private static readonly DatabaseContext Context = new DatabaseContext();
+        private readonly AutomatedQuestionPaper.Models.Staff Staff;
 
         public DatabaseStaffOperations(string staffName)
         {

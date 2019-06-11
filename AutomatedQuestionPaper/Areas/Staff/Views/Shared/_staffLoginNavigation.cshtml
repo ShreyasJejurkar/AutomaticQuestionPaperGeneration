@@ -33,7 +33,7 @@
                 <a class="nav-link" href="@Url.Action("Index", "QuestionPaperRepository",  new { Area = "Staff" })">Question Paper repository</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/Home">Log out</a>
+                <a class="nav-link" href="/Home" onClick="return confirm('Are you sure to be logged out?');">Log out</a>
             </li>
         </ul>
     </div>

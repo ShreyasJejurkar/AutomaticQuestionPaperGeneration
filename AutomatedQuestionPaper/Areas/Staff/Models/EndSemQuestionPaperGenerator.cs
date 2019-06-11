@@ -92,7 +92,7 @@ namespace AutomatedQuestionPaper.Areas.Staff.Models
             doc.Replace("SUBJECT_NAME", Subject_Name, true, true);
 
             doc.SaveToFile(questionPaperPath);
-            doc.Dispose();
+           // doc.Dispose();
 
             PdfHandler.ConvertToPdf(questionPaperPath);
         }

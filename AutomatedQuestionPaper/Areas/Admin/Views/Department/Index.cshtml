@@ -1,80 +1,46 @@
 ﻿@model IEnumerable<AutomatedQuestionPaper.Models.Department>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Department management";
     Layout = "~/Areas/Admin/Views/Shared/_adminLoginNavigation.cshtml";
 }
 
-<h2>Index</h2>
+<br />
 
-@if (ViewBag.DepartmentDeleteSuccessMessage != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @ViewBag.DepartmentDeleteSuccessMessage
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+<br />
+
+<div class="row">
+    <div class="col">
+        <h4>Department Management</h4>
     </div>
-}
-
-@if (ViewBag.DepartmentDeleteFailtureMessage != null)
-{
-    <div class="alert alert-warning alert-dismissible fade show" role="alert">
-        @ViewBag.DepartmentDeleteFailtureMessage
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
+    <div class="col-sm-4">
+        <div class="float-md-right mb-3">
+            <a href=@Url.Action("Create", "Department") class="btn btn-outline-success btn-block">
+                Add new department
+            </a>
+        </div>
     </div>
-}
-
-@if (TempData["DepartmentDeleteSuccessMessage"] != null)
-{
-    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-        @TempData["DepartmentDeleteSuccessMessage"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-}
-
-
-@if (TempData["DepartmentAddedSuccessMessage"] != null)
-{
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        @TempData["DepartmentAddedSuccessMessage"]
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
-}
-
-
-<p>
-    <div class="float-md-right mb-3">
-        <a href=@Url.Action("Create", "Department") class="btn btn-outline-success btn-block">
-            <span class="fa fa-plus" aria-hidden="true"></span>
-            Add new
-        </a>
-    </div>
-</p>
-
-
+</div>
 
 @{
     var grid = new WebGrid();
     grid.Bind(Model);
 }
 
+@using (Html.BeginForm("DeleteMultipleDepartment", "Department", FormMethod.Post))
+{
+    @grid.GetHtml("table table-bordered table-striped ",
+        mode: WebGridPagerModes.All,
+        firstText: "<< First",
+        previousText: "< Prev",
+        nextText: "Next >",
+        lastText: "Last >>",
+        columns: grid.Columns(
+            grid.Column(null, null, format: @<text><input name="selectedIds" id="selectedIds" type="checkbox" value="@item.Id" /></text>),
+grid.Column("DepartmentName", "Department name"),
+grid.Column(format: @<text>@Html.ActionLink("Edit", "Edit", new { id = item.Id }, new { @class = "btn btn-outline-primary" }) </text>),
+grid.Column(format: @<text>@Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { onclick = "return confirm('Are you sure you wish to delete this department ?');", @class = "btn btn-outline-secondary" })</text>))
+)
 
-@grid.GetHtml("table table-bordered table-striped table-responsive-lg ",
-    mode: WebGridPagerModes.All,
-    firstText: "<< First",
-    previousText: "< Prev",
-    nextText: "Next >",
-    lastText: "Last >>",
-    columns: grid.Columns(
-        grid.Column("Id", "Id"),
-        grid.Column("DepartmentName", "Department name"),
-        grid.Column(format: @<text>@Html.ActionLink("Edit", "Edit", new {id = item.Id}, new {@class = "btn btn-outline-primary"}) </text>),
-        grid.Column(format: @<text>@Html.ActionLink("Delete", "Delete", new {id = item.Id}, new {onclick = "return confirm('Are you sure you wish to delete this department ?');", @class = "btn btn-outline-secondary"})</text>))
-    )
+    <input type="submit" value="Delete selected department" class="btn btn-outline-danger" onclick="return confirm('Are you sure you wish to delete this staff?');" />
+}

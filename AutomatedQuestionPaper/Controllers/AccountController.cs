@@ -30,7 +30,6 @@ namespace AutomatedQuestionPaper.Controllers
 
             if (auth.status == 1 && auth.authenticatedUserName != null)
             {
-                
                 Session["Staff_Name"] = auth.authenticatedUserName;
                 Alert("Welcome", $"Hello {Session["Staff_Name"]}", Enums.NotificationType.success);
 
@@ -43,7 +42,6 @@ namespace AutomatedQuestionPaper.Controllers
             if (auth.status == 2 && auth.authenticatedUserName != null)
             {
                 Session["Username"] = auth.authenticatedUserName;
-
                 Alert("Welcome", $"Hello {Session["Username"]}", Enums.NotificationType.success);
 
                 return RedirectToAction("Index", "AdminHomePage", new
