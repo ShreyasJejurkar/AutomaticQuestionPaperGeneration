@@ -1,0 +1,1 @@
+Copy this 2 folders into C: drive root. 
