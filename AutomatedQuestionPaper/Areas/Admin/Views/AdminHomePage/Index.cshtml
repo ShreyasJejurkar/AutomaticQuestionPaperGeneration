@@ -8,7 +8,7 @@
 	ViewBag.Title = "Index";
 	Layout = "~/Views/Shared/_Layout.cshtml";
 	
-	BaseController bs = new BaseController();
+	AlertController bs = new AlertController();
 	bs.Alert("Session error", (string) TempData["SessionErrorMessage"], Enums.NotificationType.error);
 	
 }
