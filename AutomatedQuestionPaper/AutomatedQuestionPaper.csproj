@@ -461,6 +461,12 @@
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AutomaticQuestionPaperGeneration.BusinessLayer\AutomaticQuestionPaperGeneration.BusinessLayer.csproj">
+      <Project>{91d08a68-6b3c-428b-9303-0fbfd131c53b}</Project>
+      <Name>AutomaticQuestionPaperGeneration.BusinessLayer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

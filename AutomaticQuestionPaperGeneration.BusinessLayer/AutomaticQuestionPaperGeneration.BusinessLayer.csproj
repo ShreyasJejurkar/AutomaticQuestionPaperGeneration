@@ -43,5 +43,11 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AutomaticQuestionPaperGeneration.Data\AutomaticQuestionPaperGeneration.Data.csproj">
+      <Project>{22e85077-fc57-4b10-bb0f-4509f6cc8f0b}</Project>
+      <Name>AutomaticQuestionPaperGeneration.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
