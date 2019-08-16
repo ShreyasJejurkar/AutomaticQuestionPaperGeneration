@@ -13,9 +13,9 @@ namespace AutomaticQuestionPaperGeneration.Data.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class AutomaticQuestionPaperModelContainer : DbContext
+    public partial class AutomaticQuestionPaperContext : DbContext
     {
-        public AutomaticQuestionPaperModelContainer()
+        public AutomaticQuestionPaperContext()
             : base("name=AutomaticQuestionPaperModelContainer")
         {
         }
