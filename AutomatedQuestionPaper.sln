@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.27703.2035
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29201.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomatedQuestionPaper", "AutomatedQuestionPaper\AutomatedQuestionPaper.csproj", "{EEBC47A0-A519-4F27-9C86-B37B5A9F29E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomaticQuestionPaperGeneration.Data", "AutomaticQuestionPaperGeneration.Data\AutomaticQuestionPaperGeneration.Data.csproj", "{22E85077-FC57-4B10-BB0F-4509F6CC8F0B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomaticQuestionPaperGeneration.BusinessLayer", "AutomaticQuestionPaperGeneration.BusinessLayer\AutomaticQuestionPaperGeneration.BusinessLayer.csproj", "{91D08A68-6B3C-428B-9303-0FBFD131C53B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{EEBC47A0-A519-4F27-9C86-B37B5A9F29E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EEBC47A0-A519-4F27-9C86-B37B5A9F29E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EEBC47A0-A519-4F27-9C86-B37B5A9F29E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{22E85077-FC57-4B10-BB0F-4509F6CC8F0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{22E85077-FC57-4B10-BB0F-4509F6CC8F0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{22E85077-FC57-4B10-BB0F-4509F6CC8F0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{22E85077-FC57-4B10-BB0F-4509F6CC8F0B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{91D08A68-6B3C-428B-9303-0FBFD131C53B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{91D08A68-6B3C-428B-9303-0FBFD131C53B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{91D08A68-6B3C-428B-9303-0FBFD131C53B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{91D08A68-6B3C-428B-9303-0FBFD131C53B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
