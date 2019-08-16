@@ -1,16 +1,15 @@
-﻿@using System.Collections
-@using AutomatedQuestionPaper.Models
+﻿@using AutomatedQuestionPaper.Models
 @model AutomatedQuestionPaper.Models.Course
 
 @{
 
-    ViewBag.Title = "Create";
+    ViewBag.Title = "Create subject";
     Layout = "~/Areas/Admin/Views/Shared/_adminLoginNavigation.cshtml";
 }
 
 <br />
 
-<h3> Add subject </h3>
+<h3> Create subject </h3>
 
 @using (Html.BeginForm())
 {
@@ -21,23 +20,15 @@
             <label class="col-form-label">Department</label>
             <div>
                 <select name="departmentList" class="form-control" id="departmentList" required>
-                    <option>--------------------</option>
-                    @foreach (var department in ViewBag.DepartmentList)
-                    {
-                        <option value="@department.DepartmentName">@department.DepartmentName</option>
-                    }
+                    <option value="" disabled selected>Select your option</option>
                 </select>
             </div>
         </div>
         <div class="col">
             <label class="col-form-label">Year</label>
-            <select name="yearList" class="form-control" id="yearList" required>
-                <option>--------------------</option>
-                @foreach (var year in ViewBag.YearsList)
-                {
-                    <option value="@year ">@year</option>
-                }
-            </select>
+            @Html.DropDownList("Year", EnumHelper.GetSelectList(typeof(YearList)),
+                "Select your year", 
+                new { @class= "form-control" , @id = "yearList", @name = "yearList" })
         </div>
     </div>
 
@@ -84,4 +75,31 @@
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+
+
+    <script>
+        $(function() {
+
+            $("#Year option:first").attr("disabled", "true");
+
+
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetDepartmentJsonList","Department")',
+                success: function (data) {
+
+                    $.each(data,
+                        (i, item) => {
+                            $("#departmentList").append($("<option></option>")
+                                .attr("value", item.DepartmentName)
+                                .text(item.DepartmentName));
+                        });
+
+                }
+            });
+
+
+        });
+    </script>
+
 }

@@ -18,7 +18,15 @@ namespace AutomatedQuestionPaper.Areas.Admin.Controllers
             _departmentRepository = new DepartmentRepository();
             _data = _departmentRepository.GetAllDepartment().ToList();
         }
+
         
+        [HttpGet]
+        public JsonResult GetDepartmentJsonList()
+        {
+            var data =  Json(_departmentRepository.GetAllDepartment(), JsonRequestBehavior.AllowGet);
+            return data;
+        }
+
         [HttpGet]
         public ActionResult Index()
         {
