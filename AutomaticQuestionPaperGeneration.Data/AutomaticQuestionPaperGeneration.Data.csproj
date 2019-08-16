@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataOperations\DepartmentOperations.cs" />
+    <Compile Include="DataOperations\SemesterOperations.cs" />
     <Compile Include="Models\AutomaticQuestionPaperModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
