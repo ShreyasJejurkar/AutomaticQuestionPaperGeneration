@@ -53,6 +53,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataOperations\ChapterOperations.cs" />
     <Compile Include="DataOperations\DepartmentOperations.cs" />
     <Compile Include="DataOperations\SemesterOperations.cs" />
     <Compile Include="DataOperations\SubjectOperations.cs" />
