@@ -1,0 +1,492 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="AutomaticQuestionPaperModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AutomaticQuestionPaperModelStoreContainer">
+    <EntitySet Name="Users" EntityType="AutomaticQuestionPaperModel.Store.Users" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Semesters" EntityType="AutomaticQuestionPaperModel.Store.Semesters" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Departments" EntityType="AutomaticQuestionPaperModel.Store.Departments" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Staffs" EntityType="AutomaticQuestionPaperModel.Store.Staffs" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Subjects" EntityType="AutomaticQuestionPaperModel.Store.Subjects" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Chapters" EntityType="AutomaticQuestionPaperModel.Store.Chapters" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Questions" EntityType="AutomaticQuestionPaperModel.Store.Questions" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ExamPapers1" EntityType="AutomaticQuestionPaperModel.Store.ExamPapers1" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="DepartmentStaff" Association="AutomaticQuestionPaperModel.Store.DepartmentStaff">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Staff" EntitySet="Staffs" />
+    </AssociationSet>
+    <AssociationSet Name="StaffSubject" Association="AutomaticQuestionPaperModel.Store.StaffSubject">
+      <End Role="Staff" EntitySet="Staffs" />
+      <End Role="Subject" EntitySet="Subjects" />
+    </AssociationSet>
+    <AssociationSet Name="SubjectChapter" Association="AutomaticQuestionPaperModel.Store.SubjectChapter">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="Chapter" EntitySet="Chapters" />
+    </AssociationSet>
+    <AssociationSet Name="ChapterQuestion" Association="AutomaticQuestionPaperModel.Store.ChapterQuestion">
+      <End Role="Chapter" EntitySet="Chapters" />
+      <End Role="Question" EntitySet="Questions" />
+    </AssociationSet>
+    <AssociationSet Name="SubjectExamPaper" Association="AutomaticQuestionPaperModel.Store.SubjectExamPaper">
+      <End Role="Subject" EntitySet="Subjects" />
+      <End Role="ExamPaper" EntitySet="ExamPapers1" />
+    </AssociationSet>
+    <AssociationSet Name="DepartmentSubject" Association="AutomaticQuestionPaperModel.Store.DepartmentSubject">
+      <End Role="Department" EntitySet="Departments" />
+      <End Role="Subject" EntitySet="Subjects" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Users">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Semesters">
+    <Key>
+      <PropertyRef Name="SemesterId" />
+    </Key>
+    <Property Name="SemesterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SemesterName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SemesterStartDate" Type="datetime" Nullable="false" />
+    <Property Name="SemesterEndDate" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Departments">
+    <Key>
+      <PropertyRef Name="DepartmentId" />
+    </Key>
+    <Property Name="DepartmentId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DepartmentName" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Staffs">
+    <Key>
+      <PropertyRef Name="StaffId" />
+    </Key>
+    <Property Name="StaffId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="StaffFullName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StaffAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StaffGender" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StaffPhoneNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StaffEmailAddress" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="StaffPassword" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+    <Property Name="Subject_SubjectId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Subjects">
+    <Key>
+      <PropertyRef Name="SubjectId" />
+    </Key>
+    <Property Name="SubjectId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubjectShortName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SubjectDescription" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SubjectYear" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DepartmentId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Chapters">
+    <Key>
+      <PropertyRef Name="ChapterId" />
+    </Key>
+    <Property Name="ChapterId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ChapterName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ChapterUnit" Type="int" Nullable="false" />
+    <Property Name="ChapterNo" Type="int" Nullable="false" />
+    <Property Name="SubjectId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Questions">
+    <Key>
+      <PropertyRef Name="QuestionId" />
+    </Key>
+    <Property Name="QuestionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="QuestionText" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="QuestionDifficultyLevel" Type="int" Nullable="false" />
+    <Property Name="ChapterId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ExamPapers1">
+    <Key>
+      <PropertyRef Name="ExamPaperId" />
+    </Key>
+    <Property Name="ExamPaperId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubjectId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="DepartmentStaff">
+    <End Role="Department" Type="AutomaticQuestionPaperModel.Store.Departments" Multiplicity="1" />
+    <End Role="Staff" Type="AutomaticQuestionPaperModel.Store.Staffs" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="StaffSubject">
+    <End Role="Staff" Type="AutomaticQuestionPaperModel.Store.Staffs" Multiplicity="*" />
+    <End Role="Subject" Type="AutomaticQuestionPaperModel.Store.Subjects" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="Staff">
+        <PropertyRef Name="Subject_SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SubjectChapter">
+    <End Role="Subject" Type="AutomaticQuestionPaperModel.Store.Subjects" Multiplicity="1" />
+    <End Role="Chapter" Type="AutomaticQuestionPaperModel.Store.Chapters" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="Chapter">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ChapterQuestion">
+    <End Role="Chapter" Type="AutomaticQuestionPaperModel.Store.Chapters" Multiplicity="1" />
+    <End Role="Question" Type="AutomaticQuestionPaperModel.Store.Questions" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Chapter">
+        <PropertyRef Name="ChapterId" />
+      </Principal>
+      <Dependent Role="Question">
+        <PropertyRef Name="ChapterId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="SubjectExamPaper">
+    <End Role="Subject" Type="AutomaticQuestionPaperModel.Store.Subjects" Multiplicity="1" />
+    <End Role="ExamPaper" Type="AutomaticQuestionPaperModel.Store.ExamPapers1" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Subject">
+        <PropertyRef Name="SubjectId" />
+      </Principal>
+      <Dependent Role="ExamPaper">
+        <PropertyRef Name="SubjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DepartmentSubject">
+    <End Role="Department" Type="AutomaticQuestionPaperModel.Store.Departments" Multiplicity="1" />
+    <End Role="Subject" Type="AutomaticQuestionPaperModel.Store.Subjects" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Department">
+        <PropertyRef Name="DepartmentId" />
+      </Principal>
+      <Dependent Role="Subject">
+        <PropertyRef Name="DepartmentId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="AutomaticQuestionPaperModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="AutomaticQuestionPaperModelContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Users" EntityType="AutomaticQuestionPaperModel.User" />
+          <EntitySet Name="Semesters" EntityType="AutomaticQuestionPaperModel.Semester" />
+          <EntitySet Name="Departments" EntityType="AutomaticQuestionPaperModel.Department" />
+          <EntitySet Name="Staffs" EntityType="AutomaticQuestionPaperModel.Staff" />
+          <AssociationSet Name="DepartmentStaff" Association="AutomaticQuestionPaperModel.DepartmentStaff">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <EntitySet Name="Subjects" EntityType="AutomaticQuestionPaperModel.Subject" />
+          <AssociationSet Name="StaffSubject" Association="AutomaticQuestionPaperModel.StaffSubject">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+          <EntitySet Name="Chapters" EntityType="AutomaticQuestionPaperModel.Chapter" />
+          <AssociationSet Name="SubjectChapter" Association="AutomaticQuestionPaperModel.SubjectChapter">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="Chapter" EntitySet="Chapters" />
+          </AssociationSet>
+          <EntitySet Name="Questions" EntityType="AutomaticQuestionPaperModel.Question" />
+          <AssociationSet Name="ChapterQuestion" Association="AutomaticQuestionPaperModel.ChapterQuestion">
+            <End Role="Chapter" EntitySet="Chapters" />
+            <End Role="Question" EntitySet="Questions" />
+          </AssociationSet>
+          <EntitySet Name="ExamPapers1" EntityType="AutomaticQuestionPaperModel.ExamPaper" />
+          <AssociationSet Name="SubjectExamPaper" Association="AutomaticQuestionPaperModel.SubjectExamPaper">
+            <End Role="Subject" EntitySet="Subjects" />
+            <End Role="ExamPaper" EntitySet="ExamPapers1" />
+          </AssociationSet>
+          <AssociationSet Name="DepartmentSubject" Association="AutomaticQuestionPaperModel.DepartmentSubject">
+            <End Role="Department" EntitySet="Departments" />
+            <End Role="Subject" EntitySet="Subjects" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Username" Type="String" Nullable="false" />
+          <Property Name="Password" Type="String" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Semester">
+          <Key>
+            <PropertyRef Name="SemesterId" />
+          </Key>
+          <Property Name="SemesterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SemesterName" Type="String" Nullable="false" />
+          <Property Name="SemesterStartDate" Type="DateTime" Nullable="false" />
+          <Property Name="SemesterEndDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="DepartmentId" />
+          </Key>
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DepartmentName" Type="String" Nullable="false" />
+          <NavigationProperty Name="Staffs" Relationship="AutomaticQuestionPaperModel.DepartmentStaff" FromRole="Department" ToRole="Staff" />
+          <NavigationProperty Name="Subjects" Relationship="AutomaticQuestionPaperModel.DepartmentSubject" FromRole="Department" ToRole="Subject" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="StaffId" />
+          </Key>
+          <Property Name="StaffId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StaffFullName" Type="String" Nullable="false" />
+          <Property Name="StaffAddress" Type="String" Nullable="false" />
+          <Property Name="StaffGender" Type="String" Nullable="false" />
+          <Property Name="StaffPhoneNumber" Type="String" Nullable="false" />
+          <Property Name="StaffEmailAddress" Type="String" Nullable="false" />
+          <Property Name="StaffPassword" Type="String" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="AutomaticQuestionPaperModel.DepartmentStaff" FromRole="Staff" ToRole="Department" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Subject" Relationship="AutomaticQuestionPaperModel.StaffSubject" FromRole="Staff" ToRole="Subject" />
+        </EntityType>
+        <Association Name="DepartmentStaff">
+          <End Type="AutomaticQuestionPaperModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="AutomaticQuestionPaperModel.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Subject">
+          <Key>
+            <PropertyRef Name="SubjectId" />
+          </Key>
+          <Property Name="SubjectId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SubjectShortName" Type="String" Nullable="false" />
+          <Property Name="SubjectDescription" Type="String" Nullable="false" />
+          <Property Name="SubjectYear" Type="String" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="AutomaticQuestionPaperModel.StaffSubject" FromRole="Subject" ToRole="Staff" />
+          <NavigationProperty Name="Chapters" Relationship="AutomaticQuestionPaperModel.SubjectChapter" FromRole="Subject" ToRole="Chapter" />
+          <NavigationProperty Name="ExamPapers" Relationship="AutomaticQuestionPaperModel.SubjectExamPaper" FromRole="Subject" ToRole="ExamPaper" />
+          <NavigationProperty Name="Department" Relationship="AutomaticQuestionPaperModel.DepartmentSubject" FromRole="Subject" ToRole="Department" />
+          <Property Name="DepartmentId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="StaffSubject">
+          <End Type="AutomaticQuestionPaperModel.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="AutomaticQuestionPaperModel.Subject" Role="Subject" Multiplicity="1" />
+        </Association>
+        <EntityType Name="Chapter">
+          <Key>
+            <PropertyRef Name="ChapterId" />
+          </Key>
+          <Property Name="ChapterId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ChapterName" Type="String" Nullable="false" />
+          <Property Name="ChapterUnit" Type="Int32" Nullable="false" />
+          <Property Name="ChapterNo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Subject" Relationship="AutomaticQuestionPaperModel.SubjectChapter" FromRole="Chapter" ToRole="Subject" />
+          <Property Name="SubjectId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Questions" Relationship="AutomaticQuestionPaperModel.ChapterQuestion" FromRole="Chapter" ToRole="Question" />
+        </EntityType>
+        <Association Name="SubjectChapter">
+          <End Type="AutomaticQuestionPaperModel.Subject" Role="Subject" Multiplicity="1" />
+          <End Type="AutomaticQuestionPaperModel.Chapter" Role="Chapter" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="SubjectId" />
+            </Principal>
+            <Dependent Role="Chapter">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+          </Key>
+          <Property Name="QuestionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionText" Type="String" Nullable="false" />
+          <Property Name="QuestionDifficultyLevel" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Chapter" Relationship="AutomaticQuestionPaperModel.ChapterQuestion" FromRole="Question" ToRole="Chapter" />
+          <Property Name="ChapterId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="ChapterQuestion">
+          <End Type="AutomaticQuestionPaperModel.Chapter" Role="Chapter" Multiplicity="1" />
+          <End Type="AutomaticQuestionPaperModel.Question" Role="Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Chapter">
+              <PropertyRef Name="ChapterId" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="ChapterId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ExamPaper">
+          <Key>
+            <PropertyRef Name="ExamPaperId" />
+          </Key>
+          <Property Name="ExamPaperId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Subject" Relationship="AutomaticQuestionPaperModel.SubjectExamPaper" FromRole="ExamPaper" ToRole="Subject" />
+          <Property Name="SubjectId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="SubjectExamPaper">
+          <End Type="AutomaticQuestionPaperModel.Subject" Role="Subject" Multiplicity="1" />
+          <End Type="AutomaticQuestionPaperModel.ExamPaper" Role="ExamPaper" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Subject">
+              <PropertyRef Name="SubjectId" />
+            </Principal>
+            <Dependent Role="ExamPaper">
+              <PropertyRef Name="SubjectId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="DepartmentSubject">
+          <End Type="AutomaticQuestionPaperModel.Department" Role="Department" Multiplicity="1" />
+          <End Type="AutomaticQuestionPaperModel.Subject" Role="Subject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="DepartmentId" />
+            </Principal>
+            <Dependent Role="Subject">
+              <PropertyRef Name="DepartmentId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="AutomaticQuestionPaperModelStoreContainer" CdmEntityContainer="AutomaticQuestionPaperModelContainer">
+    <EntitySetMapping Name="Users">
+      <EntityTypeMapping TypeName="IsTypeOf(AutomaticQuestionPaperModel.User)">
+        <MappingFragment StoreEntitySet="Users">
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Semesters">
+      <EntityTypeMapping TypeName="IsTypeOf(AutomaticQuestionPaperModel.Semester)">
+        <MappingFragment StoreEntitySet="Semesters">
+          <ScalarProperty Name="SemesterId" ColumnName="SemesterId" />
+          <ScalarProperty Name="SemesterName" ColumnName="SemesterName" />
+          <ScalarProperty Name="SemesterStartDate" ColumnName="SemesterStartDate" />
+          <ScalarProperty Name="SemesterEndDate" ColumnName="SemesterEndDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Departments">
+      <EntityTypeMapping TypeName="IsTypeOf(AutomaticQuestionPaperModel.Department)">
+        <MappingFragment StoreEntitySet="Departments">
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+          <ScalarProperty Name="DepartmentName" ColumnName="DepartmentName" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Staffs">
+      <EntityTypeMapping TypeName="IsTypeOf(AutomaticQuestionPaperModel.Staff)">
+        <MappingFragment StoreEntitySet="Staffs">
+          <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+          <ScalarProperty Name="StaffFullName" ColumnName="StaffFullName" />
+          <ScalarProperty Name="StaffAddress" ColumnName="StaffAddress" />
+          <ScalarProperty Name="StaffGender" ColumnName="StaffGender" />
+          <ScalarProperty Name="StaffPhoneNumber" ColumnName="StaffPhoneNumber" />
+          <ScalarProperty Name="StaffEmailAddress" ColumnName="StaffEmailAddress" />
+          <ScalarProperty Name="StaffPassword" ColumnName="StaffPassword" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Subjects">
+      <EntityTypeMapping TypeName="IsTypeOf(AutomaticQuestionPaperModel.Subject)">
+        <MappingFragment StoreEntitySet="Subjects">
+          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+          <ScalarProperty Name="SubjectShortName" ColumnName="SubjectShortName" />
+          <ScalarProperty Name="SubjectDescription" ColumnName="SubjectDescription" />
+          <ScalarProperty Name="SubjectYear" ColumnName="SubjectYear" />
+          <ScalarProperty Name="DepartmentId" ColumnName="DepartmentId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Chapters">
+      <EntityTypeMapping TypeName="IsTypeOf(AutomaticQuestionPaperModel.Chapter)">
+        <MappingFragment StoreEntitySet="Chapters">
+          <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
+          <ScalarProperty Name="ChapterName" ColumnName="ChapterName" />
+          <ScalarProperty Name="ChapterUnit" ColumnName="ChapterUnit" />
+          <ScalarProperty Name="ChapterNo" ColumnName="ChapterNo" />
+          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Questions">
+      <EntityTypeMapping TypeName="IsTypeOf(AutomaticQuestionPaperModel.Question)">
+        <MappingFragment StoreEntitySet="Questions">
+          <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+          <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+          <ScalarProperty Name="QuestionDifficultyLevel" ColumnName="QuestionDifficultyLevel" />
+          <ScalarProperty Name="ChapterId" ColumnName="ChapterId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ExamPapers1">
+      <EntityTypeMapping TypeName="IsTypeOf(AutomaticQuestionPaperModel.ExamPaper)">
+        <MappingFragment StoreEntitySet="ExamPapers1">
+          <ScalarProperty Name="ExamPaperId" ColumnName="ExamPaperId" />
+          <ScalarProperty Name="SubjectId" ColumnName="SubjectId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="StaffSubject" TypeName="AutomaticQuestionPaperModel.StaffSubject" StoreEntitySet="Staffs">
+      <EndProperty Name="Subject">
+        <ScalarProperty Name="SubjectId" ColumnName="Subject_SubjectId" />
+      </EndProperty>
+      <EndProperty Name="Staff">
+        <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

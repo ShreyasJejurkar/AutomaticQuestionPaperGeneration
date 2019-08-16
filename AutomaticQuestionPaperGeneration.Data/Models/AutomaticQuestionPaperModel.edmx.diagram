@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="182faf13542a488886550a307270af34" Name="Diagram1" ZoomLevel="66" >
+        <EntityTypeShape EntityType="AutomaticQuestionPaperModel.User" Width="1.5" PointX="0.5" PointY="0.5" />
+        <EntityTypeShape EntityType="AutomaticQuestionPaperModel.Semester" Width="2" PointX="0.5" PointY="2.5" />
+        <EntityTypeShape EntityType="AutomaticQuestionPaperModel.Department" Width="2" PointX="3.75" PointY="0.5" />
+        <EntityTypeShape EntityType="AutomaticQuestionPaperModel.Staff" Width="2.5" PointX="9.25" PointY="0.875" />
+        <AssociationConnector Association="AutomaticQuestionPaperModel.DepartmentStaff" />
+        <EntityTypeShape EntityType="AutomaticQuestionPaperModel.Subject" Width="2.5" PointX="6" PointY="3" FillColor="255, 255, 128" />
+        <AssociationConnector Association="AutomaticQuestionPaperModel.StaffSubject" />
+        <EntityTypeShape EntityType="AutomaticQuestionPaperModel.Chapter" Width="2" PointX="5.25" PointY="6.625" />
+        <AssociationConnector Association="AutomaticQuestionPaperModel.SubjectChapter" />
+        <EntityTypeShape EntityType="AutomaticQuestionPaperModel.Question" Width="2.125" PointX="9.375" PointY="5" />
+        <AssociationConnector Association="AutomaticQuestionPaperModel.ChapterQuestion" />
+        <EntityTypeShape EntityType="AutomaticQuestionPaperModel.ExamPaper" Width="2.625" PointX="0.5" PointY="7.125" />
+        <AssociationConnector Association="AutomaticQuestionPaperModel.SubjectExamPaper" />
+        <AssociationConnector Association="AutomaticQuestionPaperModel.DepartmentSubject" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>
